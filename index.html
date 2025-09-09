@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Veyra-9 — GM Hub · Arc 1</title>
 <style>
+/* if a second subnav somehow sneaks in, hide it */
+.subnav + .subnav { display: none; }
 /* ====== Veyra-9 GM Hub — Base Theme ====== */
 :root{
   --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
@@ -23,7 +25,6 @@ body{
 /* Links */
 a{color:var(--brand); text-decoration:none}
 a:hover{filter:brightness(1.08); text-decoration:underline}
-
 /* Header / Nav */
 .header{
   display:flex; justify-content:space-between; align-items:center;
@@ -129,6 +130,11 @@ window.addEventListener('DOMContentLoaded', () => {
   </nav>
 </header>
 
+<main class="wrap">
+  <div class="subnav">
+    <a class="chip" href="#top">Top</a>
+    <a class="chip" href="repo.html">Open Dossier</a>
+  </div>
   <!-- Arc 1 content continues… -->
 
   <div class="breadcrumbs">Prologue → <b>Arc 1</b></div>
@@ -481,5 +487,4 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>And so Arc 1 closed not with victory, but with silence. A silence filled with unspoken debts, unburied grief, and the faint, chilling suspicion that Haven’s voice was no longer human alone.</p>
 
 </main>
-</body>
-</html>
+</body></html>
