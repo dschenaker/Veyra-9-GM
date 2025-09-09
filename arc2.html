@@ -1,22 +1,37 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Veyra-9 — GM Hub · Arc 2</title>
 <style>
-/* Same CSS as Arc 1 for consistency */
-:root{ --bg:#f6f7fb; --ink:#0b0f18; --line:#d7dbea; --panel:#ffffff; --btn:#eaf1ff; --btnTxt:#0b0f18;}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial}
-a{color:#0b3d7a;text-decoration:none} a:hover{filter:brightness(1.08)}
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --line:#d7dbea; --panel:#ffffff;
+  --btn:#eaf1ff; --btnTxt:#0b0f18; --accent:#0b3d7a
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial}
+a{color:var(--accent);text-decoration:none}
+a:hover{filter:brightness(1.08)}
 .header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);background:#eef2ff;position:sticky;top:0;z-index:2}
 .header a{margin-right:12px}
-.brand{font-weight:800;color:#0b3d7a}
+.brand{font-weight:800;color:var(--accent)}
 .wrap{max-width:1100px;margin:0 auto;padding:20px}
-.clock{background:#eaf1ff;border:1px solid #c9d8ff;color:#0b3d7a;padding:6px 10px;border-radius:999px;font-weight:600}
-h1{margin:10px 0 6px 0} h2{margin:22px 0 8px 0}
-.scene{border-bottom:2px solid var(--line);padding-bottom:4px;margin-top:28px;color:#0b3d7a}
+.clock{background:var(--btn);border:1px solid #c9d8ff;color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:600}
+h1{margin:10px 0 6px 0}
+h2{margin:22px 0 8px 0}
+.scene{border-bottom:2px solid var(--line);padding-bottom:4px;margin-top:28px;color:var(--accent)}
 .scene::before{content:'◆ ';color:#6aa0ff}
+blockquote{border-left:4px solid #7aa2ff;background:#eef5ff;padding:10px 14px;margin:14px 0;font-style:italic}
+.meta{color:#2b2f39}
 </style>
 <script>
-function tick(){ const el=document.getElementById('clock'); if(!el) return; const d=new Date(); el.textContent=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST'; }
+function tick(){
+  const el=document.getElementById('clock');
+  if(!el) return;
+  const d=new Date();
+  el.textContent=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST';
+}
 setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
 </script>
 </head>
@@ -30,23 +45,19 @@ setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
     <span class="clock" id="clock">--:--:--</span>
   </nav>
 </header>
+
 <main class="wrap">
   <div class="breadcrumbs">Arc 1 → <b>Arc 2</b></div>
   <h1 class="scene">Arc 2 — Spire of Quiet Lies</h1>
+
   <h2 class="scene">Arrival at the Spire</h2>
-
-<p>The walk from the Quarter to Haven’s Spire was not long, but it felt like a journey between worlds. The air shifted with each level climbed—thicker with perfume and recycled ozone, thinner with sweat and grit. The Spire’s elevators gleamed, plated in alloys untouched by resin smoke, their controls polished by hands that never carried ration drums. Security lenses followed your steps, each swivel a reminder that this ascent was not earned but permitted.</p>
-
-<p>The Spire itself rose like a spear through the dome, its skin a lattice of mirrored panels that caught the aurora’s light and scattered it into fractured rainbows across the colony below. Where the Quarter’s walls were patched and bleeding, the Spire’s were smooth, cold, and arrogant. It was not built to hold back collapse. It was built to be seen.</p>
-
-<p>Inside, the difference was sharper still. Carpets muffled footsteps. Air scrubbers purred a clean monotone. Walls bore art commissioned from Bryndor and Kharsis, abstract shapes meant to suggest unity while avoiding anything specific enough to provoke. A mural of Solus Tarsis, the system’s star, stretched across the atrium, its golden rays painted to reach every corner. It felt less like light and more like surveillance.</p>
-
-<p>Waiting at the base of the central stair stood <b>Governor Orus Hestrel</b>, his suit pressed, his smile precise. Cameras orbited discreetly around him, each lens hungry for the narrative he meant to spin. To his right, <b>Kaelen Drix</b> of Zeratek adjusted a cufflink, his expression a polished mask of sympathy. To the left, <b>Director Sael</b> from Compliance Medicine stood in pale attire, clipboard in hand, the image of calm inevitability. Three faces, three fires of their own—and you were the extinguisher they all intended to hold.</p>
-
-<blockquote>“Welcome to Haven’s Spire,” Hestrel said, his voice warm enough to hide the steel beneath. “The Quarter may look to you as saviors. Here, you will be judged as stabilizers. I trust you know the difference.”</blockquote>
-
-<p>The aurora flickered through the high glass above, a ripple of green-white thread. For a heartbeat, its rhythm matched the child’s hum from the Quarter. No one in the Spire flinched. Perhaps they had trained themselves not to hear. Or perhaps they had heard it too often to care.</p>
-
+  <p>The walk from the Quarter to Haven’s Spire was not long, but it felt like a journey between worlds. The air shifted with each level climbed—thicker with perfume and recycled ozone, thinner with sweat and grit. The Spire’s elevators gleamed, plated in alloys untouched by resin smoke, their controls polished by hands that never carried ration drums. Security lenses followed your steps, each swivel a reminder that this ascent was not earned but permitted.</p>
+  <p>The Spire itself rose like a spear through the dome, its skin a lattice of mirrored panels that caught the aurora’s light and scattered it into fractured rainbows across the colony below. Where the Quarter’s walls were patched and bleeding, the Spire’s were smooth, cold, and arrogant. It was not built to hold back collapse. It was built to be seen.</p>
+  <p>Inside, the difference was sharper still. Carpets muffled footsteps. Air scrubbers purred a clean monotone. Walls bore art commissioned from Bryndor and Kharsis, abstract shapes meant to suggest unity while avoiding anything specific enough to provoke. A mural of Solus Tarsis, the system’s star, stretched across the atrium, its golden rays painted to reach every corner. It felt less like light and more like surveillance.</p>
+  <p>Waiting at the base of the central stair stood <b>Governor Orus Hestrel</b>, his suit pressed, his smile precise. Cameras orbited discreetly around him, each lens hungry for the narrative he meant to spin. To his right, <b>Kaelen Drix</b> of Zeratek adjusted a cufflink, his expression a polished mask of sympathy. To the left, <b>Director Sael</b> from Compliance Medicine stood in pale attire, clipboard in hand, the image of calm inevitability. Three faces, three fires of their own—and you were the extinguisher they all intended to hold.</p>
+  <blockquote>“Welcome to Haven’s Spire,” Hestrel said, his voice warm enough to hide the steel beneath. “The Quarter may look to you as saviors. Here, you will be judged as stabilizers. I trust you know the difference.”</blockquote>
+  <p>The aurora flickered through the high glass above, a ripple of green-white thread. For a heartbeat, its rhythm matched the child’s hum from the Quarter. No one in the Spire flinched. Perhaps they had trained themselves not to hear. Or perhaps they had heard it too often to care.</p>
+</main>
 
 </body>
 </html>
