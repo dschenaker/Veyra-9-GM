@@ -2,42 +2,103 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Veyra-9 — Dossier</title>
 <style>
-/* === GM CALLOUTS (standard) === */
+/* ====== Veyra-9 GM Hub — Base Theme ====== */
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+
+/* Links */
+a{color:var(--brand); text-decoration:none}
+a:hover{filter:brightness(1.08); text-decoration:underline}
+
+/* Header / Nav */
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.brand{font-weight:800; color:var(--brand)}
+nav a{
+  display:inline-block; margin-right:10px; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600;
+}
+nav a:hover{background:#f4f7ff}
+.clock{
+  margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
+  color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700;
+}
+
+/* Layout */
+.wrap{max-width:1100px; margin:0 auto; padding:20px}
+.breadcrumbs{color:var(--muted); margin:6px 0 14px 0}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
+
+/* Headings & sections */
+h1{margin:10px 0 6px}
+h2{margin:24px 0 10px}
+.scene{
+  color:var(--brand); border-bottom:2px solid var(--line);
+  padding-bottom:6px; margin-top:28px;
+}
+.scene::before{content:"◆ "; color:var(--brandSoft)}
+
+/* Quotes (blue “GM callout” style for epigraphs) */
+blockquote{
+  border-left:4px solid var(--brandSoft);
+  background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic;
+}
+
+/* Lists & small helpers */
+.meta{color:var(--muted); font-style:italic}
+.small{font-size:.94rem; color:var(--muted)}
+
+/* ====== GM CALLOUTS (standardized) ====== */
 .gm{
-  background:#eef5ff;
-  border:1px solid #c9d8ff;
-  border-left:6px solid #6aa0ff;
-  border-radius:10px;
-  padding:10px 14px;
-  margin:18px 0;
+  background:#eef5ff; border:1px solid var(--chipLine);
+  border-left:6px solid var(--brandSoft);
+  border-radius:10px; padding:10px 14px; margin:18px 0;
   box-shadow:0 1px 0 rgba(10,30,80,.04);
 }
-.gm + .gm{ margin-top:14px; }            /* nice stacking */
+.gm + .gm{margin-top:14px}
 .gm-h{
-  font-weight:800;
-  color:#0b3d7a;
-  letter-spacing:.1px;
-  display:flex; align-items:center; gap:8px;
-  margin:2px 0 6px 0;
+  font-weight:800; color:var(--brand); letter-spacing:.1px;
+  display:flex; align-items:center; gap:8px; margin:2px 0 6px 0;
 }
 .gm-h::before{
-  content:"GM";
-  font-size:12px; font-weight:800;
-  color:#fff; background:#0b3d7a;
-  border-radius:6px; padding:2px 6px;
+  content:"GM"; font-size:12px; font-weight:800;
+  color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px;
 }
-.gm-b{ color:#0b0f18; }
-.gm-b ul{ margin:8px 0 2px 1.1rem; }
-.gm-b li{ margin:6px 0; }
-.gm-b li b{ color:#0b3d7a; }
+.gm-b{color:var(--ink)}
+.gm-b ul{margin:8px 0 2px 1.1rem}
+.gm-b li{margin:6px 0}
+.gm-b li b{color:var(--brand)}
 
-.meta{ color:#3a4150; font-style:italic; }
+/* Collapsible variant (optional) */
+.gm.collapsible .gm-b{display:none}
+.gm.collapsible.open .gm-b{display:block}
+.gm.collapsible .gm-h{cursor:pointer}
 
-/* optional: collapsible GM blocks (click the header) */
-.gm.collapsible .gm-b{ display:none; }
-.gm.collapsible.open .gm-b{ display:block; cursor:auto; }
-.gm.collapsible .gm-h{ cursor:pointer; }
-
+/* ====== Dossier niceties ====== */
+.searchbar{
+  display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 16px;
+}
+.searchbar input[type="text"]{
+  padding:8px 10px; border:1px solid var(--line); border-radius:8px;
+  min-width:260px; background:#fff
+}
+.tag{display:inline-block; padding:2px 8px; background:var(--chip); border:1px solid var(--chipLine); border-radius:999px; color:var(--brand); font-size:.9rem; margin-right:6px}
 </style>
 <script>
 function tick(){ const el=document.getElementById('clock'); if(!el) return; const d=new Date(); el.textContent=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST'; }
@@ -78,6 +139,21 @@ function repoSearch(){
     <a href="arc2.html">Arc 2</a>
     <a href="repo.html">Dossier</a>
     <span class="clock" id="clock">--:--:--</span>
+   <script>
+// live clock
+function tick(){
+  const el=document.getElementById('clock'); if(!el) return;
+  el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+}
+setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
+
+// GM collapsibles
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.gm.collapsible .gm-h').forEach(h=>{
+    h.addEventListener('click',()=>h.parentElement.classList.toggle('open'));
+  });
+});
+</script> 
   </nav>
 </header>
 <main class="wrap">
