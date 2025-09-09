@@ -111,8 +111,7 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
     h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
   });
-});
-// remove accidental duplicate subnavs (keep the first)
+})
 window.addEventListener('DOMContentLoaded', () => {
   const subs = document.querySelectorAll('.subnav');
   subs.forEach((el, i) => { if (i > 0) el.remove(); });
