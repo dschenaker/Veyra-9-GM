@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — GM Hub · Arc 1</title>
+<style>
+:root{ --bg:#f6f7fb; --ink:#0b0f18; --line:#d7dbea; --panel:#ffffff; --btn:#eaf1ff; --btnTxt:#0b0f18;}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial}
+a{color:#0b3d7a;text-decoration:none} a:hover{filter:brightness(1.08)}
+.header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);background:#eef2ff;position:sticky;top:0;z-index:2}
+.header a{margin-right:12px}
+.brand{font-weight:800;color:#0b3d7a}
+.wrap{max-width:1100px;margin:0 auto;padding:20px}
+.clock{background:#eaf1ff;border:1px solid #c9d8ff;color:#0b3d7a;padding:6px 10px;border-radius:999px;font-weight:600}
+h1{margin:10px 0 6px 0} h2{margin:22px 0 8px 0}
+.meta{background:var(--panel);border:1px solid var(--line);padding:10px;border-radius:10px}
+blockquote{margin:14px 0;padding:10px 14px;border-left:3px solid #6aa0ff;color:#0b3d7a;font-style:italic;background:#f2f6ff;border-radius:6px}
+.gm{border:1px solid var(--line);border-radius:10px;margin:12px 0;overflow:hidden}
+.gm-h{background:#eaf1ff;color:#0b3d7a;padding:8px 10px;font-weight:700}
+.gm-b{background:#ffffff;padding:10px}
+.small{font-size:13px;color:#334}
+.scene{border-bottom:2px solid var(--line);padding-bottom:4px;margin-top:28px;color:#0b3d7a}
+.scene::before{content:'◆ ';color:#6aa0ff}
+.breadcrumbs{font-size:13px;color:#334;margin:2px 0 10px 0}
+.breadcrumbs a{color:#3a5aa6}
+.subnav{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px 0}
+.chip{background:var(--btn);border:1px solid var(--line);color:var(--btnTxt);padding:6px 10px;border-radius:999px;text-decoration:none;font-size:13px}
+.footer{margin:24px 0 12px 0;color:#556}
+hr{border:none;border-top:1px solid var(--line);margin:22px 0}
+</style>
+<script>
+function tick(){ const el=document.getElementById('clock'); if(!el) return; const d=new Date(); el.textContent=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST'; }
+setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
+</script>
+</head>
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · GM Hub</div>
+  <nav>
+    <a href="index.html">Arc 1</a>
+    <a href="repo.html">Dossier</a>
+    <span class="clock" id="clock">--:--:--</span>
+  </nav>
+</header>
+<main class="wrap">
+  <div class="subnav">
+    <a class="chip" href="#top">Top</a>
+    <a class="chip" href="repo.html">Open Dossier</a>
+  </div>
+
+  <div class="breadcrumbs">Prologue → <b>Arc 1</b></div>
+  <h1 class="scene">Arc 1 — Miners’ Desperation (Continuous Chapter)</h1>
+  <p class="meta">Mandate: the Obsidian Accord inserts the party as deniable stabilizers. Sponsors circling: <b>Helion</b> (Governor Orus Hestrel, Capt. Lira Veyne), <b>Zeratek</b> (Kaelen Drix), the <b>Accord</b> (Saint), <b>Reclaimers</b> (Serin Vael, Rust Varo), <b>Compliance Medicine</b> (Director Sael). Something new and wrong moves in the electrics—miners call it <b>the Choir</b> and don’t say it twice.</p>
+
+  <blockquote><em>“You are to keep Haven alive without embarrassing anyone wealthy enough to own a share of it.”</em> — Saint</blockquote>
+
+  <h2 class="scene">Arrival at Haven</h2>
+  <p>The shuttle kisses the pad with the sound of wet glass being cut. Frost flowers and melts across the viewport; behind it the dome’s false sky stutters, then stitches itself together with green-white threads of aurora that snag at the eye. Haven is too large for its skeleton. Patches on patches, scaffolds lashed to older scaffolds. Light bleeds where the seals are tired.</p>
+  <p>On the line where hazard red becomes scrubbed floor waits <b>Captain Lira Veyne</b>. Helmet tucked under one arm, braid pinned like an engineering diagram, eyes that count competence before names. Security forms a quiet crescent at her back—worn boots, good posture, the kind of alert that doesn’t waste motion.</p>
+  <blockquote>“Three fires,” she says. “One extinguisher. <u>Production has stalled</u>—the Quarter is bleeding. If miners don’t make it home and back again, Haven dies before the week is out. You’re with me to the Quarter. The other fires wait their turn.”</blockquote>
+
+  <div class="gm"><div class="gm-h">GM — Pressures & Pacing</div><div class="gm-b">
+    <ul>
+      <li><b>A-17 Truss</b>: structure strain (Arc 2 seed)</li>
+      <li><b>Row-C Unrest</b>: ration & labor collapse — <i>current directive</i></li>
+      <li><b>F-13 Power Spine</b>: grid harmonics (Arc 3 seed)</li>
+    </ul>
+    <p class="small"><b>Pacing:</b> Keep this briefing under 90 seconds. If players ask about the other fires, give one-line flags and move them down-stack.</p>
+  </div></div>
+
+  <h2 class="scene">Descent to the Quarter</h2>
+  <p>The elevator chatters into its rails and drops through the colony’s layers. Through slotted windows: bunks like beehives; a canteen where steam fogs the glass; an infirmary queue that loops twice around a pillar and carries the smell of boiled antiseptic. Blue ration bracelets blink on too many wrists. A wall mural lists thirty-two names in careful script. There is space left at the bottom in case the paint must learn another.</p>
+  <p><b>Serin Vael</b> stands at a water manifold with sleeves rolled to the elbow, arguing allocation with a technician who won’t meet her eye. She clocks the party’s badges, doesn’t smile, waves the line forward anyway. A colony jingle plays two beats late over the intercom, chirpy and wrong at this tempo.</p>
+  <blockquote>“Row-C is running dry,” Serin tells Veyne without greeting. “And drones keep waking in tunnels they were never assigned to.” Then to you: “Get my riggers home in one piece, and we’ll talk about trust.”</blockquote>
+  <div class="gm"><div class="gm-h">GM — Quarter Read</div><div class="gm-b">
+    <ul>
+      <li><b>Observation:</b> fatigue, ration stress, performative Security.</li>
+      <li><b>Offer one concrete help:</b> carry drums; fix a scanner; field-triage a sprain. Reward with names/favors. <i>Quarter Morale +1</i> if they stop for people.</li>
+    </ul>
+  </div></div>
+
+  <h2 class="scene">The Tunnels</h2>
+  <p>Conduits run like ribs. Condensation beads, swells, falls with a fat sound that makes even boots quieter. Someone has wired a charm of washers and colored fuse glass over a junction box so it will “sing right.” It hums a wrong note anyway.</p>
+  <p>A drone lies on its side at the gallery mouth—a blossom-lens model out of <b>Zeratek’s</b> older catalogs. The casing is stamped, the serial scratched away with miner impatience. <b>Tannic “Rust” Varo</b>, forearms cross-hatched by work and time, checks resin charges with the patience of a man who has counted the dead before and means to keep the number small. <b>Meryn Ralos</b> from Helion Compliance holds a tablet like a shield and tries to make <i>help</i> sound like policy.</p>
+  <div class="gm"><div class="gm-h">GM — NPC Reads</div><div class="gm-b">
+    <ul>
+      <li><b>Rust:</b> plainspoken ally; +1 morale to any mixed crew he commands if the party backs his calls.</li>
+      <li><b>Ralos:</b> opens records if protected; terrified of signing the wrong line; treats truth like glass.</li>
+      <li><b>Veyne:</b> respects competence and speed; notes who takes the hard job without prompting.</li>
+    </ul>
+  </div></div>
+
+  <h2 class="scene">Ambush in the Gallery</h2>
+  <p>The tunnel opens into a jagged wound where vents should be tidy and braced. The air smells of resin and hot copper. At first you think the drones are wreckage—then the <b>blossom lenses</b> on two units twitch and center on motion. They lunge, then freeze—not like machines following a loop, but like animals listening for a count you can’t hear. Somewhere deep in the metal you feel a hum setting your jaw on edge.</p>
+
+  <h3>Three Crises at Once</h3>
+  <ul>
+    <li><b>North shaft</b>: a misfired support buckled; a girder pins two miners; drones cut a neat, patient path toward a boot protruding under the beam.</li>
+    <li><b>Main line</b>: workers with crate-lid shields hold, one push from rout.</li>
+    <li><b>Maintenance alcove</b>: a child sits with knees hugged, listening to the hum. A drone noses an air grille like it can smell fear.</li>
+  </ul>
+
+  <div class="gm"><div class="gm-h">GM — Combat Frame (AD&D 2e)</div><div class="gm-b">
+    <ul>
+      <li><b>Scrap Drone (swarm)</b>: AC 7; HD 1d8; THAC0 20; DMG 1d6 cutter; MV 12; Morale 12 (check at first EMP/magnet pulse).</li>
+      <li><b>Tactics</b>: +1 to hit if 3+ focus same target; prefer knees, tools, braces.</li>
+      <li><b>Terrain</b>: catwalks; failing braces; resin smoke (save vs Poison each round in smoke or −1 to hit).</li>
+      <li><b>Pacing</b>: Announce three fronts; give 30 seconds real time to pick a priority; run 3 sharp rounds before any reinforcement flips a lane.</li>
+    </ul>
+  </div></div>
+
+  <h3>If they prioritize the North shaft</h3>
+  <p>Rust wedges, grunts; you take the girder’s weight while cutters scream sparks off resin braces. Flesh-and-bone strength meets the industrial geometry of failure. One miner’s boot twitches; the other’s foot is too still.</p>
+  <div class="gm"><div class="gm-h">Outcome</div><div class="gm-b">
+    <p><b>Riggers’ Favor +1.</b> Line buckles (<i>Quarter Morale −1</i>) unless someone peels to shore it. If the line breaks: 1d4 civilians wounded; +1 <i>Accord Optics</i> if the party uses bodies, not speeches, to hold.</p>
+  </div></div>
+
+  <h3>If they prioritize the Main line</h3>
+  <p>You plug the defense like a keystone. Shields rise on a single spoken count; the next push breaks on a wall that wasn’t there a heartbeat ago. Someone starts an old tunnel work song under their breath, and, weirdly, the washers on the charm keep time.</p>
+  <div class="gm"><div class="gm-h">Outcome</div><div class="gm-b">
+    <p>Order holds (no rout). <b>Accord Optics +1.</b> A pinned miner dies off-screen unless someone detached early (<i>Grief +1</i>). The child witnesses competence; mark <i>Row-C Owe</i> if someone notices him and says his name.</p>
+  </div></div>
+
+  <h3>If they prioritize the child</h3>
+  <p>You reach the alcove as the cutter noses past the grille. The child doesn’t scream; he matches the hum like he’s trying to correct it. The first strike leaves a curl of plastic on the floor like a dead worm. The second strike is cleaner. He takes your hand and doesn’t let go. Behind you, people you didn’t choose to save do their best anyway.</p>
+  <div class="gm"><div class="gm-h">Outcome</div><div class="gm-b">
+    <p><b>Street Temperature +1.</b> Casualties rise elsewhere; <i>Quarter Morale −1</i> unless the party loops back fast. The child remembers who hummed the tune and will map it later in dots.</p>
+  </div></div>
+
+  <div class="gm"><div class="gm-h">GM — Scaling & Reward</div><div class="gm-b">
+    <p>Let smart positioning, tool use, and small heroics matter more than raw damage. Award XP for solutions that feel like <i>mining work</i>: bracing, rigging, jerry-rig EMPs, out-timing the hum.</p>
+  </div></div>
+
+  <h2 class="scene">Silence After</h2>
+  <p>The last drone dies with a descending note that seems to shut the room. Everyone counts. Gratitude and anger arrive in equal measures, because both are honest. Rust squeezes a shoulder and leaves a clean glove print on grime. Ralos composes “intervention successful, losses incurred” and looks anywhere but at faces.</p>
+  <p>Above, the aurora flickers—bright enough that for a second your mind supplies a wordless harmony it is sure it heard.</p>
+
+  <div class="gm"><div class="gm-h">GM — Loot & Signals</div><div class="gm-b">
+    <ul>
+      <li><b>Salvage:</b> abstract <i>0–100 cr</i> per drone or one <i>blossom lens</i> per 2–3 drones (stores 30s audio when magnetized).</li>
+      <li><b>Motif:</b> 6–8 note phrase recovered from two lenses: <span class="small">“bone is cage / sky is hunger.”</span></li>
+      <li><b>Clocks:</b> update <i>Quarter Morale</i>, <i>Street Temp</i>, <i>Accord Optics</i>, <i>Machine Wake</i> (start 0/6; +1 per uncanny electrical event).</li>
+    </ul>
+  </div></div>
+
+  <h2 class="scene">Faces and Fallout</h2>
+  <p><b>Rust</b> thanks you without letting you dodge consequences. “We live today because you chose. Next time, choose earlier or choose bigger.” He offers a tour of A-level rigs “when hands stop shaking.”</p>
+  <p><b>Ralos</b> reframes the day into categories that look tidy from a boardroom. “If we call this a category-two variance and note that intervention reduced loss potential by… forty-two percent? Then procurement cannot claim negligence.” He blinks. “I can open records if someone—anyone—writes that opening them is necessary.”</p>
+  <p>The rescued child watches the ceiling and counts lights under his breath. When one of you unconsciously hums the motif again, he stares at the ductwork like listening for a reply. He doesn’t take off the borrowed glove. He doesn’t let go of it, either.</p>
+
+  <div class="gm"><div class="gm-h">GM — Allies & Leads</div><div class="gm-b">
+    <ul>
+      <li><b>Rust</b>: unlocks “hardhat tour” of support trusses and power feeds; gives the truth without varnish.</li>
+      <li><b>Ralos</b>: records access with minimal redactions if given explicit cover line (“required for safety audit”).</li>
+      <li><b>Child</b>: later can match hummed notes to places; draws maps in dots; if protected, he’ll become a witness no one can discredit.</li>
+    </ul>
+  </div></div>
+
+  <h2 class="scene">Bridges to Arc 2 — Spire of Quiet Lies</h2>
+  <ul>
+    <li><b>Governor Orus Hestrel</b> requests a “courtesy call.” The invitation reads like a verdict. A prepared statement paints the party as stabilizers—provided they behave on camera.</li>
+    <li><b>Kaelen Drix</b> (Zeratek) demands return of “legacy units” for diagnostics, then offers firmware that isn’t free. He knows more than he’ll say in a room with microphones.</li>
+    <li><b>Director Sael</b> (Compliance Medicine) invites “volunteers” for screenings. The letter is gentle. The outcomes never are.</li>
+    <li><b>Saint</b> pings: “Bring me something they can’t spin—a clip, a sample, a pattern. Make it sing even to the deaf.”</li>
+  </ul>
+  <div class="gm"><div class="gm-h">GM — Pacing into Arc 2</div><div class="gm-b">
+    <p>End on the walk to the Spire or outside its sealed doors. Let the building hum once—just enough to make them wonder if the aurora sings back.</p>
+  </div></div>
+
+  <hr><div class="footer small">Next Arc → <b>Spire of Quiet Lies</b> (coming next build). | Return to <a href="repo.html">Dossier</a></div>
+</main>
+</body></html>
