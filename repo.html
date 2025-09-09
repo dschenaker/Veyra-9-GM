@@ -148,7 +148,6 @@ function repoSearch(){
 }
 </script>
 </head>
-
 <body>
 <header class="header">
   <div class="brand">VEYRA-9 · Dossier</div>
@@ -158,24 +157,25 @@ function repoSearch(){
     <a href="repo.html">Dossier</a>
     <span class="clock" id="clock">--:--:--</span>
   </nav>
-</header>
+<script>
+  // live clock
+  function tick(){
+    const el = document.getElementById('clock'); if (!el) return;
+    el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'}) + ' CEST';
+  }
+  setInterval(tick, 1000);
+  window.addEventListener('DOMContentLoaded', tick);
 
-// live clock
-function tick(){
-  const el=document.getElementById('clock'); if(!el) return;
-  el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
-}
-setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
-
-// GM collapsibles
-window.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('.gm.collapsible .gm-h').forEach(h=>{
-    h.addEventListener('click',()=>h.parentElement.classList.toggle('open'));
+  // GM collapsibles (safe even if none exist on this page)
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
+      h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+    });
   });
-});
-</script> 
-  </nav>
-</header>
+
+  // keep your repoSearch() function as-is near the top of the file
+</script>
+<main class="wrap">
 <main class="wrap">
   <h1>Dossier — Character Repository</h1>
   <div class="repo-search">
