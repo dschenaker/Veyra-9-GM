@@ -149,39 +149,58 @@ function repoSearch(){
 </script>
 </head>
 <body>
-<header class="header">
-  <div class="brand">VEYRA-9 · Dossier</div>
-  <nav>
-    <a href="index.html">Arc 1</a>
-    <a href="arc2.html">Arc 2</a>
-    <a href="repo.html">Dossier</a>
-    <span class="clock" id="clock">--:--:--</span>
-  </nav>
-<script>
-  // live clock
-  function tick(){
-    const el = document.getElementById('clock'); if (!el) return;
-    el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'}) + ' CEST';
-  }
-  setInterval(tick, 1000);
-  window.addEventListener('DOMContentLoaded', tick);
+  <header class="header">
+    <div class="brand">VEYRA-9 · Dossier</div>
+    <nav>
+      <a href="index.html">Arc 1</a>
+      <a href="arc2.html">Arc 2</a>
+      <a href="repo.html">Dossier</a>
+      <span class="clock" id="clock">--:--:--</span>
+    </nav>
+  </header>
 
-  // GM collapsibles (safe even if none exist on this page)
-  window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
-      h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+  <main class="wrap">
+    <h1>Dossier — Character Repository</h1>
+    <div class="repo-search">
+      <input id="repoInput" type="search" placeholder="Search by name, role, or faction…" oninput="repoSearch()">
+      <span class="small">Type to filter</span>
+    </div>
+    <!-- repository content … -->
+  </main>
+
+  <script>
+    // live clock (single definition)
+    function tick(){
+      const el = document.getElementById('clock'); if (!el) return;
+      el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+    }
+    setInterval(tick, 1000);
+    window.addEventListener('DOMContentLoaded', tick);
+
+    // GM collapsibles (if used on repo)
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
+        h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+      });
     });
-  });
 
-  // keep your repoSearch() function as-is near the top of the file
-</script>
-<main class="wrap">
-<main class="wrap">
-  <h1>Dossier — Character Repository</h1>
-  <div class="repo-search">
-    <input id="repoInput" type="search" placeholder="Search by name, role, or faction…" oninput="repoSearch()">
-    <span class="small">Type to filter</span>
-  </div>
+    // repo search
+    function repoSearch(){
+      const q = document.getElementById('repoInput').value.trim().toLowerCase();
+      document.querySelectorAll('.npc').forEach(card=>{
+        const hay = (card.getAttribute('data-hay')||'').toLowerCase();
+        card.style.display = (!q || hay.includes(q)) ? '' : 'none';
+      });
+      document.querySelectorAll('.faction').forEach(f=>{
+        const visible = Array.from(f.querySelectorAll('.npc')).some(n=>n.style.display!=='none');
+        f.style.display = visible ? '' : 'none';
+        const fh=f.querySelector('.faction-h'), fc=f.querySelector('.faction-c');
+        if(q && visible){ fh.classList.add('active'); fc.style.display='block'; }
+        if(!q){ fh.classList.remove('active'); fc.style.display='none'; }
+      });
+    }
+  </script>
+</body>
 
   <!-- Obsidian Accord -->
   <div class="faction">
