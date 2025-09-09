@@ -140,70 +140,175 @@ window.addEventListener('DOMContentLoaded', ()=>{
     </nav>
   </header>
 
-  <main class="wrap">
-    <h1>Dossier — Character Repository</h1>
+<main class="wrap">
+  <h1>Dossier — Character Repository</h1>
 
-    <div class="repo-search">
-      <input id="repoInput" type="search" placeholder="Search by name, role, or faction…" oninput="repoSearch()">
-      <span class="small">Type to filter</span>
-    </div>
+  <div class="repo-search">
+    <input id="repoInput" type="search"
+           placeholder="Search by name, role, or faction…"
+           oninput="repoSearch()">
+    <span class="small">Type to filter</span>
+  </div>
 
-    <!-- ========== Obsidian Accord ========== -->
-    <div class="faction">
-      <div class="faction-h">Obsidian Accord <span class="badge">handlers, auditors, truth brokers</span></div>
-      <div class="faction-c">
-        <div class="npc" data-hay="saint accord handler mission control whistleblower leverage ethics truth mare">
-          <div class="npc-h">Saint — Accord Handler <small>access without authority</small></div>
-          <div class="npc-c">
-            <p><b>Appearance & Demeanor.</b> Trim, neutral wardrobe that photographs well; a voice that sounds recorded even live.</p>
-            <p><b>Backstory.</b> Rose from field audits after exposing a Helion shell around Noryx quotas. Keeps an unsent message to someone named <i>Mare</i> pinned in a private channel.</p>
-            <p><b>Hooks.</b> Exchanges access for proof; will burn a source to save ten.</p>
-            <p><b>Progression.</b> Remote in Phase I; appears in II; linchpin or liability in III.</p>
-          </div>
+  <!-- Obsidian Accord -->
+  <div class="faction">
+    <div class="faction-h">Obsidian Accord <span class="badge">handlers, auditors, truth brokers</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="saint accord handler mission control whistleblower leverage ethics truth Mare">
+        <div class="npc-h">Saint — Accord Handler <small>access without authority</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Trim, neutral wardrobe that photographs well; a voice that sounds recorded even live.</p>
+          <p><b>Backstory.</b> Rose from field audits after exposing a Helion shell around Noryx quotas. Keeps an unsent message to someone named <i>Mare</i> pinned in a private channel.</p>
+          <p><b>Hooks.</b> Exchanges access for proof; will burn a source to save ten.</p>
+          <p><b>Progression.</b> Remote in Phase I; appears in II; linchpin or liability in III.</p>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ========== Helion ========== -->
-    <div class="faction">
-      <div class="faction-h">Helion Industries <span class="badge">governance & security</span></div>
-      <div class="faction-c">
-        <div class="npc" data-hay="orus hestrel governor helion optics board politics speech">
-          <div class="npc-h">Governor Orus Hestrel — Administrator <small>optics first, stability second</small></div>
-          <div class="npc-c">
-            <p><b>Appearance & Demeanor.</b> Pressed suits; diction built for press rooms.</p>
-            <p><b>Backstory.</b> Former Bryndor liaison; rewarded with Haven after surviving crises on paper.</p>
-            <p><b>Hooks.</b> Needs the Quarter quiet before the Board call; trades permits for photo ops.</p>
-            <p><b>Progression.</b> Scapegoat, ally, or survivor depending on PCs.</p>
-          </div>
+  <!-- Helion Industries -->
+  <div class="faction">
+    <div class="faction-h">Helion Industries <span class="badge">governance & security</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="orus hestrel helion governor optics board politics">
+        <div class="npc-h">Governor Orus Hestrel — Administrator <small>optics first, stability second</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Pressed suits; diction designed for press rooms.</p>
+          <p><b>Backstory.</b> Former Bryndor liaison; rewarded with Haven after surviving crises on paper.</p>
+          <p><b>Hooks.</b> Needs the Quarter quiet before the Board call; trades permits for photo ops.</p>
+          <p><b>Progression.</b> Scapegoat, ally, or survivor depending on PCs.</p>
         </div>
+      </div>
 
-        <div class="npc" data-hay="lira veyne captain security helion officer line-boss competence">
-          <div class="npc-h">Captain Lira Veyne — Security Chief <small>line-holder, principled pragmatist</small></div>
-          <div class="npc-c">
-            <p><b>Appearance & Demeanor.</b> Uniform crisp even in crisis; braid pinned like an engineering diagram.</p>
-            <p><b>Backstory.</b> Dockyard rat turned officer; held a Bryndor line with twelve against fifty.</p>
-            <p><b>Hooks.</b> Respects competence; bends rules for civilians; won’t protect lies.</p>
-            <p><b>Progression.</b> Patron if earned, rival if undercut, martyr if cornered.</p>
-          </div>
+      <div class="npc" data-hay="lira veyne captain security helion soldier principled pragmatist">
+        <div class="npc-h">Captain Lira Veyne — Security Chief <small>line-holder</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Uniform crisp even in crisis; braid pinned like an engineering diagram.</p>
+          <p><b>Backstory.</b> Dockyard rat turned officer; held a Bryndor line with twelve against fifty.</p>
+          <p><b>Hooks.</b> Respects competence; bends rules for civilian safety; will not protect lies.</p>
+          <p><b>Progression.</b> Patron if earned, rival if undercut, martyr if cornered.</p>
         </div>
+      </div>
 
-        <div class="npc" data-hay="meryn ralos risk compliance variance reports liability records">
-          <div class="npc-h">Meryn Ralos — Risk Compliance <small>the bureaucracy with a pulse</small></div>
-          <div class="npc-c">
-            <p><b>Appearance & Demeanor.</b> Tablet, stylus, clean nails; anxiety disguised as policy.</p>
-            <p><b>Hooks.</b> Opens records if given cover; fears being the one who signed the wrong line.</p>
-          </div>
+      <div class="npc" data-hay="meryn ralos risk compliance variance reports liability records">
+        <div class="npc-h">Meryn Ralos — Risk Compliance Officer <small>bureaucracy with a pulse</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Tablet, stylus, clean nails; anxiety disguised as policy.</p>
+          <p><b>Backstory.</b> Wrote three handbooks no one read; knows where numbers are buried.</p>
+          <p><b>Hooks.</b> Opens records if given cover; fears being the one who signed the wrong line.</p>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Zeratek Industries -->
+  <div class="faction">
+    <div class="faction-h">Zeratek Industries <span class="badge">arrays, emitters, drones</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="kaelen drix zeratek liaison recall firmware blossom lens parts shortage">
+        <div class="npc-h">Kaelen Drix — Zeratek Liaison <small>smiles in fine print</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Corporate casual with a collector’s watch; tone that implies you’re lucky he’s making time.</p>
+          <p><b>Backstory.</b> Promoted for moving unsellable stock to desperate colonies.</p>
+          <p><b>Hooks.</b> Wants legacy units back; offers diagnostics; hides firmware notes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reclaimers -->
+  <div class="faction">
+    <div class="faction-h">Reclaimers <span class="badge">labor populists, Quarter conscience</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="serin vael forewoman reclaimers water lines ration trust">
+        <div class="npc-h">Serin Vael — Forewoman <small>ledger of favors</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Oil-black hair, sleeves rolled. Words like tools: used, not wasted.</p>
+          <p><b>Backstory.</b> Memorized the names on the memorial wall; keeps paint ready.</p>
+          <p><b>Hooks.</b> Trades access for practical wins; tests promises; protects kids first.</p>
+        </div>
+      </div>
+
+      <div class="npc" data-hay="tannic rust varo rigger tunnel lead blunt loyal">
+        <div class="npc-h">Tannic “Rust” Varo — Tunnel Lead <small>loyal to the living</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Scarred gloves, calm hands. Rare, honest laugh.</p>
+          <p><b>Backstory.</b> Survived the Year-Five collapse; refuses to let statistics bury it.</p>
+          <p><b>Hooks.</b> Equipment tours; rig fixes; witnesses who trust him.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compliance Medicine -->
+  <div class="faction">
+    <div class="faction-h">Compliance Medicine <span class="badge">screenings, calm outcomes</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="director sael clinic sedation ethics productive recovery">
+        <div class="npc-h">Director Sael — Clinic Head <small>gentle voice, hard math</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Clean lines, soft colors, a smile that never reaches the eyes.</p>
+          <p><b>Backstory.</b> Thesis on “productive recovery” reads like mercy until you compare numbers to funerals.</p>
+          <p><b>Hooks.</b> Seeks “volunteers”; offers supplies; seals records.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Malrix Movement -->
+  <div class="faction">
+    <div class="faction-h">Malrix Movement <span class="badge">machine-hunger creed</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="prophet malrix cult sermon hunger choir sabotage icons">
+        <div class="npc-h">Prophet Malrix — Street Preacher <small>fear given choreography</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Wire bracelets, eyes like low-battery lights; speaks in couplets that match humming machinery.</p>
+          <p><b>Backstory.</b> Former tech who watched a drone finish a song after power died.</p>
+          <p><b>Hooks.</b> Steals parts that “sing”; promises safety in surrender; sabotages arrays to prove doctrine.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Locals & Other Figures -->
+  <div class="faction">
+    <div class="faction-h">Locals & Other Figures <span class="badge">civilians, technicians, strays</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="mara kelen chief tech f13 diagnostics phantom alerts">
+        <div class="npc-h">Chief Tech Mara Kelen — F-13 Lead <small>burned bright by fluorescents</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Jumpsuit bleached at the shoulders; diagnostic wand like a conductor’s baton.</p>
+          <p><b>Backstory.</b> Keeps a shrine of fuses and wire; scratches <i>for luck</i> on casings.</p>
+          <p><b>Hooks.</b> Phantom alerts; ducts that rattle like they’ve got opinions; boards that sing wrong.</p>
+        </div>
+      </div>
+
+      <div class="npc" data-hay="toll junior engineer f13 brave front conduit warm idle cool awake">
+        <div class="npc-h">Toll — Junior Engineer <small>brave front, fast feet</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Too-big gloves, grin that arrives before courage does.</p>
+          <p><b>Backstory.</b> Learned the ducts’ moods before schematics.</p>
+          <p><b>Hooks.</b> Knows shortcuts; will fetch parts if someone believes in him.</p>
+        </div>
+      </div>
+
+      <div class="npc" data-hay="row c child survivor rumor web singer motif dots">
+        <div class="npc-h">Unnamed Child — Row-C Survivor <small>counts lights, hears motifs</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Silent until the hum starts; then attentive like a tuning fork.</p>
+          <p><b>Backstory.</b> Lost a parent to a “variance.” Keeps time with flickers on the ceiling.</p>
+          <p><b>Hooks.</b> Matches hummed notes to places; draws maps in dots.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <!-- ========== Zeratek, Reclaimers, Compliance, Malrix, Locals (keep your existing blocks) ========== -->
     <!-- (Paste your remaining factions/NPCs here exactly as you had them; the toggles now work.) -->
 
     <hr>
     <div class="small">Return to <a href="index.html">Arc 1</a></div>
-  </main>
+</main>
 <script>
 (function () {
   // --- live clock ---
