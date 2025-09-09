@@ -204,5 +204,57 @@ window.addEventListener('DOMContentLoaded', ()=>{
     <hr>
     <div class="small">Return to <a href="index.html">Arc 1</a></div>
   </main>
+<script>
+(function () {
+  // --- live clock ---
+  function tick(){
+    const el = document.getElementById('clock'); if(!el) return;
+    el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+  }
+  setInterval(tick, 1000);
+  document.addEventListener('DOMContentLoaded', tick);
+
+  // --- event delegation for toggles (works on title OR badge) ---
+  document.addEventListener('click', function (e) {
+    const fh = e.target.closest('.faction-h');
+    if (fh) {
+      fh.classList.toggle('active');
+      const c = fh.nextElementSibling;
+      if (c) c.style.display = fh.classList.contains('active') ? 'block' : 'none';
+    }
+    const nh = e.target.closest('.npc-h');
+    if (nh) {
+      nh.classList.toggle('active');
+      const c = nh.nextElementSibling;
+      if (c) c.style.display = nh.classList.contains('active') ? 'block' : 'none';
+    }
+  });
+
+  // --- search (kept global for oninput) ---
+  window.repoSearch = function(){
+    const q = (document.getElementById('repoInput')?.value || '').trim().toLowerCase();
+    document.querySelectorAll('.faction').forEach(f=>{
+      let any = false;
+      f.querySelectorAll('.npc').forEach(n=>{
+        const hay = (n.getAttribute('data-hay')||'').toLowerCase();
+        const show = !q || hay.includes(q);
+        n.style.display = show ? '' : 'none';
+        if (show) any = true;
+      });
+      f.style.display = any ? '' : 'none';
+
+      const fh = f.querySelector('.faction-h');
+      const fc = f.querySelector('.faction-c');
+      if (fh && fc){
+        if (q && any){ fh.classList.add('active'); fc.style.display='block'; }
+        if (!q){ fh.classList.remove('active'); fc.style.display='none';
+          f.querySelectorAll('.npc-h').forEach(h=>h.classList.remove('active'));
+          f.querySelectorAll('.npc-c').forEach(c=>c.style.display='none');
+        }
+      }
+    });
+  };
+})();
+</script>
 </body>
 </html>
