@@ -1,6 +1,10 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Veyra-9 — Dossier</title>
+
 <style>
 /* ====== Veyra-9 GM Hub — Base Theme ====== */
 :root{
@@ -12,13 +16,10 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{
-  background:var(--bg);
-  color:var(--ink);
+  background:var(--bg); color:var(--ink);
   font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
   -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
-
-/* Links */
 a{color:var(--brand); text-decoration:none}
 a:hover{filter:brightness(1.08); text-decoration:underline}
 
@@ -42,87 +43,103 @@ nav a:hover{background:#f4f7ff}
 
 /* Layout */
 .wrap{max-width:1100px; margin:0 auto; padding:20px}
-.breadcrumbs{color:var(--muted); margin:6px 0 14px 0}
 .panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
-
-/* Headings & sections */
 h1{margin:10px 0 6px}
 h2{margin:24px 0 10px}
-.scene{
-  color:var(--brand); border-bottom:2px solid var(--line);
-  padding-bottom:6px; margin-top:28px;
-}
-.scene::before{content:"◆ "; color:var(--brandSoft)}
 
-/* Quotes (blue “GM callout” style for epigraphs) */
+/* Quotes */
 blockquote{
   border-left:4px solid var(--brandSoft);
   background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic;
 }
 
-/* Lists & small helpers */
+/* Helpers */
 .meta{color:var(--muted); font-style:italic}
 .small{font-size:.94rem; color:var(--muted)}
 
-/* ====== GM CALLOUTS (standardized) ====== */
+/* GM callouts (kept for uniformity) */
 .gm{
   background:#eef5ff; border:1px solid var(--chipLine);
   border-left:6px solid var(--brandSoft);
   border-radius:10px; padding:10px 14px; margin:18px 0;
   box-shadow:0 1px 0 rgba(10,30,80,.04);
 }
-.gm + .gm{margin-top:14px}
-.gm-h{
-  font-weight:800; color:var(--brand); letter-spacing:.1px;
-  display:flex; align-items:center; gap:8px; margin:2px 0 6px 0;
-}
-.gm-h::before{
-  content:"GM"; font-size:12px; font-weight:800;
-  color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px;
-}
-.gm-b{color:var(--ink)}
+.gm-h{font-weight:800; color:var(--brand); margin:2px 0 6px}
+.gm-h::before{content:"GM"; font-size:12px; font-weight:800; color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px; margin-right:8px}
 .gm-b ul{margin:8px 0 2px 1.1rem}
 .gm-b li{margin:6px 0}
 .gm-b li b{color:var(--brand)}
-
-/* Collapsible variant (optional) */
 .gm.collapsible .gm-b{display:none}
 .gm.collapsible.open .gm-b{display:block}
 .gm.collapsible .gm-h{cursor:pointer}
 
-/* ====== Dossier niceties ====== */
-.searchbar{
-  display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 16px;
+/* ===== Repository specific niceties ===== */
+.repo-search{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:12px 0 18px;
 }
-.searchbar input[type="text"]{
-  padding:8px 10px; border:1px solid var(--line); border-radius:8px;
-  min-width:260px; background:#fff
+.repo-search input[type="search"]{
+  padding:8px 10px; border:1px solid var(--line); border-radius:8px; min-width:280px; background:#fff;
 }
-.tag{display:inline-block; padding:2px 8px; background:var(--chip); border:1px solid var(--chipLine); border-radius:999px; color:var(--brand); font-size:.9rem; margin-right:6px}
+.badge{
+  display:inline-block; padding:2px 8px; margin-left:6px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:999px;
+  color:var(--brand); font-size:.85rem; font-weight:600;
+}
+
+/* Faction + NPC accordion */
+.faction{border:1px solid var(--line); border-radius:12px; background:#fff; margin:14px 0}
+.faction-h{
+  padding:10px 14px; font-weight:800; color:var(--brand); cursor:pointer;
+  display:flex; align-items:center; gap:10px;
+}
+.faction-h::before{content:"▸"; color:var(--brand); transition:transform .15s ease}
+.faction-h.active::before{transform:rotate(90deg)}
+.faction-c{display:none; border-top:1px solid var(--line); padding:8px 10px}
+
+.npc{border:1px dashed var(--line); border-radius:10px; margin:10px 0; background:#fafbff}
+.npc-h{
+  padding:8px 10px; font-weight:700; color:#102542; cursor:pointer; display:flex; flex-wrap:wrap; gap:8px;
+}
+.npc-h::before{content:"▸"; color:#102542; transition:transform .15s ease}
+.npc-h.active::before{transform:rotate(90deg)}
+.npc-h small{color:var(--muted)}
+.npc-c{display:none; padding:6px 12px 10px 12px}
 </style>
+
 <script>
-function tick(){ const el=document.getElementById('clock'); if(!el) return; const d=new Date(); el.textContent=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST'; }
+// live clock (single)
+function tick(){
+  const el=document.getElementById('clock'); if(!el) return;
+  el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+}
 setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
 
-// GM collapsibles
+// GM collapsibles (single)
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
     h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
   });
 });
 
+// Repository accordions + search
 document.addEventListener('click',(e)=>{
-  if(e.target.classList.contains('faction-h')){ const h=e.target; const c=h.nextElementSibling; const open=h.classList.toggle('active'); c.style.display=open?'block':'none'; }
-  if(e.target.classList.contains('npc-h')){ const h=e.target; const c=h.nextElementSibling; const open=h.classList.toggle('active'); c.style.display=open?'block':'none'; }
+  if(e.target.classList.contains('faction-h')){
+    const h=e.target, c=h.nextElementSibling;
+    const open=h.classList.toggle('active'); c.style.display=open?'block':'none';
+  }
+  if(e.target.classList.contains('npc-h')){
+    const h=e.target, c=h.nextElementSibling;
+    const open=h.classList.toggle('active'); c.style.display=open?'block':'none';
+  }
 });
 function repoSearch(){
   const q = document.getElementById('repoInput').value.trim().toLowerCase();
   document.querySelectorAll('.npc').forEach(card=>{
-    const hay = (card.getAttribute('data-hay')||'').toLowerCase();
+    const hay=(card.getAttribute('data-hay')||'').toLowerCase();
     card.style.display = (!q || hay.includes(q)) ? '' : 'none';
   });
   document.querySelectorAll('.faction').forEach(f=>{
-    const visible = Array.from(f.querySelectorAll('.npc')).some(n=>n.style.display!== 'none');
+    const visible = Array.from(f.querySelectorAll('.npc')).some(n=>n.style.display!=='none');
     f.style.display = visible ? '' : 'none';
     const fh=f.querySelector('.faction-h'), fc=f.querySelector('.faction-c');
     if(q && visible){ fh.classList.add('active'); fc.style.display='block'; }
@@ -131,6 +148,17 @@ function repoSearch(){
 }
 </script>
 </head>
+
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · Dossier</div>
+  <nav>
+    <a href="index.html">Arc 1</a>
+    <a href="arc2.html">Arc 2</a>
+    <a href="repo.html">Dossier</a>
+    <span class="clock" id="clock">--:--:--</span>
+  </nav>
+</header>
 <body>
 <header class="header">
   <div class="brand">VEYRA-9 · Dossier</div>
@@ -319,4 +347,5 @@ window.addEventListener('DOMContentLoaded',()=>{
   <hr>
   <div class="small">Return to <a href="index.html">Arc 1</a></div>
 </main>
-</body></html>
+</body>
+</html>
