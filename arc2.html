@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Veyra-9 — GM Hub · Arc 2</title>
+
 <style>
 /* ====== Veyra-9 GM Hub — Base Theme ====== */
 :root{
@@ -20,11 +21,9 @@ body{
   font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
   -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
-
 /* Links */
 a{color:var(--brand); text-decoration:none}
 a:hover{filter:brightness(1.08); text-decoration:underline}
-
 /* Header / Nav */
 .header{
   display:flex; justify-content:space-between; align-items:center;
@@ -42,12 +41,10 @@ nav a:hover{background:#f4f7ff}
   margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
   color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700;
 }
-
 /* Layout */
 .wrap{max-width:1100px; margin:0 auto; padding:20px}
 .breadcrumbs{color:var(--muted); margin:6px 0 14px 0}
 .panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
-
 /* Headings & sections */
 h1{margin:10px 0 6px}
 h2{margin:24px 0 10px}
@@ -56,18 +53,15 @@ h2{margin:24px 0 10px}
   padding-bottom:6px; margin-top:28px;
 }
 .scene::before{content:"◆ "; color:var(--brandSoft)}
-
-/* Quotes (blue “GM callout” style for epigraphs) */
+/* Quotes */
 blockquote{
   border-left:4px solid var(--brandSoft);
   background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic;
 }
-
-/* Lists & small helpers */
+/* Helpers */
 .meta{color:var(--muted); font-style:italic}
 .small{font-size:.94rem; color:var(--muted)}
-
-/* ====== GM CALLOUTS (standardized) ====== */
+/* ===== GM CALLOUTS ===== */
 .gm{
   background:#eef5ff; border:1px solid var(--chipLine);
   border-left:6px solid var(--brandSoft);
@@ -87,40 +81,31 @@ blockquote{
 .gm-b ul{margin:8px 0 2px 1.1rem}
 .gm-b li{margin:6px 0}
 .gm-b li b{color:var(--brand)}
-
-/* Collapsible variant (optional) */
+/* Collapsible */
 .gm.collapsible .gm-b{display:none}
 .gm.collapsible.open .gm-b{display:block}
 .gm.collapsible .gm-h{cursor:pointer}
-
-/* ====== Dossier niceties ====== */
-.searchbar{
-  display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 16px;
-}
-.searchbar input[type="text"]{
-  padding:8px 10px; border:1px solid var(--line); border-radius:8px;
-  min-width:260px; background:#fff
-}
-.tag{display:inline-block; padding:2px 8px; background:var(--chip); border:1px solid var(--chipLine); border-radius:999px; color:var(--brand); font-size:.9rem; margin-right:6px}
 </style>
+
 <script>
+// live clock (single definition)
 function tick(){
   const el=document.getElementById('clock');
   if(!el) return;
-  const d=new Date();
-  el.textContent=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST';
+  el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
 }
+setInterval(tick,1000);
+window.addEventListener('DOMContentLoaded',tick);
 
-// GM collapsibles
+// GM collapsibles (single handler)
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
     h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
   });
 });
-
-setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
 </script>
 </head>
+
 <body>
 <header class="header">
   <div class="brand">VEYRA-9 · GM Hub</div>
@@ -129,21 +114,6 @@ setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
     <a href="arc2.html">Arc 2</a>
     <a href="repo.html">Dossier</a>
     <span class="clock" id="clock">--:--:--</span>
-    <script>
-// live clock
-function tick(){
-  const el=document.getElementById('clock'); if(!el) return;
-  el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
-}
-setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
-
-// GM collapsibles
-window.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('.gm.collapsible .gm-h').forEach(h=>{
-    h.addEventListener('click',()=>h.parentElement.classList.toggle('open'));
-  });
-});
-</script>
   </nav>
 </header>
 
