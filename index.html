@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Veyra-9 — GM Hub · Arc 1</title>
 <style>
+/* if a second subnav somehow sneaks in, hide it */
+.subnav + .subnav { display: none; }
 /* ====== Veyra-9 GM Hub — Base Theme ====== */
 :root{
   --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
@@ -109,6 +111,11 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
     h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
   });
+});
+// remove accidental duplicate subnavs (keep the first)
+window.addEventListener('DOMContentLoaded', () => {
+  const subs = document.querySelectorAll('.subnav');
+  subs.forEach((el, i) => { if (i > 0) el.remove(); });
 });
 </script>
 </head>
