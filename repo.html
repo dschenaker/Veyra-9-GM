@@ -2,34 +2,53 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Veyra-9 — Dossier</title>
 <style>
-:root{ --bg:#f6f7fb; --ink:#0b0f18; --line:#d7dbea; --panel:#ffffff; --btn:#eaf1ff; --btnTxt:#0b0f18;}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial}
-a{color:#0b3d7a;text-decoration:none} a:hover{filter:brightness(1.08)}
-.header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);background:#eef2ff;position:sticky;top:0;z-index:2}
-.header a{margin-right:12px}
-.brand{font-weight:800;color:#0b3d7a}
-.wrap{max-width:1100px;margin:0 auto;padding:20px}
-.clock{background:#eaf1ff;border:1px solid #c9d8ff;color:#0b3d7a;padding:6px 10px;border-radius:999px;font-weight:600}
-h1{margin:10px 0 6px 0}
-.small{font-size:13px;color:#334}
-.repo-search{display:flex;gap:8px;align-items:center;margin:8px 0 14px 0}
-.repo-search input{flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
-.faction{border:1px solid var(--line);border-radius:12px;background:#fff;margin:12px 0;overflow:hidden}
-.faction-h{background:#eaf1ff;color:#0b3d7a;padding:10px 12px;font-weight:800;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.faction-c{display:none;padding:12px}
-.faction-h::after{content:'▾';color:#3a5aa6}
-.faction-h.active::after{content:'▴'}
-.badge{margin-left:8px;background:#fff;border:1px solid #c9d8ff;color:#0b3d7a;padding:1px 6px;border-radius:999px;font-size:12px}
-.npc{border:1px solid var(--line);border-radius:10px;background:#fff;margin:10px 0;overflow:hidden}
-.npc-h{background:#f5f8ff;padding:10px 12px;font-weight:700;color:#0b3d7a;display:flex;justify-content:space-between;gap:8px;cursor:pointer}
-.npc-h small{font-weight:600;color:#3a5aa6}
-.npc-c{display:none;padding:12px}
-.npc-h::after{content:'▾';color:#3a5aa6}
-.npc-h.active::after{content:'▴'}
+/* === GM CALLOUTS (standard) === */
+.gm{
+  background:#eef5ff;
+  border:1px solid #c9d8ff;
+  border-left:6px solid #6aa0ff;
+  border-radius:10px;
+  padding:10px 14px;
+  margin:18px 0;
+  box-shadow:0 1px 0 rgba(10,30,80,.04);
+}
+.gm + .gm{ margin-top:14px; }            /* nice stacking */
+.gm-h{
+  font-weight:800;
+  color:#0b3d7a;
+  letter-spacing:.1px;
+  display:flex; align-items:center; gap:8px;
+  margin:2px 0 6px 0;
+}
+.gm-h::before{
+  content:"GM";
+  font-size:12px; font-weight:800;
+  color:#fff; background:#0b3d7a;
+  border-radius:6px; padding:2px 6px;
+}
+.gm-b{ color:#0b0f18; }
+.gm-b ul{ margin:8px 0 2px 1.1rem; }
+.gm-b li{ margin:6px 0; }
+.gm-b li b{ color:#0b3d7a; }
+
+.meta{ color:#3a4150; font-style:italic; }
+
+/* optional: collapsible GM blocks (click the header) */
+.gm.collapsible .gm-b{ display:none; }
+.gm.collapsible.open .gm-b{ display:block; cursor:auto; }
+.gm.collapsible .gm-h{ cursor:pointer; }
+
 </style>
 <script>
 function tick(){ const el=document.getElementById('clock'); if(!el) return; const d=new Date(); el.textContent=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST'; }
 setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
+
+// GM collapsibles
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
+    h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+  });
+});
 
 document.addEventListener('click',(e)=>{
   if(e.target.classList.contains('faction-h')){ const h=e.target; const c=h.nextElementSibling; const open=h.classList.toggle('active'); c.style.display=open?'block':'none'; }
