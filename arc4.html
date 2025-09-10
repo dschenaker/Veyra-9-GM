@@ -1,1 +1,417 @@
-<PASTE THE FULL FILE ABOVE>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — GM Hub · Arc 4</title>
+<style>
+/* ====== small guard against accidental duplicate subnav ====== */
+.subnav + .subnav { display:none; }
+
+/* ====== Veyra-9 GM Hub — Base Theme ====== */
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+/* Links */
+a{color:var(--brand); text-decoration:none}
+a:hover{filter:brightness(1.08); text-decoration:underline}
+/* Header / Nav */
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.brand{font-weight:800; color:var(--brand)}
+nav a{
+  display:inline-block; margin-right:10px; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600;
+}
+nav a:hover{background:#f4f7ff}
+.clock{
+  margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
+  color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700;
+}
+/* Layout */
+.wrap{max-width:1100px; margin:0 auto; padding:20px}
+.breadcrumbs{color:var(--muted); margin:6px 0 14px 0}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
+/* Headings & sections */
+h1{margin:10px 0 6px}
+h2{margin:24px 0 10px}
+.scene{
+  color:var(--brand); border-bottom:2px solid var(--line);
+  padding-bottom:6px; margin-top:28px;
+}
+.scene::before{content:"◆ "; color:var(--brandSoft)}
+/* Epigraph / blue quotes */
+blockquote{
+  border-left:4px solid var(--brandSoft);
+  background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic;
+}
+/* Helpers */
+.meta{color:var(--muted); font-style:italic}
+.small{font-size:.94rem; color:var(--muted)}
+
+/* ====== GM CALLOUTS (standardized) ====== */
+.gm{
+  background:#eef5ff; border:1px solid var(--chipLine);
+  border-left:6px solid var(--brandSoft);
+  border-radius:10px; padding:10px 14px; margin:18px 0;
+  box-shadow:0 1px 0 rgba(10,30,80,.04);
+}
+.gm + .gm{margin-top:14px}
+.gm-h{
+  font-weight:800; color:var(--brand); letter-spacing:.1px;
+  display:flex; align-items:center; gap:8px; margin:2px 0 6px 0;
+}
+.gm-h::before{
+  content:"GM"; font-size:12px; font-weight:800;
+  color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px;
+}
+.gm-b{color:var(--ink)}
+.gm-b ul{margin:8px 0 2px 1.1rem}
+.gm-b li{margin:6px 0}
+.gm-b li b{color:var(--brand)}
+.gm.collapsible .gm-b{display:none}
+.gm.collapsible.open .gm-b{display:block}
+.gm.collapsible .gm-h{cursor:pointer}
+
+/* ====== V9 Combat Tracker (drawer + pop-out) ====== */
+#v9-tracker-toggle{
+  position: fixed; right: 18px; bottom: 18px; z-index: 1200;
+  background:#0b3d7a; color:#fff; border:0; border-radius:999px;
+  padding:12px 18px; font-weight:700; box-shadow:0 6px 18px rgba(11,61,122,.25);
+  cursor:pointer;
+}
+#v9-tracker-drawer{
+  position: fixed; right: 18px; bottom: 78px; z-index: 1199; width: 560px; max-width: calc(100vw - 36px); max-height:80vh; overflow:auto;
+  background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:0 18px 40px rgba(10,30,80,.18); display:none;
+}
+#v9-tracker-drawer.open{ display:block; }
+#v9-tracker-drawer header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 12px; border-bottom:1px solid var(--line); background:#eef5ff; border-radius:14px 14px 0 0;
+}
+#v9-tracker-drawer header h3{ margin:0; font-size:1rem; color:var(--brand) }
+#v9-tracker-drawer .pill{
+  background:#eaf1ff; border:1px solid #c9d8ff; color:#0b3d7a; border-radius:999px; padding:4px 10px; font-weight:700
+}
+#v9-tracker-drawer .btn{
+  background:#fff; border:1px solid var(--line); border-radius:8px; padding:6px 10px; cursor:pointer
+}
+#v9-tracker-drawer .btn:hover{ background:#f7faff }
+#v9-tracker-drawer .tray{ padding:10px 12px 12px }
+#v9-tracker-drawer .grid,
+#v9-tracker-drawer .row{
+  display:grid; grid-template-columns:1.2fr .6fr .6fr .6fr .6fr auto; gap:8px; align-items:center;
+}
+#v9-tracker-drawer .grid input, #v9-tracker-drawer .row input{ width:100% }
+#v9-tracker-drawer .row{ padding:8px 0; border-bottom:1px dashed var(--line) }
+#v9-tracker-drawer .row.dead{ opacity:.55; text-decoration:line-through }
+</style>
+
+<script>
+// ====== Live clock (single) ======
+function tick(){
+  const el=document.getElementById('clock'); if(!el) return;
+  el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+}
+setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
+
+// ====== GM collapsibles ======
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
+    h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+  });
+});
+</script>
+</head>
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · GM Hub</div>
+  <nav>
+    <a href="index.html">Arc 1</a>
+    <a href="arc2.html">Arc 2</a>
+    <a href="arc3.html">Arc 3</a>
+    <a href="arc4.html">Arc 4</a>
+    <a href="repo.html">Dossier</a>
+    <span class="clock" id="clock">--:--:--</span>
+  </nav>
+</header>
+
+<main class="wrap" id="top">
+  <div class="subnav">
+    <a class="chip" href="#top">Top</a>
+    <a class="chip" href="repo.html">Open Dossier</a>
+  </div>
+
+  <div class="breadcrumbs">Arc 3 → <b>Arc 4</b></div>
+  <h1 class="scene">Arc 4 — Mouths of Power</h1>
+  <p class="meta">Briefing: Helion wants calm optics, Zeratek wants a culprit, Reclaimers want their people back, the Accord wants proof. The conduits want to sing.</p>
+
+  <blockquote>
+    “When a city gets tired of being believed, it starts telling the truth in other voices.”
+  </blockquote>
+
+  <h2 class="scene">Descent to the Pulse</h2>
+  <p>
+  The access door to the lower conduits is not a door so much as a decision. A red line on the floor says AUTHORIZED PERSONNEL ONLY in letters that have been stepped on until the paint has become a rumor. Beyond it, the air cools by degrees. The dome’s false daylight can’t reach this far; light comes in pulses from maintenance strips like a heartbeat that has learned to lie. Someone scrawled a warning on the bulkhead in grease-pencil, then scrawled another warning over the first. You pass them both and the sound of Haven changes: the human noise falls away and the machinery wakes up to listen.
+  </p>
+  <p>
+  Lira’s map rides your slate, its fine lines ghosting the corridor as if the metal itself has veins. <i>PULSE EVENTS</i> annotate junctions like old crimes. The first turn smells like coolant and kelp oil; the second tastes of metal in your mouth, as if the corridor were a coin pressed against your tongue. When you step over a spill grate, the hum underfoot nudges your boot heel and you feel the suggestion of music without notes, rhythm without melody—just a certainty that there is a <i>shape</i> to the noise, and that the shape is looking back at you.
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Onset of Suspense</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Atmosphere checks:</b> INT or WIS checks reveal patterns: the pulse intervals are <i>not random</i>—they match power cycles in ascending ratios (1:2, 2:3, 3:5).</li>
+        <li><b>Stress:</b> Characters who failed saves vs. the drone’s <i>Motif Pulse</i> in Arc 3 feel a returning pressure. Apply −1 to surprise/initiative until they acclimate (one calm turn).</li>
+        <li><b>Equipment:</b> Any jury-rigged Reclaimer gear ticks audibly here. If the party uses two or more such devices simultaneously, roll once: 1–2 short (fuse), 3–6 okay.</li>
+      </ul>
+      <p class="small">Use sensory detail liberally: breath fog, condensation beads, flicker sync with footfalls.</p>
+    </div>
+  </div>
+
+  <h2 class="scene">Witnesses Who Don’t Speak</h2>
+  <p>
+  They left the walls open here—panels off, loops of cable hanging like vines trained by an impatient gardener. A service crawler sits with its belly plates removed, tools arranged with the tenderness of someone called away mid-repair. Beside it a lunch tin has gone cold. The tin is tagged with a stencil of a gull and the letters <i>K. OREN</i>. There is no blood. There is no struggle. The absence is the message: a worker who stood up and simply kept walking, following a noise only they could hear.
+  </p>
+  <p>
+  You pass a vandalized sensor bloom whose cracked lens glitters like ice. Someone tried to blind the corridor, and someone else tried to make it see again by binding the lens with fishing line threaded through a saint’s medal. The medal turns lazily in your breath and catches the light. On the wall, a child’s hand—small, oil-black—has drawn a row of dots in a pattern your eye wants to read as music. The last dot is smudged as if the hand shook.
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Silent Evidence</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Clue (K. Oren):</b> Reclaimer tech, late shift. Log shows “variance audit” pinged by Compliance Medicine. If PCs bring the tin to Serin Vael later: <i>Reclaimer Trust +1</i>.</li>
+        <li><b>Sensor Bloom:</b> INT check locates a fiber line tapped with Zeratek micro-coupler. Evidence of <i>someone listening</i>, not just the Choir singing. Zeratek will deny.</li>
+        <li><b>Child’s Dots:</b> Match cadence of the Quarry lift motors aboveground. Inverting the order (reading right-to-left) reproduces the current pulse interval.</li>
+      </ul>
+      <p class="small">Reward mapping or careful note-taking. This section is about reading a room like a wound.</p>
+    </div>
+  </div>
+
+  <h2 class="scene">Where the Power Learns a Mouth</h2>
+  <p>
+  The corridor widens at Junction F-13C, a round chamber whose purpose used to be obvious: distribute current, vent heat, take orders. It does none of those cleanly now. The heat exchangers breathe unevenly, sighing steam in time to the aurora’s distant shimmer. Three feeder conduits enter the room like arteries that have decided they are also tongues. Where the insulation has split, copper peeks through in lashes. The floor grating hums with a pressure that does not care if it rattles your bones; it wants to <i>tune</i> you.
+  </p>
+  <p>
+  In the center stands a maintenance pylon crowned with a wreath of stripped cable. The wreath is not art. It is function that has learned choreography. Each strand trembles at a different frequency and together they form a halo that thickens the air. Somebody has built a <i>mouth</i> out of power—no ritual circle, no runes, just the brutal poetry of voltage and geometry. If you step too close, your teeth ache. If you speak, your voice doubles, late by half a second, as if something patient is practicing you.
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — The First Mouth</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Hazard:</b> Within 10’, speech echoes and imposes a concentration check for spell-casting (or −2 to any precise action). Metal equipment vibrates; glass cracks on a 1 on d6 per round.</li>
+        <li><b>Diagnostics:</b> INT check locates improvised ground faults and three Zeratek-grade <i>blossom lenses</i> wedged into the crown. Removing a lens collapses the resonance but risks a feedback arc (1d6; save vs. Breath half).</li>
+        <li><b>Choir Trace:</b> The pulse ratios match those from Arc 3’s shard. PCs who kept the shard feel it warm; Accord comms pick up a low chorus at the edge of audibility.</li>
+        <li><b>Choice:</b> Collapse the mouth (safest optics), preserve it for study (Accord Optics +2, Helion Optics −2), or follow its “direction” deeper (fast-track to Arc 4 mid-set piece).</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="scene">Saint’s Interruption</h2>
+  <p>
+  Saint does not call so much as arrive. Her voice threads into your comm at a level lower than background. “Don’t break it yet,” she says, and you can hear the room in her sentence, as if she were already here. “What you are seeing is <i>intent</i> expressed in infrastructure. Someone is teaching the array to hold a note. If you smash the instrument, they will build another. If you name the note, you can make the singer answer.”
+  </p>
+  <p>
+  A beat, the sound of fingers on a ceramic cup. “Record everything. Angle your camera so I can see the lens crowns. If there’s a fourth socket, it means this is modular and they’re deploying them elsewhere. If there are only three, then it’s a prototype or a field test. Either way, keep your hands steady. I need to show someone who thinks she doesn’t have time to be convinced.”
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Optics & Orders</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Compliance Medicine:</b> Director Sael pings mid-recording offering “assistive sedation” to “stabilize tremors.” Accepting gives +2 to precise removal checks but flags the Accord feed (Accord Optics −1).</li>
+        <li><b>Zeratek:</b> Kaelen Drix appears in chat, “concerned” about mis-installed safety lenses. If PCs hand over live footage exclusively to Zeratek: <i>Zeratek Favor +2</i>, <i>Reclaimer Trust −2</i>, Accord neutrality wavers.</li>
+        <li><b>Helion:</b> Governor Hestrel’s office requests immediate shutdown and sealed report. Obeying earns Helion Stability +2 this arc, but costs the party Accord leverage later.</li>
+      </ul>
+      <p class="small">Let the party feel pulled. Every observer has a truth they want to buy.</p>
+    </div>
+  </div>
+
+  <h2 class="scene">Listening Back</h2>
+  <p>
+  You do as Saint asks. The camera shakes once—your hand, not fear, you tell yourself—and then steadies. The lenses are indeed in a crown, three equidistant, and between two of them a vacant socket has been carved into the cable with a knife too careful to have been wielded in panic. Someone planned this. Someone stood in this room and measured the distance between harmonics with a tape and a prayer.
+  </p>
+  <p>
+  When you angle lower, the floor tells a different story. Scuffs lead to the south conduit, a trail of rubber soles and one track that is bare foot, slender, slightly pigeon-toed. The track doubles back once, smudges, then resumes. The camera catches a trembling in the grating that does not match the hum; it is a tremolo, a second note waiting like a held breath. If you speak, your voice is echoed again—once by the crown and once by the floor, as if the room were an argument between two choirs.
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Decisions at F-13C</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Follow the barefoot track (south):</b> Leads toward a maintenance sump (Arc 4 set-piece start). First “Mouth” interaction escalates into <i>two-note interference</i> scene.</li>
+        <li><b>Collapse the crown:</b> STR/DEX teamwork; on success, the echo dies and the pulse drops to background. Reclaimers cheer later; Zeratek calls it vandalism.</li>
+        <li><b>Install a dampener:</b> Using Arc 3 loot gives temporary quiet (1–2 sessions) but paints the party as competent meddlers; Saint will leverage this in the next briefing.</li>
+      </ul>
+      <p class="small">Any choice should feel like it costs someone something. That is the tone of this arc.</p>
+    </div>
+  </div>
+
+  <h2 class="scene">When the Lights Forget</h2>
+  <p>
+  The chamber blinks. Once. Twice. The lights try to be brave a third time and fail. You hear the aurora without seeing it, hear the choir without words. In the darkness the crown whispers against itself, cable on cable, a soft animal sound that refuses to be only mechanical. Your slate backlight paints your palms in blue. Somewhere close by, water talks in a pipe the way a throat prepares to sing.
+  </p>
+  <p>
+  The lights return bruised, all the colors slightly wrong as if the spectrum had been rearranged with a tired hand. The mouth is louder. The vacant socket seems hungrier now that you’ve noticed it. You realize you are no longer audience; you are bait.
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Edge of the Set Piece</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>If the party lingers:</b> Add a roaming <i>Improvised Strider</i> squad (2) drawn by the resonance, accompanied by a feral utility drone (HD 3) that has “learned” to seek the strongest echo.</li>
+        <li><b>If the party moves:</b> Transition immediately toward the sump corridor—the hum resolves into a <i>call-and-response</i> pattern that matches the child’s dot map from earlier.</li>
+        <li><b>Foreshadow:</b> A distant metallic laugh. Or just the memory of one.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="scene">Bridge: Into the Mouths</h2>
+  <p>
+  You take the south conduit. The floor drops by a degree shallow enough to pretend it is not a descent. The sound grows cleaner. It is almost singing now, almost language, almost the human habit of breath before speech. The corridor narrows until your shoulders learn the walls. The crown’s echo thins behind you, replaced by a sharper tone that picks at the insides of your teeth. At the bend ahead, moisture slicks the metal and refracts your lamps into a dozen small suns. When you move, they move, and for a heartbeat you are followed by a crowd of light.
+  </p>
+  <p>
+  The sump opens like a mouth that has learned patience. The grating yawns over a dark pool where condensation gathers and forgets its names. Filaments dangle from the ceiling in frayed skeins, each tipped with the glass coin of a blossom lens. Someone has built a second crown here, but upside-down, suspended, and wired to drip. Every drop strikes the pool with a pitch perfect to the hum. The surface ripples with chords.
+  </p>
+  <p>
+  Lira comes through once, voice degraded by the chorus around you. “Report,” she says, and the word arrives as <i>re-port</i>, split and recombined. Saint says nothing at all. You understand why. No one wants to be heard by a room that answers back.
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Enter the Set Piece (Start of Arc 4 Mid)</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Scene start:</b> PCs at the sump threshold. Environmental hazard active. The inverted crown is primed to resonate into a full <i>two-note mouth</i> once disturbed.</li>
+        <li><b>Trigger:</b> Any loud sound, or removal of a lens, catalyzes the mouth → <i>construct birthing</i> (use tuned statlines from Arc 3 as baseline, add echo effects).</li>
+        <li><b>Callouts in play:</b> Accord filming (+Optics), Reclaimer rescue hooks, Helion containment orders pending. Choose who calls first based on party choices so far.</li>
+      </ul>
+      <p class="small">Stop here to brief players. When they step onto the sump grating, the “Mouths of Power” truly open.</p>
+    </div>
+  </div>
+
+  <p class="meta">End of Arc 4 opener. Next section: <b>The Sump That Sings</b> (set-piece encounter) or <b>Cut the Crown</b> (sabotage puzzle) depending on party choices.</p>
+</main>
+
+<!-- === Combat Tracker (drawer + Pop-out) === -->
+<button id="v9-tracker-toggle">Combat Tracker</button>
+<div id="v9-tracker-drawer" aria-label="Combat Tracker Drawer">
+  <header>
+    <h3>Combat Tracker</h3>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="pill" id="v9-round-pill">Round 1</span>
+      <button class="btn" id="v9-next">Next rd</button>
+      <button class="btn" id="v9-clear">Clear</button>
+      <button class="btn" id="v9-pop">Pop-out</button>
+    </div>
+  </header>
+
+  <div class="tray">
+    <div class="grid" style="margin-bottom:10px">
+      <input id="v9-add-name" placeholder="Name (PC/NPC)">
+      <input id="v9-add-init" type="number" placeholder="Init">
+      <input id="v9-add-ac"   type="number" placeholder="AC">
+      <input id="v9-add-hp"   type="number" placeholder="HP">
+      <input id="v9-add-th"   type="number" placeholder="THAC0/Atk">
+      <button class="btn" id="v9-add">Add</button>
+    </div>
+    <div class="small" style="color:var(--muted,#3a4150);margin-bottom:6px">
+      Click to edit values. ✓ marks acted, 💥 toggles defeated.
+    </div>
+    <div id="v9-rows"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const drawer = document.getElementById('v9-tracker-drawer');
+  const toggle = document.getElementById('v9-tracker-toggle');
+  const roundPill = document.getElementById('v9-round-pill');
+
+  let state = { round: 1, rows: [] };
+
+  function save(){ try{ localStorage.setItem('v9_tracker', JSON.stringify(state)); }catch(e){} }
+  function load(){
+    try{ const s = localStorage.getItem('v9_tracker'); if (s) state = JSON.parse(s);}catch(e){}
+    render();
+  }
+  function render(){
+    roundPill.textContent = `Round ${state.round||1}`;
+    const host = document.getElementById('v9-rows'); host.innerHTML = '';
+    state.rows.slice().sort((a,b)=> (b.init||0)-(a.init||0)).forEach((r,i)=>{
+      const row = document.createElement('div');
+      row.className = 'row' + (r.dead ? ' dead':'');
+      row.innerHTML = `
+        <input value="${r.name||''}"  data-k="name">
+        <input value="${r.init||''}"  data-k="init"  type="number">
+        <input value="${r.ac||''}"    data-k="ac"    type="number">
+        <input value="${r.hp||''}"    data-k="hp"    type="number">
+        <input value="${r.th||''}"    data-k="th"    type="number">
+        <div style="display:flex;gap:6px">
+          <button class="btn" data-act="acted">✓</button>
+          <button class="btn" data-act="dead">💥</button>
+          <button class="btn" data-act="del">🗑</button>
+        </div>`;
+      row.querySelectorAll('input').forEach(inp=>{
+        inp.addEventListener('change', ()=>{
+          const key = inp.dataset.k;
+          state.rows[i][key] = (inp.type==='number') ? Number(inp.value) : inp.value;
+          save();
+        });
+      });
+      row.querySelector('[data-act="del"]').onclick  = ()=>{ state.rows.splice(i,1); save(); render(); };
+      row.querySelector('[data-act="dead"]').onclick = ()=>{ state.rows[i].dead = !state.rows[i].dead; save(); render(); };
+      row.querySelector('[data-act="acted"]').onclick= ()=>{ state.rows[i].acted= !state.rows[i].acted; save(); render(); };
+      host.appendChild(row);
+    });
+  }
+
+  document.getElementById('v9-add').onclick = ()=>{
+    const name = document.getElementById('v9-add-name').value.trim();
+    if (!name) return;
+    state.rows.push({
+      name,
+      init:Number(document.getElementById('v9-add-init').value||0),
+      ac:  Number(document.getElementById('v9-add-ac').value||0),
+      hp:  Number(document.getElementById('v9-add-hp').value||0),
+      th:  Number(document.getElementById('v9-add-th').value||0),
+      dead:false, acted:false
+    });
+    save(); render();
+    ['v9-add-name','v9-add-init','v9-add-ac','v9-add-hp','v9-add-th'].forEach(id=>document.getElementById(id).value='');
+  };
+  document.getElementById('v9-next').onclick  = ()=>{ state.round=(state.round||1)+1; save(); render(); };
+  document.getElementById('v9-clear').onclick = ()=>{ state={round:1,rows:[]}; save(); render(); };
+
+  toggle.addEventListener('click', ()=> drawer.classList.toggle('open'));
+
+  let pop = null;
+  document.getElementById('v9-pop').addEventListener('click', ()=>{
+    save();
+    pop = window.open('tracker.html','Veyra9Tracker','width=980,height=720,menubar=no,toolbar=no,location=no,status=no');
+  });
+
+  window.addEventListener('storage', (e)=>{ if (e.key==='v9_tracker') load(); });
+
+  load();
+})();
+</script>
+</body>
+</html>
