@@ -6,6 +6,40 @@
 <title>Veyra-9 — Dossier</title>
 
 <style>
+/* === V9 Combat Tracker === */
+#v9-tracker-toggle{
+  position: fixed; right: 18px; bottom: 18px; z-index: 1200;
+  background:#0b3d7a; color:#fff; border:0; border-radius:999px;
+  padding:12px 18px; font-weight:700; box-shadow:0 6px 18px rgba(11,61,122,.25);
+  cursor:pointer;
+}
+#v9-tracker-drawer{
+  position: fixed; right: 18px; bottom: 78px; z-index: 1199; width: 560px; max-width: calc(100vw - 36px);
+  background:#fff; border:1px solid var(--line,#d7dbea); border-radius:14px;
+  box-shadow:0 18px 40px rgba(10,30,80,.18); display:none;
+}
+#v9-tracker-drawer.open{ display:block; }
+#v9-tracker-drawer header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 12px; border-bottom:1px solid var(--line,#d7dbea); background:#eef5ff; border-radius:14px 14px 0 0;
+}
+#v9-tracker-drawer header h3{ margin:0; font-size:1rem; color:#0b3d7a }
+#v9-tracker-drawer .pill{
+  background:#eaf1ff; border:1px solid #c9d8ff; color:#0b3d7a; border-radius:999px; padding:4px 10px; font-weight:700
+}
+#v9-tracker-drawer .btn{
+  background:#fff; border:1px solid var(--line,#d7dbea); border-radius:8px; padding:6px 10px; cursor:pointer
+}
+#v9-tracker-drawer .btn:hover{ background:#f7faff }
+#v9-tracker-drawer .tray{ padding:10px 12px 12px }
+#v9-tracker-drawer .grid,
+#v9-tracker-drawer .row{
+  display:grid; grid-template-columns:1.2fr .6fr .6fr .6fr .6fr auto; gap:8px; align-items:center;
+}
+#v9-tracker-drawer .grid input, #v9-tracker-drawer .row input{ width:100% }
+#v9-tracker-drawer .row{ padding:8px 0; border-bottom:1px dashed var(--line,#d7dbea) }
+#v9-tracker-drawer .row.dead{ opacity:.55; text-decoration:line-through }
+
 /* ===== Base theme (same tokens as Arc 1) ===== */
 :root{
   --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
@@ -368,6 +402,122 @@ window.addEventListener('DOMContentLoaded', ()=>{
       }
     });
   };
+})();
+</script>
+<button id="v9-tracker-toggle">Combat Tracker</button>
+
+<div id="v9-tracker-drawer" aria-label="Combat Tracker Drawer">
+  <header>
+    <h3>Combat Tracker</h3>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="pill" id="v9-round-pill">Round 1</span>
+      <button class="btn" id="v9-next">Next rd</button>
+      <button class="btn" id="v9-clear">Clear</button>
+      <button class="btn" id="v9-pop">Pop-out</button>
+    </div>
+  </header>
+
+  <div class="tray">
+    <!-- add row -->
+    <div class="grid" style="margin-bottom:10px">
+      <input id="v9-add-name" placeholder="Name (PC/NPC)">
+      <input id="v9-add-init" type="number" placeholder="Init">
+      <input id="v9-add-ac"   type="number" placeholder="AC">
+      <input id="v9-add-hp"   type="number" placeholder="HP">
+      <input id="v9-add-th"   type="number" placeholder="THAC0/Atk">
+      <button class="btn" id="v9-add">Add</button>
+    </div>
+
+    <div class="small" style="color:var(--muted,#3a4150);margin-bottom:6px">
+      Click to edit values. ✓ marks acted, 💥 toggles defeated.
+    </div>
+
+    <div id="v9-rows"></div>
+  </div>
+</div>
+<script>
+(() => {
+  const drawer = document.getElementById('v9-tracker-drawer');
+  const toggle = document.getElementById('v9-tracker-toggle');
+  const roundPill = document.getElementById('v9-round-pill');
+
+  // single source of truth
+  let state = { round: 1, rows: [] };
+
+  function save(){ try{ localStorage.setItem('v9_tracker', JSON.stringify(state)); }catch(e){} }
+  function load(){
+    try{
+      const s = localStorage.getItem('v9_tracker');
+      if (s) state = JSON.parse(s);
+    }catch(e){}
+    render();
+  }
+
+  function render(){
+    roundPill.textContent = `Round ${state.round||1}`;
+    const host = document.getElementById('v9-rows'); host.innerHTML = '';
+    state.rows.slice().sort((a,b)=> (b.init||0)-(a.init||0)).forEach((r,i)=>{
+      const row = document.createElement('div');
+      row.className = 'row' + (r.dead ? ' dead':'');
+      row.innerHTML = `
+        <input value="${r.name||''}"  data-k="name">
+        <input value="${r.init||''}"  data-k="init"  type="number">
+        <input value="${r.ac||''}"    data-k="ac"    type="number">
+        <input value="${r.hp||''}"    data-k="hp"    type="number">
+        <input value="${r.th||''}"    data-k="th"    type="number">
+        <div style="display:flex;gap:6px">
+          <button class="btn" data-act="acted">✓</button>
+          <button class="btn" data-act="dead">💥</button>
+          <button class="btn" data-act="del">🗑</button>
+        </div>`;
+      row.querySelectorAll('input').forEach(inp=>{
+        inp.addEventListener('change', ()=>{
+          const key = inp.dataset.k;
+          state.rows[i][key] = (inp.type==='number') ? Number(inp.value) : inp.value;
+          save();
+        });
+      });
+      row.querySelector('[data-act="del"]').onclick  = ()=>{ state.rows.splice(i,1); save(); render(); };
+      row.querySelector('[data-act="dead"]').onclick = ()=>{ state.rows[i].dead = !state.rows[i].dead; save(); render(); };
+      row.querySelector('[data-act="acted"]').onclick= ()=>{ state.rows[i].acted= !state.rows[i].acted; save(); render(); };
+      host.appendChild(row);
+    });
+  }
+
+  // controls
+  document.getElementById('v9-add').onclick = ()=>{
+    const name = document.getElementById('v9-add-name').value.trim();
+    if (!name) return;
+    state.rows.push({
+      name,
+      init:Number(document.getElementById('v9-add-init').value||0),
+      ac:  Number(document.getElementById('v9-add-ac').value||0),
+      hp:  Number(document.getElementById('v9-add-hp').value||0),
+      th:  Number(document.getElementById('v9-add-th').value||0),
+      dead:false, acted:false
+    });
+    save(); render();
+    ['v9-add-name','v9-add-init','v9-add-ac','v9-add-hp','v9-add-th'].forEach(id=>document.getElementById(id).value='');
+  };
+
+  document.getElementById('v9-next').onclick  = ()=>{ state.round=(state.round||1)+1; save(); render(); };
+  document.getElementById('v9-clear').onclick = ()=>{ state={round:1,rows:[]}; save(); render(); };
+
+  // drawer toggle
+  toggle.addEventListener('click', ()=> drawer.classList.toggle('open'));
+
+  // pop-out
+  let pop = null;
+  document.getElementById('v9-pop').addEventListener('click', ()=>{
+    save(); // ensure latest
+    pop = window.open('tracker.html','Veyra9Tracker','width=980,height=720,menubar=no,toolbar=no,location=no,status=no');
+  });
+
+  // cross-window sync
+  window.addEventListener('storage', (e)=>{ if (e.key==='v9_tracker') load(); });
+
+  // boot
+  load();
 })();
 </script>
 </body>
