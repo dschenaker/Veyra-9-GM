@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — GM Hub · Arc 3</title>
+<style>
+/* nuke any accidental second subnav */
+.subnav + .subnav{display:none}
+
+/* ====== Veyra-9 GM Hub — Base Theme ====== */
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--brand); text-decoration:none}
+a:hover{filter:brightness(1.08); text-decoration:underline}
+
+/* Header / Nav */
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.brand{font-weight:800; color:var(--brand)}
+nav a{
+  display:inline-block; margin-right:10px; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600;
+}
+nav a:hover{background:#f4f7ff}
+.clock{
+  margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
+  color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700;
+}
+
+/* Layout */
+.wrap{max-width:1100px; margin:0 auto; padding:20px}
+.breadcrumbs{color:var(--muted); margin:6px 0 14px}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
+
+/* Headings */
+h1{margin:10px 0 6px}
+h2{margin:24px 0 10px}
+.scene{ color:var(--brand); border-bottom:2px solid var(--line); padding-bottom:6px; margin-top:28px }
+.scene::before{content:"◆ "; color:var(--brandSoft)}
+
+/* Quotes */
+blockquote{ border-left:4px solid var(--brandSoft); background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic }
+
+/* Helpers */
+.meta{color:var(--muted); font-style:italic}
+.small{font-size:.94rem; color:var(--muted)}
+
+/* GM callouts */
+.gm{ background:#eef5ff; border:1px solid var(--chipLine); border-left:6px solid var(--brandSoft);
+     border-radius:10px; padding:10px 14px; margin:18px 0; box-shadow:0 1px 0 rgba(10,30,80,.04) }
+.gm + .gm{margin-top:14px}
+.gm-h{ font-weight:800; color:var(--brand); letter-spacing:.1px; display:flex; align-items:center; gap:8px; margin:2px 0 6px }
+.gm-h::before{ content:"GM"; font-size:12px; font-weight:800; color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px }
+.gm-b{color:var(--ink)}
+.gm-b ul{margin:8px 0 2px 1.1rem}
+.gm-b li{margin:6px 0}
+.gm-b li b{color:var(--brand)}
+.gm.collapsible .gm-b{display:none}
+.gm.collapsible.open .gm-b{display:block}
+.gm.collapsible .gm-h{cursor:pointer}
+</style>
+
+<script>
+// clock + one-time handlers
+function tick(){
+  const el=document.getElementById('clock'); if(!el) return;
+  el.textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST';
+}
+window.addEventListener('DOMContentLoaded',()=>{
+  tick(); setInterval(tick,1000);
+  document.querySelectorAll('.gm.collapsible .gm-h')
+    .forEach(h => h.addEventListener('click',()=> h.parentElement.classList.toggle('open')));
+});
+</script>
+</head>
+
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · GM Hub</div>
+  <nav>
+    <a href="index.html">Arc 1</a>
+    <a href="arc2.html">Arc 2</a>
+    <a href="arc3.html">Arc 3</a>
+    <a href="repo.html">Dossier</a>
+    <span class="clock" id="clock">--:--:--</span>
+  </nav>
+</header>
+
+<main class="wrap" id="top">
+  <div class="subnav">
+    <a class="chip" href="#top">Top</a>
+    <a class="chip" href="index.html">Back to Arc 1</a>
+    <a class="chip" href="arc2.html">Arc 2</a>
+    <a class="chip" href="repo.html">Open Dossier</a>
+  </div>
+
+  <div class="breadcrumbs">Prologue → Arc 1 → Arc 2 → <b>Arc 3</b></div>
+  <h1 class="scene">Arc 3 — Echoes in the Dark</h1>
+  <p class="meta">The Quarter’s tunnels breathe like a sleeping beast. The Choir’s motif—three rising, one falling—answers to no human chain of command. The Accord’s mandate narrows: follow the signal, prove intent, survive the dark.</p>
+
+  <!-- ===================== Scene 1 ===================== -->
+  <h2 class="scene">Scene 1 — Descent to Row-C</h2>
+  <p>The lift rattled past paint that had learned to peel in straight lines. Lights stuttered in a rhythm that matched no grid you’d seen, but your bones recognized it anyway. The Quarter opened like a throat—steam, noise, the hot breath of machines working past their promises.</p>
+  <p>Rust Varo met you at the mouth of the tunnel, palms scarred, voice even. “You brought helmets. Good. Down there, the air forgets it’s for people.” Serin Vael’s mark chalked the doorway: a slanted V, the angle of a pick held correctly. The tunnel swallowed the mark after the first corner.</p>
+  <p>The hum began as a rumor of sound, felt first in teeth and wrists. Three pulses rose, one fell, the pattern of a heartbeat someone had taught to count different. Pipes sweated. Old Zeratek conduit, left from the first build, wore a skin of condensation like it wanted to be touched and didn’t. Toll, the junior engineer, stayed close to your shadow and called out junctions by the name the ducts had told him. “Warm idle… cool awake… don’t run when it goes quiet.”</p>
+  <blockquote>“If you hear the fourth note,” Rust said, “stop. Some men walk forward. None of them answer.”</blockquote>
+  <p>The smell changed as you dropped—wet copper, burned resin, something green that didn’t belong in rock. Your light found a scratch-map cut into the wall, dots and lines that matched the dead child’s drawings. The pattern curved toward F-13’s sump like it had chosen the shortest path to the deepest place.</p>
+
+  <div class="gm collapsible open">
+    <div class="gm-h">GM — Running the Descent</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Navigation:</b> WIS check vs. 12 to keep bearings. Failure: lose 1 turn; party hears distant equipment fall quiet (tension).</li>
+        <li><b>Hazards:</b> Slime-slick ladders, bad air pockets (save vs. Breath Weapon for AD&D 2e suffocation checks; failure = fatigue penalty −1 to attack for 1 turn).</li>
+        <li><b>Motif Stress:</b> Each full turn in “hot zones” triggers a <i>Morale-style</i> check: roll 2d6; on 3 or less, one PC gains trembling hands (−1 missile attacks) until rest.</li>
+        <li><b>Guides:</b> With Rust/Toll assistance, WIS check gains +2. Without them, increase DC by 2 and add a false-echo fork.</li>
+        <li><b>Clue Cache:</b> Careful mapping (INT check vs. 12) yields a chalk path (+2 to a later pursuit/escape check).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===================== Scene 2 ===================== -->
+  <h2 class="scene">Scene 2 — Echo Mapping</h2>
+  <p>At the junction belly named <i>cool awake</i>, the air stiffened. Your lamps looked smaller here. The walls sweated cleanly, lines of moisture marching in a neat cadence toward the sump. Someone had wedged a Zeratek diagnostic wand into a crack and taped its speaker shut. Even gagged, it vibrated with the motif like a throat trying not to sing.</p>
+  <p>You set up the Accord wafer Lira gave you. The triangulation app was ugly but honest: three spikes flared, staggered like footfalls. Their lags told a direction, their pitch a depth. Every time the aurora pulsed above the dome, the spikes shivered, and the numbers slid a fraction closer to a harmony you didn’t like.</p>
+  <p>Rust knelt and touched the floor. “Feel that? The weight is wrong. Like the tunnel wants to be hollow.” He looked up at you, not the screen. “Machines aren’t the only things that learn.”</p>
+  <p>The child’s dot-map matched the spikes if you turned it ninety degrees and trusted a dead kid’s sense of rhythm. You did. The line pointed to a maintenance door half buried in silt, warning stencil eaten down to the bones of letters: <i>F—13 S—MP</i>.</p>
+
+  <div class="gm collapsible open">
+    <div class="gm-h">GM — The Mapping Minigame</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Triangulate:</b> 3 rounds of rolls: choose <i>INT (logic)</i> or <i>WIS (intuition)</i>. Success on 2+ rounds pins the vector (advantage on first encounter initiative). Failure on 2+ rounds imposes −1 to surprise checks (AD&D 2e).</li>
+        <li><b>Data Merge:</b> If PCs use <i>Child’s Dot-Map</i> + <i>Accord Wafer</i>, grant +2 on the sequence.</li>
+        <li><b>Risk Option:</b> For an extra +2, they un-gag the Zeratek wand to raise motif gain. Each round, save vs. Spells or suffer “vertigo echo” (−2 to next roll).</li>
+        <li><b>Reward:</b> On overall success, they cache a <i>Pulse Window</i>: one future encounter where motif grants them +2 to a single group check (positioning or retreat).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===================== Scene 3 ===================== -->
+  <h2 class="scene">Scene 3 — The Sump at F-13</h2>
+  <p>The maintenance door opened like a jaw pushed past rigor. The sump room beyond sloped away into a black pool where the facility’s waste water learned patience. Your light traced the curve of a submerged pipe, the ribs of a conduit, and the spine of something that used to be a drone.</p>
+  <p>It rose from the water in jointed silence, not a single droplet falling from its skin. The Blossom lens sat where an eye might be, its iris a shield of hexagonal glass. Three lights pulsed under it, one stuttered and fell, and your stomach answered the rhythm like it had been taught.</p>
+  <p>Two more shapes stood from the water, not drones but their litters—riveted plates, stitched cabling, hunks of old chassis taught to pretend at legs. The room hummed at a frequency that found the small bones of the ear and made them want to dance out of time.</p>
+
+  <div class="gm collapsible open">
+    <div class="gm-h">GM — Sump Ambush (AD&D 2e)</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Forces:</b> 1x <i>Choir-Key Drone</i> (elite), 2x <i>Improvised Striders</i> (construct mooks). Drone tries to “sing” PCs into flight (morale shock) before lethal force.</li>
+        <li><b>Surprise/Init:</b> If Mapping succeeded: PCs avoid surprise; +1 to initiative. If failed: PCs save vs. Paralysis or suffer −2 init from vertigo.</li>
+        <li><b>Choir-Key Drone (suggested):</b> AC 4 (plate-like chassis); HD 4+2; THAC0 17; Move 9; Morale 12; Special: <i>Motif Pulse</i> 1/2 rounds → everyone in 20’ save vs. Spells or suffer −1 to attacks & checks for 1 turn. Vulnerable to electrical overload (bonus damage from shock/burst weapons).</li>
+        <li><b>Improvised Strider x2:</b> AC 6; HD 2; THAC0 19; Move 12 (spidering); Morale 9; Special: <i>Clamp</i> on hit: STR check or be restrained (−2 AC) until freed.</li>
+        <li><b>Terrain:</b> 1/3 of room is ankle-deep water (missile −1, Move −3); catwalk 5’ wide around rim (DEX checks on forced movement).</li>
+        <li><b>Tactics:</b> Drone attempts to keep line-of-sight for pulses; Striders flank to clamp. Clever PCs can overload the submerged conduit (INT check vs. 12; a turn to rig) for a shock burst (2d4, save for half) that also <i>stuns</i> constructs 1 round.</li>
+        <li><b>Morale:</b> On drone at 50% HP, check morale (10+); on failure it attempts to withdraw into the sump, leaving a humming <i>prism-seed</i> behind.</li>
+        <li><b>Loot/Clues:</b> 1 <i>Blossom Lens (cracked)</i>, 1 <i>Firmware Shard</i> tagged <i>CHOIR_SAFE</i>, 2 salvageable <i>Pulse Dampeners</i>. Reward: 300 cr (enough for 1–2 legal sidearms) if handed to Accord/Helion; +Reclaimer Trust if kept for Quarter defense.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>The drone’s last light flickered a stubborn, failing rhythm. When it died, the room forgot its song. Silence rushed in like water into air, heavy and immediate. In the sludge near the conduit you found the shard: a sliver of hardened memory, its label bright as if it had been printed an hour ago. <i>CHOIR_SAFE</i>. Someone had named the danger safety and taught it to sing.</p>
+
+  <!-- ===================== Bridge ===================== -->
+  <h2 class="scene">Bridge to Arc 4 — The Mouths of Power</h2>
+  <p>By the time you climbed back to the Quarter, Haven had grown new arguments. Reclaimer stewards wanted the dampeners for the tunnels. Helion wanted the shard for optics. Zeratek wanted everything in a sealed case with your signatures drying on top. The aurora pulsed once, twice, three times. Somewhere, a broadcast rehearsed its smile.</p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Transition Hooks</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Faction Choice (hard fork):</b> Deliver shard to <i>Hestrel</i> (Accord Optics +1, Reclaimer −1), to <i>Serin Vael</i> (Reclaimer +1, Zeratek Hostility +1), or to <i>Saint</i> privately (Accord +1, Hestrel suspicious).</li>
+        <li><b>Accord Debrief:</b> Saint offers a quiet route to compare shard signature with older incidents (sets up Arc 4 evidence game).</li>
+        <li><b>Zeratek Pressure:</b> Drix promises <i>variance maps</i> for compliance; starts a smear if refused.</li>
+        <li><b>Opening of Arc 4:</b> A new <i>signal spike</i> surfaces in a Helion logistics corridor—politics in motion. Title card: <b>Arc 4 — The Mouths of Power</b>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- footer chips -->
+  <div class="subnav" style="margin-top:24px">
+    <a class="chip" href="#top">Top</a>
+    <a class="chip" href="arc2.html">Back to Arc 2</a>
+    <a class="chip" href="repo.html">Open Dossier</a>
+  </div>
+</main>
+</body>
+</html>
