@@ -74,34 +74,57 @@ blockquote{ border-left:4px solid var(--brandSoft); background:#eef5ff; padding:
 .gm.collapsible .gm-b{display:none}
 .gm.collapsible.open .gm-b{display:block}
 .gm.collapsible .gm-h{cursor:pointer}
-/* === Combat Tracker (overlay drawer) === */
+/* === Combat Tracker (overlay drawer, expanded) === */
 .tracker-toggle{
-  position:fixed; right:16px; bottom:16px; z-index:9999;
+  position:fixed; right:20px; bottom:20px; z-index:9999;
   background:var(--brand); color:#fff; border:none; border-radius:999px;
-  padding:10px 14px; font-weight:800; box-shadow:0 6px 18px rgba(11,61,122,.25); cursor:pointer;
+  padding:12px 18px; font-weight:800; font-size:1rem;
+  box-shadow:0 6px 18px rgba(11,61,122,.25); cursor:pointer;
 }
+
 .tracker{
-  position:fixed; right:16px; bottom:70px; width:360px; max-height:70vh; overflow:auto;
-  background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:0 12px 30px rgba(10,30,80,.2);
+  position:fixed; right:20px; bottom:80px;
+  width:500px; max-height:80vh; overflow:auto;
+  background:#fff; border:1px solid var(--line); border-radius:16px;
+  box-shadow:0 16px 36px rgba(10,30,80,.25);
   display:none; z-index:9998;
+  font-size:0.95rem;
 }
+
 .tracker.open{display:block}
+
 .tracker header{
   display:flex; justify-content:space-between; align-items:center;
-  padding:10px 12px; background:#eef5ff; border-bottom:1px solid var(--line); border-top-left-radius:14px; border-top-right-radius:14px;
+  padding:12px 16px; background:#eef5ff;
+  border-bottom:1px solid var(--line);
+  border-top-left-radius:16px; border-top-right-radius:16px;
 }
+
 .tracker h3{margin:0; color:var(--brand)}
-.tracker .tray{padding:10px 12px}
-.tracker .row{display:grid; grid-template-columns:1.2fr .5fr .6fr .6fr .6fr auto; gap:6px; align-items:center; padding:6px 0; border-bottom:1px dashed var(--line)}
-.tracker .row.dead{opacity:.6; text-decoration:line-through}
+
+.tracker .tray{padding:12px 16px}
+
+.tracker .row{
+  display:grid; grid-template-columns:1.4fr .6fr .6fr .6fr .6fr auto;
+  gap:8px; align-items:center; padding:8px 0;
+  border-bottom:1px dashed var(--line);
+}
+.tracker .row.dead{opacity:.5; text-decoration:line-through}
+
 .tracker .row input[type="number"]{width:100%}
-.tracker .controls{display:flex; gap:8px; align-items:center; margin-top:8px}
-.tracker .pill{background:var(--chip); border:1px solid var(--chipLine); color:var(--brand); border-radius:999px; padding:2px 8px; font-size:.85rem}
-.tracker .btn{background:#fff; border:1px solid var(--line); border-radius:8px; padding:4px 8px; cursor:pointer}
+
+.tracker .controls{display:flex; gap:10px; align-items:center; margin-top:10px}
+.tracker .pill{background:var(--chip); border:1px solid var(--chipLine); color:var(--brand);
+  border-radius:999px; padding:4px 10px; font-size:.9rem; font-weight:600}
+.tracker .btn{background:#fff; border:1px solid var(--line); border-radius:8px;
+  padding:5px 10px; cursor:pointer; font-size:.85rem}
 .tracker .btn:hover{background:#f7faff}
-.tracker .mini{padding:2px 6px; font-size:.85rem}
-.tracker .addgrid{display:grid; grid-template-columns:1.2fr .6fr .6fr .6fr .6fr; gap:6px; margin:8px 0}
-.tracker .side{appearance:none; border:1px solid var(--line); border-radius:8px; padding:4px; background:#fff}
+.tracker .mini{padding:3px 8px; font-size:.85rem}
+.tracker .addgrid{
+  display:grid; grid-template-columns:1.2fr .6fr .6fr .6fr .6fr; gap:8px; margin:10px 0;
+}
+.tracker .side{appearance:none; border:1px solid var(--line); border-radius:8px;
+  padding:6px; background:#fff}
 </style>
 
 <script>
