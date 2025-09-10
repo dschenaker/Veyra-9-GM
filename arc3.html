@@ -74,6 +74,34 @@ blockquote{ border-left:4px solid var(--brandSoft); background:#eef5ff; padding:
 .gm.collapsible .gm-b{display:none}
 .gm.collapsible.open .gm-b{display:block}
 .gm.collapsible .gm-h{cursor:pointer}
+/* === Combat Tracker (overlay drawer) === */
+.tracker-toggle{
+  position:fixed; right:16px; bottom:16px; z-index:9999;
+  background:var(--brand); color:#fff; border:none; border-radius:999px;
+  padding:10px 14px; font-weight:800; box-shadow:0 6px 18px rgba(11,61,122,.25); cursor:pointer;
+}
+.tracker{
+  position:fixed; right:16px; bottom:70px; width:360px; max-height:70vh; overflow:auto;
+  background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:0 12px 30px rgba(10,30,80,.2);
+  display:none; z-index:9998;
+}
+.tracker.open{display:block}
+.tracker header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:10px 12px; background:#eef5ff; border-bottom:1px solid var(--line); border-top-left-radius:14px; border-top-right-radius:14px;
+}
+.tracker h3{margin:0; color:var(--brand)}
+.tracker .tray{padding:10px 12px}
+.tracker .row{display:grid; grid-template-columns:1.2fr .5fr .6fr .6fr .6fr auto; gap:6px; align-items:center; padding:6px 0; border-bottom:1px dashed var(--line)}
+.tracker .row.dead{opacity:.6; text-decoration:line-through}
+.tracker .row input[type="number"]{width:100%}
+.tracker .controls{display:flex; gap:8px; align-items:center; margin-top:8px}
+.tracker .pill{background:var(--chip); border:1px solid var(--chipLine); color:var(--brand); border-radius:999px; padding:2px 8px; font-size:.85rem}
+.tracker .btn{background:#fff; border:1px solid var(--line); border-radius:8px; padding:4px 8px; cursor:pointer}
+.tracker .btn:hover{background:#f7faff}
+.tracker .mini{padding:2px 6px; font-size:.85rem}
+.tracker .addgrid{display:grid; grid-template-columns:1.2fr .6fr .6fr .6fr .6fr; gap:6px; margin:8px 0}
+.tracker .side{appearance:none; border:1px solid var(--line); border-radius:8px; padding:4px; background:#fff}
 </style>
 
 <script>
@@ -225,6 +253,133 @@ window.addEventListener('DOMContentLoaded',()=>{
     <a class="chip" href="arc2.html">Back to Arc 2</a>
     <a class="chip" href="repo.html">Open Dossier</a>
   </div>
+<!-- === Combat Tracker Drawer === -->
+<button class="tracker-toggle" id="trkToggle">Combat</button>
+<div class="tracker" id="tracker">
+  <header>
+    <h3>Combat Tracker</h3>
+    <div class="controls">
+      <span class="pill" id="rndPill">Round 1</span>
+      <button class="btn mini" id="nextRd">Next rd</button>
+      <button class="btn mini" id="clearTrk">Clear</button>
+    </div>
+  </header>
+  <div class="tray">
+    <div class="addgrid">
+      <input id="trkName" placeholder="Name (PC/NPC)">
+      <input id="trkAC" type="number" placeholder="AC">
+      <input id="trkTH" type="number" placeholder="THAC0">
+      <input id="trkHP" type="number" placeholder="HP">
+      <input id="trkInit" type="number" placeholder="Init">
+    </div>
+    <div class="controls">
+      <select id="trkSide" class="side">
+        <option value="PC">PC</option>
+        <option value="NPC">NPC</option>
+      </select>
+      <button class="btn" id="addRow">Add</button>
+      <button class="btn" id="sortInit">Sort by Init</button>
+      <button class="btn" id="saveTrk">Save</button>
+    </div>
+
+    <div id="trkList" style="margin-top:10px"></div>
+  </div>
+</div>
 </main>
+<script>
+(function(){
+  const TKEY='v9_tracker_state';
+  let state={ round:1, rows:[] };
+
+  const $ = sel => document.querySelector(sel);
+  const list = $('#trkList'), pill = $('#rndPill');
+
+  function save(){ localStorage.setItem(TKEY, JSON.stringify(state)); }
+  function load(){
+    try{
+      const s = JSON.parse(localStorage.getItem(TKEY)||'{}');
+      if(s && s.rows) state=s;
+    }catch(e){}
+    pill.textContent = 'Round '+state.round;
+    render();
+  }
+
+  function render(){
+    list.innerHTML='';
+    state.rows.forEach((r,i)=>{
+      const row = document.createElement('div');
+      row.className='row'+(r.hp<=0?' dead':'');
+      row.innerHTML=`
+        <div><b>${r.name}</b> <span class="small">[${r.side}]</span></div>
+        <div>AC ${r.ac}</div>
+        <div>TH ${r.th}</div>
+        <div>HP <b>${r.hp}</b></div>
+        <div>Init ${r.init}</div>
+        <div class="controls">
+          <button class="btn mini" data-a="d1" data-i="${i}">-1</button>
+          <button class="btn mini" data-a="d5" data-i="${i}">-5</button>
+          <button class="btn mini" data-a="h1" data-i="${i}">+1</button>
+          <button class="btn mini" data-a="h5" data-i="${i}">+5</button>
+          <button class="btn mini" data-a="del" data-i="${i}">✕</button>
+        </div>`;
+      list.appendChild(row);
+    });
+  }
+
+  function add(){
+    const name=$('#trkName').value.trim();
+    const ac=parseInt($('#trkAC').value,10);
+    const th=parseInt($('#trkTH').value,10);
+    const hp=parseInt($('#trkHP').value,10);
+    const init=parseInt($('#trkInit').value,10);
+    const side=$('#trkSide').value;
+    if(!name || isNaN(ac)||isNaN(th)||isNaN(hp)||isNaN(init)) return;
+
+    state.rows.push({name,ac,th,hp,init,side});
+    $('#trkName').value=''; $('#trkAC').value=''; $('#trkTH').value='';
+    $('#trkHP').value=''; $('#trkInit').value='';
+    render(); save();
+  }
+
+  function sortInit(){
+    state.rows.sort((a,b)=> b.init - a.init);
+    render(); save();
+  }
+
+  function nextRound(){
+    state.round++; pill.textContent='Round '+state.round; save();
+  }
+
+  function clearAll(){
+    if(!confirm('Clear tracker?')) return;
+    state={round:1, rows:[]}; pill.textContent='Round 1';
+    render(); save();
+  }
+
+  // Events
+  $('#trkToggle').addEventListener('click',()=> $('#tracker').classList.toggle('open'));
+  $('#addRow').addEventListener('click',add);
+  $('#sortInit').addEventListener('click',sortInit);
+  $('#nextRd').addEventListener('click',nextRound);
+  $('#clearTrk').addEventListener('click',clearAll);
+  $('#saveTrk').addEventListener('click',save);
+
+  list.addEventListener('click', (e)=>{
+    const btn = e.target.closest('button'); if(!btn) return;
+    const i = parseInt(btn.dataset.i,10); if(isNaN(i)) return;
+    const r = state.rows[i];
+    const act = btn.dataset.a;
+    if(act==='d1') r.hp-=1;
+    if(act==='d5') r.hp-=5;
+    if(act==='h1') r.hp+=1;
+    if(act==='h5') r.hp+=5;
+    if(act==='del') state.rows.splice(i,1);
+    render(); save();
+  });
+
+  // Load persisted state on open
+  window.addEventListener('DOMContentLoaded', load);
+})();
+</script>
 </body>
 </html>
