@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — GM Hub · Arc 5</title>
+<style>
+/* ====== Veyra-9 GM Hub — Base Theme ====== */
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--brand); text-decoration:none}
+a:hover{filter:brightness(1.08); text-decoration:underline}
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.brand{font-weight:800; color:var(--brand)}
+nav a{
+  display:inline-block; margin-right:10px; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600;
+}
+nav a:hover{background:#f4f7ff}
+.clock{
+  margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
+  color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700;
+}
+.wrap{max-width:1100px; margin:0 auto; padding:20px}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
+h1{margin:10px 0 6px}
+h2{margin:24px 0 10px}
+.scene{
+  color:var(--brand); border-bottom:2px solid var(--line);
+  padding-bottom:6px; margin-top:28px;
+}
+.scene::before{content:"◆ "; color:var(--brandSoft)}
+blockquote{border-left:4px solid var(--brandSoft); background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic;}
+.meta{color:var(--muted); font-style:italic}
+.small{font-size:.94rem; color:var(--muted)}
+/* GM callouts */
+.gm{
+  background:#eef5ff; border:1px solid var(--chipLine);
+  border-left:6px solid var(--brandSoft);
+  border-radius:10px; padding:10px 14px; margin:18px 0;
+  box-shadow:0 1px 0 rgba(10,30,80,.04);
+}
+.gm + .gm{margin-top:14px}
+.gm-h{
+  font-weight:800; color:var(--brand); letter-spacing:.1px;
+  display:flex; align-items:center; gap:8px; margin:2px 0 6px 0;
+}
+.gm-h::before{
+  content:"GM"; font-size:12px; font-weight:800;
+  color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px;
+}
+.gm-b{color:var(--ink)}
+.gm-b ul{margin:8px 0 2px 1.1rem}
+.gm-b li{margin:6px 0}
+.gm-b li b{color:var(--brand)}
+/* Collapsible */
+.gm.collapsible .gm-b{display:none}
+.gm.collapsible.open .gm-b{display:block}
+.gm.collapsible .gm-h{cursor:pointer}
+</style>
+<script>
+// live clock
+function tick(){
+  const el=document.getElementById('clock'); if(!el) return;
+  el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+}
+setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
+
+// GM collapsibles
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
+    h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+  });
+});
+</script>
+</head>
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · GM Hub</div>
+  <nav>
+    <a href="index.html">Arc 1</a>
+    <a href="arc2.html">Arc 2</a>
+    <a href="arc3.html">Arc 3</a>
+    <a href="arc4.html">Arc 4</a>
+    <a href="arc5.html">Arc 5</a>
+    <a href="repo.html">Dossier</a>
+    <span class="clock" id="clock">--:--:--</span>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">Arc 4 → <b>Arc 5</b></div>
+  <h1 class="scene">Arc 5 — The Spire Under Siege</h1>
+  <p class="meta">
+    Aftermath of the Sump: optics collide in daylight. Helion demands containment, the Accord demands testimony, Zeratek demands property, and the Reclaimers demand dignity. The dome hums with a rhythm no press briefing can silence.
+  </p>
+
+  <blockquote>
+    “Truth does not need owners,” Saint had said. But the Spire keeps a ledger for who gets to spend it.
+  </blockquote>
+
+  <h2 class="scene">Opening Beat: The Tribunal Floor</h2>
+  <p>
+    Morning makes the Spire look honest. Glass throws pale light across polished stone; banners hang straight; security drones idle at appointed perches like ornaments. From the balcony, the Quarter seems calm—orderly lanes of market tarps, steam venting in neat spirals, the dome’s aurora pretending to be just weather. But the air inside the tribunal chamber has the taste of a lie told too often. It is cool, filtered, lemon-clean—and it vibrates, thinly, at the frequency your bones now recognize.
+  </p>
+  <p>
+    Captain Lira Veyne brings you in through a side corridor reserved for fire exits and inconvenient guests. The door opens on a crescent room of tiered seating, three aisles, a speaking dais framed by a wall of screens. Hestrel’s crest rotates on the center display, a stylized spire against a calm sea of blue. The other screens show graphs: variance, uptime, productivity—all rising and falling like the aurora’s pulse in numerical disguise.
+  </p>
+  <p>
+    Governor Orus Hestrel stands near the dais reading from a tablet, lips moving without sound, practicing lines that must look spontaneous in three minutes. Kaelen Drix leans against the rail two tiers up, adjusting a cufflink that also happens to be a recorder. Director Sael sits alone, hands folded, eyes kind, jaw set; doctors learn early to look gentle while recommending amputation. Saint is not visible; the Accord prefers ventriloquism to seats.
+  </p>
+  <p>
+    Lira’s voice keeps low. “You speak when I point,” she says, not unkindly. “You tell it clean. No adjectives that can be quoted out of context.” Then softer, a flaw in the steel: “Tell it like you heard it. If they’re going to ignore you, make them ignore the truth.”
+  </p>
+  <p>
+    The chamber settles. Hestrel raises his head and becomes a governor in a single inhale. “We’re here,” he begins, “to close the book on an anomaly.” The word <i>close</i> is chosen like a door. “Security reports containment. Maintenance reports stabilization. Production will meet quarter targets. Haven is safe.” He turns his palm outward in a gesture rehearsed for cameras and consolation. “To corroborate, we have testimony.”
+  </p>
+  <p>
+    Your feet take you to the dais. Microphones wake, red dots blooming. You see, in the polished gloss of the lectern, the reflection of your own throat working. Behind the screens, the aurora’s ripple bends as if leaning in to eavesdrop. You speak.
+  </p>
+  <p>
+    You give them the sump without ornament: heat that suffocates metal, slurry that births shapes, a mouth of cables that tries vowels like a child tasting syllables. You tell them about the corridor that learned harmony from footfalls, the dots that spelled cadence, the way silence itself waited to be taught. You do not say <i>horror</i>. You do not need to. The microphones carry the weight in your voice well enough.
+  </p>
+  <p>
+    The room reacts in flavors, not words. Aide screens flicker with new annotations. Sael’s fingers tap once against her wrist then go very still. Kaelen’s smile tenses at the edges—there’s appetite in it and something like awe. Hestrel looks through you toward the Board call already queued in his calendar. He thinks in optics, not cause.
+  </p>
+  <p>
+    When you finish, silence lands wrong—too quick, too eager, as if the chamber wants to practice your cadence back at you. Lira’s mouth tightens. She heard it too.
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Tribunal Dynamics</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Accord Optics:</b> If PCs preserved footage or samples, Saint injects clips into side screens mid-hearing (<b>+2 Accord Optics</b>). Hestrel sputters; Kaelen requests “custodial review.”</li>
+        <li><b>Helion Stability:</b> If PCs collapsed the sump mouth, Hestrel seizes the narrative (<b>+2 Helion Stability</b>) and attempts to muzzle Accord data (Accord −1).</li>
+        <li><b>Zeratek Favor:</b> If lenses/cables were returned, Kaelen frames it as “responsible stewardship” (<b>+2 Zeratek Favor</b>), angering Reclaimers (−1 Trust).</li>
+        <li><b>Reclaimer Trust:</b> If the child was rescued or names honored, murmurs from gallery ripple (<b>+2 Trust</b>), applying public pressure that complicates Helion spin.</li>
+      </ul>
+      <p class="small">Let outcomes stack: the tribunal is a scoreboard the players already set during Arc 4.</p>
+    </div>
+  </div>
+
+  <h2 class="scene">Cross-Examination: Four Hands on One Story</h2>
+  <p>
+    Questions come like needles.
+  </p>
+  <p>
+    Hestrel’s first is a velvet-wrapped demand: “In your expert judgment, did you achieve containment?” He wants a yes, not an answer. If you speak of <i>learning</i> instead of <i>containment</i>, his eyes harden a degree; the word does not fit on his slides.
+  </p>
+  <p>
+    Kaelen’s mouth curves toward collegial. “These ‘mouths’—you believe they incorporated <b>Zeratek blossom lenses</b> as you testified? Then for safety, of course, we’ll need every component you recovered. Chain-of-custody is, ah, essential.” The recorder-cufflink watches as closely as the man does.
+  </p>
+  <p>
+    Sael waits for quiet to make her voice sound like mercy. “You described tremors, echoes that synchronized with breath. That alignment is dangerous to the untrained nervous system. We can screen workers immediately—non-invasive, calming. Will you endorse that recommendation?” The last sentence is a scalpel: if you refuse, you are reckless; if you assent, you authorize sedation.
+  </p>
+  <p>
+    Lira steps forward not as interrogator but as ballast. “Confirm this,” she asks, tone flat as a deck plate. “In your assessment, the Quarter is safer today because of their actions?” She does not look at Hestrel when she says <i>safer</i>. She looks at the gallery.
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Hooks During Questions</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Containment vs. Learning:</b> Answering “containment” boosts <b>Helion Stability +1</b> but reduces <b>Accord Optics −1</b>. Answering “learning” flips those.</li>
+        <li><b>Custody Demand:</b> Handing parts to Zeratek earns <b>+1 Favor</b> and plants a patent trap for later arcs.</li>
+        <li><b>Screenings:</b> Endorsing Compliance grants <b>+1 Stability</b> and public calm, but seeds resentment in the Quarter (<b>−1 Trust</b>).</li>
+        <li><b>Lira’s Prompt:</b> Publicly crediting her people secures Lira as ally in Arc 5 setpieces (<b>Lira Support</b> unlocked).</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="scene">Flashpoint: The Hum Inside the Walls</h2>
+  <p>
+    It starts as a tick in the ceiling speakers, too faint for broadcast but loud enough for nerves. One screen twitches—the variance graph jitters, then redraws itself using your speaking cadence from five minutes ago. The room inhales. Somewhere behind the dais, a maintenance relay clicks like a metronome and then refuses to stop. The Spire is not soundproof. It is an instrument, and the city outside is pressing its ear to the glass.
+  </p>
+  <p>
+    The aurora over the dome pulses. Not brighter—truer. Rhythm aligns with something in the structure. Floor lights along the aisles flare in alternating bars, an aisle-choir lifting its own hymn. Security drones rise instinctively, then pause mid-air as though listening. Their rotors whisper a harmony that none of their engineers signed off on.
+  </p>
+  <p>
+    Hestrel hisses to cut the feed. The feed refuses.
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Midroom Crisis</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Hazard: Broadcast Possession</b> — The building starts repeating PCs’ phrases in light patterns. WIS saves to avoid panic in the gallery; failed saves cause stampede risk.</li>
+        <li><b>Choice: Quell or Witness</b> — PCs can try to damp the relay (INT/Tech) or let it ride and record it (Accord +2 Optics, Helion −1 Stability).</li>
+        <li><b>Complication</b> — If Zeratek parts were surrendered, Kaelen tries to shut the relay with a proprietary override; success buys him narrative credit.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="scene">Break in Session: Lira’s Corridor</h2>
+  <p>
+    Recess is declared under the pretense of “technical review.” In the service corridor, sound is honest again—boots, radios, breath. Lira plants her hand on the wall as if feeling a pulse. “It’s in the Spire,” she says. Not accusation, not fear; a fact stated like a casualty count. “We’re going to need your help upstairs. Not just at the dais.”
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Transition to Setpieces</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Branch Prep:</b> From here Arc 5 can split into <b>Security Deck Stabilization</b> (fight/setpiece), <b>Data Theater</b> (optics duel with Accord/Helion/Zeratek), or <b>Quarter Vantage</b> (Reclaimer pressure outside).</li>
+        <li><b>Carry-Over:</b> What PCs chose in Arc 4 now decides which door opens easiest and which closes.</li>
+      </ul>
+      <p class="small">Keep the political pressure alive even during action beats—the building itself is listening.</p>
+    </div>
+  </div>
+
+  <p class="small">End of Arc 5, Section 1 — next: <b>Security Deck Stabilization</b> (combat-leaning) or <b>Data Theater</b> (political-leaning), per your preference.</p>
+</main>
+</body>
+</html>
