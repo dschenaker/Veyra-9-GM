@@ -4,6 +4,75 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Veyra-9 — GM Hub · Arc 6</title>
+<style>
+/* ===== Veyra-9 GM Hub · Base Theme ===== */
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+/* Links */
+a{color:var(--brand); text-decoration:none}
+a:hover{filter:brightness(1.08); text-decoration:underline}
+/* Header / Nav */
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.brand{font-weight:800; color:var(--brand)}
+nav a{
+  display:inline-block; margin-right:10px; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600;
+}
+nav a:hover{background:#f4f7ff}
+.clock{margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
+  color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700}
+/* Layout */
+.wrap{max-width:1100px; margin:0 auto; padding:20px}
+.breadcrumbs{color:var(--muted); margin:6px 0 14px}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
+/* Headings & scene labels */
+h1{margin:10px 0 6px}
+h2{margin:24px 0 10px}
+.scene{color:var(--brand); border-bottom:2px solid var(--line); padding-bottom:6px; margin-top:28px}
+.scene::before{content:"◆ "; color:var(--brandSoft)}
+/* Epigraph/quotes */
+blockquote{border-left:4px solid var(--brandSoft); background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic}
+/* Small helpers */
+.meta{color:var(--muted); font-style:italic}
+.small{font-size:.94rem; color:var(--muted)}
+/* GM callouts */
+.gm{background:#eef5ff; border:1px solid var(--chipLine); border-left:6px solid var(--brandSoft);
+  border-radius:10px; padding:10px 14px; margin:18px 0; box-shadow:0 1px 0 rgba(10,30,80,.04)}
+.gm + .gm{margin-top:14px}
+.gm-h{font-weight:800; color:var(--brand); letter-spacing:.1px; display:flex; align-items:center; gap:8px; margin:2px 0 6px}
+.gm-h::before{content:"GM"; font-size:12px; font-weight:800; color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px}
+.gm-b{color:var(--ink)} .gm-b ul{margin:8px 0 2px 1.1rem} .gm-b li{margin:6px 0} .gm-b li b{color:var(--brand)}
+/* Chips / section shortcuts */
+.chip{display:inline-block; padding:6px 10px; background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600; margin-right:8px}
+</style>
+
+<script>
+// live clock + collapsibles
+function v9Tick(){ const el=document.getElementById('clock'); if(el){ el.textContent =
+  new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST';}}
+setInterval(v9Tick,1000); window.addEventListener('DOMContentLoaded',v9Tick);
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => h.addEventListener('click', () =>
+    h.parentElement.classList.toggle('open')));
+});
+</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
