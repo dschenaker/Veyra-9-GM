@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — GM Hub · Arc 7</title>
+<style>
+/* ====== Veyra-9 GM Hub — Base Theme ====== */
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+/* Links */
+a{color:var(--brand); text-decoration:none}
+a:hover{filter:brightness(1.08); text-decoration:underline}
+
+/* Header / Nav */
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.brand{font-weight:800; color:var(--brand)}
+nav a{
+  display:inline-block; margin-right:10px; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600;
+}
+nav a:hover{background:#f4f7ff}
+.clock{
+  margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
+  color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700;
+}
+
+/* Layout */
+.wrap{max-width:1100px; margin:0 auto; padding:20px}
+.breadcrumbs{color:var(--muted); margin:6px 0 14px}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
+
+/* Headings & sections */
+h1{margin:10px 0 6px}
+h2{margin:24px 0 10px}
+.scene{
+  color:var(--brand); border-bottom:2px solid var(--line);
+  padding-bottom:6px; margin-top:28px;
+}
+.scene::before{content:"◆ "; color:var(--brandSoft)}
+
+/* Epigraph / quote */
+blockquote{
+  border-left:4px solid var(--brandSoft);
+  background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic;
+}
+
+/* Helpers */
+.meta{color:var(--muted); font-style:italic}
+.small{font-size:.94rem; color:var(--muted)}
+
+/* ====== GM CALLOUTS ====== */
+.gm{
+  background:#eef5ff; border:1px solid var(--chipLine);
+  border-left:6px solid var(--brandSoft);
+  border-radius:10px; padding:10px 14px; margin:18px 0;
+  box-shadow:0 1px 0 rgba(10,30,80,.04);
+}
+.gm + .gm{margin-top:14px}
+.gm-h{
+  font-weight:800; color:var(--brand); letter-spacing:.1px;
+  display:flex; align-items:center; gap:8px; margin:2px 0 6px 0;
+}
+.gm-h::before{
+  content:"GM"; font-size:12px; font-weight:800;
+  color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px;
+}
+.gm-b{color:var(--ink)}
+.gm-b ul{margin:8px 0 2px 1.1rem}
+.gm-b li{margin:6px 0}
+.gm-b li b{color:var(--brand)}
+.gm.collapsible .gm-b{display:none}
+.gm.collapsible.open .gm-b{display:block}
+.gm.collapsible .gm-h{cursor:pointer}
+</style>
+
+<script>
+// live clock
+function tick(){
+  const el=document.getElementById('clock'); if(!el) return;
+  el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+}
+setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
+
+// GM collapsibles
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
+    h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+  });
+});
+</script>
+</head>
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · GM Hub</div>
+  <nav>
+    <a href="index.html">Arc 1</a>
+    <a href="arc2.html">Arc 2</a>
+    <a href="arc3.html">Arc 3</a>
+    <a href="arc4.html">Arc 4</a>
+    <a href="arc5.html">Arc 5</a>
+    <a href="arc6.html">Arc 6</a>
+    <a href="arc7.html">Arc 7</a>
+    <a href="repo.html">Dossier</a>
+    <span class="clock" id="clock">--:--:--</span>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">Phase II → <b>Arc 7</b></div>
+  <h1 class="scene">Arc 7 — Smugglers’ Intrigue</h1>
+  <p class="meta">Mandate: secure an off-books route into the Factory complex before Zeratek and Compliance seal it. Stakeholders: <b>Reclaimers</b> want relief shipments, <b>Zeratek</b> wants deniability, <b>Accord</b> wants verifiable proof, <b>Helion</b> wants quiet optics. The PCs decide whether to play courier, spy, or thief—likely all three.</p>
+
+  <blockquote>“If you want mercy, bring cash. If you want truth, bring noise.” — Dockmaster Sharn, Graywater Piers</blockquote>
+
+  <h2 class="scene">Scene 1: Graywater Piers — Buying a Way In</h2>
+  <p>
+  Graywater wasn’t on any official map. It was the space between the Quarter and the sea, a teeth-gnashing strip of piers and crane skeletons where the city ended in rust and improvised commerce. Floodlights made cones in the mist; everything outside them looked like a rumor. Barges clanked. A gull’s cry cut short as if the fog didn’t allow complete sounds.
+  </p>
+  <p>
+  Lira Veyne met you at the checkpoint built from shipping containers welded into a gate. “Two minutes of advice,” she said, not bothering with a greeting. “The people you’re about to deal with sell absence—gaps in manifests, blind spots in audits, minutes when cameras sleep. They’ll test you with theater. Answer with outcomes, not speeches. I need a route that reaches the Factory’s bone without waking Zeratek. I prefer deniable. I require effective.” She paused. “Don’t confuse either with clean.”
+  </p>
+  <p>
+  Past the gate, Graywater breathed in ledgers and diesel. Stalls offered everything that should have had a serial number but didn’t. Pallets of conduit. Drums of scrubber media. Boxes of “reclaimed” lenses stamped with old Zeratek logos that had been polished just enough to pass at a distance. Overhead, a crane traced slow circles like a tired planet.
+  </p>
+  <p>
+  You felt watched, not by guards, but by the market itself—by the arithmetic of who paused where, who turned away when you looked, who adjusted the grip on a crate hook. The rumor passed ahead of you like wind: Accord agents in the piers. Your title made doors open and hands stash knives.
+  </p>
+  <p>
+  Dockmaster Sharn’s office leaned into the water as if it had decided the sea was just another debtor. He was a man built from rope and salt: thick forearms, tattoos half-erased by sun, a gray beard that couldn’t decide between priest and pirate. A camera’s red light blinked in the corner above a ledger older than Haven’s dome.
+  </p>
+  <p>
+  “Tell me what you want,” Sharn said, voice sandpapered smooth. “Not what you think I want to hear. And don’t say ‘justice.’ She never pays her bill.”
+  </p>
+  <p>
+  You told him: access to a maintenance artery feeding the Factory known as Line K—abandoned officially, maintained unofficially, threaded through cooling caverns and inventory vaults. Entry point outside Helion’s security net, exit point somewhere past Zeratek’s badge readers. One round trip. You didn’t deny the risk; you priced it.
+  </p>
+  <p>
+  Sharn listened like a stone tides talked to. When he finally moved, he slid a printed manifest across the desk, the paper warm from a duplicator. It described a barge named <i>Low Mercy</i> bearing scrap glass to be melted down. “Manifest is clean, inspections acquired. Under the glass is a people space. You’ll fit if you don’t mind the smell of ground silica in your teeth.” He tapped the margin where numbers lived. “But Line K isn’t dead. It dreams. You want an artery, you bring me a pulse dampener and a variance passcode.”
+  </p>
+  <p>
+  You could have argued; the camera in the corner blinked as if it asked you to. Instead you matched him with another piece of paper. Saint’s name was not on it, but her language was—short, sober, lethal with implication: contingent amnesty on smuggling charges, should Sharn’s cooperation produce <i>verifiable internal wrongdoing</i> at the Factory. He read it twice. If he felt fear, he kept it in his pocket with the note.
+  </p>
+  <p>
+  “There’s a second price,” he said. “Someone is poaching my routes. They show up where I should be first, then they sell my favors under my name. People trust my name. They come to me with debts I didn’t make. Bring me the poacher. Or bring me proof that he doesn’t exist and I’ve got a ghost for a rival.”
+  </p>
+  <p>
+  He stood. The office tilted with the tide. Outside, forklifts beeped with the patience of beasts. “You get me a dampener, a code, and the poacher’s story. I get you Line K’s throat for one night. We settle truth with the dawn.”
+  </p>
+
+  <div class="gm collapsible">
+    <div class="gm-h">GM — Running Graywater Negotiations</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Leverage to bring:</b> Saint’s conditional amnesty; Reclaimer goods for barter; Zeratek firmware shard (CHOIR_SAFE) as proof of internal rot; Helion permits (for optics).</li>
+        <li><b>Clock (Smuggler Trust 0→4):</b> 1) Honest price; 2) Shared risk; 3) Useful proof; 4) Mutual enemy. At 3+, Sharn offers Line K map fragments; at 4 he gives a <i>time window</i> when Zeratek audits sleep.</li>
+        <li><b>Failure costs:</b> If PCs bluff and fail, **Accord Optics −1** (caught “pressuring legitimate trade”); if they threaten Sharn, **Reclaimer Trust −1** (word spreads they strong-arm locals).</li>
+        <li><b>Poacher thread:</b> A rival named **Tala Merey** uses a counterfeit Sharn seal and a choir-muted skiff. She’s real—and scared. Evidence leads to a pier shed marked **B9**.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>
+  The shed was a geometry lesson in neglect—angles that used to be straight, squares made slant by water and time. Inside, someone had made a desk from doors, a bed from coils of line, and a shrine from broken equipment: a lens, a smoothed gear, an antenna stem. Not worship, exactly. Respect. The way engineers leave space on the bench for the tool that saved a life.
+  </p>
+  <p>
+  Tala Merey stepped out from behind a stack of crate lids with her hands open. She wore a dock worker’s vest but moved like someone who’d learned in a different school—watching exits, measuring angles. Early thirties. Eyes too tired for a liar. “If Sharn sent you to break my legs,” she said, “I need them to run. So let’s make a counteroffer.”
+  </p>
+  <p>
+  She told it fast, like speed could stop debt from catching. A month ago, a Compliance medic promised her a clean slate if she helped route “overstock” from Zeratek warehouses to clinics—repackaged as charity. The first two runs were clean. On the third, the crates hummed. She heard the hum even when the crane stopped, even when the tide held its breath. She dropped the cargo overboard and watched the water fizz with light like a sting. After that, jobs she never took kept happening under her seal. People came to collect gratitude that she hadn’t earned. She started running under Sharn’s name as camouflage, knowing it would eventually bring him or you.
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Tala Merey (Smuggler, Sleepless)</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Appearance & Demeanor:</b> Weathered vest, careful hands, jumps at tones near 440Hz.</li>
+        <li><b>Hooks:</b> Knows a choir-muting route for skiffs; carries a <i>variance dongle</i> keyed to **Director Sael**’s clinic network.</li>
+        <li><b>If protected:</b> PCs gain a **temporary guide** advantage for Line K (ignore first audit check).</li>
+        <li><b>If burned:</b> **Compliance Control +1**; Tala disappears, returns later as a liability—or a body with her seal on it.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>
+  She gave you the counterfeit seal. Up close the flaw was a rhythm, not a look—its watermark pulsed just out of step with Graywater’s machinery, like a heart trying to keep time with a song it didn’t know. “The medic’s name was Saev,” Tala said. “Clinic badge, gentle voice, a list of drugs pronounced like prayers. I didn’t know he worked nights for Compliance. I do now. If you’re going into the Factory, take me. I can keep a skiff quiet and a crew quieter.”
+  </p>
+  <p>
+  On the way back to Sharn’s office, the fog thinned enough to show the outline of **Low Mercy**. Workers moved crates that had been glass and were now excuses. Sharn listened. He watched Tala like a man trying not to decide quickly. “The poacher’s real,” he said at last. “And the ghost sings in your crates.” He flicked a switch, and the office light went from warm to white. “You get me a dampener and a code; I give you Line K. The window is four hours after midnight. Audits nap then. You’ll be a rumor before dawn or evidence forever.”
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Securing the Two Keys</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Pulse Dampener:</b> Buy from Graywater (cost: favors + 200 credits), steal from Zeratek depot (stealth DC hard), or build from parts (INT check; time cost adds risk).</li>
+        <li><b>Variance Passcode:</b> Extract from a Compliance aide (social), lift from a clinic terminal (tech), or barter with Saint for a one-use token (cost: a promise to deliver proof within 48 hours).</li>
+        <li><b>Outcome:</b> If PCs secure both, Sharn provides a **Line K map fragment** and **audit-sleep window**. Missing one key increases checks during the infiltration by one step.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>
+  Lira met you again outside the gate, the sea’s breath turning her words into visible ghosts. “You have your route,” she said. “You’ll have your window. Bring something back that forces Hestrel’s hand and survives his optics. I’ll hold the door we broke in Arc 6 as long as I can.” Her gaze shifted past you to Graywater. “And keep Sharn’s people alive if you can. We’ll need them when the city gets honest about what it’s hiding.”
+  </p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Rewards & Shifts</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>On success:</b> +1 Accord Optics (clean deal), +1 Reclaimer Trust (you didn’t bully), **Access: Line K** unlocked for Arc 8.</li>
+        <li><b>On loud failure:</b> **Zeratek Favor +1** if PCs pin chaos on smugglers; **Compliance Control +1** if PCs implicate clinics.</li>
+        <li><b>On quiet failure:</b> Window narrows to 2 hours; add an extra patrol in Arc 8.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="scene">Arc Bridge → Arc 8</h2>
+  <p>
+  **Next:** With a dampener humming like a held breath and a passcode that tastes of clinic antiseptic, the party rides <i>Low Mercy</i> into the dark water and the long throat of Line K. Ahead, the Factory waits with its lights half-off and its ears on.
+  </p>
+
+</main>
+</body>
+</html>
