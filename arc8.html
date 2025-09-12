@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — GM Hub · Arc 8</title>
+<style>
+/* ====== Veyra-9 GM Hub — Base Theme ====== */
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+/* Links */
+a{color:var(--brand); text-decoration:none}
+a:hover{filter:brightness(1.08); text-decoration:underline}
+/* Header / Nav */
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.brand{font-weight:800; color:var(--brand)}
+nav a{
+  display:inline-block; margin-right:10px; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600;
+}
+nav a:hover{background:#f4f7ff}
+.clock{
+  margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
+  color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700;
+}
+/* Layout */
+.wrap{max-width:1100px; margin:0 auto; padding:20px}
+.breadcrumbs{color:var(--muted); margin:6px 0 14px}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
+/* Headings & sections */
+h1{margin:10px 0 6px}
+h2{margin:24px 0 10px}
+.scene{
+  color:var(--brand); border-bottom:2px solid var(--line);
+  padding-bottom:6px; margin-top:28px;
+}
+.scene::before{content:"◆ "; color:var(--brandSoft)}
+/* Quote / epigraph */
+blockquote{
+  border-left:4px solid var(--brandSoft);
+  background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic;
+}
+/* Helpers */
+.meta{color:var(--muted); font-style:italic}
+.small{font-size:.94rem; color:var(--muted)}
+.chip{
+  display:inline-block; padding:6px 10px; background:var(--chip);
+  border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600; margin-right:8px
+}
+/* GM callouts */
+.gm{
+  background:#eef5ff; border:1px solid var(--chipLine);
+  border-left:6px solid var(--brandSoft);
+  border-radius:10px; padding:10px 14px; margin:18px 0;
+  box-shadow:0 1px 0 rgba(10,30,80,.04);
+}
+.gm + .gm{margin-top:14px}
+.gm-h{
+  font-weight:800; color:var(--brand); letter-spacing:.1px;
+  display:flex; align-items:center; gap:8px; margin:2px 0 6px 0;
+}
+.gm-h::before{
+  content:"GM"; font-size:12px; font-weight:800;
+  color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px;
+}
+.gm-b{color:var(--ink)}
+.gm-b ul{margin:8px 0 2px 1.1rem}
+.gm-b li{margin:6px 0}
+.gm-b li b{color:var(--brand)}
+.gm.collapsible .gm-b{display:none}
+.gm.collapsible.open .gm-b{display:block}
+.gm.collapsible .gm-h{cursor:pointer}
+</style>
+
+<script>
+// live clock
+function tick(){
+  const el=document.getElementById('clock'); if(!el) return;
+  el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+}
+setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
+
+// GM collapsibles
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
+    h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+  });
+});
+</script>
+</head>
+
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · GM Hub</div>
+  <nav>
+    <a href="index.html">Arc 1</a>
+    <a href="arc2.html">Arc 2</a>
+    <a href="arc3.html">Arc 3</a>
+    <a href="arc4.html">Arc 4</a>
+    <a href="arc5.html">Arc 5</a>
+    <a href="arc6.html">Arc 6</a>
+    <a href="arc7.html">Arc 7</a>
+    <a href="arc8.html">Arc 8</a>
+    <a href="repo.html">Dossier</a>
+    <span class="clock" id="clock">--:--:--</span>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">Phase II → <b>Arc 8</b></div>
+  <h1 class="scene">Arc 8 — Factory Depths</h1>
+  <p class="meta">Mandate: penetrate the Factory interior via Line K, map surveillance rhythms, secure proof of internal wrongdoing, and survive first contact with the Choir-inflected systems. Audit window: <b>4 hours</b> (modify if Arc 7 was noisy).</p>
+
+  <!-- quick chips for GM navigation -->
+  <p>
+    <a class="chip" href="#a8-s1">Scene 1</a>
+    <a class="chip" href="#a8-s2">Scene 2</a>
+    <a class="chip" href="#a8-s3">Scene 3</a>
+    <a class="chip" href="#a8-bridge">Arc Bridge</a>
+  </p>
+
+  <!-- ===== Scene 1 shell ===== -->
+  <h2 class="scene" id="a8-s1">Scene 1 — Quiet Floors, Watching Walls</h2>
+  <blockquote>“Factories don’t make products. They make obedience.” — Saint</blockquote>
+  <!-- Paste 1500–1800w prose here -->
+  <div class="gm collapsible open">
+    <div class="gm-h">GM — Scene 1 Tools</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Surveillance Rhythm Map:</b> 6×10 grid; every 3 rounds lights sweep; on sweep → Hide/Move Silently checks.</li>
+        <li><b>Encounter Dial:</b> Start at Calm; escalate to Wary if Noise ≤1, Alert if Noise 0.</li>
+        <li><b>Proof Hooks:</b> shift logs, rework stats, off-books crate IDs; Saint values <i>paper that hurts optics</i>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== Scene 2 shell ===== -->
+  <h2 class="scene" id="a8-s2">Scene 2 — The Witness Who Can’t Speak</h2>
+  <blockquote><i>“He remembers in knocks.”</i> — Lira</blockquote>
+  <!-- Paste 1500–1800w prose here -->
+  <div class="gm collapsible">
+    <div class="gm-h">GM — Scene 2 Tools</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>NPC:</b> Mute technician with tap-code; offers route to “Quiet Kiln.”</li>
+        <li><b>Moral Pressure:</b> escort him out (costs time) vs. leave him (Accord Optics −1 later).</li>
+        <li><b>Clue Chain:</b> tap-code → badge closet → variance ledger → illicit furnace cycle.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== Scene 3 shell ===== -->
+  <h2 class="scene" id="a8-s3">Scene 3 — Choir in the Conduit</h2>
+  <blockquote>“The song learns you back.” — Reclaimer saying</blockquote>
+  <!-- Paste 1600–2000w prose here -->
+  <div class="gm collapsible">
+    <div class="gm-h">GM — Scene 3 Tools</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Setpiece:</b> conduit crawl with pulse surges; use dampener charges (3) to negate spikes.</li>
+        <li><b>AD&D 2e:</b> saves vs. Breath/Spells for surges; failed save → −1 to initiative/attack next round.</li>
+        <li><b>Loot/Proof:</b> firmware shard, kiln camera stills, “no singing” second sign with timestamp.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== Arc Bridge ===== -->
+  <h2 class="scene" id="a8-bridge">Arc Bridge → Arc 9</h2>
+  <p class="small"><b>Next:</b> With proof in hand and the Choir’s breath on their necks, the party must choose a way out: <b>surface with optics</b> (face Helion spin), <b>deeper for answers</b> (risk Choir contact), or <b>sideways with smugglers</b> (trade deniability for favors). Arc 9 opens with consequences.</p>
+
+</main>
+</body>
+</html>
