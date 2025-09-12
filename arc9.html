@@ -50,18 +50,45 @@ window.addEventListener('DOMContentLoaded',()=>{ document.querySelectorAll('.gm.
 <header class="header">
   <div class="brand">VEYRA-9 · GM Hub</div>
   <nav>
-    <a href="index.html">Arc 1</a>
-    <a href="arc2.html">Arc 2</a>
-    <a href="arc3.html">Arc 3</a>
-    <a href="arc4.html">Arc 4</a>
-    <a href="arc5.html">Arc 5</a>
-    <a href="arc6.html">Arc 6</a>
-    <a href="arc7.html">Arc 7</a>
-    <a href="arc8.html">Arc 8</a>
-    <a href="arc9.html">Arc 9</a>
-    <a href="repo.html">Dossier</a>
-    <span class="clock" id="clock">--:--:--</span>
-  </nav>
+  <div class="dropdown">
+    <button class="dropbtn">Phase I ▾</button>
+    <div class="dropdown-content">
+      <a href="index.html">Arc 1</a>
+      <a href="arc2.html">Arc 2</a>
+      <a href="arc3.html">Arc 3</a>
+      <a href="arc4.html">Arc 4</a>
+      <a href="arc5.html">Arc 5</a>
+      <a href="arc6.html">Arc 6</a>
+      <a href="arc7.html">Arc 7</a>
+      <a href="arc8.html">Arc 8</a>
+      <a href="arc9.html">Arc 9</a>
+    </div>
+  </div>
+  <a href="repo.html">Dossier</a>
+  <a href="player-recap.html">Player Recap</a>
+  <span class="clock" id="clock">--:--:--</span>
+</nav>
+
+<style>
+.dropdown { position: relative; display: inline-block; }
+.dropbtn {
+  background: var(--chip); border:1px solid var(--chipLine);
+  border-radius:8px; padding:6px 10px; color:var(--brand); font-weight:600;
+  cursor:pointer;
+}
+.dropdown-content {
+  display: none; position: absolute; background:#fff;
+  box-shadow:0 4px 8px rgba(0,0,0,.1);
+  border:1px solid var(--line); border-radius:6px;
+  min-width:160px; z-index:20;
+}
+.dropdown-content a {
+  display:block; padding:8px 12px; color:var(--ink);
+}
+.dropdown-content a:hover { background:#f4f7ff; }
+.dropdown:hover .dropdown-content { display:block; }
+.dropdown:hover .dropbtn { background:#eef5ff; }
+</style>
 </header>
 
 <main class="wrap">
