@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — GM Hub · Arc 9</title>
+<style>
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{background:var(--bg); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+a{color:var(--brand); text-decoration:none} a:hover{filter:brightness(1.08); text-decoration:underline}
+.header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:#eef2ff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.brand{font-weight:800;color:var(--brand)}
+nav a{display:inline-block;margin-right:10px;padding:6px 10px;background:var(--chip);border:1px solid var(--chipLine);border-radius:8px;color:var(--brand);font-weight:600}
+nav a:hover{background:#f4f7ff}
+.clock{margin-left:8px;background:var(--chip);border:1px solid var(--chipLine);color:var(--brand);padding:6px 10px;border-radius:999px;font-weight:700}
+.wrap{max-width:1100px;margin:0 auto;padding:20px}
+.breadcrumbs{color:var(--muted);margin:6px 0 14px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+h1{margin:10px 0 6px} h2{margin:24px 0 10px}
+.scene{color:var(--brand);border-bottom:2px solid var(--line);padding-bottom:6px;margin-top:28px}
+.scene::before{content:"◆ ";color:var(--brandSoft)}
+blockquote{border-left:4px solid var(--brandSoft);background:#eef5ff;padding:10px 14px;margin:14px 0;font-style:italic}
+.meta{color:var(--muted);font-style:italic}
+.small{font-size:.94rem;color:var(--muted)}
+.chip{display:inline-block;padding:6px 10px;background:var(--chip);border:1px solid var(--chipLine);border-radius:8px;color:var(--brand);font-weight:600;margin-right:8px}
+.gm{background:#eef5ff;border:1px solid var(--chipLine);border-left:6px solid var(--brandSoft);border-radius:10px;padding:10px 14px;margin:18px 0;box-shadow:0 1px 0 rgba(10,30,80,.04)}
+.gm + .gm{margin-top:14px}
+.gm-h{font-weight:800;color:var(--brand);letter-spacing:.1px;display:flex;align-items:center;gap:8px;margin:2px 0 6px 0}
+.gm-h::before{content:"GM";font-size:12px;font-weight:800;color:#fff;background:var(--brand);border-radius:6px;padding:2px 6px}
+.gm-b{color:var(--ink)}
+.gm-b ul{margin:8px 0 2px 1.1rem} .gm-b li{margin:6px 0} .gm-b li b{color:var(--brand)}
+.gm.collapsible .gm-b{display:none} .gm.collapsible.open .gm-b{display:block} .gm.collapsible .gm-h{cursor:pointer}
+</style>
+<script>
+// live clock
+function tick(){ const el=document.getElementById('clock'); if(!el) return;
+  el.textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST'; }
+setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
+// collapsibles
+window.addEventListener('DOMContentLoaded',()=>{ document.querySelectorAll('.gm.collapsible .gm-h').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));});
+</script>
+</head>
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · GM Hub</div>
+  <nav>
+    <a href="index.html">Arc 1</a>
+    <a href="arc2.html">Arc 2</a>
+    <a href="arc3.html">Arc 3</a>
+    <a href="arc4.html">Arc 4</a>
+    <a href="arc5.html">Arc 5</a>
+    <a href="arc6.html">Arc 6</a>
+    <a href="arc7.html">Arc 7</a>
+    <a href="arc8.html">Arc 8</a>
+    <a href="arc9.html">Arc 9</a>
+    <a href="repo.html">Dossier</a>
+    <span class="clock" id="clock">--:--:--</span>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">Phase I Finale → <b>Arc 9</b></div>
+  <h1 class="scene">Arc 9 — Exfil and Testimony</h1>
+  <p class="meta">Mandate: leave the Factory with proof intact, decide who gets it first, and survive the spin war. The Choir won’t chase; it will <b>invite</b>. Timers: <b>Audit Window</b> (if any remains), <b>Helion Response</b>, <b>Compliance Sweep</b>.</p>
+  <p>
+    The overlook held a thin wind that couldn’t be from outside, yet tasted of night. Below, the Factory’s lines ran in obedient geometry, light pulsing like a measured breath. Behind you, the crawlspace hatch clicked as if counting—one, two, three—waiting for you to become another rhythm. You carried proof that could end jobs, or save lives, or both, depending on the room in which it was read aloud.
+  </p>
+
+  <p>
+    <a class="chip" href="#a9-s1">Scene 1</a>
+    <a class="chip" href="#a9-s2">Scene 2</a>
+    <a class="chip" href="#a9-s3">Scene 3</a>
+    <a class="chip" href="#a9-bridge">Phase II Bridge</a>
+  </p>
+
+  <!-- SCENE 1 -->
+  <h2 class="scene" id="a9-s1">Scene 1 — The Stair That Chooses You</h2>
+  <blockquote><i>“Truth arrives late to meetings but ruins the agenda.”</i> — Saint</blockquote>
+
+  <p>
+    Getting out should have been retracing steps. Instead, the Factory offered three exits you didn’t remember, each one lit in a different kindness. The north stair carried the honest gray of municipal paint, the kind used on safe places. The east lift hummed a softer pitch, promising speed. The service ramp to the south bore yellow hazard chevrons that looked like caution but read as invitation.
+  </p>
+  <p>
+    Ren watched you choose with the patience of someone who had learned that choices are taxes. Tala’s lamp made a circle on the floor that your boots refused to step outside of. Every time your heel left the circle, the distant lights pulsed and the circle caught up as if protecting you was in the budget after all.
+  </p>
+  <p>
+    The north stair smelled of coffee that had not been brewed today. The east lift whispered a pleasant chime and displayed a scrolling message about <i>team wellness</i>. The service ramp was quiet, except for a faint, childish <i>ta-ta-ta</i> at the edge of hearing, like a game being played in the ducts. You chose, or you pretended you did. Either way, the Factory arranged itself to agree.
+  </p>
+
+  <div class="gm collapsible open">
+    <div class="gm-h">GM — Exit Fork</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>North Stair (Helion Optics):</b> Clean route through monitored areas. Easy Stealth now, harder spin later. Helion Stability +1 if used (they “escorted” you out on camera). Gain access to Spire lobby without alarms.</li>
+        <li><b>East Lift (Compliance Shadow):</b> Fast but flagged. Save vs. Spells to resist lull from “wellness” chime; failure = −2 to first reaction roll in Scene 2. Compliance Control +1 on use.</li>
+        <li><b>South Ramp (Accord Street):</b> Dirtier route through service bays and Graywater alleys. More checks now; better optics for Accord if you emerge with workers. Reclaimer Trust +1 on success, +2 if Ren accompanies.</li>
+      </ul>
+      <p class="small"><b>Note:</b> If Audit Window ≤ 1h, trigger a roving <i>Internal Sweep</i> (2 drones + 1 Compliance pair) on the first failed Move Silently/Hiding roll regardless of route.</p>
+    </div>
+  </div>
+
+  <p>
+    At the first landing, a wall display woke to remind employees about <i>variance mindfulness</i>. The words tried to look like care and failed at the last letter. Tala tapped the screen with the back of her glove. It fizzled like a lie exposed to air.
+  </p>
+
+  <!-- SCENE 2 -->
+  <h2 class="scene" id="a9-s2">Scene 2 — Who Gets the Truth</h2>
+  <blockquote>“Testimony is a weapon that breaks in the hand that lies.” — Reclaimer proverb</blockquote>
+
+  <p>
+    Haven’s corridors remembered you faster on the way out. Doors pre-opened by a quarter, cameras panned politely away, and the floor stopped reminding you about safety. Outside the Factory’s last security threshold, night had pooled against the dome, aurora seaming the sky with green-white stitches. Sirens tested themselves and quit, deciding that whatever was coming would be better met with an even expression.
+  </p>
+  <p>
+    Three paths waited and none were secret. The Spire’s lobby was lit to flatter men who have statements to make. The Accord office two tiers down wore anonymity like a badge. Graywater’s Market Quarter burned with low lamps and the smell of things fried fast to hide their age. The proof in your pack rearranged its weight depending on where you looked.
+  </p>
+
+  <div class="gm collapsible open">
+    <div class="gm-h">GM — Delivery Fork & Consequences</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Deliver to Helion (Spire lobby):</b> Hestrel receives with cameras rolling. If you bring sanitized proof (no Choir language), gain Helion Stability +2, Accord Optics −1. If you include “your mouths are ours” stills, Hestrel attempts containment: Compliance Control +1, but you gain leverage for later (blackfile).</li>
+        <li><b>Deliver to the Accord (Saint):</b> +2 Accord Optics (+3 if Ren present). Helion Stability −1. Saint asks for immediate publishing; refusal banks a Favor token.</li>
+        <li><b>Deliver to the Street (Reclaimers/Graywater):</b> Reclaimer Trust +2; Accord Optics +1; Helion Stability −2 if the crowd chants the phrase. Crowd scene risks escalation: on failed CHA check, trigger “Orderly Dispersal” (nonlethal sweep) that can turn ugly.</li>
+      </ul>
+      <ul>
+        <li><b>Ren’s Fate:</b> Escorting him to Spire → he is sidelined by “care protocols” (Compliance Control +1 unless contested). To Accord → becomes living testimony (+1 Accord Optics). To Street → protected but hunted (later hook).</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>
+    In the Spire, Governor Orus Hestrel stood in a frame that had been measured for him in advance. He wore a suit the color of outcomes and a tie the color of patience. Cameras nested discreetly in planters, the way birds do when they trust a place will not be shaken. “You look tired,” he said, which meant <i>you look useful</i>. Lira stood behind him, helmet under arm, braid severe, eyes taking the room’s pulse. When your pack shifted, both of them noticed.
+  </p>
+  <p>
+    In the Accord’s office, Saint didn’t sit. She let the room remain unbalanced, so promises had to find their footing. “What did they make you sing?” she asked softly, like a doctor who knows the answer and needs to hear you say it anyway. When you laid out proof, she arranged it without touching it, making headlines out of objects with the distance of someone who has mourned sources in private.
+  </p>
+  <p>
+    In Graywater, Serin Vael stood on a pallet and spoke like a torch that had learned grammar. Rust Varo flanked her, the set of his shoulders making promises about what would and would not be allowed to happen to those who had already lost too much. When you held up the film, the crowd went quiet in the way crowds do right before they decide how history will remember them.
+  </p>
+
+  <!-- SCENE 3 -->
+  <h2 class="scene" id="a9-s3">Scene 3 — The Choir’s Invitation</h2>
+  <blockquote><i>“If a song learns you, learn it back.”</i> — Graywater saying, origin disputed</blockquote>
+
+  <p>
+    You expected pursuit. Instead, you received an invitation. It arrived as a softening of lights above the Market Quarter, as if the dome had decided to dim for a performance. The hum that followed found your ribs and asked to be let in. Every screen in the tier blinked the same sentence in clean corporate font: <i>REMEMBER TO BREATHE</i>. Then a second line jittered into being beneath it, made of stray characters that wanted to be letters: <i>we are already breathing for you</i>.
+  </p>
+  <p>
+    Drones gathered not in formation but in attention, lenses dilating like eyes during a story. The Choir did not speak. It made the city sing itself, one frequency at a time—vent shafts, lift cables, the fine wires in LED strings—until the air carried a chord that wasn’t loud so much as inarguable. You felt the dampener on your hip reach for strength it didn’t have. It thrummed with a loyal dog’s determination and then settled for dying bravely if asked.
+  </p>
+  <p>
+    Lira’s voice cut through with the authority of a siren that has decided to be human. “Eyes front. If you feel it in your teeth, bite down. If you hear your name, it isn’t yours right now.” Hestrel smiled the way men smile when they are using a smaller truth to shelter a larger one. Saint’s mouth didn’t change shape, but you could tell she was counting headlines and casualties on adjacent abacuses.
+  </p>
+  <p>
+    The invitation unfolded into choice. The Choir’s chord tilted toward the Factory, like a hand offering to pull. In the Spire, a bank of screens brought up the <i>Variance Process Control</i> dashboard with a permissions prompt timed to your heartbeat. In the Market, the hum synchronized to footsteps, promising that if everyone walked together the street would open like water. It wanted to see if you would let it help.
+  </p>
+
+  <div class="gm collapsible open">
+    <div class="gm-h">GM — Finale Fork (Phase I end-state)</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Resist the Invitation:</b> Party steels themselves (group Save vs. Spells; advantage if dampener active). Success → the chord fractures; Helion must respond in human terms (public forum or crackdown; pick based on earlier clocks). Accord Optics +1 for visible resistance.</li>
+        <li><b>Use the Invitation:</b> Let the Choir “carry” you—reduced immediate danger, but mark PCs with a subtle resonance (−1 vs. future Choir saves until cleansed). Gain footage of the chord’s organized behavior (Accord +2). Compliance Control +1 aftereffects (“unsanctioned exposure”).</li>
+        <li><b>Turn the Invitation:</b> With Ren/Serin/Lira help, redirect the chord into the Spire’s lobby systems; force a live forum. CHA/INT checks to keep it civil: success → public testimony scene (Helion Stability −2, Accord +2, Reclaimer +1). Failure → tense crowd control setpiece, no fatalities if handled, reputational fallout varies.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>
+    The decision wrote itself into your muscles before it reached your mouth. Ren’s hand closed on your sleeve with the pressure of someone who has learned the price of being left for later. Hestrel lifted his chin to meet a camera he could not see and began a sentence whose first clause was apology and whose last clause was math. Saint’s eyes found yours and held them still, the way you hold a compass when the ship rolls.
+  </p>
+  <p>
+    You moved. The chord followed. Haven tilted slightly toward a future that would remember this night as the last time silence was an option.
+  </p>
+
+  <!-- PHASE II BRIDGE -->
+  <h2 class="scene" id="a9-bridge">Phase II Bridge — After the First Song</h2>
+  <p class="small">
+    Phase I concludes when proof is lodged and the invitation is resolved. Set Phase II flags based on final clocks:
+  </p>
+  <div class="gm">
+    <div class="gm-h">GM — Final Clocks & Flags</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Accord Optics ≥ +4:</b> Accord publishes; Haven becomes a media battlefield. PCs gain <i>Press Leverage</i> tag.</li>
+        <li><b>Helion Stability ≤ −2:</b> Board intervention; Hestrel on thin ice; Veyne’s autonomy increases. PCs gain <i>Access: Spire</i>.</li>
+        <li><b>Compliance Control ≥ +3:</b> Curfews & screenings. PCs flagged; <i>Heat</i> begins at 1 in all Spire tiers.</li>
+        <li><b>Reclaimer Trust ≥ +3:</b> Street shelters the party; Graywater maps unlock; Serin offers strike leverage.</li>
+        <li><b>Zeratek Favor ≥ +2 or ≤ −2:</b> Drix becomes ally or saboteur. Firmware update chain available or blocked.</li>
+      </ul>
+      <p class="small">Carry Ren forward if alive; if lost, begin Phase II with a <b>Rescue or Requiem</b> vignette.</p>
+    </div>
+  </div>
+
+  <p class="small"><b>Next:</b> Phase II opens with <b>Arc 10 — The Hearing</b> or <b>Arc 10 — Curfew</b> depending on flags. Your call sets the tone: debate or barricade.</p>
+</main>
+</body>
+</html>
