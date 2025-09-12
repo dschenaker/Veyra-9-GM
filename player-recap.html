@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — Player Recap</title>
+<style>
+:root{
+  --bg:#ffffff; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#f6f7fb;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+}
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--brand);text-decoration:none} a:hover{filter:brightness(1.08);text-decoration:underline}
+.header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:#eef2ff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.brand{font-weight:800;color:var(--brand)}
+nav a{display:inline-block;margin-right:10px;padding:6px 10px;background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--brand);font-weight:600}
+nav a:hover{background:#f4f7ff}
+.clock{margin-left:8px;background:var(--panel);border:1px solid var(--line);color:var(--brand);padding:6px 10px;border-radius:999px;font-weight:700}
+.wrap{max-width:900px;margin:0 auto;padding:20px}
+h1{margin:10px 0 6px}
+h2{margin:24px 0 10px;color:var(--brand)}
+ul{margin:0 0 16px 1.2rem} li{margin:8px 0}
+.small{font-size:.94rem;color:var(--muted)}
+</style>
+<script>
+function tick(){
+  const el=document.getElementById('clock'); if(!el) return;
+  el.textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST';
+}
+setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
+</script>
+</head>
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · Player Recap</div>
+  <nav>
+    <a href="index.html">Arc 1</a>
+    <a href="arc2.html">Arc 2</a>
+    <a href="arc3.html">Arc 3</a>
+    <a href="arc4.html">Arc 4</a>
+    <a href="arc5.html">Arc 5</a>
+    <a href="arc6.html">Arc 6</a>
+    <a href="arc7.html">Arc 7</a>
+    <a href="arc8.html">Arc 8</a>
+    <a href="arc9.html">Arc 9</a>
+    <a href="repo.html">Dossier</a>
+    <a href="player-recap.html">Player Recap</a>
+    <span class="clock" id="clock">--:--:--</span>
+  </nav>
+</header>
+
+<main class="wrap">
+  <h1>Phase I Recap — What You Know</h1>
+  <ul>
+    <li>You arrived at Haven Spire under an Accord mandate, told only: <i>stabilize the situation</i>.</li>
+    <li>Governor Orus Hestrel promised stability, but seemed more worried about appearances than truth.</li>
+    <li>Captain Lira Veyne earned your respect—direct, principled, and always in the line herself.</li>
+    <li>The Reclaimers, led by Serin Vael and Rust Varo, fight for safer quarters and basic dignity.</li>
+    <li>Zeratek’s liaison, Kaelen Drix, smiles through excuses and pushes faulty tech as if it’s favor.</li>
+    <li>Director Sael of Compliance Medicine offers “relief” that looks a lot like sedation.</li>
+    <li>Saint, your Accord handler, only trusts <b>proof</b>—documents, film, recordings, anything unspinnable.</li>
+    <li>Strange electrical surges whisper rhythms in ducts and wires. Workers call it <i>the Choir</i>.</li>
+    <li>Ren, a miner with his voice taken, showed you where the Choir and policy overlap in the Factory.</li>
+    <li>You carry proof, scars, and choices. Haven waits to see who you trust with the truth.</li>
+  </ul>
+  <p class="small">This recap is safe for players; deeper GM notes remain in Arc 9’s recap box.</p>
+</main>
+</body>
+</html>
