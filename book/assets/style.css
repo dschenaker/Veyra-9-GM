@@ -45,3 +45,24 @@ section.cover .cover-main img[alt="logo"] {
   margin: 0 auto 18px;
   filter: drop-shadow(0 8px 24px rgba(0,0,0,.25));
 }
+/* Coverpage styling */
+section.cover .cover-main img[alt="logo"] {
+  display: block;
+  margin: 0 auto 20px auto;
+  max-width: 240px;   /* adjust size */
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.4));
+}
+
+section.cover .cover-main h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  text-align: center;
+  color: #0b3d7a; /* brand navy */
+}
+
+section.cover .cover-main h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+  color: #3a4150;
+}
