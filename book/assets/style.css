@@ -87,31 +87,30 @@ section.cover .cover-main h3 {
   z-index: 9999; transition: width .12s ease-out;
 }
 
-/* === Prev/Next pager (bottom-right) === */
-#pager {
-  position: fixed; right: 18px; bottom: 18px; z-index: 9998;
-  display: flex; gap: 8px; align-items: center;
-  font: 14px/1.2 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+/* === V9 pager (bottom-right) === */
+#v9-pager{
+  position:fixed; right:22px; bottom:22px; z-index:5000;
+  display:flex; align-items:center; gap:10px;
+  background:rgba(255,255,255,.85); backdrop-filter:saturate(140%) blur(6px);
+  border:1px solid rgba(12,24,48,.12); border-radius:999px; padding:8px 10px;
+  box-shadow:0 8px 26px rgba(10,30,60,.15);
 }
-#pager a {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 14px; border-radius: 999px; text-decoration: none;
-  background: #0b3d7a; color: #fff; border: 0;
-  box-shadow: 0 6px 18px rgba(11,61,122,.25);
+#v9-pager.hide{ display:none; }
+#v9-pager .v9-prev,#v9-pager .v9-next{
+  border:0; background:#0b3d7a; color:#fff; font-weight:800;
+  width:36px; height:36px; border-radius:999px; cursor:pointer;
 }
-#pager a[disabled] {
-  pointer-events: none; opacity: .45; filter: grayscale(1);
+#v9-pager .v9-prev:hover,#v9-pager .v9-next:hover{ filter:brightness(1.05); }
+#v9-pager .v9-progress{
+  width:160px; height:8px; border-radius:999px;
+  background:#e6ecff; overflow:hidden; border:1px solid #c9d8ff;
 }
-#pager .prev::before { content: "←"; font-weight: 700; }
-#pager .next::after  { content: "→"; font-weight: 700; }
-
-/* Make sure the bottom pager doesn’t overlap long footers */
-.docsify-pagination-container { margin-bottom: 64px; }
-
-/* Small screens: tuck pager in a bit */
-@media (max-width: 720px) {
-  #pager { right: 12px; bottom: 12px; }
-  #pager a { padding: 9px 12px; }
+#v9-pager .v9-progress>div{
+  height:100%; width:0%; background:#6aa0ff; transition:width .12s linear;
+}
+@media (max-width:720px){
+  #v9-pager{ right:12px; left:12px; justify-content:space-between; }
+  #v9-pager .v9-progress{ flex:1 1 auto; width:auto; }
 }
 /* === Pager placement & look ============================================ */
 #pager{
