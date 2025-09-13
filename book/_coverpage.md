@@ -8,3 +8,4 @@
 [Start Reading](README.md)  [Player Recap](player-recap)  [Back to GM Hub](../index.html)
 
 [GitHub](https://github.com/dschenaker/Veyra-9-GM)
+[Start Reading](#/phase-1/index)
