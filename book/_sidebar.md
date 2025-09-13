@@ -1,7 +1,6 @@
 **Phase 1**
 
 **Phase 1**
-- [Arc 1 — Miners’ Desperation](phase-1/arc1.md)
 - [Arc 2 — Spire of Quiet Lies](phase-1/arc2.md)
 - [Arc 3 — Security Deck Stabilization](phase-1/arc3.md)
 - [Arc 4 — Mouths of Power](phase-1/arc4.md)
