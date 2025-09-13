@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Echoes of the Machine War · Phase 1</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Echoes of the Machine War · Phase 1</title>
 
-<!-- Docsify + Themeable (lets us style easily) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
-<link rel="stylesheet" href="assets/style.css">
+  <!-- Themeable Docsify & theme -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <div id="app"></div>
@@ -15,181 +15,80 @@
   <script>
     window.$docsify = {
       name: 'Echoes of the Machine War',
-      repo: '',
       loadSidebar: true,
-      subMaxLevel: 2,
       auto2top: true,
-      coverpage: true,
-      externalLinkTarget: '_blank',
-      // Search (simple client-side)
-      search: 'auto',
-      // Pagination (prev/next)
-      pagination: {
-        crossChapter: true,
-        crossChapterText: true,
-      }
-    }
+      subMaxLevel: 2,
+      alias: {
+        '/': '/README.md',
+      },
+      // start page
+      homepage: 'README.md',
+    };
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
-<script>
-  window.$docsify = window.$docsify || {};
-  window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
-    function getRoutes() {
-      return Array.from(document.querySelectorAll('.sidebar-nav a'))
-        .map(a => a.getAttribute('href'))
-        .filter(Boolean);
-    }
-    function ensurePagerEl() {
-      let el = document.querySelector('.pager');
-      if (!el) {
-        el = document.createElement('div');
-        el.className = 'pager';
-        el.innerHTML = '<a class="btn prev" style="visibility:hidden"></a><div class="spacer"></div><a class="btn next" style="visibility:hidden"></a>';
-        document.body.appendChild(el);
-      }
-      return el;
-    }
-    function updatePager() {
-      const routes = getRoutes();
-      const cur = vm.router.getCurrentPath();               // e.g. 'phase-1/'
-      const hashCur = '#/' + cur.replace(/^\//,'');
-      const i = routes.indexOf(hashCur);
-      const el = ensurePagerEl();
-      const prev = i > 0 ? routes[i-1].replace(/^#\//,'') : null;
-      const next = i >= 0 && i < routes.length-1 ? routes[i+1].replace(/^#\//,'') : null;
-      const prevA = el.querySelector('.prev');
-      const nextA = el.querySelector('.next');
-      if (prev) {
-        prevA.href = '#/' + prev;
-        prevA.textContent = '← Prev';
-        prevA.style.visibility = 'visible';
-      } else {
-        prevA.style.visibility = 'hidden';
-      }
-      if (next) {
-        nextA.href = '#/' + next;
-        nextA.textContent = 'Next →';
-        nextA.style.visibility = 'visible';
-      } else {
-        nextA.style.visibility = 'hidden';
-      }
-    }
-    function ensureProgressEl() {
-      if (!document.querySelector('.progress')) {
-        const bar = document.createElement('div');
-        bar.className = 'progress';
-        const span = document.createElement('span');
-        bar.appendChild(span);
-        document.body.appendChild(bar);
-      }
-    }
-    function updateProgress() {
-      const scroller = document.querySelector('.content');
-      if (!scroller) return;
-      const y = scroller.scrollTop;
-      const h = scroller.scrollHeight - scroller.clientHeight;
-      const pct = h > 0 ? (y / h) * 100 : 0;
-      const span = document.querySelector('.progress span');
-      if (span) span.style.width = pct + '%';
-    }
 
-    hook.ready(function () {
-      ensureProgressEl();
-      document.addEventListener('scroll', updateProgress, true);
-    });
-    hook.doneEach(function () {
-      setTimeout(() => { updatePager(); updateProgress(); }, 30);
-    });
-  });
-</script>
-<script>
-(function () {
-  // simple pager config
-  const pager = {
-    order: [
-      'phase-1/index.md',
-      'phase-1/arc1.md',
-      'phase-1/arc2.md',
-      'phase-1/arc3.md',
-      'phase-1/arc4.md',
-      'phase-1/arc5.md',
-      'phase-1/arc6.md',
-      'phase-1/arc7.md',
-      'phase-1/arc8.md',
-      'phase-1/arc9.md'
-    ],
-    make() {
-      let el = document.getElementById('v9-pager');
-      if (!el) {
-        el = document.createElement('div');
-        el.id = 'v9-pager';
-        el.innerHTML = `
-          <button class="v9-prev" aria-label="Previous">←</button>
-          <div class="v9-progress"><div></div></div>
-          <button class="v9-next" aria-label="Next">→</button>
-        `;
-        document.body.appendChild(el);
-        el.querySelector('.v9-prev').addEventListener('click', () => this.jump(-1));
-        el.querySelector('.v9-next').addEventListener('click', () => this.jump(+1));
-        window.addEventListener('keydown', (e) => {
-          if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
-          if (e.key === 'ArrowLeft') this.jump(-1);
-          if (e.key === 'ArrowRight') this.jump(+1);
-        });
-        window.addEventListener('scroll', this.updateProgress.bind(this), {passive:true});
-      }
-      return el;
-    },
-    indexOfRoute(route) {
-      // docsify route path like '/phase-1/arc3'
-      const path = route.replace(/^\//,'').replace(/\.md$/,'') + '.md';
-      return this.order.indexOf(path);
-    },
-    updateVisibility() {
-      const onCover = location.hash === '' || location.hash === '#/';
-      document.getElementById('v9-pager').classList.toggle('hide', onCover);
-    },
-    jump(delta) {
-      const idx = this.indexOfRoute(decodeURIComponent((window.$docsify.route || {}).path || '').slice(1));
-      if (idx < 0) return;
-      const target = this.order[idx + delta];
-      if (!target) return;
-      // to route form: '#/phase-1/arc3'
-      const hash = '#/' + target.replace(/\.md$/,'');
-      location.hash = hash;
-    },
-    updateProgress() {
-      const doc = document.querySelector('.content');
-      if (!doc) return;
-      const max = Math.max(1, doc.scrollHeight - window.innerHeight);
-      const pct = Math.min(100, Math.max(0, (window.scrollY / max) * 100));
-      const bar = document.querySelector('#v9-pager .v9-progress > div');
-      if (bar) bar.style.width = pct + '%';
-    }
-  };
+  <!-- Pager + progress (non-intrusive) -->
+  <script>
+    (function () {
+      const routes = [
+        { t: 'Arc 1 — Miners’ Desperation', p: 'phase-1/arc1.md' },
+        { t: 'Arc 2 — Spire of Quiet Lies',  p: 'phase-1/arc2.md' },
+        { t: 'Arc 3 — Security Deck Stabilization', p: 'phase-1/arc3.md' },
+        { t: 'Arc 4 — Mouths of Power', p: 'phase-1/arc4.md' },
+        { t: 'Arc 5 — Security Deck (aftermath)', p: 'phase-1/arc5.md' },
+        { t: 'Arc 6 — The Public Forum', p: 'phase-1/arc6.md' },
+        { t: 'Arc 7 — Crossfire, Consequences', p: 'phase-1/arc7.md' },
+        { t: 'Arc 8 — The Black Vault', p: 'phase-1/arc8.md' },
+        { t: 'Arc 9 — The Aftermath', p: 'phase-1/arc9.md' }
+      ];
 
-  window.$docsify = window.$docsify || {};
-  window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
-    hook.ready(function () {
-      pager.make();
-    });
-    hook.doneEach(function () {
-      pager.updateVisibility();
-      pager.updateProgress();
-      // ensure focus top on navigation
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    });
-  });
-})();
-</script>
-<!-- reading progress bar + pager anchors -->
-<div id="progress"></div>
-<nav id="pager">
-  <a class="prev" id="pager-prev" href="#" aria-label="Previous chapter"></a>
-  <a class="next" id="pager-next" href="#" aria-label="Next chapter"></a>
-</nav>
+      function currentIdx(path) {
+        const clean = path.replace(/^#\//,'');
+        const i = routes.findIndex(r => clean === r.p);
+        return i >= 0 ? i : 0;
+      }
+
+      function navTo(i){
+        i = Math.max(0, Math.min(routes.length-1, i));
+        location.hash = '#/' + routes[i].p;
+      }
+
+      function ensurePager(){
+        let bar = document.querySelector('.v9-pager');
+        if (!bar){
+          bar = document.createElement('div');
+          bar.className = 'v9-pager';
+          bar.innerHTML = `
+            <button class="prev" title="Previous">← Prev</button>
+            <div class="crumb"></div>
+            <button class="next" title="Next">Next →</button>
+            <div class="progress"><span></span></div>
+          `;
+          document.body.appendChild(bar);
+          bar.querySelector('.prev').onclick = () => navTo(currentIdx(location.hash)-1);
+          bar.querySelector('.next').onclick = () => navTo(currentIdx(location.hash)+1);
+        }
+        return bar;
+      }
+
+      function updatePager(){
+        const i = currentIdx(location.hash);
+        const bar = ensurePager();
+        bar.querySelector('.crumb').textContent = routes[i].t;
+        bar.querySelector('.prev').disabled = (i===0);
+        bar.querySelector('.next').disabled = (i===routes.length-1);
+        const pct = Math.round(((i+1)/routes.length)*100);
+        bar.querySelector('.progress span').style.width = pct + '%';
+      }
+
+      // Docsify plugin hook
+      window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
+        window.addEventListener('hashchange', updatePager, true);
+        hook.doneEach(updatePager);
+      });
+    })();
+  </script>
 </body>
 </html>

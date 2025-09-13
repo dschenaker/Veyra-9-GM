@@ -4,9 +4,54 @@
   --content-max-width: 920px;
   --mono-font: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 }
-html,body{background:#f6f7fb;color:#0b0f18;}
-.sidebar {border-right:1px solid #d7dbea;}
-.sidebar .app-name {font-weight:800; color:#0b3d7a;}
+/* Soft sky gradient background (keep your look) */
+html, body {
+  height: 100%;
+  background: radial-gradient(1200px 600px at 50% 10%, #cfe0ea 0%, #b9cfdd 20%, #a7c2d4 40%, #97b7cd 60%, #8dadc6 80%, #86a7c2 100%);
+}
+
+/* Pager bar */
+.v9-pager{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: rgba(12,38,70,.9);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 999px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.25);
+  backdrop-filter: blur(6px);
+}
+.v9-pager .crumb{
+  font-weight: 600;
+  white-space: nowrap;
+  max-width: 42vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.v9-pager button{
+  background: #fff;
+  color: #0b3d7a;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 700;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.v9-pager button:disabled{ opacity: .5; cursor: not-allowed; }
+.v9-pager .progress{
+  width: 120px; height: 6px; margin-left: 6px;
+  background: rgba(255,255,255,.25); border-radius: 999px; overflow: hidden;
+}
+.v9-pager .progress span{
+  display:block; height:100%; width:0%;
+  background: #7dd3fc;  /* light blue bar */
+}
+
 /* active link highlight */
 .sidebar-nav li a.active{
   background: #eef5ff;

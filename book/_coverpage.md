@@ -5,7 +5,9 @@
 
 > A GM-first campaign journal for a colony called **Haven** under a shimmering aurora and the whisper of the **Choir**.
 
-[Start Reading](README.md)  [Player Recap](player-recap)  [Back to GM Hub](../index.html)
+[Start Reading](/#/phase-1/arc1.md)
+[Player Recap](/#/player-recap.md)
+[Back to GM Hub](../index.html)
 
 [GitHub](https://github.com/dschenaker/Veyra-9-GM)
 [Start Reading](#/phase-1/index)
