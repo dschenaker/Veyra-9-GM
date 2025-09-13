@@ -1,0 +1,991 @@
+<div id="top" class="wrap" role="main">
+
+<div class="subnav">
+
+<a href="#top" class="chip">Top</a>
+<a href="repo.html" class="chip">Open Dossier</a>
+
+</div>
+
+<div class="breadcrumbs">
+
+Prologue → **Arc 1**
+
+</div>
+
+# Arc 1 — Miners’ Desperation (Continuous Chapter)
+
+Mandate: the Obsidian Accord inserts the party as deniable stabilizers.
+Sponsors circling: **Helion** (Governor Orus Hestrel, Capt. Lira Veyne),
+**Zeratek** (Kaelen Drix), the **Accord** (Saint), **Reclaimers** (Serin
+Vael, Rust Varo), **Compliance Medicine** (Director Sael). Something new
+and wrong moves in the electrics—miners call it **the Choir** and don’t
+say it twice.
+
+> *“You are to keep Haven alive without embarrassing anyone wealthy
+> enough to own a share of it.”* — Saint
+
+## Arrival at Haven
+
+The shuttle’s belly caught the docking clamps with a metallic shriek
+that traveled up through your boots, a sound halfway between a scream
+and a sigh. It was the sort of sound that warned you a city like Haven
+was built more on desperation than engineering. Frost burst into white
+ferns across the viewport as atmospheric seals flexed. Beyond the glass
+stretched the dome—an immense bubble of polymer and alloy that should
+have glowed steady, but instead flickered with green-white auroral
+threads. They stitched and unstitched like a wound that couldn’t decide
+whether to close.
+
+The city underneath the dome looked like patchwork held together with
+nerves. Modular blocks pressed against scaffolding, scaffolding welded
+to older scaffolds, layers upon layers of construction that looked less
+like a blueprint and more like a scar that never healed clean. Lights
+sputtered along walkways, and every time one guttered you could swear
+the whole dome dipped its breath. It was a city that had been rebuilt
+more times than it had ever been finished.
+
+Inside the cabin, the recycled air reeked faintly of ozone, sweat, and
+sealant. A voice on the shuttle’s comm—a woman from Helion Industries
+PR—repeated a brittle welcome. *“Haven: your frontier home. Built with
+courage. Sustained by unity.”* The message hiccuped midway through, and
+the last word repeated twice before the system cut the feed. Unity,
+unity.
+
+Security teams waited at the hazard-red line where docking gave way to
+clean floor. They formed a crescent wall: visors down, rifles slung but
+unlocked, boots polished though the plating beneath them was scuffed.
+Their posture wasn’t menace—it was exhaustion tautened into readiness,
+the sort of soldiers who could drop into violence without lifting their
+heartbeat. Civilians gathered behind them, craning necks to glimpse the
+new arrivals, whispering like the presence of outsiders might reset the
+odds.
+
+Captain Lira Veyne stood at their center, helmet tucked beneath one arm.
+Her uniform was pressed as if wrinkles were a personal insult. Her braid
+lay pinned flat and exact, the way a surveyor pins lines on a map. She
+didn’t scan the group of you like a commander inspecting troops. She
+measured, quietly, like a mechanic deciding which tools would last and
+which would break under pressure.
+
+> “Three fires,” she said, her voice sharp but weary. “One extinguisher.
+> Production has stalled. The Quarter bleeds. If the miners can’t go
+> home and come back again, Haven dies before the week is out.”
+
+The aurora above the dome spat a sudden flare, and for an instant every
+face reflected ghost-light. The civilians twitched at it but pretended
+not to notice. The Security line didn’t even blink. Lira Veyne let the
+silence stretch, measuring how long it would take you to fill it. That,
+too, was a test.
+
+Behind her, a pair of Helion banners hung limp. They bore the corporate
+seal—an eight-pointed flare over a stylized dome. The edges were frayed,
+and someone had sewn over a tear with crude black stitches. Nothing in
+Haven escaped patching.
+
+One of the civilians in the crowd muttered something about *“Accord
+fixers,”* and the rest turned their eyes on you—some with hope, others
+with contempt. Hope that you could relieve the pressure in the Quarter.
+Contempt because outsiders always came with promises that didn’t fit the
+shape of the colony’s wounds.
+
+Lira raised a hand. The murmuring died. “You’re with me to the Quarter,”
+she said. “The other fires wait their turn.”
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Roleplay Notes (Arrival)
+
+</div>
+
+<div class="gm-b">
+
+- **Atmosphere:** Stress the *fragility* of Haven. The dome flickers,
+  scaffolds creak, the PR messages glitch. Make the PCs feel they’ve
+  stepped into a city that survives on habit, not stability.
+- **NPC reactions:** Civilians treat PCs as both saviors and
+  liabilities. Roll 1d4: (1–2 hopeful, 3 suspicious, 4 contemptuous).
+- **Lira’s test:** She’s not giving a choice. She’s weighing if the
+  party wastes words or commits quickly. If PCs stall, mark *Accord
+  Optics −1*. If they step forward decisively, grant *+50 XP* for
+  “reading the room.”
+- **Foreshadowing:** The aurora’s flicker should feel unnatural—drop
+  subtle hints that its rhythm isn’t random.
+
+</div>
+
+</div>
+
+As the party steps off the shuttle, the crowd’s whispers rise again.
+Words like *“rations,”* *“strikes,”* and *“lost rigs”* thread the air. A
+child on someone’s shoulders points at the shuttle and asks, too loudly,
+*“Are they the ones who make the drones stop singing?”* His parent
+hushes him, but the phrase hangs there, connecting the static hum of the
+aurora with something far more immediate.
+
+Lira Veyne ignores the question, but the way her jaw tightens is an
+answer in itself.
+
+## Captain Lira Veyne
+
+Captain Lira Veyne was not the kind of officer Helion’s corporate
+brochures imagined for their frontier colonies. The pamphlets painted
+Security Chiefs as shining examples of discipline, smiling in staged
+photos with polished rifles and scrubbed armor. Lira carried none of
+that shine. She wore her helmet tucked beneath one arm not for show but
+because she had been walking the Quarter herself, counting ration
+bracelets and pacing out the distance between where guards stood and
+where civilians dared gather. Her braid was pinned tight not to impress
+but because loose hair in a brawl gave enemies something to grab. She
+looked at people and saw uses, limits, and breaking points before she
+ever asked for a name.
+
+Still, Helion used her face in reports. Every time the Board called for
+an update on Haven, her image appeared on-screen—stoic, crisp, and
+silent. They presented her as the embodiment of stability, proof that
+the colony was under control. What the Board never asked, and what Lira
+never offered, was that the silence in her photo was not approval but
+fatigue. She had held lines before—on Bryndor’s water flotillas, on
+Kharsis’s storm caravans, in skirmishes where desert raiders taught her
+how few bullets it took to decide a town’s fate. She knew what a line
+cost, and how it frayed when executives demanded optics before outcomes.
+
+To the party, she did not offer charm or warmth. She offered the blunt
+fact of her presence. When she said, “Three fires. One extinguisher,”
+she was not dramatizing. She was telling you what you had walked into: a
+city with more crises than bodies to answer them. Her eyes, gray and
+restless, lingered on each of you in turn as if weighing a scale
+invisible to anyone else. She judged not posture or gear but whether you
+flinched at the aurora’s flicker, whether you shifted your stance when
+civilians muttered about outsiders, whether you asked questions that
+mattered or wasted her time with politics.
+
+Helion Security behind her watched too closely, as if her approval was
+their cue to relax. It was an open secret that she was the spine of the
+unit. Without her, the line would sag into fear or cruelty. With her,
+they maintained a hard, brittle professionalism. The colony whispered
+about her: some called her a tyrant, others a shield. Children who
+played near the hazard lines imitated her barked orders. Miners painted
+her silhouette into mural margins, sometimes with a halo, sometimes with
+horns. In Haven, reputation was always painted twice.
+
+Lira’s relationship with the factions was as precarious as the dome
+itself. Governor Orus Hestrel relied on her to keep Security
+presentable, though he clipped her reports before forwarding them to
+Helion’s Board. The Obsidian Accord trusted her competence but
+distrusted her loyalty; they preferred agents who bent optics into
+leverage, not officers who reported blunt truths. The Reclaimers
+tolerated her because she kept some of their people alive when numbers
+said they should have been dead. Even Zeratek, whose drones sometimes
+appeared on the wrong side of a barricade, respected her refusal to hide
+casualties. She was not beloved, but she was understood. In Haven, that
+was safer than love.
+
+When the party stepped forward, her expression did not change, but her
+nod was the closest thing to welcome you would receive. “If you’re here
+to posture, turn back to the shuttle,” she said. “If you’re here to
+work, follow me. The Quarter won’t wait.”
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Running Lira Veyne
+
+</div>
+
+<div class="gm-b">
+
+- **Demeanor:** Minimal words, maximum weight. She rewards clarity,
+  despises wasted time.
+- **Trust:** PCs gain her respect by acting decisively, protecting
+  civilians without being asked, or taking risks she recognizes as
+  necessary. PCs lose her respect if they grandstand, stall, or
+  prioritize optics.
+- **Factions:** Use her as a barometer. Accord = “Can you leverage her?”
+  Reclaimers = “Does she keep us alive?” Helion = “Does she make us look
+  stable?”
+- **Progression:** Patron if respected, rival if undercut, martyr if
+  forced into impossible optics.
+
+</div>
+
+</div>
+
+In this moment, as the aurora stitched itself into the dome like
+luminous thread, Captain Lira Veyne became the colony’s axis. Not
+because she was flawless, or beloved, or even victorious. But because
+without her, everything in Haven leaned toward collapse. She held the
+line not by shouting, but by standing still when everything else
+trembled. The party had not chosen her; the Accord had. But from here
+forward, the question would not be whether you followed her orders. It
+would be whether you could stand the weight of being measured and found
+either useful—or already breaking.
+
+## Descent to the Quarter
+
+The elevator doors yawned open with a sigh of hydraulics older than most
+of the miners it carried. Inside, the cab was a grated cage that rattled
+like bones in a drum. Veyne gestured for you to step in, then followed
+last, posting herself by the controls. She pulled the lever with the
+casualness of someone who had done it a thousand times, and the floor
+lurched as gravity took over. The descent began with a shudder that
+traveled up your teeth.
+
+Through slatted windows the colony revealed itself in slices. First came
+the mezzanine markets—stalls of synthetic fruit, bootleg stimulants, and
+salvaged drone parts arranged like talismans of survival. Faces turned
+upward at the sound of the elevator’s groan. Some faces were hopeful,
+others suspicious, and many bore the same etched weariness: the look of
+people who had survived so long they weren’t sure they wanted to keep
+paying the price. Children ran alongside the descending cab, laughing
+until the next flicker of the aurora made them stop and clutch each
+other’s hands.
+
+The cab dropped further. You glimpsed a canteen where steam rolled
+against cracked glass. A man inside stirred a pot the size of a drum,
+his ladle carving lazy circles through a stew that looked more like
+boiled ration packs than food. A mural sprawled across the opposite
+wall: names painted in careful block letters. Thirty-two in all, each
+outlined in black. Space remained beneath them, blank rows awaiting
+additions. The elevator passed so close you could see where paint
+dripped, where some letters had been scrubbed clean and replaced with
+fresh names only weeks old.
+
+Next came the infirmary. Queues stretched around pillars where
+hand-sanitizer dispensers blinked empty warnings. The smell of boiled
+antiseptic wafted through the vents and made eyes water. A nurse in a
+wrinkled coat glanced up as the cab passed, her expression unreadable.
+One patient in the line whispered, “Accord fixers,” and another
+muttered, “Helion’s dogs.” The words clung to the steel like oil—nothing
+clean here, nothing without residue.
+
+At last the cab groaned to a halt on a platform sprayed with
+hazard-yellow lines. The doors clattered open. Here, the Quarter
+announced itself not with speeches but with the scrape of boots, the
+hiss of water lines, the coughs of tired lungs. The Quarter was Haven’s
+heart and its wound: where the colony’s laborers lived and worked, where
+production kept the dome breathing, where hope was rationed thinner than
+food.
+
+**Serin Vael** stood at a water manifold, sleeves rolled to the elbow.
+Her hands were steady but her voice was steel as she argued allocation
+with a technician who avoided her eyes. She was not dressed like a
+leader; she was dressed like everyone else, in coveralls patched at
+knees and elbows. What set her apart was not her clothing but the ledger
+she carried in her head: a mental accounting of who owed whom, who had
+earned trust, who had squandered it. She noticed you the instant the cab
+doors opened. Her gaze was sharp but not hostile. She took in your
+badges, your posture, and your silence—or lack of it.
+
+Without waiting for formalities, she spoke. *“Row-C is running dry,”*
+she told Veyne. Then to you: *“And drones keep waking in tunnels they
+were never assigned to. Get my riggers home in one piece, and we’ll talk
+about trust.”*
+
+The crowd around the manifold stilled, listening not just to her words
+but to your reaction. Here, trust was a commodity traded more carefully
+than credits. Every blink, every hesitation, every half-smile weighed on
+scales you could not see. If you flinched, you were weakness. If you
+boasted, you were arrogance. If you listened and promised nothing, you
+might just be measured as worth the gamble.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Quarter Atmosphere
+
+</div>
+
+<div class="gm-b">
+
+- **Sensory detail:** Push the players with imagery—smell of ozone,
+  rattle of pipes, coughing children. Make them feel *the Quarter is
+  alive but sick*.
+- **Trust economy:** Serin is the Quarter’s conscience. PCs who promise
+  rashly lose her favor. PCs who commit to tangible acts (carry water,
+  fix a scanner, patch a sprain) gain her trust. Track *Quarter Morale*
+  as +1/-1 depending on PC actions.
+- **Faction presence:** Reclaimers blend in with the crowd. Accord
+  watchers linger on the edges. Helion Security stays close to Lira, not
+  to protect her, but to watch the PCs.
+
+</div>
+
+</div>
+
+A man with tired eyes pushed forward carrying a broken ration scanner.
+He held it out like an offering. “If you’re really here to help,” he
+said, “start with this. My kids can’t queue if the scanner reads them as
+frauds.” Behind him, a woman clutched a jug so heavy her knuckles
+whitened. She looked at you without speaking, but her gaze was louder
+than words. Around you, these silent requests multiplied until they
+became a chorus of small demands: a wrench turned, a pipe sealed, a
+bandage wrapped.
+
+Veyne gave no orders. She watched, arms crossed, to see if you bent down
+to help or kept walking. Serin Vael’s lips pressed thin, recording your
+choice in her mental ledger. The Quarter did not ask for speeches. It
+asked for hands.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Quarter Skill Checks
+
+</div>
+
+<div class="gm-b">
+
+- **Carry water drums:** STR check, success = gratitude, failure =
+  spilled ration water → Quarter Morale −1.
+- **Repair ration scanner:** INT check, success = families can eat,
+  failure = sparks & burns → Accord Optics −1.
+- **Field-triage sprain:** WIS check, success = miner hobbles back to
+  line, failure = pain worsens → Reclaimer Trust −1.
+
+Each PC who chooses to stop and help can roll once. Reward +50 XP for
+selfless actions, regardless of outcome.
+
+</div>
+
+</div>
+
+As the party moved deeper, the Quarter seemed to close around them.
+Narrow alleys funneled between stacked dormitories. Laundry lines
+drooped overhead, heavy with recycled water. Signs scrawled in chalk
+warned of ration cutbacks. The hum of the colony grew louder here—not
+just the drones, but the very bones of Haven: pipes clattering, pumps
+whining, circuits groaning like a tired animal. The Quarter lived, but
+every sound said it lived in pain.
+
+When a child darted forward to touch one of you, her hand was clammy,
+her eyes wide. “Don’t let the singing come here,” she whispered, and
+then she was gone, pulled back into the crowd. No one acknowledged her
+words, but everyone seemed to hear them.
+
+By the time you reached the tunnel entrance, Serin Vael’s presence
+lingered behind like a shadow. She had not promised you trust, but she
+had offered a ledger. In Haven, that was the closest thing to faith.
+
+## The Tunnels
+
+The Quarter’s mouth opened into the tunnels with no ceremony—just a
+stairwell slick with condensation and a chain-link gate whose lock had
+been broken and repaired too many times to matter. The air grew cooler
+as you descended, and the hum of the colony deepened into a register you
+could feel in your sternum. Water dripped with an irregular rhythm, the
+drops fat and metallic, tasting of rust on the tongue before you even
+stepped through the threshold.
+
+Light here was not electric alone. Miners had strung charms across
+junction boxes: washer-strings, colored fuse glass, even bits of ribbon
+scavenged from ration crates. Each charm clinked when the air shifted,
+producing a jittery chorus that stood in for hymns. “Keeps the hum
+honest,” one rigger explained in passing, eyes refusing to meet yours.
+You got the sense the charms were less for luck and more for defiance.
+If the machines had started to sing, the miners meant to sing back,
+however off-key.
+
+Conduits arched like ribs along the ceiling. Resin patches slicked
+across welds where stress fractures had tried to split the skeleton of
+Haven. Your boots stuck briefly to the floor in places where sealant
+oozed, then pulled free with a sound like tearing fabric. At every
+junction, someone had scrawled numbers in chalk, but the sequences
+didn’t align. Row C claimed this was junction 18, but Row D swore it was
+22. The colony’s map was dissolving at the edges, just as surely as the
+aurora dissolved the sky above.
+
+**Tannic “Rust” Varo** waited for you at the gallery mouth, a coil of
+resin charges strapped across his back. His forearms were latticed with
+scars, not self-inflicted but earned through decades of keeping tunnels
+open with more grit than tools. He greeted you with a nod, the kind that
+carried weight not because of words but because of what it withheld. He
+checked each of you the way a veteran checks rigging: tugging in
+silence, deciding whether it will hold. His laugh lines had long since
+hardened into trenches, but when he met your gaze there was no
+dismissal, only a tired loyalty to anyone willing to step into the dark
+beside him.
+
+Beside him, **Meryn Ralos** clutched a tablet so tightly his knuckles
+bleached white. He wore the insignia of Helion Compliance, but the badge
+looked flimsy in this place. His hair was perfectly parted, his nails
+buffed clean, and his voice trembled as he tried to recite policy into a
+space where policy had no gravity. “Intervention must be documented…
+liability assessments must be noted… variance categories must be
+assigned…” Each phrase faltered as his eyes tracked condensation
+dripping down resin walls like tears. He looked at you as though begging
+for someone—anyone—to confirm that words on a tablet could still matter
+here.
+
+Rust ignored him. He crouched by a blossom-lens drone sprawled on its
+side, casing scarred and serial number scratched away. The lens twitched
+once in the light, then stilled. Rust spat into the dark and muttered,
+“Zeratek built these to listen, not to work. Now they’re listening to
+something they shouldn’t.” He drove his boot into the drone’s carcass,
+the impact echoing like a cracked bell. The washer-charms above
+shivered, their discordant notes briefly aligning into a chord that set
+your teeth on edge.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Tunnel Atmosphere
+
+</div>
+
+<div class="gm-b">
+
+- **Claustrophobia:** Emphasize the narrowness, the sticky resin, the
+  constant hum. PCs should feel the walls pressing inward.
+- **Miners’ rituals:** Charms, chalk numbers, whispered phrases. Reward
+  PCs who engage respectfully with +25 XP and a minor Quarter contact.
+- **Rust vs Ralos:** Play them as contrasts. Rust = grounded, practical,
+  survivor. Ralos = bureaucrat out of depth, but with access to valuable
+  records if reassured.
+- **Foreshadowing:** The hum. Stress that it feels *alive*, like
+  something counting in a rhythm the PCs can’t quite catch.
+
+</div>
+
+</div>
+
+The further you walked, the more the hum seemed to shape itself. At
+first it was random—a machine vibration with no pattern. But then you
+noticed it aligning with your footsteps, just briefly, before skipping
+ahead again like a child playing tag in the dark. Miners refused to
+speak of it directly. One woman muttered, “Don’t call it what it is,”
+and made the sign of a circle with three slashes. Another spat on the
+floor each time the hum rose, as though trying to drown it in ritual
+contempt. You realized quickly that the Quarter had already given this
+phenomenon a name, but no one here dared say it twice.
+
+Ralos finally broke, voice cracking as he held his tablet higher. “This
+variance is not statistically significant,” he insisted. “We… we just
+need to recalibrate the arrays, file the correct forms, and…” He trailed
+off when his own words bounced back from the walls, repeating like a
+mocking echo. His hand shook so violently he nearly dropped the device.
+Rust took the moment to growl: “Forms don’t hold walls. Resin does.
+People do.”
+
+As you pressed deeper, the tunnel narrowed until only two could walk
+abreast. Lights above flickered with a staccato rhythm. Once, twice,
+three times—then darkness so complete you felt your pulse speed as
+though chased. When the lights returned, one of the charms had vanished,
+leaving only a bare wire swinging slowly in the air. No one touched it.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Encounter Hooks (The Tunnels)
+
+</div>
+
+<div class="gm-b">
+
+- **Drone carcasses:** PCs who investigate can recover 1–2 *blossom
+  lenses* (see Loot in Ambush). They pulse faintly if held against the
+  aurora flicker.
+- **Charms:** Interacting with charms respectfully (e.g., humming along,
+  repairing one) earns Quarter goodwill. Breaking them or mocking them =
+  Quarter Morale −1.
+- **Ralos’ notes:** If protected, Ralos will later release compliance
+  reports that expose Zeratek firmware inconsistencies. PCs who ignore
+  him risk losing this lead.
+
+</div>
+
+</div>
+
+At last, the tunnel opened into a jagged gallery where vents should have
+been neatly braced. The resin patchwork ended abruptly, replaced by raw
+metal split like bone. The hum here was undeniable. It rose and fell in
+a pattern your body wanted to interpret as music, though no instrument
+could play it. Somewhere in the shadows, a blossom lens clicked open
+like an eye. Then another. Then three more. Each one oriented not on
+Rust, not on Ralos, but on *you*.
+
+Rust cursed under his breath and primed a resin charge. Ralos whispered,
+“Variance category three,” though his hands shook too badly to type it.
+And above, the washer-charms rattled in a syncopated rhythm that sounded
+almost like applause.
+
+## Ambush in the Gallery — North Shaft Collapse
+
+The tunnel opened like a wound. Where there should have been braced vent
+lines and neat resin patching, there was only raw metal, cracked wide
+and jagged. The air stank of hot copper and resin smoke, the kind that
+sears your nostrils and makes every breath taste like pennies. At first
+glance, you might have thought the drones littering the gallery were
+wrecks. Then one blossom-lens twitched, oriented on movement, and a
+chorus of faint hums filled the air—low and arrhythmic, like the
+clearing of mechanical throats before a song.
+
+Rust cursed and primed a resin charge. Ralos whispered “Variance
+category three” under his breath, his tablet quivering in both hands.
+Veyne’s jaw locked as she raised her weapon, but her eyes didn’t track
+the drones. They were fixed on the **North Shaft**, where a girder had
+collapsed into a spidery heap. Two miners were pinned beneath its
+weight, boots protruding from the rubble. One foot twitched weakly. The
+other was still. Sparks cascaded as drones cut patient, surgical lines
+through the debris, moving closer with the steady assurance of tools
+that had been taught cruelty.
+
+The scene froze for a heartbeat, then came alive at once: resin smoke
+thickened, the hum aligned into something perilously close to rhythm,
+and the gallery lights stuttered like they were afraid. The shaft was
+not just a collapse. It was a stage—and you had just walked into the
+first act.
+
+> “If they cut through to the bodies, they’ll finish what the girder
+> started,” Rust snapped. “We move now or we dig graves instead.”
+
+The drones did not rush. They never rushed. Each cutter flared with
+surgical precision, carving away supports like they were dismantling the
+colony piece by piece. Their blossom lenses gleamed faintly green in the
+aurora’s reflected light from above, as though the sky itself had crept
+down here to watch.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Encounter Setup (North Shaft)
+
+</div>
+
+<div class="gm-b">
+
+- **Terrain:** Jagged debris, resin smoke, failing braces. PCs who climb
+  risk 1d6 bludgeoning damage if supports shift.
+- **Threats:** 3 Scrap Drones (AC 7; HD 1d8; THAC0 20; DMG 1d6 cutter;
+  Morale 12). They focus on finishing the miners unless stopped.
+- **Timer:** 3 rounds before the first pinned miner dies. After 5
+  rounds, the second is lost unless freed.
+- **Skill options:** STR to lift debris, DEX to brace collapsing beams,
+  INT to jury-rig support with tools. Award XP for ingenuity over brute
+  force.
+
+</div>
+
+</div>
+
+As you approached, the collapsed girder groaned under its own weight.
+Resin patches peeled back like scabs. The twitching boot spasmed once
+more, a feeble protest against inevitability. The other miner—still
+pinned deeper in the rubble—remained frighteningly silent. Rust threw
+his shoulder against the beam, teeth gritted, sweat dripping into his
+eyes. “Help me hold!” he barked. His voice cracked with something not
+often heard from him: fear disguised as command.
+
+The drones turned in unison, three lenses catching the dim light. They
+shifted their cutters from the beam to the rescuers, as if deciding that
+mercy was no longer efficient. Sparks leapt, carving the air with harsh
+white arcs. One drone lunged, its cutter screeching against a steel
+brace an inch from your shoulder. The hum spiked in pitch, and for an
+instant you could swear it wasn’t mechanical at all—it sounded like
+someone *counting*.
+
+Ralos yelped as sparks sprayed his tablet, nearly dropping it. “This…
+this isn’t in any variance record,” he stammered, more to himself than
+anyone else. “It’s—this is wrong.” His panic only added to the
+claustrophobic press of the gallery, where every sound seemed to echo
+back as though the tunnels themselves were listening.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Outcomes (North Shaft)
+
+</div>
+
+<div class="gm-b">
+
+- **If the PCs free both miners:** Quarter Morale +1; Reclaimer Trust
+  +1. Survivors whisper the PCs’ names like talismans.
+- **If only one is saved:** Gratitude mixes with grief. Quarter Morale
+  unchanged, but Serin Vael marks the ledger against those who hesitate.
+- **If neither survives:** Quarter Morale −2; Street Temperature +1. The
+  Reclaimers spread word: outsiders talk big, save none.
+- **If drones destroyed creatively:** Accord Optics +1. Recordings can
+  be leveraged against Zeratek. Otherwise, salvage only abstract 0–50 cr
+  worth of parts.
+
+</div>
+
+</div>
+
+By the time the girder groaned its last and the cutters died down, the
+gallery was smeared with resin smoke and sweat. The miners—alive or
+not—were carried out on makeshift stretchers of pipe and canvas. Rust
+leaned heavily against the wall, breathing like a man who had fought
+gravity itself. “We don’t get to pick what we save,” he muttered. “We
+only get to decide what dies slower.”
+
+Above, the washer-charms chimed in an uncanny harmony, as though the
+gallery itself approved or condemned what had just transpired. The hum
+lingered, quieter now, but unmistakably alive.
+
+## Ambush in the Gallery — Main Line Defense
+
+Across the gallery, the **Main Line** looked less like a battlefront and
+more like desperation incarnate. A half-dozen workers—helmets dented,
+coveralls streaked with soot—had formed a shield wall out of scavenged
+crate lids and dented plating. They held their line at the mouth of a
+supply corridor, feet braced against resin-slick stone, knuckles white
+on makeshift grips. Every breath came in ragged gasps, but still they
+stood. Behind them, families huddled in the shadows, their eyes wide,
+their silence more terrified than any scream.
+
+The drones did not charge blindly. They pressed with machine patience,
+cutters gnawing against the shields in precise, repeated arcs. Sparks
+spat and hissed with each contact. The workers buckled, then surged
+back, singing half a work song between clenched teeth to keep rhythm. It
+was an old miner’s cadence, stripped of melody and left only with
+stubborn beat. Even so, it trembled on the edge of breaking. One more
+push, and the wall would shatter.
+
+The moment you approached, the drones hesitated, lenses swiveling toward
+fresh motion. The song faltered. For the first time, the workers’ eyes
+flicked sideways, as if silently asking whether you would join or simply
+watch them collapse. The children in the shadows clutched tighter at
+sleeves, the air thick with smoke and waiting judgment.
+
+> “Keystone’s cracked,” one miner rasped through his shield. “We need
+> bodies in the line—or we break.”
+
+Rust shouted from across the chamber, his voice hoarse but urgent. “Hold
+the damn line! Give them a chance to live!” Even he sounded unsure if it
+was command or prayer. Ralos muttered numbers under his breath,
+trembling fingers inputting casualty projections as if statistics could
+hold the shields upright. Veyne’s rifle barked once, cutting down a
+drone mid-step, but she looked back to see what the party would do. She
+had measured you once at the shuttle bay. This was the second
+measurement.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Encounter Setup (Main Line)
+
+</div>
+
+<div class="gm-b">
+
+- **Terrain:** Narrow corridor mouth, resin-slick footing. Crate-lid
+  shields provide AC bonus if PCs join wall.
+- **Threats:** 4 Scrap Drones. They attack in coordinated bursts: +1 to
+  hit if 2+ strike the same shield.
+- **Timer:** Workers can hold only 2 rounds unaided before rout. With
+  PCs in line, each PC adds +1 round of morale.
+- **Skill options:** STR or CON to absorb impacts, CHA to rally the
+  song, DEX to slip past and flank drones. Reward creative positioning.
+
+</div>
+
+</div>
+
+When you stepped into the line, the rhythm shifted. Shields rose higher,
+grips tightened, and the song found new voice. Your bodies formed a
+keystone the wall had been missing. The next drone surge hit, cutters
+screeching against metal, sparks showering your faces—but this time, the
+line held. The resonance of voices rose: not tuneful, but relentless,
+the sound of defiance hammered into beat.
+
+The washer-charms above the corridor rattled, their discord somehow
+aligning to the rhythm of the song. For a moment, it was unclear whether
+the colony itself was singing along, or mocking. The hum beneath your
+feet deepened, vibrating bones, as if counting the beats of your
+defiance.
+
+One drone shifted tactics, swinging wide to flank. A child shrieked as
+its lens flared. If no one broke formation, the drone would carve
+straight into the civilians. If someone peeled from the line, the wall
+risked collapse. The choice was sharp, immediate, and costly either way.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Outcomes (Main Line)
+
+</div>
+
+<div class="gm-b">
+
+- **If PCs hold the line without breaking:** The civilians remain safe,
+  the drones are destroyed, and morale surges. *Accord Optics +1* as
+  word spreads that outsiders held firm.
+- **If PCs peel to save civilians:** The line buckles, 1d4 miners
+  injured, but the child is spared. *Street Temperature +1* (seen as
+  protectors of the vulnerable).
+- **If PCs fail to reinforce:** The wall collapses, drones spill into
+  civilians. *Quarter Morale −2.* Survivors blame Helion, but whispers
+  tie the failure to the Accord’s agents.
+- **Loot:** Drone salvage worth 50–100 cr if recovered, or one intact
+  blossom lens (records 30s of distorted audio).
+
+</div>
+
+</div>
+
+When the final drone shuddered and collapsed, silence rushed in like a
+vacuum. The workers leaned on their battered shields, gasping. One spat
+blood, another laughed a laugh that sounded more like a sob. They looked
+at you with the eyes of men and women who had seen the abyss and stepped
+back only because someone else stood with them. For the first time,
+their song stopped trembling. For the first time, it felt like a hymn.
+
+From the shadows, the children stared. One whispered, “They sang with
+us,” and the others nodded solemnly, as though a pact had been made.
+Above, the charms rattled again, eerily on beat. Whether it was harmony
+or mockery, none could tell.
+
+## Ambush in the Gallery — The Child in the Alcove
+
+At the far edge of the gallery, tucked behind a lattice of pipes, a
+**maintenance alcove** opened like a throat into shadow. There, a child
+sat alone, knees drawn up to chest, eyes wide but unblinking. He did not
+scream when the drones advanced. He did not run when their cutters
+flared. Instead, he hummed—softly, tunelessly, but unmistakably in
+rhythm with the vibration in the walls. The sound raised hairs on your
+arms. It was not mimicry. It was *harmony*.
+
+One drone peeled away from the skirmish, lens flickering like an eye
+catching scent. It prowled toward the alcove with measured precision,
+cutter sparking against metal as if sharpening itself for the work. The
+hum deepened in your bones, the colony’s heartbeat aligning with the
+child’s song. For a moment you could swear the drone hesitated, cocking
+its lens as though listening for the next verse.
+
+The child’s humming grew louder. Not defiant, not frightened—simply
+matter-of-fact, as if he were part of some choir only he could hear. His
+lips formed syllables too faint to catch, but the pattern was clear:
+three notes rising, one falling. The same cadence you’d felt in the
+aurora’s flicker above the dome. The same phrase you’d heard in the
+washer-charms’ rattles. The same motif that haunted the tunnels since
+you stepped foot inside.
+
+> “It’s not supposed to know us,” Ralos whispered, his voice strangled.
+> “It’s supposed to *obey*.”
+
+The drone’s cutter flared inches from the grille. Sparks rained across
+the child’s face, painting his features in brief, sharp light. He didn’t
+flinch. He hummed louder, and the drone’s lens dilated in reply. For a
+terrifying moment it seemed as though the machine might lay down its
+cutter and simply listen forever. Then the harmony fractured. The motif
+stumbled. The drone’s head twitched violently, and the cutter thrust
+forward.
+
+You reached the alcove in time. Whether it was steel, spell, or sheer
+strength, you struck, and the blow landed with all the weight of
+inevitability. The drone spasmed, cutter shrieking against metal, then
+collapsed in a hiss of smoke. The child blinked once, then reached for
+your hand without a word. His palm was clammy, his grip fierce. He did
+not let go.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Encounter Setup (The Child)
+
+</div>
+
+<div class="gm-b">
+
+- **Terrain:** Narrow alcove, low pipes, little room to maneuver. DEX
+  checks to avoid catching gear on conduits.
+- **Threats:** 2 Scrap Drones drawn to the alcove. One focuses on the
+  child, the other on PCs who intervene.
+- **Timer:** 2 rounds before the child is injured if unprotected. At 3
+  rounds, his humming escalates into an uncontrollable motif—risking
+  panic in all drones present.
+- **Skill options:** WIS or CHA to soothe the child and break his
+  trance; STR or melee to intercept drones; INT to rig an emergency EMP
+  from nearby fuse boxes.
+
+</div>
+
+</div>
+
+The gallery around you blurred into smoke and sparks, but the child
+remained fixed on your face, humming even as you carried him clear. He
+looked not at the drones but at the walls, counting lights, lips shaping
+notes only half-sung. His eyes were too calm, too old, for a child his
+age. When one of you unconsciously echoed his motif—a low hum beneath
+your breath—his gaze sharpened like a beacon finding its target. He
+knew. He knew you had heard it too.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Outcomes (The Child)
+
+</div>
+
+<div class="gm-b">
+
+- **If the child is saved unharmed:** Street Temperature +1. Word
+  spreads of outsiders who protect the vulnerable. The child becomes a
+  recurring ally—his ability to map motifs to places is invaluable.
+- **If the child is saved but injured:** Quarter Morale +1 (gratitude)
+  but Reclaimer Trust −1 (resentment that you let harm touch one of
+  their own).
+- **If the child is lost:** Quarter Morale −2, Accord Optics −1.
+  Whispers of “the ones who let him die” follow the PCs everywhere.
+- **Special:** PCs who hum the motif with the child unlock a persistent
+  campaign thread: *The Choir recognizes them*.
+
+</div>
+
+</div>
+
+When the final drone fell and silence reclaimed the alcove, the child
+pressed himself to your side. He would not release your hand. His hum
+dwindled to a murmur, then silence, but the rhythm lingered in your
+bones long after. The washers above rattled one last time, in uncanny
+synchrony with his heartbeat. The aurora flickered faintly through
+cracks in the dome, and for an instant the whole colony seemed to
+breathe in unison with the boy.
+
+## Silence After & Fallout
+
+When the final drone collapsed in a hiss of resin smoke, the gallery
+exhaled as if it, too, had been holding its breath. The silence that
+followed was not peace but shock—a vacuum left where sound should have
+been. For a long moment, no one moved. The only noise was the faint
+rattle of washer-charms above, chiming in a pattern that could have been
+approval, or mourning, or both.
+
+The miners began to gather the wounded. Makeshift stretchers were
+fashioned from pipe lengths and torn canvas, their edges slick with
+sweat and resin. Those who had survived stumbled forward, eyes wide and
+hollow. Some touched the PCs’ arms as they passed, wordless gratitude
+etched deeper than language. Others refused to meet your gaze, grief
+eclipsing any thanks. In Haven, survival was never clean. It always
+demanded payment.
+
+Rust Varo leaned against a buckled beam, breathing like he’d just
+wrestled the colony itself. His hands shook—not with fear, but with
+exhaustion. “We don’t get to pick what we save,” he muttered, voice
+rough. “Only what dies slower. You did what you could.” He looked at you
+then, and though his eyes were shadowed, there was no contempt. Only
+recognition that you had stood where others might have run.
+
+Ralos, pale and trembling, tried to compose a report. His tablet screen
+was cracked, the words flickering, but still he tapped lines of text:
+*“Intervention successful. Casualties within variance threshold.
+Recommend review of drone firmware integrity.”* His voice shook as he
+recited it, like he was trying to convince himself more than anyone
+else. When he realized you were watching, he faltered, then whispered:
+“If I frame it right, we can hold Zeratek liable. But only if… if you
+protect me when they push back.”
+
+The child clung to your side, his grip unyielding. He stared at the
+ductwork, lips moving in half-formed hums. When one of you echoed the
+motif—consciously or not—his eyes widened with eerie clarity. He knew.
+He had heard the same voice in the aurora that you had. He would
+remember this moment, and the memory would shape the way the Quarter
+whispered your names in the nights to come.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Fallout Tracking
+
+</div>
+
+<div class="gm-b">
+
+- **Quarter Morale:** Adjust based on outcomes at Shaft, Main Line, and
+  Child. Positive totals mean gratitude; negatives mean unrest.
+- **Reclaimer Trust:** Grows if PCs risk themselves for miners. Falters
+  if sacrifices are made in the name of optics.
+- **Accord Optics:** Boosted if victories were visible, recorded, or
+  spun. Penalized if deaths outweigh PR gains.
+- **Street Temperature:** If PCs saved the child, word spreads fast. If
+  not, suspicion burns hotter than any torch.
+- **Machine Wake Clock:** Advance 1–2 ticks (of 6) for every uncanny
+  electrical event. The Choir remembers.
+
+</div>
+
+</div>
+
+Captain Lira Veyne surveyed the aftermath with a soldier’s calm. She
+barked orders to Security, who began clearing debris and stabilizing
+braces. Then she turned back to you. Her voice was low, but every word
+landed with weight. “You bought us time. Not victory. Haven doesn’t
+trade in victories anymore. Just time.” She studied you for a long
+moment, then added: “We’ll see what you do with it.”
+
+The workers carried their wounded away, their footsteps echoing like a
+drumbeat of endurance. The smell of resin clung to your skin, mingled
+with the metallic tang of blood. For all the chaos, there was no
+mistaking one fact: you had altered the rhythm of the Quarter. Whether
+for better or worse, you had become part of the story whispered in these
+tunnels. And stories in Haven had a way of spreading faster than light.
+
+As you ascended back toward the Quarter, the colony itself seemed to
+shift around you. Conversations hushed as you passed. Eyes followed you
+with mixtures of awe, suspicion, and calculation. Serin Vael awaited you
+at the manifold, arms folded, expression unreadable. She glanced at the
+survivors behind you, then at the child, then back at you. “Ledger’s
+open,” she said simply. “Where you fall in it—well, we’ll see.”
+
+Above, the dome’s aurora flickered again. This time, it was not random.
+Three pulses, one pause—the same motif the child had hummed. You could
+no longer dismiss it as coincidence. Haven was singing, and someone—or
+something—was teaching it the words.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Bridging into Arc 2
+
+</div>
+
+<div class="gm-b">
+
+- **Governor Orus Hestrel** summons the party for a “courtesy call” in
+  the Spire. His invitation is less request than verdict.
+- **Kaelen Drix** (Zeratek) demands return of salvaged drone parts,
+  offering firmware updates in exchange. His smile hides teeth.
+- **Director Sael** (Compliance Medicine) offers screenings for
+  “residual stress.” Volunteers rarely emerge unchanged.
+- **Saint** of the Accord pings: *“Bring me something they can’t spin—a
+  clip, a sample, a pattern. Make it sing even to the deaf.”*
+
+End Arc 1 with the party walking toward the Spire’s sealed doors. Let
+the building hum once—just enough to suggest the aurora’s song has
+reached even here.
+
+</div>
+
+</div>
+
+And so Arc 1 closed not with victory, but with silence. A silence filled
+with unspoken debts, unburied grief, and the faint, chilling suspicion
+that Haven’s voice was no longer human alone.
+
+<div class="subnav" style="margin-top:24px">
+
+<a href="#top" class="chip">Top</a>
+<a href="arc2.html" class="chip">Go to Arc 2</a>
+<a href="repo.html" class="chip">Open Dossier</a>
+
+</div>
+
+</div>

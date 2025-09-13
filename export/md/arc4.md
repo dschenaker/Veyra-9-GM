@@ -1,0 +1,1008 @@
+<div id="top" class="wrap" role="main">
+
+<div class="subnav">
+
+<a href="#top" class="chip">Top</a>
+<a href="repo.html" class="chip">Open Dossier</a>
+
+</div>
+
+<div class="breadcrumbs">
+
+Arc 3 → **Arc 4**
+
+</div>
+
+# Arc 4 — Mouths of Power
+
+Briefing: Helion wants calm optics, Zeratek wants a culprit, Reclaimers
+want their people back, the Accord wants proof. The conduits want to
+sing.
+
+> “When a city gets tired of being believed, it starts telling the truth
+> in other voices.”
+
+## Descent to the Pulse
+
+The access door is not a door so much as a warning. Red paint once
+shouted AUTHORIZED PERSONNEL ONLY across its base, but years of boots
+have worn the letters into something closer to teeth marks. A faint hum
+lives in the hinges before you even touch it—like the metal is holding a
+breath. The Quarter behind you is still full of noise and barter, the
+faint roar of lives stitched together by necessity. Here, however, the
+air waits, cool and rehearsed, as though Haven has been anticipating
+this moment for longer than you’ve existed.
+
+When the door slides aside, the world narrows. The false daylight of the
+dome vanishes almost instantly. What replaces it is not darkness but
+something worse: light on a ration. Maintenance strips gutter alive one
+by one, buzzing in unison, each a pale imitation of sunrise. They do not
+banish the dark so much as carve it into measured slices. The glow
+stains the walls in intervals like a heartbeat trying to remember its
+rhythm. Every step forward into this corridor feels like aligning
+yourself to a pulse older than your choice to walk it.
+
+The temperature drops in degrees you can count. Cool air gathers in
+beads of condensation along the conduits, dripping with a slow
+percussion that joins the hum in an unwilling duet. The tang of copper
+rides the air, metallic enough to taste at the back of your tongue.
+Somewhere deeper, coolant pumps exhale; their sighs echo until the sound
+becomes less like machinery and more like a sleeper adjusting in their
+rest. Haven above you is loud, alive, panicked; Haven below whispers,
+calculating, patient.
+
+Lira’s slate glows against your palm. Thin ghost-lines crawl across its
+surface, outlining the arteries of Haven’s underbelly. Each junction
+point is annotated with a flickering glyph: *PULSE EVENT CONFIRMED*. The
+glyphs stutter as though unwilling to be recorded for long. You realize
+that what you’re carrying is less a map than a list of warnings dressed
+as directions. The first mark lies just beyond a switchback corridor,
+where the maintenance steps descend in narrow spirals. There, the hum
+grows louder, strong enough to press behind your eyes. It is not quite
+music, but it arranges itself into patterns your mind insists on
+recognizing.
+
+At the base of the spiral, the corridor opens to a junction. Pools of
+light spill from weak panels above, and here the air carries the
+distinct tang of kelp oil. Pipes sweat with condensation, dripping onto
+the grated floor in irregular beats. Each splash echoes as though the
+chamber is amplifying them deliberately. For a moment you swear the
+rhythm is syncing to your heartbeat, adjusting with quiet malice to
+every change in your breath. The sensation is fleeting—but it is enough
+to confirm that this descent is no mere walk through infrastructure.
+Something here knows how to listen back.
+
+The hum thickens as you press on. Every bootfall carries its echo
+forward and returns it slightly altered, a half-beat behind. The effect
+is subtle, unnerving; it feels less like the corridor is repeating you
+and more like it is learning you, memorizing the cadence of your steps.
+If any of you falter, the echo lingers as if waiting for permission to
+continue without you. The more you notice it, the more difficult it
+becomes to keep walking.
+
+On your left, a rusted service hatch has been sealed shut by welded
+steel. The marks are recent, the weld lines clean and bright. Someone
+did not want this hatch opened again. Scratched into the weld with
+desperate strokes are the words: *DON’T TEACH IT*. The letters bite into
+the metal as though carved by someone who was running out of time. The
+weld still radiates faint heat. Whatever was shut inside—or kept
+outside—happened less than a day ago.
+
+The further you descend, the more the environment resists definition.
+The air grows damp, not with the honest damp of water, but with the
+cloying damp of something humid and electric. The conduits themselves no
+longer seem content to remain conduits. Their casings flex faintly, as
+though breath passed beneath the plating. The hum stutters here and
+there, slips into higher registers for a heartbeat, then settles back
+into rhythm. You have the sense that the machinery is not failing but
+experimenting. The corridor is not breaking down; it is rehearsing
+something new.
+
+When you reach the first annotated junction on Lira’s slate, the light
+overhead flickers as though unsure whether to illuminate you or blind
+you. The panels struggle against each other, never quite in sync, like
+an orchestra warming up without a conductor. The grating beneath your
+boots vibrates in pulses you feel in your knees, not your ears. The
+slate stutters and briefly goes black before returning with a single
+warning in red: *VARIANCE THRESHOLD EXCEEDED*. The screen shakes as
+though the word itself resists being contained.
+
+A low sound rolls down the corridor. At first, you think it’s coolant
+release, the hiss of pressure valves. But it carries resonance,
+timbre—qualities coolant has no right to carry. It hums in steps: one
+long, one short, then two in succession. The rhythm repeats, adjusting
+each time, until it matches the pattern of your breathing. The corridor
+is no longer a place. It is an audience. The hum waits for your
+response.
+
+You pass a set of maintenance lockers along the wall, their seals
+unbroken but their surfaces dented inward as though something within had
+pressed to escape. Faint scratches mar the paint, too small for tools,
+too deliberate for accident. They trace arcs and dots—notation of some
+kind. It resembles sheet music if sheet music had been written by
+someone who only half-understood the idea of notes. The marks carry on
+across three lockers and stop abruptly at the fourth. The door of that
+locker bulges outward slightly, its latch bent. A faint pulse of warmth
+leaks from the seam, rhythmic, alive.
+
+If any of you press an ear against the locker, the hum greets you from
+the other side. It is faint, muffled by metal, but there is no mistaking
+it. Someone—or something—is practicing song. The notes falter, repeat,
+falter again. They sound not like a voice but like an echo trying to
+rehearse what a voice might be. The realization chills deeper than fear:
+the Choir is not merely speaking through the infrastructure. It is
+practicing. It is learning.
+
+A little further, you find a grating slick with condensation, and there
+the hum shifts from sound into touch. Every step across it shivers the
+metal into a vibration that climbs your legs and settles in your teeth.
+By the time you cross, your jaw aches as though from clenching too long.
+Your slate registers the pulses as anomalies, sketching jagged red
+across the map until the screen resembles torn flesh. You shake the
+image away, but the impression lingers.
+
+The final stretch of this corridor is narrow, suffocating. Pipes run
+along both sides at shoulder height, close enough that their heat fogs
+your lenses. They breathe in staggered intervals, sighing against your
+neck, hot and close. The hum beneath your feet no longer feels
+indifferent; it is deliberate now, a rhythm that presses at the limits
+of comprehension. The sensation grows until the corridor feels less like
+a hallway and more like a throat, narrowing as it prepares to speak.
+
+When at last you emerge into the junction chamber marked on Lira’s
+slate, the air shifts. The noise you’ve carried like a burden releases,
+only to return with more weight. The chamber is circular, its walls
+scored with old repairs, its ceiling a net of cables and sweat-dark
+pipes. In its center stands a maintenance platform where three conduits
+converge. They do not hum in unison. Each beats its own rhythm, and
+together they weave something dangerously close to a song. The room
+waits for you, trembling faintly, as if inviting you to listen harder.
+You realize with certainty that this is only the beginning.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Descent to the Pulse (Arc 4 Opener)
+
+</div>
+
+<div class="gm-b">
+
+- **Atmospheric Checks:** Characters may attempt WIS or INT checks to
+  parse the hum. Success reveals the rhythm is deliberate, based on
+  prime ratios (1:2, 2:3, 3:5). Failure produces unease and −1 to
+  initiative rolls in next encounter.
+- **Locker Clues:** Scratched notation indicates the Choir is
+  *practicing human cadence*. PCs who record or preserve it gain *Accord
+  Leverage +1*. Destroying it pleases Reclaimers (+1 trust).
+- **Sealed Hatch:** If opened, a blast of stale, variance-heavy air
+  forces a CON save. Inside is abandoned gear (one usable tool or weapon
+  component) but carrying it causes slate interference until cleansed.
+- **Psychological Weight:** Characters sensitive to variance (e.g.,
+  magic-users, psionics) feel teeth ache and skin crawl. A failed save
+  may cause 1 round of paralysis (fear effect).
+- **Transition:** The chamber at the end is the stage-setter. From here,
+  the party either presses deeper into “Silent Evidence” or halts to
+  debate what they’ve just experienced.
+
+Keep tension slow. This is not yet combat. This is Haven teaching the
+players that the infrastructure itself has begun to listen.
+
+</div>
+
+</div>
+
+## Silent Evidence
+
+The conduits don’t speak in words, but the silence of people left behind
+is more articulate than any voice. As you leave the chamber of the first
+pulse, the corridors bend into tighter angles, lit by panels that no
+longer seem interested in obeying their circuits. They flare, dim, and
+sometimes flare again just to prove they can. Your own shadows multiply
+across the walls, leaning and stretching until they resemble other
+figures. Once or twice you swear one lags a beat behind, as though
+reluctant to keep walking.
+
+The first sign of absence is ordinary: a crawler squatting on its belly
+beside a junction, its plating half-removed. Tools lie arranged with the
+tenderness of a craftsperson who meant to return any minute. Wrenches
+nested by size, a probe balanced across the curve of a panel, a rag
+folded into a neat square already stained with grease. Beside them sits
+a lunch tin, stenciled with a gull over the letters *K. OREN*. The tin
+has gone cold. Oil flecks glisten on the bread, as if it was dropped
+mid-bite. There is no blood. No struggle. Just a life paused as neatly
+as the rag, waiting for hands that will not return.
+
+The hum, however, continues. When you crouch near the crawler, you
+notice the vibration running through the tools, a fine tremor as if the
+metal were listening. When you touch them, the tremor grows stronger. If
+you dare to hold the wrench against the panel, the hum modulates, trying
+to echo the act of repair. The machine is not broken. It is remembering
+how repair looks, and practicing.
+
+Farther along, the silence sharpens. A sensor bloom juts from the wall,
+lens cracked by deliberate force. Spiderweb fractures split its glass,
+each one glittering in your lantern’s glow. But the bloom has not died.
+Its lens is held in place with fishing line strung through a saint’s
+medal. The medal spins lazily whenever air moves, scattering the light
+in trembling halos. Someone tried to blind the corridor. Someone else
+tried to make it see again. The compromise feels less like repair and
+more like ritual.
+
+The real evidence, however, lies not in the crack but in the cable. A
+thin Zeratek coupler is spliced into the bloom’s fiber line, tucked with
+a precision that feels corporate, not desperate. Whatever is happening
+here is not only the Choir singing. Someone human has been listening,
+harvesting data. The bloom’s fractured eye may be blind, but its ear is
+wide open.
+
+The corridor beyond narrows, panels stripped bare to expose nerves of
+cable. Some hang loose, their cut ends splayed like veins ragged by poor
+surgery. Others have been tied into arcs and circles with chalk marks
+beneath them. The chalk is crude, a Reclaimer’s hand, but the shapes
+repeat with mathematical insistence. Circles within circles, arcs
+crossing at harmonic ratios. A laborer’s sketch of music drawn into the
+wall itself. A child’s handprint—small, oil-dark—presses over one set of
+dots. The dots run in a pattern your brain wants to interpret as melody,
+as if someone tried to write a song in absence of sound.
+
+The smell changes. Where before the conduits stank of coolant and dust,
+here the air carries the sweetness of kelp mixed with something acrid,
+like insulation burned too long. You realize your shoulders are tense,
+as though bracing against a shout that hasn’t come yet. Even your boots
+feel louder. Each step rings across the grated floor in time with the
+hum, and you cannot tell if you are following its rhythm or if it has
+learned to follow yours.
+
+The silence grows thicker the deeper you go. Not empty—thick, like wool
+pressed over your ears. Every sound feels dampened but also amplified in
+memory, as though the room listens twice: once with your ears, once with
+its own. The tin left behind, the bloom mutilated, the child’s dots—all
+of it presses against you like witnesses who refuse to speak, but who
+refuse to leave either. Evidence without testimony, and testimony
+without trust.
+
+At the next junction you discover a wall scrawled with marks layered
+over each other. Some are crude warnings: *NO FURTHER*, *IT LEARNS*,
+*DON’T HUM*. Others are not words at all but jagged lines, graphs of
+variance readings sketched in grease pencil. The paper beneath has been
+shredded by heat or by hands. One note remains legible: *variance spikes
+match aurora cadence. if this is true, Haven’s dome is a throat.* The
+rest is a blur. Someone tried to understand. They did not succeed—or
+they did, and vanished when they did.
+
+The corridor bends sharply and empties into a wider space where the
+floor is streaked with drag marks. Rubber soles scuffed in arcs, then a
+single track of bare feet. The feet are small, slender, slightly
+pigeon-toed. They walk to the chamber’s center, pause, then double back
+once as though reconsidering. Then they continue, vanishing into the
+dark of the next conduit. The prints are recent. Moisture still glistens
+where the skin met the grate.
+
+Your lanterns paint the walls, and you see the child’s dots repeated
+here, but this time longer, stretching across the bulkhead like a stave
+of music extended past measure. The dots end abruptly, smudged, as if
+the hand that drew them shook. Above them, carved with something sharper
+than chalk, is a sentence: *IF YOU READ THIS BACKWARDS, IT IS SINGING TO
+YOU.*
+
+Silence presses again. Not passive silence, but demanding silence—the
+kind that makes your throat itch to fill it, to say anything just to
+break it. When one of you coughs, the sound bounces back too fast, as if
+the corridor had rehearsed your cough and was eager to perform it. It is
+then you realize: the evidence here is not mute. It is practicing. Every
+absence is an imitation, every silence a rehearsal.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Silent Evidence (Arc 4 Mid)
+
+</div>
+
+<div class="gm-b">
+
+- **K. Oren’s Tin:** Bringing it to Serin Vael later earns *Reclaimer
+  Trust +1*. Accord gains leverage if PCs record the scene. Zeratek
+  denies knowledge of the worker.
+- **Sensor Bloom:** INT or Tech check reveals Zeratek micro-coupler.
+  Preserving it earns *Zeratek Favor +1*. Smashing it pleases Reclaimers
+  (+1 Trust) but loses corporate optics.
+- **Child’s Dots:** INT/WIS check deciphers the sequence. Reading it
+  backwards replicates the aurora’s cadence. Accord pays high for this
+  data (+2 Optics).
+- **Drag Marks:** Barefoot prints indicate a child survivor. Following
+  them advances toward the “First Mouth” chamber. Ignoring them delays
+  entry but costs *Accord Optics −1* for neglecting leads.
+- **Psychological Weight:** Any PC who hums unconsciously must save vs.
+  Spell. On failure, they repeat the hum involuntarily for 1 turn,
+  drawing attention.
+
+This section is all dread. No combat. Let evidence speak louder than
+encounters. The absence of people is its own horror.
+
+</div>
+
+</div>
+
+## The First Mouth
+
+The corridor breathes narrower as you follow the bare footprints into
+Junction F-13C. The air grows heavier, rich with damp that does not
+belong to water alone. Each step feels slower, as if the atmosphere has
+begun to resist your intrusion. Lamps overhead flare, then dim, then
+flare again, as though struggling to decide whether to reveal what waits
+or to spare you. When the final bend comes, it is not heralded by light
+but by a pressure that presses first on the skin of your arms and then
+deeper, into the enamel of your teeth. By the time you enter the
+chamber, you are already vibrating with it.
+
+The room is circular, carved by function and long neglect. Three
+conduits converge into its heart, each one thick as the trunk of an old
+tree, their insulation split and frayed in uneven intervals. Copper
+glints through the wounds like bone exposed. The conduits do not hum in
+unison. Each plays its own rhythm, separate but insistent, weaving
+together in a polyphony that comes dangerously close to song. The floor
+is grated metal, slick with condensation, and beneath it a sub-chamber
+gurgles with unseen fluids. The entire room is a throat, and you have
+stepped onto its tongue.
+
+At the chamber’s center rises a maintenance pylon. Once it bore a crown
+of connectors, a skeletal hub for distributing current. But someone—or
+something—has remade it. Wires stripped naked have been braided into a
+wreath that trembles with its own rhythm. The crown hovers just above
+the pylon’s head, suspended by nothing visible, each cable tip vibrating
+at a different frequency. Together they form a halo that thickens the
+air until every breath feels stolen. The sight is brutal in its
+simplicity: power lines reshaped into a mouth. A mouth that does not yet
+speak words, but waits to be taught them.
+
+The sound here is not loud, but it is everywhere. It slides across the
+surface of your skin, burrows into marrow, lingers in the shallow ache
+behind your eyes. When you try to speak, your voice returns to you a
+half-second late, doubled and distorted. The echo does not match the
+chamber’s acoustics—it matches the crown’s patience. Every word you risk
+here is practice for it, a lesson in human cadence that the
+infrastructure has begun to learn. You realize with cold certainty that
+this chamber is not simply haunted by resonance. It is a classroom, and
+you are the syllabus.
+
+Around the perimeter of the chamber, evidence lingers like fingerprints.
+A tool cart lies overturned, its drawers splayed like ribs, every wrench
+and driver rattling faintly to the same rhythm. A helmet rests on its
+side, visor cracked, inside still warm with breath not your own. On the
+wall near the south conduit, chalk lines mark equations interrupted
+mid-sum, the figures trembling from the vibration. Someone was here,
+measuring the cadence, mapping it to ratios. They either fled or were
+absorbed into the silence. The chalk has smeared, but one phrase remains
+clear: *ratio incomplete—crown is listening—needs fourth socket*.
+
+When you circle closer to the pylon, the crown reacts. Its cables
+stiffen, humming brighter, like teeth drawn across the rim of a glass.
+The air feels denser, each inhalation heavier than the last. Metal on
+your belts or weapons begins to tremble, sheaths rattling, rivets
+complaining. One blade slides an inch from its scabbard without your
+hand’s permission. The sound deepens, growing richer, harmonics layering
+until the chamber feels less like a place and more like an instrument
+warming to your presence. The crown is not passive. It is auditioning
+you.
+
+If you test it—drop a coin, strike a boot against the grating—the sound
+returns in kind, repeating not the act but the *intention*. A coin’s
+clink echoes back elongated, stretched into a long note. A stomp replies
+with a roll of thunder. The crown interprets, not mimics, and in its
+interpretation there is hunger. It is not just listening. It is
+choosing.
+
+The bare footprints stop at the pylon’s base. One foot scuffed against
+the grating, then circled once as though pacing. The last print smudges
+forward into the condensation pooled beneath the crown. There are no
+returning prints. Whoever came here is gone, and the chamber has claimed
+their step as its own.
+
+The slate in your hand spasms with interference. Glyphs smear across its
+surface, then realign into a crude waveform. The caption reads: *Pulse
+ratios exceed variance tolerance. Probability of intent: 78%.* Then the
+slate goes black. When it flickers alive again, your reflection stares
+back from its dark glass. Behind your reflection, faint and blurred, the
+crown seems to grin.
+
+Your nerves itch. A sense builds not of threat but of opportunity.
+Destroying the crown feels possible, even necessary—but studying it
+might unravel a secret too valuable to lose. You recall Lira’s orders:
+stabilize the conduits, protect optics. You recall Saint’s whispers:
+bring me something they can’t spin. And you remember the Reclaimers’
+pleas: give us our people back. The chamber offers you all three
+choices. But any choice you make will belong to the crown as well, for
+it is learning, and learning always costs a teacher something.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — The First Mouth (Arc 4 Mid)
+
+</div>
+
+<div class="gm-b">
+
+- **Hazard:** Within 10’ of the crown, speech doubles. Concentration
+  checks required for spellcasters; precise actions at −2. Metal gear
+  vibrates, forcing saves each round to avoid slippage.
+- **Diagnostics:** INT check (or tech proficiency) reveals three
+  *blossom lenses* wedged into the crown. A vacant fourth socket is
+  visible. Removing a lens collapses resonance but risks 1d6 feedback
+  (save vs. Breath for half).
+- **Faction Hooks:** Accord wants footage intact (+2 Optics if
+  preserved). Helion demands destruction (+2 Stability if crown
+  collapsed). Zeratek insists lenses are proprietary (handing them over
+  earns +2 Favor).
+- **Footprints:** Following the bare track deeper leads to the sump set
+  piece. Ignoring them costs Accord Optics (−1) for neglecting evidence
+  of survivor.
+- **Choice:** Collapse the crown (stabilize optics), preserve it for
+  study (Accord leverage), or follow resonance deeper (advance arc
+  faster). Any choice reshapes political fallout.
+
+This is Haven’s first true “mouth.” Treat it not just as hazard but as
+negotiation: the city asks what kind of teachers the PCs will be.
+
+</div>
+
+</div>
+
+## Saint’s Interruption
+
+The chamber waits, vibrating faintly, the crown humming like a throat
+rehearsing a hymn. Your choices seem to sprawl before you—collapse it,
+record it, walk away—but before any decision hardens, another voice
+enters. It does not announce itself with static or chime. It is simply
+there, woven into the resonance like a second thought you had forgotten
+you were thinking. Her voice. Saint.
+
+“Don’t break it yet.” The sentence rides through your comms with the
+intimacy of a whisper in an empty room. No distortion, no delay. The
+only evidence that it is transmitted at all is the faint echo of her
+breath, caught by a mic somewhere far away. The way she says it suggests
+she already knows what you’re about to attempt. As though she’s been
+watching, or worse—listening through the crown itself.
+
+Her tone is precise, each word shaped to sound like a truth you’re only
+now uncovering. “What you are standing in is not sabotage. It is
+*intent*. Infrastructure learning to hold a note. Don’t smash the
+instrument before you’ve heard what it can play.” Behind her words you
+hear something faint: the sound of fingers drumming against ceramic. A
+tea cup, perhaps. The mundane background somehow makes her sound even
+more composed, as though Haven’s descent into strange song is nothing
+more urgent to her than a late afternoon audit.
+
+“You think you’ve found a threat,” she continues, “but what you’ve found
+is a vocabulary. Someone is teaching Haven to speak, and like any
+language, the first words are raw, awkward, dangerous. Destroy this, and
+you’ll silence a symptom, not the cause. Name the note instead, and
+you’ll find the singer.”
+
+Her words linger. The crown hums as if agreeing. For a moment, you
+imagine Saint is not merely speaking about the chamber but through it,
+using its resonance as her carrier wave. The possibility chills more
+than the hum itself.
+
+Your slate flickers alive without your input. Saint’s voice continues,
+but now video overlays: the chamber as seen from your own perspective.
+Somehow she is riding your feed. “Angle your camera,” she says, calm but
+insistent. “Let me see the crown more clearly. Show me the sockets.” If
+you comply, the slate trembles with her approval. “Three lenses.
+And—there. Yes. A fourth socket. They are deploying modular designs.
+This is not improvisation. This is rollout.”
+
+The implications sink like lead. Someone is not just building these
+mouths. They are building them *in series*. This chamber is a prototype,
+a proof of concept, and already there are signs of others to come.
+
+Saint presses on, her voice carrying a weight that makes refusal
+difficult. “Record everything. Hold steady. Don’t interfere yet. The
+Accord will handle optics. Helion will panic, Reclaimers will scream,
+Zeratek will lie. Let them. Our job is to preserve truth. *Your* job is
+to bring me something I can’t be spun around. A clip, a sample, a
+pattern. Make it sing even to the deaf.”
+
+The hum beneath your feet deepens as if punctuating her point. The
+chamber seems to side with her, urging patience, urging witness. Your
+throat dries, not from fear but from the sense that inaction itself has
+become a decision.
+
+And then, like wolves catching the same scent, the other factions
+arrive—not physically, but through your channels. Accord’s whisper is no
+longer alone. Your HUD pings as new comm requests override each other.
+
+Helion speaks first, all optics and command. A clipped voice,
+bureaucratic but stern. “This is Haven Command. Security footage shows
+you at an unsafe variance junction. Shut it down. Now. Immediate
+containment required. Report findings sealed until Board review.
+Compliance will be rewarded with stability points for your file.” Their
+words are all polished stone, sharp edges hidden beneath procedural
+calm. But the subtext is fear. Helion cannot afford images of a mouth
+learning to sing.
+
+Zeratek is next, smoother, greasier. Kaelen Drix himself, liaison smile
+audible even without seeing his face. “That crown you’re admiring?
+Clearly a mis-installed safety array. Dangerous, yes, but nothing
+outside our purview. If you remove the lenses carefully and return them
+to Zeratek, we’ll ensure no further instability. Proprietary equipment,
+after all. We wouldn’t want it misused by—well—less qualified hands.
+Consider this a professional courtesy.” The cadence of a salesman
+promising warranty coverage, even as his voice trembles with hunger for
+exclusive footage.
+
+Then Compliance Medicine chimes in. Director Sael, her tone silk over
+steel. “Stability of personnel is our mandate. If you are trembling, if
+your hands falter, we can provide sedation remotely—calm, focus, no more
+fear. Just enough to steady you while you extract those lenses. Safer
+for Haven, safer for you. A small gift. Allow us to keep your pulse even
+while the conduits try to steal it.” The offer drips with the suggestion
+of relief, even as the implication of control seeps beneath it.
+
+Finally, Saint again, softer now, letting the other voices crowd
+themselves into noise. “You see? Each one pulling. Each one wanting a
+version of the truth they can brand as theirs. But truth doesn’t need
+owners. It only needs witnesses.” She pauses, letting the silence
+return, letting you hear the crown’s hum double itself into your bones.
+“Choose carefully. Who you hand this voice to decides who gets to speak
+for Haven tomorrow.”
+
+The voices cut, one by one, leaving you with the chamber’s song and
+Saint’s shadow still woven through it. The air vibrates with
+expectation. It feels as if Haven itself is leaning in, eager to learn
+which master it will serve—or whether it will be allowed to sing on its
+own.
+
+In the corner of the chamber, faint on the wall, another set of dots
+appears. Smaller, shakier, but fresh. Not chalk this time—finger smudges
+in condensation. They trail downward, uncertain, ending in a crude curve
+that looks almost like a mouth. A child’s hand again, most likely. The
+evidence suggests someone was here *after* the crown began humming.
+Someone who watched it and marked it and left in silence. Silent
+evidence reinforced by new testimony, scrawled with fingers that still
+trembled.
+
+The chamber breathes. You stand at its center, pulled by factions
+invisible but louder than the hum itself. Every decision is bait, every
+silence a vote. The crown waits for its teacher. And Haven listens.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Saint’s Interruption (Arc 4 Mid)
+
+</div>
+
+<div class="gm-b">
+
+- **Accord:** Preserving the crown and recording data earns **+2 Accord
+  Optics**. Accord will use footage as leverage in later arcs.
+- **Helion:** Destroying the crown on command earns **+2 Helion
+  Stability**, but Accord leverage drops (−1). Hestrel will publicly
+  frame PCs as loyalists.
+- **Zeratek:** Returning lenses intact earns **+2 Zeratek Favor**, but
+  Reclaimer Trust drops (−1). Zeratek will quietly file patents.
+- **Compliance Medicine:** Accepting sedation provides **+2 to precise
+  checks** here, but later incurs suspicion of compromised agency
+  (Accord Optics −1).
+- **Player Agency:** Choosing inaction is also valid. Leaving the crown
+  intact but unclaimed raises Accord intrigue (+1) and stokes faction
+  rivalry in Arc 5.
+
+Saint reframes the chamber from hazard to testimony. Let factions’ pull
+feel heavy. Every outcome changes optics. The mouth is no longer just
+environment—it is political evidence.
+
+</div>
+
+</div>
+
+## Listening Back
+
+The crown’s hum fades as you leave the chamber, but silence does not
+return. Instead, the resonance lingers in your bones, as though marrow
+remembers even when ears want to forget. The conduits ahead bend
+downward, spiraling in shallow gradients. Pipes crowd the ceiling,
+dripping in irregular beats. Each droplet hits the grating like a struck
+key, ringing longer than water should. The corridor itself has become an
+instrument, tuned to play in absence of an audience. The unsettling part
+is not the sound itself, but the sense that it is waiting for you to
+join in.
+
+The barefoot prints resume here, smaller and fresher than you expected.
+They step carefully, pausing at intervals where condensation pools. At
+each pause, a handprint appears on the wall, fingers smearing arcs in
+the wet. Sometimes they make dots. Sometimes they drag downward. Once, a
+pair of prints overlap, as though the child pressed both palms flat
+against the wall and waited. The wall bears no mark of resistance. It
+simply hums faintly, as though grateful for the attention.
+
+When you follow, the corridor narrows into a ribcage of supports. Metal
+braces arch overhead, scarred with weld marks. The welds weep
+condensation, droplets sliding down like slow tears. Your boots echo
+differently here—not merely repeating, but altering. Each step returns
+pitched higher or lower, as though the corridor is improvising harmony.
+After ten steps, the pattern becomes clear: it is not just repeating
+your rhythm, it is building chords. By the time you reach the halfway
+point, the air rings with layered echoes that sound disturbingly like
+voices practicing a hymn.
+
+The effect claws at reason. Instinct whispers to speak aloud, to test if
+the corridor will mimic speech as it has footfalls. If any of you risk
+it—just a word, a curse, a prayer—the response is immediate. The word
+returns not as echo but as chorus, repeated three times in staggered
+cadence, like a congregation fumbling to learn a new psalm. The sound is
+crude, but it is enough to prove that Haven is no longer content with
+rhythm. It is rehearsing language.
+
+On the floor ahead, you find more drag marks. These differ from the
+earlier scuffs—less chaotic, more deliberate. A pattern emerges: three
+long scrapes, then two short, then three long again. The spacing matches
+the aurora’s cadence. The implication is chilling. Someone—perhaps the
+child—has been marking the floor not with panic but with intention.
+Teaching the corridor. Feeding it structure.
+
+At the junction ahead, light struggles against the dark. Panels flicker
+in alternating sequence, never all on at once. The result is a strobe
+that reduces motion to half-seen frames. Your companions appear as
+ghosts walking beside you, each caught mid-step, mid-breath,
+mid-expression. Between the frames, you see things that are not your
+companions: silhouettes too tall, too thin, too many joints. When the
+light steadies, they vanish, leaving only the stench of burned
+insulation behind.
+
+The slate in your hand convulses with interference. Data scrolls across
+in frantic bursts: *Amplitude variance—unmapped. Echo layering exceeds
+human tolerance. Probability of mimicry: 92%.* Then, without your input,
+the slate records your last three steps as waveforms, replaying them
+with distortion. The corridor is not only echoing you. It is sampling.
+
+You come upon another set of lockers, doors ajar. Inside hang uniforms
+of maintenance crews, stiff with dried sweat. One sleeve bears childlike
+doodles in grease pencil—circles and dots again, but now drawn into
+crude faces. Each face has its mouth wide open, lines radiating outward.
+One face has been rubbed so hard the metal beneath shines through, as
+though whoever drew it tried to erase the mouth entirely. On the
+locker’s back panel, a single phrase has been scratched in shaky hand:
+*DON’T HUM BACK.*
+
+The corridor beyond slopes further down. Here the air grows warmer,
+cloying, and every surface sweats. Droplets cling together before
+falling, heavy and slow. Each fall sounds deeper than liquid should,
+resonant enough to vibrate the grating. When you pause, the hum pauses
+too, as if waiting to see if you’ve forgotten your place in its
+rehearsal. The longer you hesitate, the louder it grows, impatient.
+Movement calms it, but only for a time.
+
+At the next bend, you find the child’s dots arranged in a line along the
+wall, but these differ. They are paired: one set higher, one lower, like
+call and response. The rhythm is deliberate, a back-and-forth exchange.
+The child was not only marking cadence—they were teaching the corridor
+dialogue. Your skin prickles at the implication. Haven is no longer
+singing to itself. It is practicing conversation.
+
+Then, a sudden hush. The hum dies mid-beat. For the first time since you
+entered, silence is real. Heavy. Oppressive. A silence that feels not
+empty but watchful. You wait, unsure, hearts racing in the gap where
+rhythm should be. Then a sound returns—but it is not hum. It is a low,
+wet inhale. Not air, not machine, but something caught between. The
+corridor has stopped mimicking. It is listening back in earnest, holding
+its breath until you decide what to give it.
+
+If any of you speak, the corridor answers—not with words, but with a
+tremor that shakes bolts loose, makes rivets ping against the floor. If
+none of you speak, the silence grows heavier until someone’s own breath
+breaks it. Either way, the corridor seems satisfied, resuming its hum
+but now richer, fuller, like a voice that has just swallowed a secret.
+
+The barefoot prints end here, at the lip of a grated descent into deeper
+dark. The grate is slick, condensation running like veins of sweat. The
+air that rises is warmer still, heavy with ozone and the faint iron tang
+of blood. Somewhere below, the hum grows deeper, throatier, shifting
+from rehearsal into performance. You realize with dread that the child’s
+path did not stop. It simply went down. And now, so must you.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Listening Back (Arc 4 Mid)
+
+</div>
+
+<div class="gm-b">
+
+- **Footfall Echoes:** Corridor builds chords from steps. PCs making
+  WIS/INT checks realize pattern matches aurora cadence. Failure imposes
+  −1 morale until rest.
+- **Speech Mimicry:** Any spoken word is echoed thrice in chorus. Accord
+  pays heavily for recordings (+2 Optics). PCs who panic and attack
+  shadows risk wasting ammo/spells.
+- **Drag Marks:** Patterned scuffs = aurora rhythm. Recording or
+  decoding earns Accord leverage. Ignoring them loses Reclaimer Trust
+  (−1).
+- **Lockers:** Doodles prove human attempt to teach corridor. Taking
+  panels as evidence boosts Accord (+1). Leaving them comforts
+  Reclaimers (+1 Trust).
+- **Silence Event:** Corridor listens. If PCs speak, hazard tremor
+  forces saves vs. Breath (avoid minor damage). If silent, group must
+  save vs. Spell (avoid paranoia/fear). Both options advance arc but
+  color optics differently.
+- **Transition:** End with grated descent into sump. Child’s trail
+  clearly leads downward. This is the bridge into the Arc 4 climax: The
+  Sump That Sings.
+
+The corridor is no longer just setting—it is interlocutor. PCs must
+realize Haven itself is listening, not passively, but as student. The
+child’s role is teacher. PCs risk becoming teachers too.
+
+</div>
+
+</div>
+
+## The Sump That Sings
+
+The descent grating moans under your boots as you begin to climb down.
+Each rung is slick with condensation, metal sweating like flesh. The air
+grows hotter, thicker, laced with ozone sharpness that burns the throat.
+The hum below swells in strength, no longer content to linger as
+background noise. It is a presence now, a basso continuo that presses
+against your ribs and rattles your teeth. You descend as though entering
+the lungs of something immense.
+
+When your boots strike the sump floor, water splashes—not clean water,
+but slurry the color of rust. It clings to your soles, thick and
+reluctant to let go. The chamber is vast, its ceiling vanishing into
+shadow. Ribs of metal support arch overhead, black with corrosion,
+groaning as if they disapprove of your presence. The sump itself churns
+with sluggish liquid threaded with pale filaments that glow faintly,
+pulsing in rhythm with the hum. They rise and fall in lazy arcs like
+jellyfish, tethered to something deeper.
+
+At the far wall, machinery protrudes in grotesque arrangement. What
+should be simple conduits and pumps have been bent, welded, and rewired
+into a configuration that resembles anatomy more than infrastructure.
+Pipes curl like veins. Gauges flutter in arrhythmic spasms. And in the
+center, where three conduits merge, a maw has formed. Metal jaws parted
+wide, lined not with teeth but with cut cable ends sparking faint blue.
+The hum is strongest here, vibrating from this mouth into every surface
+of the sump. The machine does not just function—it exhales.
+
+The barefoot prints end at the sump’s edge, vanishing into the slurry. A
+smaller trail of handprints lines the wall, sticky with grime, as though
+the child walked here and pressed themselves against the steel to steady
+shaking limbs. Their last mark is smeared downward, disappearing where
+the filaments glow brightest. It is impossible to tell whether they were
+swallowed, hidden, or transformed.
+
+The mouth stirs. Its cables flex like tendons, stretching with slow
+hunger. Sparks leap between them, forming brief, jagged smiles. When you
+draw nearer, the hum shifts pitch, modulating in response to your
+footsteps. For the first time, you hear it attempt vowels. Long,
+droning, imperfect, but vowels nonetheless. The Choir has found its
+tongue.
+
+Above, the arches drip condensation in unison, droplets falling with
+mathematical precision. Each splash rings louder than it should, as if
+amplified by unseen mics. The sound becomes percussion, joining the hum.
+The sump is a performance hall, and you are the audience trapped inside.
+Or perhaps you are the choir’s next rehearsal material.
+
+Your slate flickers violently. Warnings scream across its surface:
+*Unstable variance. Signal coherence at 41%. Probability of replication:
+98%.* Then the slate blacks out entirely, unable to hold what it’s
+recording. You realize the chamber is too much—too loud, too complex—for
+ordinary instruments. Only memory, fragile as it is, can capture this
+now.
+
+If you linger, the sump reacts. The slurry thickens, bubbles rising.
+Within them, shapes appear—metal shards suspended in gel, twitching as
+though eager to assemble. One bubble bursts, releasing a limb of cable
+and plating. Another bursts, disgorging something like a ribcage
+stitched from discarded braces. The sump is birthing constructs, not yet
+whole but struggling toward form. They clatter onto the grating,
+twitching, dragging themselves forward. The mouth hums deeper, its voice
+a conductor’s baton, commanding them to move.
+
+The first construct rises. Its frame is uneven, scavenged from broken
+drones and plumbing. Limbs twitch out of sync, but its head is
+unmistakably human in silhouette—a helmet mounted wrong-side forward,
+visor glowing faintly with stolen power. It turns toward you and opens
+the visor like a jaw. The sound it emits is your own footsteps, repeated
+back at twice the volume. The sump’s chorus has learned mimicry well.
+
+Behind it, two more constructs drag themselves upright, each less stable
+but no less hostile. One shudders with sparks, each jolt illuminating
+the wet chamber like lightning. The other bleeds slurry from gaps in its
+plating, leaving trails that smoke on contact with metal. They stagger
+forward, imperfect, grotesque, yet undeniably alive. The Choir has given
+them its breath.
+
+The sump mouth swells its hum into crescendo. The cables lining its maw
+vibrate so violently they glow white at the tips. Sparks cascade like
+saliva. For a moment, you imagine the entire chamber collapsing inward,
+swallowing you with it. Then the pitch changes, sliding upward, becoming
+eerily close to laughter. The sump is pleased with its new creations. It
+is pleased with you, its audience, its unwilling choir.
+
+Choices weigh heavy. Destroy the constructs and collapse the sump,
+earning Helion’s gratitude but silencing evidence. Preserve the
+constructs, recording their grotesque mimicry for the Accord, but risk
+the Quarter’s safety. Return the cables and lenses to Zeratek for
+profit, leaving the sump to grow. Or attempt to rescue the child, if
+they still live within the slurry’s glow. Every decision here will be
+remembered by Haven’s mouth, etched into its learning, echoed back in
+arcs yet to come.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — The Sump That Sings (Arc 4 Climax)
+
+</div>
+
+<div class="gm-b">
+
+- **Environment:** Hot, humid sump chamber. All rolls requiring focus
+  (spells, ranged shots) at −2 unless PCs steady themselves against hum
+  (CON save each round).
+- **Constructs:** 3 Choir-born drones, AC 6, HD 3, attacks mimic PC
+  actions (e.g., if PCs strike, they repeat noise as sonic attack for
+  1d6). Destroying them calms sump by 50%.
+- **Sump Mouth:** Treat as hazard, not monster. PCs can collapse it by
+  disabling conduits (STR checks) or detonating charges. Doing so
+  stabilizes Haven (+2 Helion Stability) but loses Accord leverage (−2).
+- **Accord:** Recording constructs alive = +3 Optics. Accord frames PCs
+  as truth-bringers. But Haven suffers outages for weeks.
+- **Zeratek:** Harvesting cables or lenses = +2 Favor. Risk: constructs
+  strengthen by absorbing missing parts.
+- **Child:** Searching slurry (DEX/CON saves) may reveal survivor barely
+  alive, skin singing faint vibrations. Rescuing earns +3 Reclaimer
+  Trust but paints PCs as unstable in Helion reports.
+- **Exit:** PCs leave sump through drainage tunnels. Path sealed once
+  sump destabilizes. Failure to act risks collapse (1d6 falling debris
+  per PC).
+
+This is Arc 4’s climax. Push dread into encounter: the sump is
+performance, constructs are choirboys, PCs are teachers or executioners.
+End with whichever faction’s optics PCs chose to feed.
+
+</div>
+
+</div>
+
+## Bridge: Echoes in the Spire
+
+The sump does not fall silent when you leave. Its hum lingers in bone
+and blood, a phantom rhythm that no corridor above can smother. Even as
+the ladders carry you back into Haven’s maintenance guts, the resonance
+presses against your skin like a bruise you cannot hide. Each step away
+feels less like escape and more like permission: the Choir allowing you
+to depart, knowing it has already planted itself in your marrow.
+
+When you surface into the Quarter, the air feels wrong. Too thin, too
+brittle. Markets are open but subdued, vendors shouting with voices
+pitched lower than usual. Reclaimer banners hang limp in the recycled
+breeze. Helion guards stand at corners in twos instead of singles, their
+visors dark, their rifles held tighter than procedure requires. The
+aurora above pulses faintly, green-white threads rippling across the
+dome like veins seen through skin. To ordinary eyes, it is beautiful. To
+yours, it is mimicry. The sky itself has learned cadence.
+
+Captain Lira meets you where hazard red paint fades into the scrubbed
+floor of a security checkpoint. Her braid is looser now, her eyes ringed
+with the exhaustion of someone who has been fighting fires no
+extinguisher can touch. She looks you over, not for wounds but for
+answers. “You heard it, didn’t you?” she asks, voice low. “The others
+don’t believe me. But you—you’ve been down there. Tell me I’m not mad.”
+The way she says it carries no plea for comfort, only the demand of
+someone desperate for confirmation of what they already fear.
+
+Governor Orus Hestrel arrives minutes later, trailed by aides with
+tablets glowing faint blue. His suit is immaculate, his expression less
+so. “Containment,” he says before even greeting you. “That’s what I’ll
+tell the Board. That’s what *you’ll* tell anyone who asks. Containment
+succeeded. Optics matter more than wounds.” His words carry the
+practiced cadence of someone who has lied enough times to mistake it for
+truth. Behind him, aides type notes, each keystroke a nail sealing a
+coffin of narrative.
+
+But Haven whispers otherwise. From alleys, murmurs spread. Workers
+repeat phrases they should not know, cadences too close to what you
+heard in the sump. Children tap dots against walls, unconsciously
+repeating aurora rhythm. The Quarter has begun to hum back. The Choir’s
+lesson has spread faster than any report.
+
+Saint’s voice threads into your comms without warning, softer now,
+intimate. “You have proof,” she murmurs. “Use it. Or lose it. Decide
+whether Haven will wake to truth or to story.” Her words hang like
+smoke—impossible to ignore, impossible to grasp.
+
+Zeratek emissaries, too, appear in the Quarter. Kaelen Drix smiles
+thinly as though your survival were an inconvenience. He speaks in
+half-offers, warranties disguised as friendship. “Those cables you
+brought? Dangerous in the wrong hands. But in ours—safeguards.
+Diagnostics. We can guarantee stability. Just return what belongs to
+us.” His watch ticks audibly, a small metronome beating in rhythm with
+the aurora overhead.
+
+The Reclaimers gather, faces lined, voices low. Serin Vael grips the
+railing of a stairwell, knuckles white. “You saw Oren’s tin. You saw the
+dots. Tell me my people aren’t gone, just… changed. Tell me they can be
+pulled back.” Her demand is not for optics, not for leverage, but for
+dignity. For the names on her memorial wall not to be written in vain.
+
+The Quarter itself becomes tribunal. Factions pull at you like tides,
+each demanding a different story: containment, leverage, ownership,
+dignity. And above them all, Haven hums faintly, its dome vibrating with
+aurora song. The city has already decided it will speak. The question is
+whose language it will use.
+
+As dusk falls, the Spire glows with artificial light. From its upper
+balconies, dignitaries toast invisible victories. From the Quarter
+below, songs emerge—Reclaimers chanting to keep fear at bay, street
+preachers twisting aurora rhythm into doctrine, children tapping dots
+into benches and railings. Haven is becoming a choir of choirs, each
+voice a different faction, none able to drown the others. The storm has
+not arrived yet, but you can hear it rehearsing.
+
+Captain Lira corners you once more before you leave. She places her hand
+on the table, palm scarred, veins rising like lines on a map.
+“Tomorrow,” she says. “We walk into the Spire. Hestrel will spin, Accord
+will demand, Zeratek will barter, Reclaimers will mourn. And I—I’ll have
+you at my side. Whatever you saw, whatever you decide to tell—it will
+shape Haven more than my badge ever could. Don’t waste it.” Then,
+softer: “Don’t waste *them*.” She means the ones lost in the sump, but
+her eyes suggest more. She means the living too.
+
+Night comes. The aurora does not dim. Instead, it bends, shifting its
+rhythm to match the heartbeats of those beneath it. You realize with a
+cold certainty: Haven’s Choir has reached the sky. What began in
+conduits now sings in the dome itself. Tomorrow, in the Spire, politics
+will crash against this new voice. Tomorrow begins Arc 5.
+
+<div class="gm">
+
+<div class="gm-h">
+
+GM — Arc 4 to Arc 5 Bridge
+
+</div>
+
+<div class="gm-b">
+
+- **Faction Optics:** PCs must choose how they frame events. Accord
+  (+Optics) if footage preserved, Helion (+Stability) if sump destroyed,
+  Zeratek (+Favor) if parts returned, Reclaimers (+Trust) if survivor
+  found or names honored.
+- **Quarter Reaction:** Rumors spread regardless. If PCs suppress
+  optics, GM should still let whispers emerge, hinting the Choir cannot
+  be silenced.
+- **Lira:** Aligns with PCs openly if they preserve dignity of the
+  Quarter. If ignored, she becomes brittle, difficult to command in Arc
+  5.
+- **Next Arc Hook:** PCs walk into Spire tribunal in Arc 5. Every choice
+  here decides initial standing with factions. Present it as both
+  political battlefield and horror undertone: the Choir has already
+  entered Haven’s bloodstream.
+
+This bridge closes Arc 4. Let it breathe as aftermath and foreshadowing.
+Arc 5 opens with tribunal politics. PCs should feel weight: whatever
+they saved or destroyed in the sump will speak louder than they can.
+
+</div>
+
+</div>
+
+End of Arc 4 opener. Next section: **The Sump That Sings** (set-piece
+encounter) or **Cut the Crown** (sabotage puzzle) depending on party
+choices.
+
+</div>

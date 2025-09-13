@@ -1,0 +1,23 @@
+:root{
+  --theme-color: #0b3d7a;         /* links, accents */
+  --base-font-size: 17px;
+  --content-max-width: 920px;
+  --mono-font: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+html,body{background:#f6f7fb;color:#0b0f18;}
+.sidebar {border-right:1px solid #d7dbea;}
+.sidebar .app-name {font-weight:800; color:#0b3d7a;}
+.markdown-section{background:#fff;border:1px solid #d7dbea;border-radius:12px;padding:28px;margin:24px auto;}
+a{color:#0b3d7a;}
+a:hover{filter:brightness(1.08); text-decoration:underline;}
+blockquote{border-left:4px solid #6aa0ff;background:#eef5ff;}
+code{font-family:var(--mono-font);}
+.app-nav {border-bottom:1px solid #d7dbea;}
+.pagination-item a{border:1px solid #d7dbea;border-radius:8px;}
+/* Cover page */
+.cover{background:linear-gradient(180deg,#eef5ff,transparent 40%), #f6f7fb;}
+.cover .cover-main h1{font-weight:900; color:#0b3d7a;}
+.cover .cover-main p{color:#3a4150}
+.cover .cover-main a{border-radius:999px; padding:.6rem 1rem; border:1px solid #c9d8ff; background:#eaf1ff;}
+body { font-family: 'Georgia', serif; }
+.cover h1 { font-size: 3em; color: #222; }
