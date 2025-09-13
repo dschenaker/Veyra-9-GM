@@ -104,5 +104,121 @@
     });
   });
 </script>
+<script>
+/**
+ * Docsify plugin: progress bar + prev/next based on _sidebar.md
+ * - On cover (#/), Next jumps to the first entry in _sidebar.md
+ * - On regular pages, Prev/Next follow sidebar order
+ * - Progress bar updates on scroll
+ */
+(function () {
+  let navOrder = [];
+
+  async function loadSidebar() {
+    if (navOrder.length) return navOrder;
+    try {
+      const res = await fetch('./_sidebar.md?_=' + Date.now());
+      const md  = await res.text();
+      const re  = /\[([^\]]+)\]\(([^)]+)\)/g;
+      let m; navOrder = [];
+      while ((m = re.exec(md)) !== null) {
+        const href = m[2].trim();
+        if (href.startsWith('http') || href.startsWith('#')) continue;
+        navOrder.push({ title: m[1].trim(), href });
+      }
+    } catch (e) {
+      console.warn('Failed loading _sidebar.md', e);
+    }
+    return navOrder;
+  }
+
+  function cleanRoutePath(p) {
+    return (p || '').replace(/^\#\//,'').replace(/^\.\//,'').replace(/\/+$/,'');
+  }
+
+  function computePager(route) {
+    const curr = cleanRoutePath(route.path);
+    const first = navOrder[0] || null;
+    // If we're on the cover (empty path), treat "current" as before first item
+    if (!curr) return { prev: null, next: first };
+
+    const idx = navOrder.findIndex(x => cleanRoutePath(x.href) === curr);
+    if (idx === -1) {
+      // Unknown route (e.g., manual hash) -> default to first as "next"
+      return { prev: null, next: first };
+    }
+    const prev = idx > 0 ? navOrder[idx - 1] : null;
+    const next = idx < navOrder.length - 1 ? navOrder[idx + 1] : null;
+    return { prev, next };
+  }
+
+  function setLink(el, item, fallbackText) {
+    if (!el) return;
+    if (item) {
+      el.removeAttribute('disabled');
+      el.href = '#/' + cleanRoutePath(item.href);
+      el.textContent = item.title;
+    } else {
+      el.setAttribute('disabled', 'true');
+      el.href = '#/';
+      el.textContent = fallbackText;
+    }
+  }
+
+  function updatePagerLinks(route) {
+    const prevEl = document.getElementById('pager-prev');
+    const nextEl = document.getElementById('pager-next');
+    if (!prevEl || !nextEl) return;
+
+    const { prev, next } = computePager(route);
+    setLink(prevEl, prev, 'Start');
+    setLink(nextEl, next, 'End');
+
+    // Optional: hide pager on cover if you want no controls there.
+    // const onCover = !cleanRoutePath(route.path);
+    // document.getElementById('pager').style.display = onCover ? 'none' : 'flex';
+  }
+
+  function updateProgress() {
+    const bar = document.getElementById('progress');
+    const sc  = document.scrollingElement || document.documentElement;
+    const max = Math.max(1, sc.scrollHeight - sc.clientHeight);
+    const pct = Math.min(100, Math.max(0, (sc.scrollTop / max) * 100));
+    if (bar) bar.style.width = pct + '%';
+  }
+
+  function onKey(e) {
+    const LEFT = 37, RIGHT = 39;
+    if (e.keyCode === LEFT) {
+      const a = document.getElementById('pager-prev');
+      if (a && !a.hasAttribute('disabled')) a.click();
+    } else if (e.keyCode === RIGHT) {
+      const a = document.getElementById('pager-next');
+      if (a && !a.hasAttribute('disabled')) a.click();
+    }
+  }
+
+  window.$docsify = window.$docsify || {};
+  window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
+    hook.init(async function () {
+      await loadSidebar();
+      updatePagerLinks(vm.route);
+      updateProgress();
+      document.addEventListener('scroll', updateProgress, { passive: true });
+      document.addEventListener('keydown', onKey);
+    });
+    hook.doneEach(function () {
+      updatePagerLinks(vm.route);
+      setTimeout(updateProgress, 50);
+    });
+  });
+})();
+</script>
+<!-- reading progress bar + pager anchors -->
+<div id="progress"></div>
+<nav id="pager">
+  <a class="prev" id="pager-prev" href="#" aria-label="Previous chapter"></a>
+  <a class="next" id="pager-next" href="#" aria-label="Next chapter"></a>
+</nav>
 </body>
 </html>

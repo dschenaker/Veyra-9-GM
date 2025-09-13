@@ -79,3 +79,66 @@ section.cover .cover-main h3 {
   box-shadow:0 6px 18px rgba(11,61,122,.18)}
 .pager .btn:hover{filter:brightness(1.08)}
 .pager .spacer{flex:1}
+/* === Reading progress bar (top) === */
+#progress {
+  position: fixed; top: 0; left: 0; height: 4px; width: 0%;
+  background: linear-gradient(90deg, #6aa0ff, #0b3d7a);
+  box-shadow: 0 0 6px rgba(0,0,0,.25);
+  z-index: 9999; transition: width .12s ease-out;
+}
+
+/* === Prev/Next pager (bottom-right) === */
+#pager {
+  position: fixed; right: 18px; bottom: 18px; z-index: 9998;
+  display: flex; gap: 8px; align-items: center;
+  font: 14px/1.2 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+}
+#pager a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 14px; border-radius: 999px; text-decoration: none;
+  background: #0b3d7a; color: #fff; border: 0;
+  box-shadow: 0 6px 18px rgba(11,61,122,.25);
+}
+#pager a[disabled] {
+  pointer-events: none; opacity: .45; filter: grayscale(1);
+}
+#pager .prev::before { content: "←"; font-weight: 700; }
+#pager .next::after  { content: "→"; font-weight: 700; }
+
+/* Make sure the bottom pager doesn’t overlap long footers */
+.docsify-pagination-container { margin-bottom: 64px; }
+
+/* Small screens: tuck pager in a bit */
+@media (max-width: 720px) {
+  #pager { right: 12px; bottom: 12px; }
+  #pager a { padding: 9px 12px; }
+}
+/* === Pager placement & look ============================================ */
+#pager{
+  position: fixed;            /* float over the page (all routes)        */
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 1200;
+}
+#pager a[disabled]{
+  opacity: .45;
+  pointer-events: none;
+}
+
+/* Mobile nudge */
+@media (max-width: 640px){
+  #pager{ right: 12px; bottom: 12px; gap: 8px; }
+}
+
+/* --- Optional: if you prefer the pager centered *under the cover* only,
+   uncomment the block below and it will sit beneath the hero instead of
+   floating bottom-right on the cover page.
+.cover #pager{
+  position: static !important;
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+*/
