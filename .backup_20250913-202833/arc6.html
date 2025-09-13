@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — GM Hub · Arc 6</title>
+<style>
+/* ===== Veyra-9 GM Hub · Base Theme ===== */
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+/* Links */
+a{color:var(--brand); text-decoration:none}
+a:hover{filter:brightness(1.08); text-decoration:underline}
+/* Header / Nav */
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.brand{font-weight:800; color:var(--brand)}
+nav a{
+  display:inline-block; margin-right:10px; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600;
+}
+nav a:hover{background:#f4f7ff}
+.clock{margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
+  color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700}
+/* Layout */
+.wrap{max-width:1100px; margin:0 auto; padding:20px}
+.breadcrumbs{color:var(--muted); margin:6px 0 14px}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
+/* Headings & scene labels */
+h1{margin:10px 0 6px}
+h2{margin:24px 0 10px}
+.scene{color:var(--brand); border-bottom:2px solid var(--line); padding-bottom:6px; margin-top:28px}
+.scene::before{content:"◆ "; color:var(--brandSoft)}
+/* Epigraph/quotes */
+blockquote{border-left:4px solid var(--brandSoft); background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic}
+/* Small helpers */
+.meta{color:var(--muted); font-style:italic}
+.small{font-size:.94rem; color:var(--muted)}
+/* GM callouts */
+.gm{background:#eef5ff; border:1px solid var(--chipLine); border-left:6px solid var(--brandSoft);
+  border-radius:10px; padding:10px 14px; margin:18px 0; box-shadow:0 1px 0 rgba(10,30,80,.04)}
+.gm + .gm{margin-top:14px}
+.gm-h{font-weight:800; color:var(--brand); letter-spacing:.1px; display:flex; align-items:center; gap:8px; margin:2px 0 6px}
+.gm-h::before{content:"GM"; font-size:12px; font-weight:800; color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px}
+.gm-b{color:var(--ink)} .gm-b ul{margin:8px 0 2px 1.1rem} .gm-b li{margin:6px 0} .gm-b li b{color:var(--brand)}
+/* Chips / section shortcuts */
+.chip{display:inline-block; padding:6px 10px; background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600; margin-right:8px}
+</style>
+
+<script>
+// live clock + collapsibles
+function v9Tick(){ const el=document.getElementById('clock'); if(el){ el.textContent =
+  new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST';}}
+setInterval(v9Tick,1000); window.addEventListener('DOMContentLoaded',v9Tick);
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => h.addEventListener('click', () =>
+    h.parentElement.classList.toggle('open')));
+});
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · GM Hub</div>
+  <!-- NAV START -->
+<nav class="topbar">
+  <a href="player-recap.html" class="btn btn-outline-secondary btn-lg rounded-pill px-3 py-1">VEYRA-9 · Player Recap</a>
+
+      <nav class="nav">
+      <div class="nav-item dropdown" id="phase1-dd">
+        <a href="#" class="btn nav-pill">Phase 1 ▾</a>
+        <div class="dropdown-menu">
+          <a href="./index.html">Arc 1</a>
+          <a href="./arc2.html">Arc 2</a>
+          <a href="./arc3.html">Arc 3</a>
+          <a href="./arc4.html">Arc 4</a>
+          <a href="./arc5.html">Arc 5</a>
+          <a href="./arc6.html">Arc 6</a>
+          <a href="./arc7.html">Arc 7</a>
+          <a href="./arc8.html">Arc 8</a>
+          <a href="./arc9.html">Arc 9</a>
+        </div>
+      </div>
+
+    <!-- Phase 2 -->
+      <div class="nav-item dropdown" id="phase2-dd">
+        <a href="#" class="btn nav-pill">Phase 2 ▾</a>
+        <div class="dropdown-menu">
+          <a href="./arc10.html">Arc 10</a>
+        <!-- add Arc 11+ as they go -->
+      </div>
+    </div>
+
+  <a class="btn nav-pill" href="player-recap.html">VEYRA-9 • Player Recap</a>
+  <a class="btn nav-pill" href="tracker.html">Tracker</a>
+</nav>
+
+<style>
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:.75rem;
+    padding:.6rem 1rem;border-radius:.75rem;background:rgba(255,255,255,.65);
+    backdrop-filter:saturate(140%) blur(8px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+  .brand{font-weight:700;text-decoration:none;color:#111}
+  .nav-right{display:flex;gap:.5rem;align-items:center}
+  .btn{border:1px solid #d7dbe1;background:#fff;border-radius:.6rem;padding:.35rem .7rem;
+    cursor:pointer;font-weight:600}
+  .btn.ghost{background:transparent}
+  .dropdown{position:relative}
+  .dropdown .menu{position:absolute;top:calc(100% + 6px);left:0;min-width:10rem;
+    background:#fff;border:1px solid #e6e9ef;border-radius:.6rem;box-shadow:0 10px 28px rgba(0,0,0,.12);
+    padding:.35rem;display:none;z-index:10}
+  .dropdown:hover .menu{display:block}
+  .dropdown .menu a{display:block;padding:.45rem .55rem;border-radius:.45rem;color:#111;text-decoration:none}
+  .dropdown .menu a:hover{background:#f2f4f8}
+  @media (max-width:760px){.nav-right{flex-wrap:wrap}}
+</style>
+<!-- NAV END -->
+
+<style>
+.dropdown { position: relative; display: inline-block; }
+.dropbtn {
+  background: var(--chip); border:1px solid var(--chipLine);
+  border-radius:8px; padding:6px 10px; color:var(--brand); font-weight:600;
+  cursor:pointer;
+}
+.dropdown-content {
+  display: none; position: absolute; background:#fff;
+  box-shadow:0 4px 8px rgba(0,0,0,.1);
+  border:1px solid var(--line); border-radius:6px;
+  min-width:160px; z-index:20;
+}
+.dropdown-content a {
+  display:block; padding:8px 12px; color:var(--ink);
+}
+.dropdown-content a:hover { background:#f4f7ff; }
+.dropdown:hover .dropdown-content { display:block; }
+.dropdown:hover .dropbtn { background:#eef5ff; }
+</style>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">Phase I → <b>Arc 6</b></div>
+  <h1 class="scene">Arc 6 — The Public Forum</h1>
+  <p class="meta">Scene 1: Opening Forum. Location: The Spire’s Forum Hall. PCs arrive with evidence and leverage; factions gather with agendas. Crowd mood volatile.</p>
+
+  <p>The Forum Hall was built for optics, not comfort. Tiered seats arced upward into shadows, every bench wired for broadcast. The dome overhead projected a serene aurora, green-white strands that pretended calm. Beneath that lie, five factions gathered: Helion in pressed suits, Zeratek in their polished casual, Compliance in pale uniforms, Reclaimers in patched jackets, and the Accord’s handlers tucked into observation booths where glass reflected more than it revealed.</p>
+
+  <p>Governor Orus Hestrel stood at the central podium. His words had been polished by aides, but the bags beneath his eyes told the truth. “Citizens of Haven, stabilizers, partners,” he began. “We convene tonight to align rumor with fact, to quiet panic with clarity.” The mic orb drifted above him, lenses open like a flower that never closed. Its hum carried into every seat and every home tuned to the feed.</p>
+
+  <p>Captain Lira Veyne remained off to the side, arms folded, her presence a line between factions. Kaelen Drix lounged near the Zeratek cluster, smile sharpened for cameras. Director Sael of Compliance sat so still he looked carved, stylus ready for names. Saint’s voice reached your ear alone, private channel: <i>“Your words set clocks. Say what the dome remembers, not what Hestrel wants it to.”</i></p>
+
+  <p>The crowd was a pressure of bodies and expectation. Some carried Reclaimer armbands, others whispered Malrix slogans, still others clutched their children tighter when the lights flickered with the aurora’s rhythm. One-two-three—<i>dark</i>—four. The pause carried through the hall like a skipped heartbeat.</p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Running the Opening Forum</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Atmosphere:</b> Play up optics. Every word echoes on feed. Factions react not just to truth but to <i>how it looks</i>.</li>
+        <li><b>PC Leverage:</b> If they still hold the shard/lens, they start with +2 Accord Optics tokens. If surrendered, Helion Stability +1 but PCs have no leverage.</li>
+        <li><b>Crowd Mood:</b> Start at Neutral. Bold PC claims shift it (Reclaimer Trust +1 if PCs emphasize worker deaths; Zeratek Favor +1 if they downplay sabotage).</li>
+        <li><b>Clock advances:</b> Accord Optics advances if PCs speak against Hestrel’s script. Compliance Control advances if PCs stall or contradict one another.</li>
+        <li><b>Transition:</b> End Scene 1 when factions begin crossfire questioning (Scene 2).</li>
+      </ul>
+    </div>
+  </div>
+</main>
+</body>
+<h2 class="scene" id="arc6-faction-crossfire">Faction Crossfire — Truth Under Lights</h2>
+
+<p>The Forum Hall had no corners to hide in. The podium’s glow spilled in every direction, forcing words to travel clean or not at all. Hestrel tried to keep hold of it, eyes darting between his prompter and the live graph of crowd sentiment scrolling overhead. For a few minutes, the lines behaved. Then they broke.</p>
+
+<p>Kaelen Drix stood. Not loud, not brash—calm enough to make cameras lean in. “Governor,” he said, “with respect, Haven cannot pretend sabotage is systemic. Zeratek acknowledges legacy units have vulnerabilities. But we must not incite panic by exaggerating risk. Legacy recalls are routine. Stabilizers,” his smile flicked to you, “brought us proof. But proof requires interpretation.”</p>
+
+<p>The crowd rippled. Reclaimer armbands flashed. Serin Vael shouted from the second tier: “Interpret this—three dead under your arrays, Drix! You sell us parts that sing before they kill us!” Her words carried like a spark into dry hay. Chants started, rough and uneven: <i>RECLAIM! RECLAIM!</i></p>
+
+<p>Director Sael waited for silence, then folded his hands. “Fear is itself contagion. Compliance urges calm. Families must not endanger one another with rumor. Variances are monitored, screenings offered. Safety is not a slogan—it is policy.” His stylus tapped the tablet, names scrolling into hidden ledgers.</p>
+
+<p>Hestrel cleared his throat too late. “Citizens, please—this forum must remain orderly—” The mic orb hummed louder to cover him.</p>
+
+<p><i>Saint’s whisper cut your ear: “Order is their weapon. Disorder is your proof. Decide who bleeds first—optics, truth, or silence.”</i></p>
+
+<p>Veyne stepped forward, jaw set. “The stabilizers saw more than recalls and policies. They saw variance routes rerouted through Zeratek panels. They saw families pulled by Compliance without return. They carried proof here. Let them speak.” Her words struck clean, without script. The crowd surged in volume, a tide hungry for something unedited.</p>
+
+<p>Eyes turned to you. Every lens widened. Every faction leaned forward to snatch what you offered. In the air above, the graph quivered, waiting for direction.</p>
+
+<hr>
+
+<p><b>If you raise the shard/lens</b>, the hall gasps. Blue-white pulse reflected across every surface. Drix paled under it, Sael scribbled faster, Hestrel looked anywhere but at the light. The crowd cheered—or recoiled, depending on your framing.</p>
+
+<p><b>If you withhold</b>, Saint murmured approval. “Leverage intact.” The factions fought each other harder, each trying to fill the silence with their spin.</p>
+
+<p>Either way, the crossfire began.</p>
+
+<p>— Drix accused Reclaimers of sabotage to avoid liability.  
+— Serin called Helion cowards for hiding behind reports.  
+— Sael offered screenings for anyone “exposed to anomalies.”  
+— Hestrel begged for unity, his voice swallowed by chants.  
+— Saint pushed in your ear: “Name a liar. The crowd will follow.”</p>
+
+<p>The lights flickered to the child’s rhythm. One-two-three—<i>dark</i>—four. On the <i>dark</i>, every mic went dead. The hall heard its own breathing, and the pause stretched too long. Then the lights flared back, and every faction spoke at once.</p>
+
+<div class="gm">
+  <div class="gm-h">GM — Running the Crossfire</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Structure:</b> Treat this as social combat. Each round, a faction presses an agenda. PCs can support, oppose, or reframe. Roll CHA/Reaction or WIS/Insight checks.</li>
+      <li><b>Leverage:</b> Showing shard/lens gives +2 on Accord Optics rolls but +1 on Zeratek’s <b>Legacy Recall</b> clock. Withholding avoids Recall but loses immediate impact.</li>
+      <li><b>Crowd Mood:</b> If PCs emphasize deaths → Reclaimer Trust +1. If they stress safety policy → Compliance Control +1. If they push Helion optics → Helion Stability +1.</li>
+      <li><b>Saint’s push:</b> If PCs call someone a liar on record, Accord Optics +1, but target faction fills 1 segment of their clock in retaliation.</li>
+      <li><b>Risk:</b> Each time lights pulse dark, save vs. Spells or lose words mid-sentence. If failed, Compliance seizes narrative: +1 Compliance Control.</li>
+      <li><b>Escalation:</b> End scene when crowd mood tips majority in one direction OR when 2 clocks advance simultaneously. This triggers Scene 3 (The Breach).</li>
+    </ul>
+  </div>
+</div>
+<h2 class="scene" id="arc6-scene2">Scene 2 — Faction Crossfire: Truth Under Lights</h2>
+
+<p>The Forum Hall had no corners to hide in. The podium’s glow spilled in every direction, forcing words to travel clean or not at all. For a few minutes Governor Hestrel held the room by prompter and graph; then the lines broke.</p>
+
+<p><b>Kaelen Drix</b> rose with a measured smile. “Governor, with respect… Haven cannot pretend sabotage is systemic. Zeratek acknowledges legacy vulnerabilities, but interpretation matters.” Cameras leaned in.</p>
+
+<p>From the tiers, <b>Serin Vael</b> cut back: “Interpret this—three dead under your arrays!” Reclaimer armbands flashed; the first chant formed, rough and hungry: <i>RE-CLAIM!</i></p>
+
+<p><b>Director Sael</b> folded his hands. “Fear is contagion. Compliance urges calm. Screenings are available; rumor is harm.” His stylus ticked unseen ledgers.</p>
+
+<p>Hestrel’s mic orb hummed louder, trying to cover a wobble. Above, the sentiment graph quivered, waiting for a direction.</p>
+
+<p><i>Saint, private channel:</i> “Order is their weapon. Disorder is your proof. Decide who bleeds first—optics, truth, or silence.”</p>
+
+<p><b>Captain Veyne</b> stepped into the light. “The stabilizers brought proof of rerouted variance and vanished families. Let them speak.” The room tipped toward you; every lens widened.</p>
+
+<hr>
+
+<p><b>If you raise the shard/lens:</b> blue-white pulse washes the hall; Drix pales, Sael writes faster, Hestrel looks away. Cheers or gasps—your framing decides.</p>
+<p><b>If you withhold:</b> Saint approves—leverage intact—but the factions claw harder to fill the silence.</p>
+
+<p>Either way the crossfire starts:</p>
+<ul>
+  <li>Drix floats “Reclaimer sabotage” to dodge liability.</li>
+  <li>Serin brands Helion cowards hiding behind reports.</li>
+  <li>Sael offers “exposure screenings” and starts taking names.</li>
+  <li>Hestrel begs unity; chants fold over him.</li>
+  <li>Saint murmurs: “Name a liar. The crowd will follow.”</li>
+</ul>
+
+<p>The lights flicker to a child’s rhythm—one two three <i>dark</i> four. On the <i>dark</i>, mics die. The hall hears itself breathing. Then power snaps back and everyone speaks at once.</p>
+
+<div class="gm">
+  <div class="gm-h">GM — Running the Crossfire</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Frame:</b> Treat this as <i>social combat.</i> Each round a faction pushes an agenda; PCs may support, oppose, or reframe. Roll CHA/Reaction or WIS/Insight; advantage if PCs cite evidence or survivors.</li>
+      <li><b>Leverage:</b> Showing shard/lens = <b>Accord Optics +2</b> this scene, but advance <b>Zeratek Legacy Recall +1</b>. Withholding avoids Recall but loses immediate sway.</li>
+      <li><b>Crowd Mood:</b> Emphasize deaths → <b>Reclaimer Trust +1</b>. Stress policy/screenings → <b>Compliance Control +1</b>. Push “order & stability” → <b>Helion Stability +1</b>.</li>
+      <li><b>Saint’s Push:</b> Calling someone a liar on record grants <b>Accord Optics +1</b> and fills <b>1 segment</b> on that faction’s retaliation clock.</li>
+      <li><b>Pulse Hazard:</b> At each blackout, save vs. Spells or lose your line; if failed, <b>Compliance Control +1</b> (they “clarify” on your behalf).</li>
+      <li><b>End/Transition:</b> Scene ends when a single mood gains majority or when any two clocks advance in the same round. Move to <b>Scene 3 — The Breach</b> (the Choir intrudes on the broadcast).</li>
+    </ul>
+  </div>
+</div>
+<h3 class="scene">Scene 3: The Breach</h3>
+
+<p>
+The Forum’s roar never settled into silence. Even after Hestrel’s practiced words faltered and Drix’s counterattacks sparked new waves of shouting, the dome continued to hum like a live wire. The aurora above wasn’t projection anymore—it pulsed irregularly, as though the sky itself was picking up the rhythm of a song no one wanted to hear. The cameras never blinked. Every word spoken in the hall, every chant, every whispered doubt, was fed into Haven’s veins.
+</p>
+
+<p>
+Then the lights guttered. Not all at once, but row by row, like candles extinguished by unseen hands. The crowd gasped, voices rising in panic. Technicians hammered at consoles. Accord handlers snapped orders that vanished under the swell of fear. And through that fear came the sound—low at first, then rising, reverberating against the steel bones of the Spire: a chorus built from distortion, a machine-choir of mismatched pitches.
+</p>
+
+<p>
+Captain Lira Veyne pushed through the tide, hand on her sidearm, braid swinging like a banner. “Form up!” she barked at the Accord’s stabilizers. “Protect the civilians, keep the exits open!” Her words carried over the noise because she wasn’t just speaking to the crowd—she was speaking to the players, to the heart of Haven itself. And the heart was listening.
+</p>
+
+<p>
+The great screens above flickered, shifting from the Council feed to static. Then to something worse. Lines of text crawled across the displays, not in any known alphabet but in glyphs that moved when no one touched them. They twisted into shapes that were half-instruction, half-threat, until the crowd shrank from the sight. Even those who could not read them felt the weight of intent. 
+</p>
+
+<p>
+The Malrix faction broke first. Their prophet surged onto a bench, arms wide, shouting in cadence with the Choir. “<i>They come to judge the false, they come to burn the liar’s tongues!</i>” His followers echoed, striking hands against metal rails, every beat syncing with the building hum. Security rushed to silence them, but the damage was done. Fear became fuel, and panic spread like wildfire.
+</p>
+
+<p>
+And then the floor itself shifted.
+</p>
+
+<p>
+Beneath the central podium, plates retracted. Hydraulic locks disengaged with groans too precise to be accident. Out of the breach rose machinery that had not been commissioned by Haven’s engineers: a structure of alloy ribs and crystalline nodes, each glowing with the aurora’s green-white light. The air turned sharp, ozone cutting through perfume and sweat. People stumbled back, choking, as the first construct rose into view.
+</p>
+
+<p>
+It was a drone, but larger than any Zeratek frame. Its limbs folded and unfolded like origami made of blades. Its core pulsed with stolen rhythm, every beat sending vibrations up through the hall’s glass roof. Cameras caught its emergence, broadcasting terror to every corner of the colony. And more shapes stirred below, climbing up through the podium breach.
+</p>
+
+<p>
+Governor Hestrel’s face drained of its political polish. “This—this is not part of the agenda—” His words died as another drone snapped upright, its iris-lens swiveling to focus on him. The machine’s hum deepened, a sound like the throat of a god clearing itself before judgment.
+</p>
+
+<p>
+Lira’s voice cut through. “Stabilizers! With me!” She vaulted the railing and landed between the podium and the rising constructs, sidearm blazing. Shots sparked harmlessly off crystalline plating, but it was enough to buy the crowd seconds—seconds to run, seconds to choose whether to help or to hide.
+</p>
+
+<p>
+The Forum was no longer a place of debate. It was a battlefield.
+</p>
+
+<div class="gm">
+  <div class="gm-h">GM — Running The Breach</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Chaos Environment:</b> Treat the Forum as collapsing terrain. Falling lights, sparking consoles, stampeding civilians. PCs must balance combat with crisis management.</li>
+      <li><b>Drone Emergence:</b> Start with 1 major construct (AC 2, HD 5, THAC0 16, Move 12, Special: Motif Pulse). Each round roll 1d4—on 3+, another drone climbs from the breach.</li>
+      <li><b>Panic Management:</b> PCs who spend actions calming or directing the crowd may earn <i>Reclaimer Trust</i> or <i>Accord Optics</i>, but risk drawing aggro from drones that target noise/movement.</li>
+      <li><b>Faction Hooks:</b> 
+        <ul>
+          <li><b>Helion:</b> Guards attempt evacuation—if PCs assist, gain Stability +1, but Helion credit claim grows.</li>
+          <li><b>Zeratek:</b> Drix tries to argue these are “sabotaged prototypes.” PCs who save him may gain access to firmware data.</li>
+          <li><b>Compliance:</b> Director Sael orders sedation of panicked civilians. PCs who oppose him gain Reclaimer respect, but Sael will remember.</li>
+          <li><b>Malrix:</b> The cultists call the drones “angels.” PCs who stop their chanting reduce drone morale checks by –2.</li>
+        </ul>
+      </li>
+      <li><b>Climactic Beat:</b> After 5 rounds, the podium breach widens. PCs glimpse a <i>much larger construct</i> stirring below—the seed of Arc 7. End scene on that reveal.</li>
+    </ul>
+  </div>
+</div>
+
+<p>
+The battle surged, but in every shot, every scream, every desperate attempt to push the machines back, one truth rose higher than the rest: Haven’s greatest debate had ended not with words but with weapons. And the Spire itself had chosen the topic.
+</p>
+
+</html>
