@@ -33,5 +33,76 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+<script>
+  window.$docsify = window.$docsify || {};
+  window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
+    function getRoutes() {
+      return Array.from(document.querySelectorAll('.sidebar-nav a'))
+        .map(a => a.getAttribute('href'))
+        .filter(Boolean);
+    }
+    function ensurePagerEl() {
+      let el = document.querySelector('.pager');
+      if (!el) {
+        el = document.createElement('div');
+        el.className = 'pager';
+        el.innerHTML = '<a class="btn prev" style="visibility:hidden"></a><div class="spacer"></div><a class="btn next" style="visibility:hidden"></a>';
+        document.body.appendChild(el);
+      }
+      return el;
+    }
+    function updatePager() {
+      const routes = getRoutes();
+      const cur = vm.router.getCurrentPath();               // e.g. 'phase-1/'
+      const hashCur = '#/' + cur.replace(/^\//,'');
+      const i = routes.indexOf(hashCur);
+      const el = ensurePagerEl();
+      const prev = i > 0 ? routes[i-1].replace(/^#\//,'') : null;
+      const next = i >= 0 && i < routes.length-1 ? routes[i+1].replace(/^#\//,'') : null;
+      const prevA = el.querySelector('.prev');
+      const nextA = el.querySelector('.next');
+      if (prev) {
+        prevA.href = '#/' + prev;
+        prevA.textContent = '← Prev';
+        prevA.style.visibility = 'visible';
+      } else {
+        prevA.style.visibility = 'hidden';
+      }
+      if (next) {
+        nextA.href = '#/' + next;
+        nextA.textContent = 'Next →';
+        nextA.style.visibility = 'visible';
+      } else {
+        nextA.style.visibility = 'hidden';
+      }
+    }
+    function ensureProgressEl() {
+      if (!document.querySelector('.progress')) {
+        const bar = document.createElement('div');
+        bar.className = 'progress';
+        const span = document.createElement('span');
+        bar.appendChild(span);
+        document.body.appendChild(bar);
+      }
+    }
+    function updateProgress() {
+      const scroller = document.querySelector('.content');
+      if (!scroller) return;
+      const y = scroller.scrollTop;
+      const h = scroller.scrollHeight - scroller.clientHeight;
+      const pct = h > 0 ? (y / h) * 100 : 0;
+      const span = document.querySelector('.progress span');
+      if (span) span.style.width = pct + '%';
+    }
+
+    hook.ready(function () {
+      ensureProgressEl();
+      document.addEventListener('scroll', updateProgress, true);
+    });
+    hook.doneEach(function () {
+      setTimeout(() => { updatePager(); updateProgress(); }, 30);
+    });
+  });
+</script>
 </body>
 </html>

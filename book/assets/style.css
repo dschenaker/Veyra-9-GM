@@ -66,3 +66,16 @@ section.cover .cover-main h3 {
   text-align: center;
   color: #3a4150;
 }
+/* --- Reading progress bar --- */
+.progress{position:fixed;left:0;top:0;height:3px;width:100%;
+  background:rgba(11,61,122,.12);z-index:9998}
+.progress span{display:block;height:100%;width:0;background:#0b3d7a}
+
+/* --- Prev / Next pager --- */
+.pager{position:fixed;left:0;bottom:12px;width:100%;display:flex;gap:12px;
+  align-items:center;padding:0 16px;pointer-events:none;z-index:9998}
+.pager .btn{pointer-events:auto;background:#0b3d7a;color:#fff;
+  padding:8px 14px;border-radius:999px;text-decoration:none;font-weight:800;
+  box-shadow:0 6px 18px rgba(11,61,122,.18)}
+.pager .btn:hover{filter:brightness(1.08)}
+.pager .spacer{flex:1}
