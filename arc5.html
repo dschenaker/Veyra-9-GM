@@ -98,35 +98,33 @@ window.addEventListener('DOMContentLoaded', () => {
 <nav class="topbar">
   <a href="player-recap.html" class="btn btn-outline-secondary btn-lg rounded-pill px-3 py-1">VEYRA-9 · Player Recap</a>
 
-  <div class="nav-right">
-    <!-- Phase 1 -->
-    <div class="dropdown">
-      <button class="btn">Phase 1 ▾</button>
-      <div class="menu">
-        <a href="./arc1.html">Arc 1</a>
-        <a href="./arc2.html">Arc 2</a>
-        <a href="./arc3.html">Arc 3</a>
-        <a href="./arc4.html">Arc 4</a>
-        <a href="./arc5.html">Arc 5</a>
-        <a href="./arc6.html">Arc 6</a>
-        <a href="./arc7.html">Arc 7</a>
-        <a href="./arc8.html">Arc 8</a>
-        <a href="./arc9.html">Arc 9</a>
+      <nav class="nav">
+      <div class="nav-item dropdown" id="phase1-dd">
+        <a href="#" class="btn nav-pill">Phase 1 ▾</a>
+        <div class="dropdown-menu">
+          <a href="./arc1.html">Arc 1</a>
+          <a href="./arc2.html">Arc 2</a>
+          <a href="./arc3.html">Arc 3</a>
+          <a href="./arc4.html">Arc 4</a>
+          <a href="./arc5.html">Arc 5</a>
+          <a href="./arc6.html">Arc 6</a>
+          <a href="./arc7.html">Arc 7</a>
+          <a href="./arc8.html">Arc 8</a>
+          <a href="./arc9.html">Arc 9</a>
+        </div>
       </div>
-    </div>
 
     <!-- Phase 2 -->
-    <div class="dropdown">
-      <button class="btn">Phase 2 ▾</button>
-      <div class="menu">
-        <a href="./arc10.html">Arc 10</a>
+      <div class="nav-item dropdown" id="phase2-dd">
+        <a href="#" class="btn nav-pill">Phase 2 ▾</a>
+        <div class="dropdown-menu">
+          <a href="./arc10.html">Arc 10</a>
         <!-- add Arc 11+ as they go -->
       </div>
     </div>
 
-    <a class="btn ghost" href="./repo.html">Dossier</a>
-    <a class="btn ghost" href="./tracker.html">Tracker</a>
-  </div>
+  <a class="btn nav-pill" href="player-recap.html">VEYRA-9 • Player Recap</a>
+  <a class="btn nav-pill" href="tracker.html">Tracker</a>
 </nav>
 
 <style>
