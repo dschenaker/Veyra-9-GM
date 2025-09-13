@@ -7,6 +7,12 @@
 html,body{background:#f6f7fb;color:#0b0f18;}
 .sidebar {border-right:1px solid #d7dbea;}
 .sidebar .app-name {font-weight:800; color:#0b3d7a;}
+/* active link highlight */
+.sidebar-nav li a.active{
+  background: #eef5ff;
+  border-radius: 8px;
+  font-weight: 700;
+}
 .markdown-section{background:#fff;border:1px solid #d7dbea;border-radius:12px;padding:28px;margin:24px auto;}
 a{color:#0b3d7a;}
 a:hover{filter:brightness(1.08); text-decoration:underline;}
