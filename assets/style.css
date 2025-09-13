@@ -43,3 +43,6 @@ a:hover{color:var(--link-hover);text-decoration:underline}
 .panel p{color:var(--muted)}
 /* Make long headings not jump under header on hash-nav */
 :target{scroll-margin-top:90px}
+/* Bottom pager guard */
+body{padding-bottom:90px}
+@media (max-width:640px){ body{padding-bottom:120px} }
