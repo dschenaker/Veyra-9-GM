@@ -21,3 +21,27 @@ code{font-family:var(--mono-font);}
 .cover .cover-main a{border-radius:999px; padding:.6rem 1rem; border:1px solid #c9d8ff; background:#eaf1ff;}
 body { font-family: 'Georgia', serif; }
 .cover h1 { font-size: 3em; color: #222; }
+/* Full-bleed cover background with soft overlay */
+section.cover {
+  /* Replace assets/logo.png with assets/img/your-cover.jpg if you want a different image */
+  background:
+    linear-gradient(180deg, rgba(10,15,25,.55), rgba(10,15,25,.25)),
+    url('assets/logo.png') center/cover no-repeat;
+}
+
+/* Make cover text pop nicely over the background */
+section.cover .cover-main h1 {
+  font-weight: 900;
+  letter-spacing: .5px;
+}
+section.cover .cover-main blockquote {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.92);
+}
+
+/* If you keep the centered logo image too, make it big & crisp */
+section.cover .cover-main img[alt="logo"] {
+  display: block;
+  margin: 0 auto 18px;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,.25));
+}
