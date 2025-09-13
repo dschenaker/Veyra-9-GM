@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — GM Hub · Arc 2</title>
+
+<style>
+/* === V9 Combat Tracker === */
+#v9-tracker-toggle{
+  position: fixed; right: 18px; bottom: 18px; z-index: 1200;
+  background:#0b3d7a; color:#fff; border:0; border-radius:999px;
+  padding:12px 18px; font-weight:700; box-shadow:0 6px 18px rgba(11,61,122,.25);
+  cursor:pointer;
+}
+#v9-tracker-drawer{
+  position: fixed; right: 18px; bottom: 78px; z-index: 1199; width: 560px; max-width: calc(100vw - 36px);
+  background:#fff; border:1px solid var(--line,#d7dbea); border-radius:14px;
+  box-shadow:0 18px 40px rgba(10,30,80,.18); display:none;
+}
+#v9-tracker-drawer.open{ display:block; }
+#v9-tracker-drawer header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 12px; border-bottom:1px solid var(--line,#d7dbea); background:#eef5ff; border-radius:14px 14px 0 0;
+}
+#v9-tracker-drawer header h3{ margin:0; font-size:1rem; color:#0b3d7a }
+#v9-tracker-drawer .pill{
+  background:#eaf1ff; border:1px solid #c9d8ff; color:#0b3d7a; border-radius:999px; padding:4px 10px; font-weight:700
+}
+#v9-tracker-drawer .btn{
+  background:#fff; border:1px solid var(--line,#d7dbea); border-radius:8px; padding:6px 10px; cursor:pointer
+}
+#v9-tracker-drawer .btn:hover{ background:#f7faff }
+#v9-tracker-drawer .tray{ padding:10px 12px 12px }
+#v9-tracker-drawer .grid,
+#v9-tracker-drawer .row{
+  display:grid; grid-template-columns:1.2fr .6fr .6fr .6fr .6fr auto; gap:8px; align-items:center;
+}
+#v9-tracker-drawer .grid input, #v9-tracker-drawer .row input{ width:100% }
+#v9-tracker-drawer .row{ padding:8px 0; border-bottom:1px dashed var(--line,#d7dbea) }
+#v9-tracker-drawer .row.dead{ opacity:.55; text-decoration:line-through }
+
+/* ====== Veyra-9 GM Hub — Base Theme ====== */
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+/* Links */
+a{color:var(--brand); text-decoration:none}
+a:hover{filter:brightness(1.08); text-decoration:underline}
+/* Header / Nav */
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.brand{font-weight:800; color:var(--brand)}
+nav a{
+  display:inline-block; margin-right:10px; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600;
+}
+nav a:hover{background:#f4f7ff}
+.clock{
+  margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
+  color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700;
+}
+/* Layout */
+.wrap{max-width:1100px; margin:0 auto; padding:20px}
+.breadcrumbs{color:var(--muted); margin:6px 0 14px 0}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
+/* Headings & sections */
+h1{margin:10px 0 6px}
+h2{margin:24px 0 10px}
+.scene{
+  color:var(--brand); border-bottom:2px solid var(--line);
+  padding-bottom:6px; margin-top:28px;
+}
+.scene::before{content:"◆ "; color:var(--brandSoft)}
+/* Quotes */
+blockquote{
+  border-left:4px solid var(--brandSoft);
+  background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic;
+}
+/* Helpers */
+.meta{color:var(--muted); font-style:italic}
+.small{font-size:.94rem; color:var(--muted)}
+/* ===== GM CALLOUTS ===== */
+.gm{
+  background:#eef5ff; border:1px solid var(--chipLine);
+  border-left:6px solid var(--brandSoft);
+  border-radius:10px; padding:10px 14px; margin:18px 0;
+  box-shadow:0 1px 0 rgba(10,30,80,.04);
+}
+.gm + .gm{margin-top:14px}
+.gm-h{
+  font-weight:800; color:var(--brand); letter-spacing:.1px;
+  display:flex; align-items:center; gap:8px; margin:2px 0 6px 0;
+}
+.gm-h::before{
+  content:"GM"; font-size:12px; font-weight:800;
+  color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px;
+}
+.gm-b{color:var(--ink)}
+.gm-b ul{margin:8px 0 2px 1.1rem}
+.gm-b li{margin:6px 0}
+.gm-b li b{color:var(--brand)}
+/* Collapsible */
+.gm.collapsible .gm-b{display:none}
+.gm.collapsible.open .gm-b{display:block}
+.gm.collapsible .gm-h{cursor:pointer}
+</style>
+
+<script>
+// live clock (single definition)
+function tick(){
+  const el=document.getElementById('clock');
+  if(!el) return;
+  el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+}
+setInterval(tick,1000);
+window.addEventListener('DOMContentLoaded',tick);
+
+// GM collapsibles (single handler)
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
+    h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+  });
+});
+</script>
+</head>
+
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · GM Hub</div>
+  <!-- NAV START -->
+<nav class="topbar">
+  <a href="player-recap.html" class="btn btn-outline-secondary btn-lg rounded-pill px-3 py-1">VEYRA-9 · Player Recap</a>
+
+      <nav class="nav">
+      <div class="nav-item dropdown" id="phase1-dd">
+        <a href="#" class="btn nav-pill">Phase 1 ▾</a>
+        <div class="dropdown-menu">
+          <a href="./index.html">Arc 1</a>
+          <a href="./arc2.html">Arc 2</a>
+          <a href="./arc3.html">Arc 3</a>
+          <a href="./arc4.html">Arc 4</a>
+          <a href="./arc5.html">Arc 5</a>
+          <a href="./arc6.html">Arc 6</a>
+          <a href="./arc7.html">Arc 7</a>
+          <a href="./arc8.html">Arc 8</a>
+          <a href="./arc9.html">Arc 9</a>
+        </div>
+      </div>
+
+    <!-- Phase 2 -->
+      <div class="nav-item dropdown" id="phase2-dd">
+        <a href="#" class="btn nav-pill">Phase 2 ▾</a>
+        <div class="dropdown-menu">
+          <a href="./arc10.html">Arc 10</a>
+        <!-- add Arc 11+ as they go -->
+      </div>
+    </div>
+
+  <a class="btn nav-pill" href="player-recap.html">VEYRA-9 • Player Recap</a>
+  <a class="btn nav-pill" href="tracker.html">Tracker</a>
+</nav>
+
+<style>
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:.75rem;
+    padding:.6rem 1rem;border-radius:.75rem;background:rgba(255,255,255,.65);
+    backdrop-filter:saturate(140%) blur(8px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+  .brand{font-weight:700;text-decoration:none;color:#111}
+  .nav-right{display:flex;gap:.5rem;align-items:center}
+  .btn{border:1px solid #d7dbe1;background:#fff;border-radius:.6rem;padding:.35rem .7rem;
+    cursor:pointer;font-weight:600}
+  .btn.ghost{background:transparent}
+  .dropdown{position:relative}
+  .dropdown .menu{position:absolute;top:calc(100% + 6px);left:0;min-width:10rem;
+    background:#fff;border:1px solid #e6e9ef;border-radius:.6rem;box-shadow:0 10px 28px rgba(0,0,0,.12);
+    padding:.35rem;display:none;z-index:10}
+  .dropdown:hover .menu{display:block}
+  .dropdown .menu a{display:block;padding:.45rem .55rem;border-radius:.45rem;color:#111;text-decoration:none}
+  .dropdown .menu a:hover{background:#f2f4f8}
+  @media (max-width:760px){.nav-right{flex-wrap:wrap}}
+</style>
+<!-- NAV END -->
+
+<style>
+.dropdown { position: relative; display: inline-block; }
+.dropbtn {
+  background: var(--chip); border:1px solid var(--chipLine);
+  border-radius:8px; padding:6px 10px; color:var(--brand); font-weight:600;
+  cursor:pointer;
+}
+.dropdown-content {
+  display: none; position: absolute; background:#fff;
+  box-shadow:0 4px 8px rgba(0,0,0,.1);
+  border:1px solid var(--line); border-radius:6px;
+  min-width:160px; z-index:20;
+}
+.dropdown-content a {
+  display:block; padding:8px 12px; color:var(--ink);
+}
+.dropdown-content a:hover { background:#f4f7ff; }
+.dropdown:hover .dropdown-content { display:block; }
+.dropdown:hover .dropbtn { background:#eef5ff; }
+</style>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">Arc 1 → <b>Arc 2</b></div>
+  <h1 class="scene">Arc 2 — Spire of Quiet Lies</h1>
+
+  <h2 class="scene">Arrival at the Spire</h2>
+
+<p>The walk from the Quarter to Haven’s Spire was not long in distance, but every step measured the gulf between the colony’s halves. The air itself seemed to change—less grit, more perfume. Even the sound shifted: the rattle of pipes faded behind you, replaced by the muted hum of elevators polished until they gleamed like surgical steel. Lira Veyne strode ahead, a silent shadow, as if to remind you that your permission to climb was borrowed authority, not earned.</p>
+<p>The Spire rose through the dome like a blade. Its mirrored skin caught the aurora’s glow, fracturing green-white light into shimmering rainbows that washed over Haven below. From the Quarter, those rainbows looked like beauty. Up close, they felt like surveillance. The glass did not reflect—it watched. Every mirrored panel seemed to ask whether you were worthy to stand in its presence.</p>
+<p>Inside, the change was sharper still. Carpets muffled every footfall. Air scrubbers whispered a perfect monotone. Art from Bryndor and Kharsis lined the walls: abstract strokes and crystal sculptures, carefully curated to suggest cultural unity without risking anything as dangerous as specificity. Overhead, a mural of Solus Tarsis, the system’s star, blazed in golden paint, its rays reaching every corner of the atrium. It was less a celebration than a warning: the star gave life, and it could burn you away just as easily.</p>
+<p>At the stair’s base stood <b>Governor Orus Hestrel</b>. His suit was pressed to the point of hostility, his smile measured in degrees. Subtle drones hovered in orbit, recording every angle. He radiated warmth with the precision of a manufactured hearth. “Welcome to Haven’s Spire,” he began, voice pitched perfectly to reach both you and the cameras. “The Quarter may look to you as saviors. Here, you will be judged as stabilizers. I trust you know the difference.”</p>
+<p>To his right lingered <b>Kaelen Drix</b>, Zeratek’s liaison. His cufflinks gleamed, his smirk practiced. Every gesture seemed rehearsed to strike a balance between affable and calculating. He eyed the drone wreckage you carried—or the scratches on your armor—and smiled faintly, as if already calculating the cost of your survival in corporate ledgers. To his left, <b>Director Sael</b> of Compliance Medicine wore pale robes that made him look less like an administrator and more like an officiant at a funeral. He held a clipboard, and his eyes moved across you like a physician diagnosing a terminal condition.</p>
+<p>For a moment, silence fell. Then the aurora flickered through the Spire’s high glass roof. Green-white threads pulsed three times, then fell silent. The same motif you had heard in the tunnels, the same cadence the child had hummed. None of the three flinched. Perhaps they had trained themselves not to hear. Or perhaps they had heard it too often to care.</p>
+<blockquote>“Stability is a fragile currency,” Hestrel continued, voice sharpened to a knife’s edge. “I will not see Haven bankrupted by panic. Tell me, Accord agents—what have you brought me?”</blockquote>
+<p>Your answer mattered less than how you framed it. Hestrel wanted proof you could be spun into optics. Drix wanted leverage to twist against competitors. Sael wanted compliance, preferably volunteered. Every word would ripple outward, recorded, dissected, and replayed until the Spire could decide whether you were assets—or liabilities.</p>
+
+<div class="gm">
+  <div class="gm-h">GM — Running the Spire Opener</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Governor Hestrel:</b> Treat him as optics incarnate. He never asks for truth, only narratives. PCs who challenge him risk Accord Optics −1; PCs who match his spin gain +1 Accord Optics.</li>
+      <li><b>Kaelen Drix:</b> Smiles constantly. Always asks about salvage. If PCs admit to carrying drone parts, he demands return “for safety review.” PCs who resist gain Reclaimer Trust +1 but provoke Zeratek hostility.</li>
+      <li><b>Director Sael:</b> Soft voice, sharp control. He offers screenings for “stress.” Any PC who accepts will be marked for later compliance experiments. PCs who refuse publicly risk optics but gain quiet Reclaimer respect.</li>
+      <li><b>Optics:</b> The entire encounter is recorded. Have NPCs repeat PC words back with twists. Make them feel scrutinized at every turn.</li>
+    </ul>
+  </div>
+</div>
+
+<p>The chamber seemed to tighten around you as each faction leaned forward with their unspoken demands. Hestrel’s smile waited for a speech he could edit into victory. Drix’s smirk promised paperwork and price tags. Sael’s stillness was almost worse than words. And above, the aurora flickered again, a reminder that the Spire’s walls did not shield you from Haven’s deeper song.</p>
+<p>Veyne broke the silence. “They bought us time,” she said flatly. “In the Quarter. You want to know if they’re stabilizers? Ask the people still breathing.” Her words cut through the theatrics like a blade. But Hestrel only smiled wider, because even defiance could be spun into narrative.</p>
+<p>For the first time since entering the Spire, the question hung heavy in the air: would you play their game—or break it?</p>
+
+<h2 class="scene" id="audience">Audience with the Three — Hestrel & Drix</h2>
+
+<p>The atrium doors parted without a sound. A chamber opened like a polished wound—tiered seats, a dais meant for pronouncements, and a ceiling of mirror facets that multiplied everyone into a thousand careful angles. Sound here behaved itself. Even whispers lined up to be counted.</p>
+
+<h2 class="scene" id="audience">Audience with the Three — Hestrel & Drix</h2>
+
+<p>The atrium doors parted without a sound. A chamber opened like a polished wound—tiered seats, a dais meant for pronouncements, and a ceiling of mirror facets that multiplied everyone into a thousand careful angles. Sound here behaved itself. Even whispers lined up to be counted.</p>
+
+<h3 id="hestrel">Governor Orus Hestrel</h3>
+<p>Hestrel did not invite you to sit. Power stands. He positioned himself so the aurora, filtered through the Spire’s glass, traced a halo on his shoulders. The cameras kept their distance—just far enough to imply modesty, close enough to taste blood if there was any.</p>
+
+<p>“We have three problems,” he began, turning each word into a clean tile that could be grouted into a speech. “Unrest in Row-C. Sabotage presented as malfunction. And—” a small smile “—the narrative vacuum created when frightened people speak first.” He folded his hands. “I intend to fill that vacuum before anyone else does.”</p>
+
+<p>He asked for your account of the gallery, but not for truth; for <i>sequence</i>. Truth can’t be edited. Sequence can. As you spoke, he rearranged cause and effect like furniture: miners panicked <i>because</i> drones malfunctioned; drones malfunctioned <i>because</i> Zeratek was misled; the Quarter feared <i>because</i> rumors spread. Every version moved responsibility upward, then sideways, never toward the Spire.</p>
+
+<blockquote>“Stability is not the absence of danger,” he said, “it is the presence of confidence.”</blockquote>
+
+<p>When you mentioned the humming motif, he didn’t blink. “I have <em>heard</em> the chatter,” he conceded. “Let’s not give poetry to hardware failure.” He slid a thin slate across the lectern—a draft statement, already pre-signed. Your names appeared as attributed sources, the way a wrench appears in a staged photograph of repairs.</p>
+
+<div class="gm">
+  <div class="gm-h">GM — Hestrel’s Game</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>If PCs sign the statement:</b> <i>Accord Optics +1</i> (you look cooperative); <i>Reclaimer Trust −1</i> (seen as spin-friendly).</li>
+      <li><b>If PCs edit to include drone hostility or the motif:</b> contested CHA/Intimidation vs Hestrel’s WIS (15).</li>
+      <li><b>If PCs refuse to be quoted:</b> <i>Accord Optics −1</i> short-term, but you gain a quiet ally among the press clerks.</li>
+      <li><b>Hook:</b> Hestrel hints that <i>someone</i> in Zeratek falsified maintenance logs. He won’t name them yet; he wants you to “discover” it and owe him.</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<h3 id="drix">Kaelen Drix, Zeratek Liaison</h3>
+<p>Drix’s office was chilled two degrees below comfort—perfect for hardware, less so for people. On the wall, exploded diagrams of blossom-lens drones blossomed like flowers vivisected for study. A display table showed a clean loop of your gallery engagement: scrubbed of screams, framed for performance review. He greeted you with a smile that touched his teeth but not his eyes.</p>
+
+<p>“First,” he said smoothly, “thank you for preserving company assets.” The feed paused on a frame of you catching a drone mid-lunge. He admired the moment as if it belonged to him now. “Second, we require return of all Zeratek property for diagnostics.” His hand extended: not a handshake—an invoice.</p>
+
+<p>Drix’s questions were knives wrapped in silk. Did the drones <i>initiate</i> aggression? Did you alter any firmware <i>in the field</i>? Had any miners “interfered” with maintenance? Each query sought one of three outcomes: liability redirected to labor, firmware access secured, or your testimony bound to his narrative. On his desk, a small prism pulsed faintly with the aurora’s rhythm. He never looked at it. He knew you would.</p>
+
+<blockquote>“You’ll hear poetic nonsense about choirs and sky-songs,” he said with practiced pity. “In my world, systems fail for reasons we can fix. Give me the parts; I’ll give you a discount on certainty.”</blockquote>
+
+<p>When you asked about falsified logs, he didn’t flinch. “Clerical noise,” he replied. “Happens when underqualified staff panic. We correct it.” The word <em>correct</em> had edges. He slid a non-disclosure across the table—dense, predatory text. “Sign, and you’ll receive our internal variance maps. You’ll know where the next <em>glitches</em> will occur before the Quarter does.”</p>
+
+<div class="gm">
+  <div class="gm-h">GM — Drix’s Traps</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Return drone parts, sign NDA:</b> Access to <i>Zeratek Variance Map</i> (3 seeded hotspots). Cost: <i>Reclaimer Trust −1</i>, and Drix gains leverage.</li>
+      <li><b>Refuse, keep salvage:</b> <i>Reclaimer Trust +1</i>, <i>Zeratek Hostility +1</i>. Expect smear campaigns and audits.</li>
+      <li><b>Middle path (fake parts / doctored footage):</b> INT or DEX check. Success: PCs keep a real blossom lens while satisfying Drix. Failure: he catches it, <i>Accord Optics −1</i>.</li>
+      <li><b>Intel if charmed/bribed:</b> Drix admits a firmware branch labeled <i>CHOIR_SAFE</i> appeared then vanished. He blames a “rogue contractor.” He’s lying.</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<div class="gm">
+  <div class="gm-h">GM — Running the Spire Opener (Context)</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Governor Hestrel:</b> Treat him as optics incarnate. Never asks for truth, only narratives. PCs who challenge him risk Accord Optics −1; PCs who match his spin gain +1.</li>
+      <li><b>Kaelen Drix:</b> Always asks about salvage. PCs who resist gain Reclaimer Trust +1 but provoke Zeratek hostility.</li>
+      <li><b>Director Sael:</b> Soft voice, sharp control. Offers screenings for “stress.” PCs who refuse publicly risk optics but gain Reclaimer respect.</li>
+      <li><b>Optics:</b> The entire encounter is recorded. Have NPCs repeat PCs’ words back with twists to emphasize scrutiny.</li>
+    </ul>
+  </div>
+</div>
+
+<p>Before you left, Drix tapped the prism. The room’s lights dimmed, syncing to a heartbeat you could feel more than hear. “We sell tools,” he murmured. “If they start singing, someone else taught them the notes.” He smiled. “Make sure your report says that.”</p>
+
+<p>Outside his door, the corridor’s hush returned. Ahead, a light glowed over the entrance to Compliance Medicine. A pale figure waited within, hands folded, as if for a confession you hadn’t agreed to give.</p>
+
+<p class="meta"><i>Proceed to</i> <a href="#sael">Director Sael — Compliance Medicine</a> <i>when ready.</i></p>
+
+<h2 class="scene" id="sael">Director Sael — Compliance Medicine</h2>
+
+<p>Compliance Medicine did not smell like hospitals you remember. It smelled like <i>decision</i>—sterile air, citrus antiseptic, and a trace of cold metal that lived in the back of the throat. The reception was almost empty. No posters, no smiling faces. Just a glass wall with light moving behind it like a heartbeat and a desk where a single attendant didn’t look up.</p>
+
+<p>Director <b>Sael</b> waited in the doorway as if he had always been there. His robes were the color of unspoken things; his hands were folded precisely, a pose that belonged to officiants and surgeons. He did not offer a seat. He suggested one by glancing at it until you understood you were meant to sit.</p>
+
+<p>“We log crisis exposures,” Sael said in a voice tuned to carry without rising. “You have had several. Our screenings are brief. Non-invasive.” A pause, measured to the length of a breath. “Helpful.”</p>
+
+<p>Rooms branched out from the corridor like cells in a hive—clear walls, soft light, a single recliner, a single monitor. The devices were beautiful in the way scalpels are beautiful. A pale bracelet lay on a steel tray, its display dark. Someone had engineered it to be friendly; it still managed to look like a collar.</p>
+
+<p>“We monitor stress oscillations,” Sael continued. “Haven experiences unusual interference. The old language calls it <i>auroral</i>. We prefer <i>environmental rhythm</i>.” He watched your faces closely when he said rhythm. “The screening will map your response to it. Afterwards, we advise.”</p>
+
+<p>Through the glass you could see a patient rising from a recliner—eyes red but calm, a technician removing a bracelet with a click that sounded too loud. The patient thanked the technician. The technician didn’t answer. Soundproofing swallowed the words before they were born.</p>
+
+<p>Sael’s gaze slid to the blossom lens you kept or the scratches on your armor. “You encountered Zeratek assets at close range,” he said. “They were <i>noisy</i>. The body remembers that. Sometimes the body hears it again when the room is quiet.”</p>
+
+<p>He opened a drawer without looking. Inside lay a neat fan of bracelets. “Voluntary,” he said, and somehow made the word feel like a test. “The Spire is united in wishing you well.” He let the sentence rest there, as if goodwill could do the work of consent.</p>
+
+<p>On the wall, a soft tone pulsed—three notes rising, one falling. No speaker was visible. Perhaps it was your imagination. Perhaps the building was humming to itself again. Sael’s expression did not change. He watched your pupils.</p>
+
+<blockquote>“A brief baseline,” he said. “Then we can speak with data instead of stories.”</blockquote>
+
+<p>If anyone accepted, the room cooled by a degree. The bracelet clasped with a precise click. A pale waveform unrolled across the monitor, beautiful as a fishing line cast across still water. Then the waveform rippled, not with panic but with recognition. The baseline learned the room. Or the room learned the baseline. The bracelet vibrated once—so faint it felt like a memory of touch.</p>
+
+<p>“You hear it,” Sael murmured, almost to himself. “Not with ears.” He did not write anything down. The monitor recorded in silence, a second rhythm appearing beneath the first—thin, regular, like a ghost stave under a score. When the aurora’s light flickered through the frosted glass, the lower rhythm answered it.</p>
+
+<p>“Environmental rhythm,” he repeated. “We observe it at altitude and underground. It entrains. Most subjects do not entrain.” A small smile. “You might be useful.”</p>
+
+<p>If anyone refused, he inclined his head as if you had given the right answer to an unknown question. “Refusal is informative,” he said mildly. “You protect boundaries. In Haven, boundaries keep us alive.” Then, almost warmly: “I would still like to speak again.”</p>
+
+<p>He let silence grow between sentences the way gardeners let vines grow between stones. When he finally broke it, the words were soft enough to be mistaken for kindness. “People are frightened. Frightened people make bargains with liars. I do not bargain. I diagnose. Bring me something measurable, and I will bring you something treatable.”</p>
+
+<p>On the way out, you noticed a door with no handle. A single glyph pulsed on the frame—three notes rising, one falling. A nurse carrying files stopped when she saw you looking. “Wrong corridor,” she said, and did not smile.</p>
+
+<div class="gm">
+  <div class="gm-h">GM — Compliance Medicine (Sael)</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Consent trap (bracelet):</b> If any PC accepts, mark <i>Compliance Tag</i> on that character. Benefits: Sael becomes a cautious ally; access to medical labs and scans. Costs: periodic summons; “recommended protocols” that strain party autonomy.</li>
+      <li><b>Physio anomaly:</b> On a screened PC, reveal a second waveform that <i>entrains</i> with auroral pulses or Choir motifs. Advance <i>Machine Wake Clock</i> +1. PCs who hum the motif stabilize the second line (ominous but useful later).</li>
+      <li><b>Public refusal vs private refusal:</b> Public refusal in front of staff = <i>Accord Optics −1</i>, <i>Reclaimer Trust +1</i>. Quiet refusal in Sael’s office = no optics hit; Sael respects boundary-setting PCs.</li>
+      <li><b>Sael’s favor:</b> If treated respectfully and given <i>any hard datum</i> (lens recording, variance timing), he provides a redacted incident list: multiple faint “entrainment episodes” in officers posted near the Spire’s top floors.</li>
+      <li><b>Hidden door (no-handle):</b> Discoverable with keen observation or follow-up: leads to the <i>Quiet Room</i>, a Faraday-style chamber used to map motif responses. Entering now requires a badge (to be acquired in Arc 2).</li>
+      <li><b>Fallout tokens:</b> Grant one of the following based on play:
+        <ul>
+          <li><i>Clinical Ally:</i> Sael shares a one-use <b>Pulse Dampener</b> (advantage vs motif-induced panic for one scene).</li>
+          <li><i>Compliance Marker:</i> If PCs defy a later Spire directive, Sael can be pressured to testify that “they were unstable.” Track as a risk, not an auto-penalty.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<p class="meta"><i>Bridge:</i> With the three audiences complete, the Spire releases Hestrel’s carefully edited statement. In the Quarter, the edit plays like a lie told politely. In the Spire, it plays like oxygen. Choose your next step: challenge the edit publicly, exploit Drix’s NDA offer, or court Sael for access to the Quiet Room. Any path leads into <b>Arc 2 — Governor’s Lies</b>.</p>
+
+<h2 class="scene">The Broadcast — Prologue of Lies</h2>
+
+<p>The announcement hit Haven like a controlled detonation. Screens flickered awake in markets, lifts, and drinking halls. The Governor’s seal burned blue-white in the corner, and then Orus Hestrel’s face appeared—calm, immaculate, haloed by the Spire’s glass. His voice rolled through the Quarter like it had been tuned for every ear.</p>
+
+<blockquote>“Citizens of Haven. Yesterday’s variance in Row-C has been resolved. No fatalities reported. Stability maintained. Zeratek systems continue to safeguard our survival.”</blockquote>
+
+<p>The Quarter did not cheer. They stared. Miners with resin-stained gloves looked at the message, then at the stretchers they’d carried. Mothers pressed children closer, hearing their grief erased in real time. The Spire clapped itself on the back and called it salvation.</p>
+
+<p>Hestrel continued, words smoothed until they lost their edges. “The Accord has reaffirmed our partnership. Zeratek has initiated diagnostics. Compliance Medicine offers free screenings to ensure peace of mind. Haven endures because we endure together.”</p>
+
+<p>The feed cut to a loop of drones hovering serenely, workers smiling in clean uniforms, auroras stitched into background skies. No tunnels, no smoke, no hums in the dark. The lie was seamless. Seamless and suffocating.</p>
+
+<p>Back in the Spire atrium, aides circulated printed drafts of the statement for “internal review.” You saw the edits in margin notes: <i>delete panic, replace with variance</i>; <i>strike casualties, insert anomalies</i>. Whole lives reduced to red lines.</p>
+
+<div class="gm">
+  <div class="gm-h">GM — The Broadcast</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Accord Optics:</b> +1 if PCs remain silent (they are seen as cooperative). −1 if they object publicly (clips circulate fast).</li>
+      <li><b>Reclaimer Trust:</b> +1 if PCs contradict Hestrel in private to Reclaimer contacts. −1 if PCs endorse the statement.</li>
+      <li><b>Choice:</b> Allow PCs to attempt CHA (Persuasion) or INT (Logic) rolls to alter wording. Success = “variance” replaced with “malfunction,” seeding doubt; Failure = edits ignored, optics penalty.</li>
+      <li><b>Hook:</b> Attentive PCs spot a symbol hidden in the broadcast watermark—three pulses, one pause. The Choir’s motif is in the Governor’s feed.</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<h2 class="scene">Behind the Curtain — Hestrel & Drix</h2>
+
+<p>The public broadcast ended, but the real conversation began behind sealed doors. The chamber was smaller than the atrium, paneled in wood imported from Bryndor—an expensive affectation. The only audience now were the three of you, Hestrel, and Kaelen Drix waiting with a smile that had never known sincerity.</p>
+
+<p>Hestrel leaned against the lectern, dropping his smile like a mask too heavy to hold. “We keep this city alive by editing the script,” he said. “You may not like it. Neither do I. But panic is more lethal than resin collapse.” His hands folded, as if in prayer to optics themselves.</p>
+
+<p>Drix interjected smoothly. “What the Governor means, Accord agents, is that raw data is dangerous. That’s where I come in. You want stability? Return the salvage. Blossom lenses, firmware chips, anything you pried out of those drones. Zeratek will handle diagnostics. You’ll handle gratitude.”</p>
+
+<p>He slid a sleek case across the table. Inside: nondisclosure forms, compensation notes, and a slim data prism pulsing faintly with auroral rhythm. He didn’t acknowledge the pulse. He knew you would.</p>
+
+<blockquote>“Sign, and you’ll be safe,” Drix said. “Decline, and you’ll be suspects. Haven can’t afford suspects.”</blockquote>
+
+<p>Hestrel’s gaze tracked you with quiet calculation. “Cooperation proves reliability,” he murmured. “And reliable agents are granted access. Access to the Governor’s Council. Access to the real maps. Don’t squander this chance to be on the right side of history.”</p>
+
+<p>The weight of both men’s demands hung in the air: optics or ownership, silence or spin. Every answer carried a cost.</p>
+
+<div class="gm">
+  <div class="gm-h">GM — Behind the Curtain</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Hestrel’s Offer:</b> PCs who play along gain <i>Accord Optics +1</i> but <i>Reclaimer Trust −1</i>. Refusal costs Accord Optics but earns Reclaimer loyalty.</li>
+      <li><b>Drix’s NDA:</b> Signing grants access to Zeratek Variance Maps (GM tool: 3 seeded “glitch sites”), but adds a <i>Compliance Tag</i> PCs can’t easily erase.</li>
+      <li><b>Refusal:</b> PCs keep salvage (Reclaimer Trust +1, Zeratek Hostility +1). Drix begins a smear campaign—optics penalty later.</li>
+      <li><b>Deception option:</b> INT or DEX (DC 15) to fake parts or falsify signatures. Success = PCs keep useful salvage while satisfying optics. Failure = exposure, Accord Optics −1.</li>
+      <li><b>Hidden Hook:</b> Careful inspection of Drix’s prism shows a buried file tag labeled <i>CHOIR_SAFE</i>. Evidence Zeratek knew about motif-linked firmware.</li>
+    </ul>
+  </div>
+</div>
+
+<h2 class="scene">The Clinic’s Whisper — Sael’s Hand</h2>
+
+<p>Compliance Medicine’s wing felt less like a clinic and more like a chapel designed for obedience. Walls hummed with concealed machinery. Lighting was soft enough to invite, sterile enough to warn. Director Sael met you in silence, as though words should only be spoken when necessary.</p>
+
+<p>He gestured toward pale recliners lined in a row, each fitted with a bracelet monitor. “Voluntary,” he said softly. “But absence of baseline complicates future care.” The implication was clear: refusal would be remembered.</p>
+
+<p>Through frosted glass you glimpsed another patient—bracelet clasped, eyes fluttering, body humming with faint rhythm. The aurora outside pulsed once, twice, three times, and the monitor inside answered with the same cadence. The Choir was not rumor here. It was charted, clinical, undeniable.</p>
+
+<blockquote>“We record for patterns,” Sael explained. “Some align with known stress. Others… are environmental.” His gaze lingered on you like a scalpel. “When the pattern sings back, it is worth more than data. It is direction.”</blockquote>
+
+<p>Consent was a trap disguised as kindness. If you agreed, the bracelet locked cold against your wrist. A faint tremor echoed through your bones, leaving a ghost line on the monitor. If you refused, Sael nodded once, filing away your boundary as if it were a diagnosis. Either way, you had given him what he wanted: information.</p>
+
+<p>On your way out, you noticed a side door with no handle, glowing faint glyphs: three rising pulses, one falling. A nurse blocked your view with a clipboard, murmuring, “Wrong corridor.”</p>
+
+<div class="gm">
+  <div class="gm-h">GM — The Clinic’s Whisper</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Bracelet Consent:</b> PCs gain a <i>Compliance Tag</i>. Sael becomes a potential ally; PCs can request medical resources. Cost: periodic summons.</li>
+      <li><b>Refusal:</b> Public = <i>Accord Optics −1</i>, <i>Reclaimer Trust +1</i>. Private = no optics loss; Sael respects PCs’ boundary.</li>
+      <li><b>Observation:</b> PCs who study monitors notice motif entrainment identical to Choir hums. This is the first <i>hard proof</i>.</li>
+      <li><b>Hidden Door:</b> Leads to the <i>Quiet Room</i> (locked until Arc 2 climax or Arc 3). Used to expose deeper Choir activity.</li>
+      <li><b>Fallout Token:</b> Sael may gift a <i>Pulse Dampener</i> (advantage vs. motif-induced panic once per session).</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<h2 class="scene">Bridge to Arc 3 — Fractures</h2>
+
+<p>The Spire spat you out like a polished throat ejecting grit. Behind, Hestrel’s statement replayed on endless loops. In the Quarter, fists slammed against screens. In the Spire, investors clinked glasses. Haven’s halves had never felt farther apart.</p>
+
+<p>Captain Lira Veyne walked with you to the transit lift, her braid catching the aurora’s reflection. “You see it now,” she said flatly. “They’ll spin until the city unravels. But if you want the truth, you’ll need to dig where the light doesn’t reach.”</p>
+
+<p>She handed you a data wafer—unlabeled, untraceable. “Row-C miners logged something before the drones struck. Not sabotage. Not panic. A signal. Three rising, one falling. You’ll find it in the tunnels.” Her eyes held yours. “Just don’t expect to like what answers back.”</p>
+
+<p>The lift doors closed, carrying you down into the Quarter. The aurora bled through the dome above, still pulsing, still watching. Haven waited in silence, and the silence hummed.</p>
+
+<div class="gm">
+  <div class="gm-h">GM — Bridge into Arc 3</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Quarter Mood:</b> PCs returning face unrest. Reclaimer leaders demand answers; Accord Optics tested immediately.</li>
+      <li><b>Wafer Hook:</b> Data logs confirm a <i>signal spike</i> moments before the ambush. PCs can trace it to tunnels leading into Arc 3.</li>
+      <li><b>Faction Fallout:</b> 
+        <ul>
+          <li><i>Hestrel:</i> Pleased if PCs stayed quiet. Furious if they contradicted him.</li>
+          <li><i>Drix:</i> Either appeased (NDA) or hostile (smear campaign).</li>
+          <li><i>Sael:</i> Ally if PCs consented, skeptic if not.</li>
+        </ul>
+      </li>
+      <li><b>Arc Transition:</b> This closes Arc 2 (*Spire of Quiet Lies*). PCs move into Arc 3 (*Echoes in the Dark*)—the first descent where the Choir’s hum takes center stage.</li>
+    </ul>
+  </div>
+</div>
+
+</main>
+<button id="v9-tracker-toggle">Combat Tracker</button>
+
+<div id="v9-tracker-drawer" aria-label="Combat Tracker Drawer">
+  <header>
+    <h3>Combat Tracker</h3>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="pill" id="v9-round-pill">Round 1</span>
+      <button class="btn" id="v9-next">Next rd</button>
+      <button class="btn" id="v9-clear">Clear</button>
+      <button class="btn" id="v9-pop">Pop-out</button>
+    </div>
+  </header>
+
+  <div class="tray">
+    <!-- add row -->
+    <div class="grid" style="margin-bottom:10px">
+      <input id="v9-add-name" placeholder="Name (PC/NPC)">
+      <input id="v9-add-init" type="number" placeholder="Init">
+      <input id="v9-add-ac"   type="number" placeholder="AC">
+      <input id="v9-add-hp"   type="number" placeholder="HP">
+      <input id="v9-add-th"   type="number" placeholder="THAC0/Atk">
+      <button class="btn" id="v9-add">Add</button>
+    </div>
+
+    <div class="small" style="color:var(--muted,#3a4150);margin-bottom:6px">
+      Click to edit values. ✓ marks acted, 💥 toggles defeated.
+    </div>
+
+    <div id="v9-rows"></div>
+  </div>
+</div>
+<script>
+(() => {
+  const drawer = document.getElementById('v9-tracker-drawer');
+  const toggle = document.getElementById('v9-tracker-toggle');
+  const roundPill = document.getElementById('v9-round-pill');
+
+  // single source of truth
+  let state = { round: 1, rows: [] };
+
+  function save(){ try{ localStorage.setItem('v9_tracker', JSON.stringify(state)); }catch(e){} }
+  function load(){
+    try{
+      const s = localStorage.getItem('v9_tracker');
+      if (s) state = JSON.parse(s);
+    }catch(e){}
+    render();
+  }
+
+  function render(){
+    roundPill.textContent = `Round ${state.round||1}`;
+    const host = document.getElementById('v9-rows'); host.innerHTML = '';
+    state.rows.slice().sort((a,b)=> (b.init||0)-(a.init||0)).forEach((r,i)=>{
+      const row = document.createElement('div');
+      row.className = 'row' + (r.dead ? ' dead':'');
+      row.innerHTML = `
+        <input value="${r.name||''}"  data-k="name">
+        <input value="${r.init||''}"  data-k="init"  type="number">
+        <input value="${r.ac||''}"    data-k="ac"    type="number">
+        <input value="${r.hp||''}"    data-k="hp"    type="number">
+        <input value="${r.th||''}"    data-k="th"    type="number">
+        <div style="display:flex;gap:6px">
+          <button class="btn" data-act="acted">✓</button>
+          <button class="btn" data-act="dead">💥</button>
+          <button class="btn" data-act="del">🗑</button>
+        </div>`;
+      row.querySelectorAll('input').forEach(inp=>{
+        inp.addEventListener('change', ()=>{
+          const key = inp.dataset.k;
+          state.rows[i][key] = (inp.type==='number') ? Number(inp.value) : inp.value;
+          save();
+        });
+      });
+      row.querySelector('[data-act="del"]').onclick  = ()=>{ state.rows.splice(i,1); save(); render(); };
+      row.querySelector('[data-act="dead"]').onclick = ()=>{ state.rows[i].dead = !state.rows[i].dead; save(); render(); };
+      row.querySelector('[data-act="acted"]').onclick= ()=>{ state.rows[i].acted= !state.rows[i].acted; save(); render(); };
+      host.appendChild(row);
+    });
+  }
+
+  // controls
+  document.getElementById('v9-add').onclick = ()=>{
+    const name = document.getElementById('v9-add-name').value.trim();
+    if (!name) return;
+    state.rows.push({
+      name,
+      init:Number(document.getElementById('v9-add-init').value||0),
+      ac:  Number(document.getElementById('v9-add-ac').value||0),
+      hp:  Number(document.getElementById('v9-add-hp').value||0),
+      th:  Number(document.getElementById('v9-add-th').value||0),
+      dead:false, acted:false
+    });
+    save(); render();
+    ['v9-add-name','v9-add-init','v9-add-ac','v9-add-hp','v9-add-th'].forEach(id=>document.getElementById(id).value='');
+  };
+
+  document.getElementById('v9-next').onclick  = ()=>{ state.round=(state.round||1)+1; save(); render(); };
+  document.getElementById('v9-clear').onclick = ()=>{ state={round:1,rows:[]}; save(); render(); };
+
+  // drawer toggle
+  toggle.addEventListener('click', ()=> drawer.classList.toggle('open'));
+
+  // pop-out
+  let pop = null;
+  document.getElementById('v9-pop').addEventListener('click', ()=>{
+    save(); // ensure latest
+    pop = window.open('tracker.html','Veyra9Tracker','width=980,height=720,menubar=no,toolbar=no,location=no,status=no');
+  });
+
+  // cross-window sync
+  window.addEventListener('storage', (e)=>{ if (e.key==='v9_tracker') load(); });
+
+  // boot
+  load();
+})();
+</script>
+</body>
+</html>

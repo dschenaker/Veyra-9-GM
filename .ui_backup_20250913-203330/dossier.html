@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — Dossier</title>
+
+<style>
+/* === V9 Combat Tracker === */
+#v9-tracker-toggle{
+  position: fixed; right: 18px; bottom: 18px; z-index: 1200;
+  background:#0b3d7a; color:#fff; border:0; border-radius:999px;
+  padding:12px 18px; font-weight:700; box-shadow:0 6px 18px rgba(11,61,122,.25);
+  cursor:pointer;
+}
+#v9-tracker-drawer{
+  position: fixed; right: 18px; bottom: 78px; z-index: 1199; width: 560px; max-width: calc(100vw - 36px);
+  background:#fff; border:1px solid var(--line,#d7dbea); border-radius:14px;
+  box-shadow:0 18px 40px rgba(10,30,80,.18); display:none;
+}
+#v9-tracker-drawer.open{ display:block; }
+#v9-tracker-drawer header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 12px; border-bottom:1px solid var(--line,#d7dbea); background:#eef5ff; border-radius:14px 14px 0 0;
+}
+#v9-tracker-drawer header h3{ margin:0; font-size:1rem; color:#0b3d7a }
+#v9-tracker-drawer .pill{
+  background:#eaf1ff; border:1px solid #c9d8ff; color:#0b3d7a; border-radius:999px; padding:4px 10px; font-weight:700
+}
+#v9-tracker-drawer .btn{
+  background:#fff; border:1px solid var(--line,#d7dbea); border-radius:8px; padding:6px 10px; cursor:pointer
+}
+#v9-tracker-drawer .btn:hover{ background:#f7faff }
+#v9-tracker-drawer .tray{ padding:10px 12px 12px }
+#v9-tracker-drawer .grid,
+#v9-tracker-drawer .row{
+  display:grid; grid-template-columns:1.2fr .6fr .6fr .6fr .6fr auto; gap:8px; align-items:center;
+}
+#v9-tracker-drawer .grid input, #v9-tracker-drawer .row input{ width:100% }
+#v9-tracker-drawer .row{ padding:8px 0; border-bottom:1px dashed var(--line,#d7dbea) }
+#v9-tracker-drawer .row.dead{ opacity:.55; text-decoration:line-through }
+
+/* ===== Base theme (same tokens as Arc 1) ===== */
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--brand); text-decoration:none}
+a:hover{filter:brightness(1.08); text-decoration:underline}
+
+/* Header / Nav */
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.brand{font-weight:800; color:var(--brand)}
+nav a{
+  display:inline-block; margin-right:10px; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600;
+}
+nav a:hover{background:#f4f7ff}
+.clock{
+  margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
+  color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700;
+}
+
+/* clickable headers for accordion */
+.faction-h, .npc-h { cursor:pointer; }
+
+/* Layout */
+.wrap{max-width:1100px; margin:0 auto; padding:20px}
+h1{margin:12px 0 14px}
+.small{color:var(--muted); font-size:.94rem}
+
+/* ===== Repository UI ===== */
+.repo-search{display:flex; gap:12px; align-items:center; margin:12px 0 18px}
+.repo-search input{
+  padding:10px 12px; border:1px solid var(--line); border-radius:10px; min-width:320px; background:#fff;
+}
+
+/* Factions as accordions */
+.faction{background:var(--panel); border:1px solid var(--line); border-radius:12px; margin:10px 0; overflow:hidden}
+.faction-h{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 14px; cursor:pointer; font-weight:800; color:var(--brand);
+  background:linear-gradient(#f7f9ff,#f1f5ff);
+  border-bottom:1px solid var(--line);
+}
+.faction-h::before{content:"▸"; margin-right:8px; color:var(--brandSoft)}
+.faction-h.active::before{content:"▾"}
+.badge{font-weight:600; color:var(--brand); background:var(--chip); border:1px solid var(--chipLine); border-radius:999px; padding:2px 8px; font-size:.86rem}
+.faction-c{display:none; padding:10px 12px}
+
+/* NPC cards inside each faction */
+.npc{border:1px solid var(--line); border-radius:10px; padding:10px 12px; margin:10px 0; background:#fff}
+.npc-h{font-weight:800; color:var(--ink); cursor:pointer}
+.npc-h small{font-weight:600; color:var(--muted)}
+.npc-h::before{content:"＋ "; color:var(--brandSoft)}
+.npc-h.active::before{content:"– "}
+.npc-c{display:none; margin-top:8px}
+.npc-c p{margin:.35rem 0}
+</style>
+
+<script>
+// -------- live clock (single) --------
+function tick(){
+  const el = document.getElementById('clock'); if(!el) return;
+  el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+}
+setInterval(tick,1000);
+window.addEventListener('DOMContentLoaded', tick);
+
+window.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('click', (e) => {
+    // Faction header -> toggle its .faction-c sibling
+    const fh = e.target.closest('.faction-h');
+    if (fh) {
+      const fc = fh.nextElementSibling;
+      if (fc) {
+        const hidden = getComputedStyle(fc).display === 'none';
+        fc.style.display = hidden ? 'block' : 'none';
+      }
+      return; // stop if we handled a faction click
+    }
+    });
+  });
+  document.querySelectorAll('.npc-h').forEach(h=>{
+    h.addEventListener('click', ()=>{
+      h.classList.toggle('active');
+      const c = h.nextElementSibling; if(c) c.style.display = h.classList.contains('active') ? 'block' : 'none';
+    });
+  });
+
+// -------- search (name/role/faction) --------
+function repoSearch(){
+  const q = document.getElementById('repoInput').value.trim().toLowerCase();
+  const factions = document.querySelectorAll('.faction');
+  factions.forEach(f=>{
+    // show/hide NPCs
+    let any = false;
+    f.querySelectorAll('.npc').forEach(n=>{
+      const hay = (n.getAttribute('data-hay') || '').toLowerCase();
+      const show = !q || hay.includes(q);
+      n.style.display = show ? '' : 'none';
+      if(show) any = true;
+    });
+    // show/hide faction block
+    f.style.display = any ? '' : 'none';
+    // auto-open faction if filtering
+    const fh=f.querySelector('.faction-h'), fc=f.querySelector('.faction-c');
+    if(q && any){ fh.classList.add('active'); fc.style.display='block'; }
+    if(!q){ fh.classList.remove('active'); fc.style.display='none'; f.querySelectorAll('.npc-h').forEach(h=>{ h.classList.remove('active'); }); f.querySelectorAll('.npc-c').forEach(c=>c.style.display='none'); }
+  });
+}
+
+window.addEventListener('DOMContentLoaded', ()=>{
+  wireAccordions();
+  repoSearch(); // initial pass (no filter)
+});
+</script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="brand">VEYRA-9 · Dossier</div>
+   <!-- NAV START -->
+<nav class="topbar">
+  <a class="brand" href="./index.html">VEYRA-9 · Player Recap</a>
+
+      <nav class="nav">
+      <div class="nav-item dropdown" id="phase1-dd">
+        <a href="#" class="btn nav-pill">Phase 1 ▾</a>
+        <div class="dropdown-menu">
+          <a href="./index.html">Arc 1</a>
+          <a href="./arc2.html">Arc 2</a>
+          <a href="./arc3.html">Arc 3</a>
+          <a href="./arc4.html">Arc 4</a>
+          <a href="./arc5.html">Arc 5</a>
+          <a href="./arc6.html">Arc 6</a>
+          <a href="./arc7.html">Arc 7</a>
+          <a href="./arc8.html">Arc 8</a>
+          <a href="./arc9.html">Arc 9</a>
+        </div>
+      </div>
+
+    <!-- Phase 2 -->
+      <div class="nav-item dropdown" id="phase2-dd">
+        <a href="#" class="btn nav-pill">Phase 2 ▾</a>
+        <div class="dropdown-menu">
+          <a href="./arc10.html">Arc 10</a>
+        <!-- add Arc 11+ as they go -->
+      </div>
+    </div>
+
+  <a class="btn nav-pill" href="player-recap.html">VEYRA-9 • Player Recap</a>
+  <a class="btn nav-pill" href="tracker.html">Tracker</a>
+</nav>
+
+<style>
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:.75rem;
+    padding:.6rem 1rem;border-radius:.75rem;background:rgba(255,255,255,.65);
+    backdrop-filter:saturate(140%) blur(8px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+  .brand{font-weight:700;text-decoration:none;color:#111}
+  .nav-right{display:flex;gap:.5rem;align-items:center}
+  .btn{border:1px solid #d7dbe1;background:#fff;border-radius:.6rem;padding:.35rem .7rem;
+    cursor:pointer;font-weight:600}
+  .btn.ghost{background:transparent}
+  .dropdown{position:relative}
+  .dropdown .menu{position:absolute;top:calc(100% + 6px);left:0;min-width:10rem;
+    background:#fff;border:1px solid #e6e9ef;border-radius:.6rem;box-shadow:0 10px 28px rgba(0,0,0,.12);
+    padding:.35rem;display:none;z-index:10}
+  .dropdown:hover .menu{display:block}
+  .dropdown .menu a{display:block;padding:.45rem .55rem;border-radius:.45rem;color:#111;text-decoration:none}
+  .dropdown .menu a:hover{background:#f2f4f8}
+  @media (max-width:760px){.nav-right{flex-wrap:wrap}}
+</style>
+<!-- NAV END -->
+
+<style>
+.dropdown { position: relative; display: inline-block; }
+.dropbtn {
+  background: var(--chip); border:1px solid var(--chipLine);
+  border-radius:8px; padding:6px 10px; color:var(--brand); font-weight:600;
+  cursor:pointer;
+}
+.dropdown-content {
+  display: none; position: absolute; background:#fff;
+  box-shadow:0 4px 8px rgba(0,0,0,.1);
+  border:1px solid var(--line); border-radius:6px;
+  min-width:160px; z-index:20;
+}
+.dropdown-content a {
+  display:block; padding:8px 12px; color:var(--ink);
+}
+.dropdown-content a:hover { background:#f4f7ff; }
+.dropdown:hover .dropdown-content { display:block; }
+.dropdown:hover .dropbtn { background:#eef5ff; }
+</style>
+  </header>
+
+<main class="wrap">
+  <h1>Dossier — Character Repository</h1>
+
+  <div class="repo-search">
+    <input id="repoInput" type="search"
+           placeholder="Search by name, role, or faction…"
+           oninput="repoSearch()">
+    <span class="small">Type to filter</span>
+  </div>
+
+  <!-- Obsidian Accord -->
+  <div class="faction">
+    <div class="faction-h">Obsidian Accord <span class="badge">handlers, auditors, truth brokers</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="saint accord handler mission control whistleblower leverage ethics truth Mare">
+        <div class="npc-h">Saint — Accord Handler <small>access without authority</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Trim, neutral wardrobe that photographs well; a voice that sounds recorded even live.</p>
+          <p><b>Backstory.</b> Rose from field audits after exposing a Helion shell around Noryx quotas. Keeps an unsent message to someone named <i>Mare</i> pinned in a private channel.</p>
+          <p><b>Hooks.</b> Exchanges access for proof; will burn a source to save ten.</p>
+          <p><b>Progression.</b> Remote in Phase I; appears in II; linchpin or liability in III.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Helion Industries -->
+  <div class="faction">
+    <div class="faction-h">Helion Industries <span class="badge">governance & security</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="orus hestrel helion governor optics board politics">
+        <div class="npc-h">Governor Orus Hestrel — Administrator <small>optics first, stability second</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Pressed suits; diction designed for press rooms.</p>
+          <p><b>Backstory.</b> Former Bryndor liaison; rewarded with Haven after surviving crises on paper.</p>
+          <p><b>Hooks.</b> Needs the Quarter quiet before the Board call; trades permits for photo ops.</p>
+          <p><b>Progression.</b> Scapegoat, ally, or survivor depending on PCs.</p>
+        </div>
+      </div>
+
+      <div class="npc" data-hay="lira veyne captain security helion soldier principled pragmatist">
+        <div class="npc-h">Captain Lira Veyne — Security Chief <small>line-holder</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Uniform crisp even in crisis; braid pinned like an engineering diagram.</p>
+          <p><b>Backstory.</b> Dockyard rat turned officer; held a Bryndor line with twelve against fifty.</p>
+          <p><b>Hooks.</b> Respects competence; bends rules for civilian safety; will not protect lies.</p>
+          <p><b>Progression.</b> Patron if earned, rival if undercut, martyr if cornered.</p>
+        </div>
+      </div>
+
+      <div class="npc" data-hay="meryn ralos risk compliance variance reports liability records">
+        <div class="npc-h">Meryn Ralos — Risk Compliance Officer <small>bureaucracy with a pulse</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Tablet, stylus, clean nails; anxiety disguised as policy.</p>
+          <p><b>Backstory.</b> Wrote three handbooks no one read; knows where numbers are buried.</p>
+          <p><b>Hooks.</b> Opens records if given cover; fears being the one who signed the wrong line.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zeratek Industries -->
+  <div class="faction">
+    <div class="faction-h">Zeratek Industries <span class="badge">arrays, emitters, drones</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="kaelen drix zeratek liaison recall firmware blossom lens parts shortage">
+        <div class="npc-h">Kaelen Drix — Zeratek Liaison <small>smiles in fine print</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Corporate casual with a collector’s watch; tone that implies you’re lucky he’s making time.</p>
+          <p><b>Backstory.</b> Promoted for moving unsellable stock to desperate colonies.</p>
+          <p><b>Hooks.</b> Wants legacy units back; offers diagnostics; hides firmware notes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reclaimers -->
+  <div class="faction">
+    <div class="faction-h">Reclaimers <span class="badge">labor populists, Quarter conscience</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="serin vael forewoman reclaimers water lines ration trust">
+        <div class="npc-h">Serin Vael — Forewoman <small>ledger of favors</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Oil-black hair, sleeves rolled. Words like tools: used, not wasted.</p>
+          <p><b>Backstory.</b> Memorized the names on the memorial wall; keeps paint ready.</p>
+          <p><b>Hooks.</b> Trades access for practical wins; tests promises; protects kids first.</p>
+        </div>
+      </div>
+
+      <div class="npc" data-hay="tannic rust varo rigger tunnel lead blunt loyal">
+        <div class="npc-h">Tannic “Rust” Varo — Tunnel Lead <small>loyal to the living</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Scarred gloves, calm hands. Rare, honest laugh.</p>
+          <p><b>Backstory.</b> Survived the Year-Five collapse; refuses to let statistics bury it.</p>
+          <p><b>Hooks.</b> Equipment tours; rig fixes; witnesses who trust him.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compliance Medicine -->
+  <div class="faction">
+    <div class="faction-h">Compliance Medicine <span class="badge">screenings, calm outcomes</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="director sael clinic sedation ethics productive recovery">
+        <div class="npc-h">Director Sael — Clinic Head <small>gentle voice, hard math</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Clean lines, soft colors, a smile that never reaches the eyes.</p>
+          <p><b>Backstory.</b> Thesis on “productive recovery” reads like mercy until you compare numbers to funerals.</p>
+          <p><b>Hooks.</b> Seeks “volunteers”; offers supplies; seals records.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Malrix Movement -->
+  <div class="faction">
+    <div class="faction-h">Malrix Movement <span class="badge">machine-hunger creed</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="prophet malrix cult sermon hunger choir sabotage icons">
+        <div class="npc-h">Prophet Malrix — Street Preacher <small>fear given choreography</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Wire bracelets, eyes like low-battery lights; speaks in couplets that match humming machinery.</p>
+          <p><b>Backstory.</b> Former tech who watched a drone finish a song after power died.</p>
+          <p><b>Hooks.</b> Steals parts that “sing”; promises safety in surrender; sabotages arrays to prove doctrine.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Locals & Other Figures -->
+  <div class="faction">
+    <div class="faction-h">Locals & Other Figures <span class="badge">civilians, technicians, strays</span></div>
+    <div class="faction-c" style="display:none">
+      <div class="npc" data-hay="mara kelen chief tech f13 diagnostics phantom alerts">
+        <div class="npc-h">Chief Tech Mara Kelen — F-13 Lead <small>burned bright by fluorescents</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Jumpsuit bleached at the shoulders; diagnostic wand like a conductor’s baton.</p>
+          <p><b>Backstory.</b> Keeps a shrine of fuses and wire; scratches <i>for luck</i> on casings.</p>
+          <p><b>Hooks.</b> Phantom alerts; ducts that rattle like they’ve got opinions; boards that sing wrong.</p>
+        </div>
+      </div>
+
+      <div class="npc" data-hay="toll junior engineer f13 brave front conduit warm idle cool awake">
+        <div class="npc-h">Toll — Junior Engineer <small>brave front, fast feet</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Too-big gloves, grin that arrives before courage does.</p>
+          <p><b>Backstory.</b> Learned the ducts’ moods before schematics.</p>
+          <p><b>Hooks.</b> Knows shortcuts; will fetch parts if someone believes in him.</p>
+        </div>
+      </div>
+
+      <div class="npc" data-hay="row c child survivor rumor web singer motif dots">
+        <div class="npc-h">Unnamed Child — Row-C Survivor <small>counts lights, hears motifs</small></div>
+        <div class="npc-c" style="display:none">
+          <p><b>Appearance & Demeanor.</b> Silent until the hum starts; then attentive like a tuning fork.</p>
+          <p><b>Backstory.</b> Lost a parent to a “variance.” Keeps time with flickers on the ceiling.</p>
+          <p><b>Hooks.</b> Matches hummed notes to places; draws maps in dots.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- ========== Zeratek, Reclaimers, Compliance, Malrix, Locals (keep your existing blocks) ========== -->
+    <!-- (Paste your remaining factions/NPCs here exactly as you had them; the toggles now work.) -->
+
+    <hr>
+    <div class="small">Return to <a href="index.html">Arc 1</a></div>
+</main>
+<script>
+(function () {
+  // --- live clock ---
+  function tick(){
+    const el = document.getElementById('clock'); if(!el) return;
+    el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+  }
+  setInterval(tick, 1000);
+  document.addEventListener('DOMContentLoaded', tick);
+
+  // --- event delegation for toggles (works on title OR badge) ---
+  document.addEventListener('click', function (e) {
+    const fh = e.target.closest('.faction-h');
+    if (fh) {
+      fh.classList.toggle('active');
+      const c = fh.nextElementSibling;
+      if (c) c.style.display = fh.classList.contains('active') ? 'block' : 'none';
+    }
+    const nh = e.target.closest('.npc-h');
+    if (nh) {
+      nh.classList.toggle('active');
+      const c = nh.nextElementSibling;
+      if (c) c.style.display = nh.classList.contains('active') ? 'block' : 'none';
+    }
+  });
+
+  // --- search (kept global for oninput) ---
+  window.repoSearch = function(){
+    const q = (document.getElementById('repoInput')?.value || '').trim().toLowerCase();
+    document.querySelectorAll('.faction').forEach(f=>{
+      let any = false;
+      f.querySelectorAll('.npc').forEach(n=>{
+        const hay = (n.getAttribute('data-hay')||'').toLowerCase();
+        const show = !q || hay.includes(q);
+        n.style.display = show ? '' : 'none';
+        if (show) any = true;
+      });
+      f.style.display = any ? '' : 'none';
+
+      const fh = f.querySelector('.faction-h');
+      const fc = f.querySelector('.faction-c');
+      if (fh && fc){
+        if (q && any){ fh.classList.add('active'); fc.style.display='block'; }
+        if (!q){ fh.classList.remove('active'); fc.style.display='none';
+          f.querySelectorAll('.npc-h').forEach(h=>h.classList.remove('active'));
+          f.querySelectorAll('.npc-c').forEach(c=>c.style.display='none');
+        }
+      }
+    });
+  };
+})();
+</script>
+<button id="v9-tracker-toggle">Combat Tracker</button>
+
+<div id="v9-tracker-drawer" aria-label="Combat Tracker Drawer">
+  <header>
+    <h3>Combat Tracker</h3>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="pill" id="v9-round-pill">Round 1</span>
+      <button class="btn" id="v9-next">Next rd</button>
+      <button class="btn" id="v9-clear">Clear</button>
+      <button class="btn" id="v9-pop">Pop-out</button>
+    </div>
+  </header>
+
+  <div class="tray">
+    <!-- add row -->
+    <div class="grid" style="margin-bottom:10px">
+      <input id="v9-add-name" placeholder="Name (PC/NPC)">
+      <input id="v9-add-init" type="number" placeholder="Init">
+      <input id="v9-add-ac"   type="number" placeholder="AC">
+      <input id="v9-add-hp"   type="number" placeholder="HP">
+      <input id="v9-add-th"   type="number" placeholder="THAC0/Atk">
+      <button class="btn" id="v9-add">Add</button>
+    </div>
+
+    <div class="small" style="color:var(--muted,#3a4150);margin-bottom:6px">
+      Click to edit values. ✓ marks acted, 💥 toggles defeated.
+    </div>
+
+    <div id="v9-rows"></div>
+  </div>
+</div>
+<script>
+(() => {
+  const drawer = document.getElementById('v9-tracker-drawer');
+  const toggle = document.getElementById('v9-tracker-toggle');
+  const roundPill = document.getElementById('v9-round-pill');
+
+  // single source of truth
+  let state = { round: 1, rows: [] };
+
+  function save(){ try{ localStorage.setItem('v9_tracker', JSON.stringify(state)); }catch(e){} }
+  function load(){
+    try{
+      const s = localStorage.getItem('v9_tracker');
+      if (s) state = JSON.parse(s);
+    }catch(e){}
+    render();
+  }
+
+  function render(){
+    roundPill.textContent = `Round ${state.round||1}`;
+    const host = document.getElementById('v9-rows'); host.innerHTML = '';
+    state.rows.slice().sort((a,b)=> (b.init||0)-(a.init||0)).forEach((r,i)=>{
+      const row = document.createElement('div');
+      row.className = 'row' + (r.dead ? ' dead':'');
+      row.innerHTML = `
+        <input value="${r.name||''}"  data-k="name">
+        <input value="${r.init||''}"  data-k="init"  type="number">
+        <input value="${r.ac||''}"    data-k="ac"    type="number">
+        <input value="${r.hp||''}"    data-k="hp"    type="number">
+        <input value="${r.th||''}"    data-k="th"    type="number">
+        <div style="display:flex;gap:6px">
+          <button class="btn" data-act="acted">✓</button>
+          <button class="btn" data-act="dead">💥</button>
+          <button class="btn" data-act="del">🗑</button>
+        </div>`;
+      row.querySelectorAll('input').forEach(inp=>{
+        inp.addEventListener('change', ()=>{
+          const key = inp.dataset.k;
+          state.rows[i][key] = (inp.type==='number') ? Number(inp.value) : inp.value;
+          save();
+        });
+      });
+      row.querySelector('[data-act="del"]').onclick  = ()=>{ state.rows.splice(i,1); save(); render(); };
+      row.querySelector('[data-act="dead"]').onclick = ()=>{ state.rows[i].dead = !state.rows[i].dead; save(); render(); };
+      row.querySelector('[data-act="acted"]').onclick= ()=>{ state.rows[i].acted= !state.rows[i].acted; save(); render(); };
+      host.appendChild(row);
+    });
+  }
+
+  // controls
+  document.getElementById('v9-add').onclick = ()=>{
+    const name = document.getElementById('v9-add-name').value.trim();
+    if (!name) return;
+    state.rows.push({
+      name,
+      init:Number(document.getElementById('v9-add-init').value||0),
+      ac:  Number(document.getElementById('v9-add-ac').value||0),
+      hp:  Number(document.getElementById('v9-add-hp').value||0),
+      th:  Number(document.getElementById('v9-add-th').value||0),
+      dead:false, acted:false
+    });
+    save(); render();
+    ['v9-add-name','v9-add-init','v9-add-ac','v9-add-hp','v9-add-th'].forEach(id=>document.getElementById(id).value='');
+  };
+
+  document.getElementById('v9-next').onclick  = ()=>{ state.round=(state.round||1)+1; save(); render(); };
+  document.getElementById('v9-clear').onclick = ()=>{ state={round:1,rows:[]}; save(); render(); };
+
+  // drawer toggle
+  toggle.addEventListener('click', ()=> drawer.classList.toggle('open'));
+
+  // pop-out
+  let pop = null;
+  document.getElementById('v9-pop').addEventListener('click', ()=>{
+    save(); // ensure latest
+    pop = window.open('tracker.html','Veyra9Tracker','width=980,height=720,menubar=no,toolbar=no,location=no,status=no');
+  });
+
+  // cross-window sync
+  window.addEventListener('storage', (e)=>{ if (e.key==='v9_tracker') load(); });
+
+  // boot
+  load();
+})();
+</script>
+</body>
+</html>
