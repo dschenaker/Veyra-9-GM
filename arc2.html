@@ -143,25 +143,61 @@ window.addEventListener('DOMContentLoaded', () => {
 <body>
 <header class="header">
   <div class="brand">VEYRA-9 · GM Hub</div>
-  <nav>
-  <div class="dropdown">
-    <button class="dropbtn">Phase I ▾</button>
-    <div class="dropdown-content">
-      <a href="index.html">Arc 1</a>
-      <a href="arc2.html">Arc 2</a>
-      <a href="arc3.html">Arc 3</a>
-      <a href="arc4.html">Arc 4</a>
-      <a href="arc5.html">Arc 5</a>
-      <a href="arc6.html">Arc 6</a>
-      <a href="arc7.html">Arc 7</a>
-      <a href="arc8.html">Arc 8</a>
-      <a href="arc9.html">Arc 9</a>
+  <!-- NAV START -->
+<nav class="topbar">
+  <a class="brand" href="./index.html">VEYRA-9 · Player Recap</a>
+
+  <div class="nav-right">
+    <!-- Phase 1 -->
+    <div class="dropdown">
+      <button class="btn">Phase 1 ▾</button>
+      <div class="menu">
+        <a href="./arc1.html">Arc 1</a>
+        <a href="./arc2.html">Arc 2</a>
+        <a href="./arc3.html">Arc 3</a>
+        <a href="./arc4.html">Arc 4</a>
+        <a href="./arc5.html">Arc 5</a>
+        <a href="./arc6.html">Arc 6</a>
+        <a href="./arc7.html">Arc 7</a>
+        <a href="./arc8.html">Arc 8</a>
+        <a href="./arc9.html">Arc 9</a>
+      </div>
     </div>
+
+    <!-- Phase 2 -->
+    <div class="dropdown">
+      <button class="btn">Phase 2 ▾</button>
+      <div class="menu">
+        <a href="./arc10.html">Arc 10</a>
+        <!-- add Arc 11+ as they go -->
+      </div>
+    </div>
+
+    <a class="btn ghost" href="./player-recap.html">Player Recap</a>
+    <a class="btn ghost" href="./repo.html">Repo</a>
+    <a class="btn ghost" href="./tracker.html">Tracker</a>
   </div>
-  <a href="repo.html">Dossier</a>
-  <a href="player-recap.html">Player Recap</a>
-  <span class="clock" id="clock">--:--:--</span>
 </nav>
+
+<style>
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:.75rem;
+    padding:.6rem 1rem;border-radius:.75rem;background:rgba(255,255,255,.65);
+    backdrop-filter:saturate(140%) blur(8px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+  .brand{font-weight:700;text-decoration:none;color:#111}
+  .nav-right{display:flex;gap:.5rem;align-items:center}
+  .btn{border:1px solid #d7dbe1;background:#fff;border-radius:.6rem;padding:.35rem .7rem;
+    cursor:pointer;font-weight:600}
+  .btn.ghost{background:transparent}
+  .dropdown{position:relative}
+  .dropdown .menu{position:absolute;top:calc(100% + 6px);left:0;min-width:10rem;
+    background:#fff;border:1px solid #e6e9ef;border-radius:.6rem;box-shadow:0 10px 28px rgba(0,0,0,.12);
+    padding:.35rem;display:none;z-index:10}
+  .dropdown:hover .menu{display:block}
+  .dropdown .menu a{display:block;padding:.45rem .55rem;border-radius:.45rem;color:#111;text-decoration:none}
+  .dropdown .menu a:hover{background:#f2f4f8}
+  @media (max-width:760px){.nav-right{flex-wrap:wrap}}
+</style>
+<!-- NAV END -->
 
 <style>
 .dropdown { position: relative; display: inline-block; }
