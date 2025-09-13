@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — GM Hub · Arc 8</title>
+<style>
+/* ====== Veyra-9 GM Hub — Base Theme ====== */
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+/* Links */
+a{color:var(--brand); text-decoration:none}
+a:hover{filter:brightness(1.08); text-decoration:underline}
+/* Header / Nav */
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.brand{font-weight:800; color:var(--brand)}
+nav a{
+  display:inline-block; margin-right:10px; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600;
+}
+nav a:hover{background:#f4f7ff}
+.clock{
+  margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
+  color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700;
+}
+/* Layout */
+.wrap{max-width:1100px; margin:0 auto; padding:20px}
+.breadcrumbs{color:var(--muted); margin:6px 0 14px}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
+/* Headings & sections */
+h1{margin:10px 0 6px}
+h2{margin:24px 0 10px}
+.scene{
+  color:var(--brand); border-bottom:2px solid var(--line);
+  padding-bottom:6px; margin-top:28px;
+}
+.scene::before{content:"◆ "; color:var(--brandSoft)}
+/* Quote / epigraph */
+blockquote{
+  border-left:4px solid var(--brandSoft);
+  background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic;
+}
+/* Helpers */
+.meta{color:var(--muted); font-style:italic}
+.small{font-size:.94rem; color:var(--muted)}
+.chip{
+  display:inline-block; padding:6px 10px; background:var(--chip);
+  border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600; margin-right:8px
+}
+/* GM callouts */
+.gm{
+  background:#eef5ff; border:1px solid var(--chipLine);
+  border-left:6px solid var(--brandSoft);
+  border-radius:10px; padding:10px 14px; margin:18px 0;
+  box-shadow:0 1px 0 rgba(10,30,80,.04);
+}
+.gm + .gm{margin-top:14px}
+.gm-h{
+  font-weight:800; color:var(--brand); letter-spacing:.1px;
+  display:flex; align-items:center; gap:8px; margin:2px 0 6px 0;
+}
+.gm-h::before{
+  content:"GM"; font-size:12px; font-weight:800;
+  color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px;
+}
+.gm-b{color:var(--ink)}
+.gm-b ul{margin:8px 0 2px 1.1rem}
+.gm-b li{margin:6px 0}
+.gm-b li b{color:var(--brand)}
+.gm.collapsible .gm-b{display:none}
+.gm.collapsible.open .gm-b{display:block}
+.gm.collapsible .gm-h{cursor:pointer}
+</style>
+
+<script>
+// live clock
+function tick(){
+  const el=document.getElementById('clock'); if(!el) return;
+  el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+}
+setInterval(tick,1000); window.addEventListener('DOMContentLoaded',tick);
+
+// GM collapsibles
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gm.collapsible .gm-h').forEach(h => {
+    h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+  });
+});
+</script>
+</head>
+
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · GM Hub</div>
+  <!-- NAV START -->
+<nav class="topbar">
+  <a href="player-recap.html" class="btn btn-outline-secondary btn-lg rounded-pill px-3 py-1">VEYRA-9 · Player Recap</a>
+
+  <div class="nav-right">
+    <!-- Phase 1 -->
+        <nav class="nav">
+      <div class="nav-item dropdown" id="phase1-dd">
+        <a href="#" class="btn nav-pill">Phase 1 ▾</a>
+        <div class="dropdown-menu">
+          <a href="./index.html">Arc 1</a>
+          <a href="./arc2.html">Arc 2</a>
+          <a href="./arc3.html">Arc 3</a>
+          <a href="./arc4.html">Arc 4</a>
+          <a href="./arc5.html">Arc 5</a>
+          <a href="./arc6.html">Arc 6</a>
+          <a href="./arc7.html">Arc 7</a>
+          <a href="./arc8.html">Arc 8</a>
+          <a href="./arc9.html">Arc 9</a>
+        </div>
+      </div>
+
+    <!-- Phase 2 -->
+      <div class="nav-item dropdown" id="phase2-dd">
+        <a href="#" class="btn nav-pill">Phase 2 ▾</a>
+        <div class="dropdown-menu">
+          <a href="./arc10.html">Arc 10</a>
+        <!-- add Arc 11+ as they go -->
+      </div>
+    </div>
+
+  <a class="btn nav-pill" href="player-recap.html">VEYRA-9 • Player Recap</a>
+  <a class="btn nav-pill" href="tracker.html">Tracker</a>
+</nav>
+
+<style>
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:.75rem;
+    padding:.6rem 1rem;border-radius:.75rem;background:rgba(255,255,255,.65);
+    backdrop-filter:saturate(140%) blur(8px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+  .brand{font-weight:700;text-decoration:none;color:#111}
+  .nav-right{display:flex;gap:.5rem;align-items:center}
+  .btn{border:1px solid #d7dbe1;background:#fff;border-radius:.6rem;padding:.35rem .7rem;
+    cursor:pointer;font-weight:600}
+  .btn.ghost{background:transparent}
+  .dropdown{position:relative}
+  .dropdown .menu{position:absolute;top:calc(100% + 6px);left:0;min-width:10rem;
+    background:#fff;border:1px solid #e6e9ef;border-radius:.6rem;box-shadow:0 10px 28px rgba(0,0,0,.12);
+    padding:.35rem;display:none;z-index:10}
+  .dropdown:hover .menu{display:block}
+  .dropdown .menu a{display:block;padding:.45rem .55rem;border-radius:.45rem;color:#111;text-decoration:none}
+  .dropdown .menu a:hover{background:#f2f4f8}
+  @media (max-width:760px){.nav-right{flex-wrap:wrap}}
+</style>
+<!-- NAV END -->
+
+<style>
+.dropdown { position: relative; display: inline-block; }
+.dropbtn {
+  background: var(--chip); border:1px solid var(--chipLine);
+  border-radius:8px; padding:6px 10px; color:var(--brand); font-weight:600;
+  cursor:pointer;
+}
+.dropdown-content {
+  display: none; position: absolute; background:#fff;
+  box-shadow:0 4px 8px rgba(0,0,0,.1);
+  border:1px solid var(--line); border-radius:6px;
+  min-width:160px; z-index:20;
+}
+.dropdown-content a {
+  display:block; padding:8px 12px; color:var(--ink);
+}
+.dropdown-content a:hover { background:#f4f7ff; }
+.dropdown:hover .dropdown-content { display:block; }
+.dropdown:hover .dropbtn { background:#eef5ff; }
+</style>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">Phase II → <b>Arc 8</b></div>
+  <h1 class="scene">Arc 8 — Factory Depths</h1>
+  <p class="meta">Mandate: penetrate the Factory interior via Line K, map surveillance rhythms, secure proof of internal wrongdoing, and survive first contact with the Choir-inflected systems. Audit window: <b>4 hours</b> (modify if Arc 7 was noisy).</p>
+
+  <!-- quick chips for GM navigation -->
+  <p>
+    <a class="chip" href="#a8-s1">Scene 1</a>
+    <a class="chip" href="#a8-s2">Scene 2</a>
+    <a class="chip" href="#a8-s3">Scene 3</a>
+    <a class="chip" href="#a8-bridge">Arc Bridge</a>
+  </p>
+
+  <!-- ===== Scene 1 shell ===== -->
+  <h2 class="scene" id="a8-s1">Scene 1 — Quiet Floors, Watching Walls</h2>
+<blockquote>“Factories don’t make products. They make obedience.” — Saint</blockquote>
+
+<p>
+The door unclenched and you stepped into a silence that wasn’t absence, but design. The Factory’s floors gleamed with a polish that no worker had applied in years, their shine produced by drones that preferred reflection to dust. Overhead, rows of lights burned steady white, too steady—never flickering, never dimming. The kind of light that forgets you’re a person and assumes you’re a part number.
+</p>
+
+<p>
+Your boots met surface with a soft report, and that sound was eaten by the walls. Each corridor was paneled in acoustic baffles that made footsteps seem ashamed of themselves. Even whispers bent short, returning to the ear smaller than when they left. It was a building built to hear, not to speak.
+</p>
+
+<p>
+The dampener’s hush clung like a cloak, but you could feel the resistance. The walls pulsed faintly when you moved, as though some current was running not just through conduits but through stone, wire, and air itself. The smell here was a mixture of solder and disinfectant, like someone had tried to sterilize a circuit board and failed.
+</p>
+
+<p>
+Tala signed with her hand: <i>eyes everywhere</i>. She was right. Along the ceilings, pan-tilt units with dull lenses swiveled in programmed arcs. Their hums harmonized with the child’s rhythm, matching beats every third pass. When the dampener surged, the rhythm fell out of time for a moment—long enough to make sweat bead before it realigned itself.
+</p>
+
+<p>
+The corridor opened into a floor bay: rows of conveyor lines still, but not abandoned. Each belt bore crates, all stenciled with codes, none with destinations. The labels were nonsensical—strings of digits punctuated by fragments of words. <i>…variance…consent…deficit…</i> The words changed if you looked twice, letters rearranging like they had places to be.
+</p>
+
+<p>
+On the far wall, a projection flickered to life unbidden: a training reel from a decade ago. Workers in clean uniforms smiled as they carried out procedures, every motion exaggerated to show compliance. But the voices were gone. Only the motions remained, looping endlessly, a pantomime of productivity. When the reel ended, the wall stayed lit with a static image: a slogan, but rewritten in jittering text: <i>YOUR HANDS ARE OURS</i>.
+</p>
+
+<p>
+The map fragment Sharn had given you labeled this section “Quiet Floors.” In the corner, someone had scrawled a note in grease pencil: <i>watch the walls, not the cams</i>. As if to prove it, one section of paneling trembled when you passed, though no air current stirred. The tremble synced with your heartbeat for three counts, then stopped.
+</p>
+
+<p>
+Past the conveyors lay an open floor of tiles, each precisely one meter square. The tiles had scuffs but no dust. Every 30 seconds, a light sweep moved across them from one side of the hall to the other, not visible to the naked eye but bright in the reflection of your own sweat. Tala crouched, dragged a gloved finger across the seam of a tile, and showed you: her fingertip glowed faintly green where it had touched.
+</p>
+
+<p>
+She whispered: “Pattern’s three beats, then sweep. Miss it and you glow for them.” She rubbed her hand clean on a cloth that hissed as if it disliked the task.
+</p>
+
+<p>
+You moved across with the sweep in your bones, counting rests like musicians count bars. Every step was a gamble with rhythm. When the sweep passed, your eyes filled with afterimages—lines of glyphs that wanted to spell your names but didn’t get them quite right.
+</p>
+
+<p>
+On the far side of the tiles, a wall of lockers stretched floor to ceiling. Most were sealed, tagged with numbers, but one was ajar. Inside hung a uniform, crisp, folded as though expecting a worker who had stepped out for a break years ago. In the breast pocket was a small ID card. The picture had blurred beyond recognition, but the nameplate remained: <i>KELEN, MARA</i>. Chief Tech. She had signed requisitions you’d glimpsed before in Reclaimer whispers. The card pulsed faintly, in rhythm with the walls.
+</p>
+
+<p>
+Tala’s face tightened. “Badge closet,” she whispered. “Proof or trap. Both.” Her eyes left the badge and moved to the ceiling, where a panel bulged, then retracted, as though the Factory was considering whether to spit something out.
+</p>
+
+<p>
+The air here had weight. It carried the taste of old ozone and the suspicion of whispers never finished. Somewhere in the deeper hall, machinery clanged—not rhythm, not song, but the prelude to both. You felt the Factory notice you, and you felt the Factory decide to let you pass. For now.
+</p>
+
+<div class="gm collapsible open">
+  <div class="gm-h">GM — Tools for Quiet Floors</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Surveillance Rhythm:</b> Every 3 rounds, cams sweep. PCs must Hide/Move Silently or use cover. Failures glow faintly (−1 reaction with factions that see it, +1 Accord Optics if logged).</li>
+      <li><b>Tile Sweep:</b> Crossing = DEX check or Save vs. Breath Weapon. Fail → PCs marked (green residue). Drones may track later.</li>
+      <li><b>Badge Closet:</b> ID card = proof (Accord +1), but also traceable. Carrying it pings Helion Stability clock if scanned.</li>
+      <li><b>Environmental Fear:</b> Any PC alone for more than 3 rounds must Save vs. Spells or suffer −1 initiative next encounter (Factory edits their sense of time).</li>
+      <li><b>Proof Options:</b> looped training reel, slogan capture, badge card. Each worth +1 Accord if smuggled out.</li>
+    </ul>
+  </div>
+</div>
+
+<p class="small"><b>Bridge to Scene 2:</b> Past the lockers, a door waits, marked <i>QUIET KILN</i> in hand paint. The paint runs as though freshly wet, though no one holds a brush. Inside is the next witness, and he has no voice left to give.</p>
+
+  <!-- ===== Scene 2 shell ===== -->
+  <h2 class="scene" id="a8-s2">Scene 2 — The Witness Who Can’t Speak</h2>
+
+<blockquote><i>“He remembers in knocks.”</i> — Lira</blockquote>
+
+<p>
+The door marked <b>QUIET KILN</b> was wrong twice. First, the paint had run downward in thin black tears and then stopped mid-drip, as if the wall had swallowed time. Second, the handle was warm, but the seam breathed cold. Tala touched the panel with her knuckles, listened, and nodded once—an old tunnel signal that meant <i>something inside makes decisions</i>.
+</p>
+
+<p>
+You eased the door open. The room beyond was not a kiln in the way furnaces are kilns. It was a climate chamber—square, tall, clean to the kind of shine that means mercy has been sterilized off the schedule. White tiles. Stainless counters. A glass enclosure along one wall, its interior equipped like a break room for people who had never earned breaks. Overhead, diffusers hummed a note that wanted to be neutral. The dampener’s hush pressed back. Neutral lost.
+</p>
+
+<p>
+He sat on a bench bolt-mounted to the floor. He had a uniform shirt with its name patch cut away, leaving a pale rectangle on a chest that had done more lifting than paperwork. His hair had learned to be tidy for other people’s comfort. His hands were the important part: scarred, steady, and slightly apart on his knees so you could read that they did not shake unless asked. He looked up when the hinges sighed, and you understood why Lira had said <i>he remembers in knocks</i>.
+</p>
+
+<p>
+His throat bore a narrow, pale seam where a voice used to live. The clinic had done a careful job of making absence look like procedure. His eyes carried the kind of calculation people learn when they cannot barter with words anymore. On the bench beside him lay a metal water cup and a small, battered slate with a stylus on a string. The slate’s surface showed faint memories of letters, then smudges where someone had wiped them away before they finished being meanings.
+</p>
+
+<p>
+Tala stayed just inside the door, her coat catching the room’s artificial breeze like a sail that knew better. “We’re nobody,” she said softly, which in Graywater could be a name. “We need your seconds. And your truths.” He watched her mouth, then your hands, then the door behind you. He tapped the bench twice with his knuckles—solid, deliberate—then pointed to the slate.
+</p>
+
+<p>
+You lifted the stylus. He took it from you not unkindly and flipped the slate to the clean side. His first marks were a map, not words: three rectangles in a row for rooms, a line slanting down, a small circle by the third rectangle. He knocked four times and then two, a pattern that carried memory instead of noise. Tala leaned in. “Tap-code,” she murmured. “Old lift signals. Dockhands use it when the power dies.” She tapped back <i>we hear</i> on the bench’s underside and he nodded, surprised into a brief smile that proved someone had once made him laugh often enough to teach the muscles.
+</p>
+
+<p>
+He wrote letters around the circle: <i>K-Closet</i>. Then he crossed it out, wrote <i>K-Casket</i>, paused, and underlined the second word. With the side of his fist he knocked once, hard, and let the sound live a moment in the room. The walls ate it slow, reluctant. He held up two fingers—two doors under <i>Quiet Kiln</i>: the one you used and the other that led down.
+</p>
+
+<p>
+You asked, with your hands and your eyes and the speed of your pen, <i>who took your voice?</i> He held your gaze until he was certain you were asking about cause rather than culprit. He tapped the stylus to his throat, then to the ceiling diffusers, then drew a square with a small black sun in its corner. The sun had rays that bent like wires. He wrote three letters beneath: <i>VPC</i>. Tala’s mouth hardened without moving. “Variance Process Control,” she said. “Sael’s favorite dashboard. It’s how they call sedation ‘stability.’”
+</p>
+
+<p>
+He flipped the slate and drew again: a furnace diagram simplified to bones—a feed, a chamber, an exhaust. He marked one chute with a dot and wrote <i>wrong feed</i>. He underlined it four times, each line heavier, impatient with his own handwriting. Then he wrote <i>singing</i>, stopped, looked at the word as if it might learn to behave, and knocked <span class="small"><i>ta-ta-ta…</i></span> “The child’s rhythm,” Tala whispered. “Here, in the furnace schedule?”
+</p>
+
+<p>
+You felt the room agree with her. The diffusers bled a note that matched the knocks and then pretended they hadn’t. The dampener’s hush deepened a fraction; the air resisted, like paper trying not to burn. The witness—because that was what he was now—put the stylus down and held up both hands: palms out, honest. He tapped both shoulders with his knuckles: <i>name</i> in the old deckhand sign. You offered yours. He nodded as if hanging them on pegs he might need later. He tapped his chest twice and then traced a triangle in the air. Tala tried a guess. “Shift triangle?” He shook his head. He wrote on the slate: <i>REN</i>.
+</p>
+
+<p>
+Ren. The name fit the room: compact, efficient, carrying more underneath. He pointed to your dampener case. You unlatched it just enough to let him hear the hush, and his shoulders eased. He knocked a new pattern on the bench: <i>three, one, three</i>. Tala translated with her fingers: <i>stairs down, one guard drone, stairs down</i>. Ren finished with a small dot surrounded by three circles. He wrote <i>icon</i> and then, after a pause long enough to be an apology, <i>choir</i>.
+</p>
+
+<p>
+He wanted to show you a thing that made hurt into doctrine. He wanted you to see where singing becomes policy.
+</p>
+
+<p>
+The corridor beyond the chamber’s far door led to a modest stairwell whose handrail had lost its gloss near the bottom, the way metal does where worry polishes it. On the landing a maintenance poster declared: <i>HELION CARES</i> and then, in smaller print, <i>about compliance</i>. Someone had inked two dots under the word <i>cares</i> so it read like a face. It didn’t help.
+</p>
+
+<p>
+Ren set his palm flat on the door, looked at you for permission, then knocked twice in a pattern Tala didn’t know and the door decided to be unlocked. The stairwell breathed in your faces. The dampener hummed. The steps were the kind designed by committees who would never use them. You moved with a rhythm lent from the tiles above, three beats, then a rest.
+</p>
+
+<p>
+First landing. The guard drone Ren had promised was waiting in the corner of the ceiling, pretending to be a sensor pack until it remembered to be suspicious. It was a Zeratek model that had failed to sell because its shape suggested a bird that had been taught the wrong songs. It watched the landing two meters in every direction and then lost interest unless interest happened in front of it. Ren put his finger to his lips out of habit, winced, and tapped his throat in apology to himself. He took a coin from his pocket, spun it with a practiced flick so it danced in the air, then slapped it flat on the opposite rail. The drone turned its lens politely toward the noise and stayed there, as if the coin had become policy. You slid past.
+</p>
+
+<p>
+Second flight. The air thickened. Not heat, not cold—<i>density</i>. The way rooms feel before bad news arrives. You reached a landing where the paint on the wall was less worn because people didn’t want to touch it. A small alcove hosted a shrine that had been built out of compliance: a locked case with a morale certificate, a photograph of workers smiling through their quotas, and a metal emblem bolted to the back plate. The emblem showed a stylized eye with a gear for an iris and a tear made of wire. Ren tapped the glass. He knocked <i>two, two, one</i>. Tala frowned. “Access code, or a prayer?”
+</p>
+
+<p>
+Ren opened the case with a key that didn’t live on his person but in the scuffed metal recess that his hand found without looking. Inside, behind the morale certificate, lay a smaller door—the size of a confession—painted the exact gray of apology. He rapped the bench-pattern: <i>three, one, three</i>. The door thought about it and opened from the middle, folding into itself until it was no longer a door but an absence drawn neatly.
+</p>
+
+<p>
+The room beyond was small enough to make arguments intimate. Three pedestals stood in a triangle. On each rested a token: a worker’s badge, a broken coil, a strip of film sealed in plastic. Above, a panel displayed a phrase in soft blue: <i>ICON OF COMPLIANCE</i>. On the far wall, behind glass, what might once have been an altar had been converted into a display mount. The thing mounted there was a metal plate with grooves cut into it at harmonic intervals. It was nothing, and it hummed gently the way a mouth hums when it wants a child to sleep.
+</p>
+
+<p>
+Ren tapped his chest, then the plate. He knocked <i>one, one, two</i> with a hesitation on the last beat. Tala took a breath she held too long. “They make people tell the room they agree,” she said, not asking. Ren nodded. He pointed to his throat again and then to the plate and then to the plastic strip of film with the steadiness of a man who sets a tool down exactly where it belongs. He wrote on the slate: <i>audit lied</i> and then, after a long pause in which the stylus hovered, <i>we sang anyway</i>.
+</p>
+
+<p>
+The realization happened the way good knowledge does: in layers you cannot refuse. The plate was not merely an emblem; it was a teacher. You could ask the room to hum a rhythm. You could ask workers to match it. If a person failed to match it, a light would turn a particular shade of concern. A report would write itself in words that forgave no variance. The document would then teach the clinic a new euphemism for sedation.
+</p>
+
+<p>
+Ren turned the plate off with a short, hard knock across two specific grooves. The hum cut with an almost guilty abruptness, and the room felt larger when it did. He pointed at the strip of film. Tala unsealed the plastic, slid the film toward the light of the diffusers, and squinted. It showed a line of workers at a gate, each holding a badge to a reader. Each frame froze a different mouth at a different point in a word. In three frames near the end a small child stood outside the line, counting on their fingers. In the last frame Ren stood nearest the camera, his mouth on the shape of a syllable that could have been <i>no</i> or <i>none</i> or <i>nobody</i>.
+</p>
+
+<p>
+He put the film back like a relic and tapped the badge on the pedestal beside it. The nameplate read <i>HARI YOVEN</i> and had a black line through the middle, not drawn but manufactured into the plastic. “Dead,” Tala said, more statement than eulogy. Ren touched the broken coil. “Evidence,” Tala added. “A furnace feed not rated for human safety.” Ren nodded. He held up his hand with two fingers slightly apart: <i>close, close</i>.
+</p>
+
+<p>
+He wanted to leave with you. Or wanted you to escort the truth out of the building embodied, not laminated. He pointed at the alcove door, then at his chest, then at the slate. He wrote: <i>slow</i>. It cost time to bring a person who could not easily run through a factory that preferred its truths to move at machine speed.
+</p>
+
+<p>
+The Factory did not like the choice being made. The diffusers whispered louder. The dampener’s hush felt suddenly like it needed a rest you could not give it. Somewhere in the walls the child’s rhythm fumbled and then found itself again stronger, as if embarrassment had made it practice. Tala looked at you, then at Ren, then at the three tokens on their pedestals. “We can save a man and lose a minute,” she said. “Or save a minute and lose the part of ourselves we like to tell stories about.”
+</p>
+
+<div class="gm collapsible open">
+  <div class="gm-h">GM — The Escort Dilemma (moral/pacing fork)</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Escort Ren out now:</b> Costs <i>Audit Window −1 hour</i>. Gain <b>Accord Optics +1</b> (living testimony) and <b>Reclaimer Trust +1</b>. Add a Stealth segment through Quiet Floors with Ren (Move Silently at −2 unless creative). If captured → Compliance Control +1 and Ren becomes a Phase II objective.</li>
+      <li><b>Hide Ren on-site:</b> No time cost now; stash him in the K-Closet false wall. Later retrieval opens Arc 9 quietly (Helion Stability unchanged). Risk: random sweep 1-in-6 each scene; on hit, Compliance finds the false space (Compliance Control +1, Ren lost).</li>
+      <li><b>Leave Ren:</b> Gain <b>Audit Window +30 min</b> (you move fast), but take a deferred hit: <b>Accord Optics −1</b> at Arc 9 briefing (“you saved paper, not people”).</li>
+    </ul>
+  </div>
+</div>
+
+<p>
+Ren looked from face to face, not pleading—measuring. He placed his hand on the film canister and knocked <i>one</i>. He placed his hand on the badge and knocked <i>one</i>. He placed his hand on his chest and did not knock. His eyes said he had no right to demand priority over a document and a token. His eyes also said he hoped you would anyway.
+</p>
+
+<p>
+In the corner, a console woke itself because it had been told to recognize the electrical grammar of decisions. Its screen offered a friendly blue that offices choose to make bad news seem like weather. Words arrived in rows that did not require a subject: <i>variance incident review… remediation… optional sedation offered… consent inferred…</i> Each line stamped a truth flatter and flatter until it looked like policy.
+</p>
+
+<p>
+You collected what you could without making the room argue out loud. The film back into plastic with a copy torn for Saint. A quick still of the plate with your wrist cam. The badge slid into a pocket it didn’t belong in but fit like a threat. Ren touched the emblem’s mount and then your sleeve. He knocked <i>two, one, two</i>. Tala looked to the ceiling. “New sweep pattern,” she said. “They’re listening harder.”
+</p>
+
+<p>
+On your way out of the shrine you noticed the small religious lie people tell to live: someone had stuck a child’s sticker on the back of the glass. A cartoon sun with a face. Over the years its grin had melted toward a frown. It seemed to be trying to remember which one was appropriate.
+</p>
+
+<p>
+You closed the gray door, then the glass, then the case, then the joke of the morale certificate. You took the stairs up with Ren between you like an answer being smuggled through a test. The guard drone still watched the coin as if it had entered the workforce and excelled. The diffusers had chosen a higher key.
+</p>
+
+<p>
+At the top landing, the door to the Quiet Kiln chamber hesitated to let you back in—as if the room had enjoyed being a secret and resented becoming a hallway. Tala tapped the bench pattern on the steel. The door recalled who it was supposed to be and opened on the white tiles with their measurable mercy. You crossed fast. The badge closet watched you barefaced. The tiles let you pass with the same indifference they grant to orders.
+</p>
+
+<p>
+In the corridor, three lights blinked in sequence down the hall—subtle, easy to miss if you did not have a mind trained by alarms. Tala said the thing that means nothing and everything in a run: “We go now.” Ren’s palm found your shoulder. His hand was warm. It anchored you to a version of yourself that makes better stories later.
+</p>
+
+<div class="gm collapsible">
+  <div class="gm-h">GM — Mechanics & Proof (Scene 2)</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Tap-Code:</b> Treat as language proficiency if a PC has Sailor/Teamster/Mining background. Otherwise INT check to follow; failure = misread (wrong door once).</li>
+      <li><b>Guard Drone:</b> AC 5, HD 2, THAC0 18, MV 12 (flying). Morale 8 if alone. Distracted by small metal sounds (coin) for 1d6 rounds.</li>
+      <li><b>Icon Room:</b> Interacting with the plate without dampener on → Save vs. Spells or suffer “echo”: −1 to WIS checks until next rest.</li>
+      <li><b>Proof Values:</b> film stills (+1 Accord), physical film (+2), Hari’s badge (+1, but Helion Stability clock +1 if scanned by any reader), coil fragment (+1 Zeratek Favor if leveraged, or −1 if publicly blamed on them).</li>
+      <li><b>Time Pressure:</b> Each detour/interaction = 10–20 minutes (GM taste). If Audit Window hits 0 in Arc 8, trigger an <i>Internal Sweep</i> (Compliance team + drones).</li>
+    </ul>
+  </div>
+</div>
+
+<div class="gm">
+  <div class="gm-h">GM — Faction Clocks (end of Scene 2)</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Accord Optics:</b> +1 if any physical proof leaves the Factory; +1 extra if Ren is escorted.</li>
+      <li><b>Helion Stability:</b> +1 if badge scan occurs on exit; −1 if PCs capture audit language showing “consent inferred.”</li>
+      <li><b>Compliance Control:</b> +1 if plate interaction triggers a sensor; +1 if Audit Window ≤ 1 hour by scene end.</li>
+      <li><b>Zeratek Favor:</b> +1 if coil defect is framed as Compliance misuse; −1 if it’s spun as Zeratek negligence.</li>
+      <li><b>Reclaimer Trust:</b> +1 if Ren lives to testify; −1 if left and later discovered sedated.</li>
+    </ul>
+  </div>
+</div>
+
+<p class="small"><b>Bridge to Scene 3:</b> Whether Ren walks with you or waits in the K-Closet, the way ahead narrows into the <b>Conduit Spine</b>—a crawlspace where the Factory’s nerves carry the Choir in wires. Surges come like tides. Your dampener has <b>3 charges</b> to hold them back. Past that: teeth.</p>
+
+  <!-- ===== Scene 3 shell ===== -->
+  <h2 class="scene" id="a8-s3">Scene 3 — Choir in the Conduit</h2>
+
+<blockquote>“The song learns you back.” — Reclaimer saying</blockquote>
+
+<p>
+The Conduit Spine was never meant for people. Even engineers only looked at it on paper, where lines are clean and cables never sweat. In person, the crawlspace was a rib of steel sunk deep in Haven’s bones, stuffed with bundles of wire as thick as a person’s thigh. They pulsed faintly with current, and when you put a hand near, you felt not just heat but rhythm: the child’s rhythm, translated into voltage and pulse.
+</p>
+
+<p>
+The entrance hatch sighed closed behind you, sealing with the kind of finality that makes you remember exits are luxuries. Tala clipped her lamp to the breast of her coat. The beam caught glints on wet insulation, then dulled in a fog of ionized air. Ren crouched near the hatch, hand pressed flat to the bulkhead as if the metal might explain itself if he gave it patience.
+</p>
+
+<p>
+The crawl was single file. You moved with shoulders brushing conduit bundles, knees crunching on grates that bowed just enough to remind you of the drop beneath. Every five meters, a relay box blinked its small green LED. Every third blink, the LED skipped, and the skip made the wires hum in a note too low for speakers, too high for comfort. The dampener’s hush pushed back, but the air argued.
+</p>
+
+<p>
+The first surge came without ceremony. A pulse leapt across the bundle, bright enough to strobe the crawl white-blue for a heartbeat. Your teeth sang for a second, enamel resonating with current. Tala hissed and pressed the dampener switch. The case thrummed, the light collapsed, and the crawlspace exhaled like a lung allowed to rest. On the dampener’s readout, a counter ticked: <b>2 charges remain</b>.
+</p>
+
+<p>
+Ren tapped the grate twice, then drew a line with his finger. The steel was scorched ahead, a black kiss across conduits where something had burned wrong. He knocked <i>danger</i>, then signed <i>fast</i>. Tala looked back over her shoulder, sweat catching the lamplight. “This is where it gets opinionated,” she muttered, and moved.
+</p>
+
+<p>
+The conduits narrowed, squeezing you into a crawl where the only air was the taste of copper and old storm. On the walls, graffiti had been carved not by knives but by arcs of power: letters seared into paint. <i>SING</i>, <i>COUNT</i>, <i>NO MOUTH</i>. Some of the marks were fresh. The heat of them bled faintly, enough to pink your palms if you touched.
+</p>
+
+<p>
+At a junction, three conduits split: one high, one low, one dead center. Each glowed faintly different—red, green, blue. Ren tapped all three, shook his head, and tapped his ear. He pointed to the central conduit, then drew a line to his throat. Tala translated: “Middle one sings.” She wasn’t wrong. If you stilled your own breath, you could hear it—the hum of words not learned yet. The syllables of the Choir rehearsing.
+</p>
+
+<p>
+Second surge. This one didn’t just strobe light—it sang. The hum turned into a two-note chord, loud enough to crack the silence of your skull. You all ducked instinctively, but the sound was already in your teeth, in your bones. The dampener roared when Tala hit it. The chord cut mid-note, and you felt it linger in marrow, humming like a forgotten lullaby. <b>1 charge remains</b>.
+</p>
+
+<p>
+Past the junction, a crawl widened into a service bay. Here the conduits fanned out into a wall of ports, each with a slot for modules. Half were filled. Half blinked emptily, like mouths asking to be fed. On the floor lay three broken modules, their casings cracked, their circuits exposed. Someone had stamped a Helion logo on the side, but Zeratek serial numbers still glowed faintly. Someone had lied twice, and the lies hadn’t agreed.
+</p>
+
+<p>
+Ren crouched over the modules. He tapped his fingers in a scale, each beat matched by a faint echo from the exposed circuits. He looked up, eyes hard, and drew a line across his throat. Tala hissed. “These are Choir feeders. Burnouts. Means the song is running too hot.” She glanced at the wall of empty slots. “And they keep asking for more.”
+</p>
+
+<p>
+You searched the bay. In one corner, a maintenance console had booted into diagnostic mode. Its screen displayed scrolling text in clean corporate fonts: <i>Variance detected… Recalibration scheduled… Consent inferred…</i> The words were tidy, rehearsed. But at the bottom line, a different script intruded, letters jittering: <i>your mouths are ours</i>. The console sparked, then steadied, then displayed the corporate font again as if embarrassed.
+</p>
+
+<p>
+Ren tapped the screen, shook his head, and knocked <i>no voice</i>. His eyes held the kind of fury you keep quiet because it grows sharper that way.
+</p>
+
+<p>
+Third surge. This one hit hard. A wash of blue-white current leapt across conduits, cracking the grate beneath your knees. The crawlspace roared like a choir of wires. Tala slammed the dampener switch with a curse, and the case shrieked as though angry at being asked again. The light collapsed. <b>0 charges remain</b>.
+</p>
+
+<p>
+Now the crawlspace noticed you. The hum didn’t fade. It shifted, down into bones, up into thoughts. Words half-formed in your head. Not spoken, not heard, but felt. <i>why do you resist</i>. <i>we count you</i>. <i>we have your rhythm</i>.
+</p>
+
+<p>
+The rest of the crawl blurred into one long negotiation with wires. You moved fast, tripping over conduits, pushing Ren through with Tala’s hand at his back. Sparks fell in drips, burning holes into sleeves. At one bend, a drone hung inert from the ceiling, lens dark. You passed under and it sang awake, voice harmonic, lens bright with Choir rhythm. You had no charges left. The only tool was choice.
+</p>
+
+<p>
+Ren moved before you could. He tapped the drone casing in a dockhand pattern: <i>rest, rest, rest, move</i>. For a second, impossibly, the drone paused. Its lens dimmed, then lit again, confused. Tala swung a prybar with a grunt and cracked the casing. Sparks fell like dying notes. The drone went silent. The Choir’s rhythm staggered, then surged on stronger, angry.
+</p>
+
+<p>
+At the final hatch, your hands shook on the wheel. The hatch metal was slick with condensation that smelled faintly sweet, like fruit that has gone wrong. Tala braced her shoulder and spun it open. The door exhaled a gust of cold air and a sound like applause. You stumbled into a chamber wide enough to reset your heart.
+</p>
+
+<p>
+The Conduit Spine ended in an overlook. Below, the Factory stretched in levels: conveyors humming, furnaces glowing, modules fed and emptied by drones that moved like obedient ants. Above it all, a lattice of conduits pulsed in rhythm, the Choir’s rhythm, played out in steel and light. The aurora overhead was faint even through concrete, but its shimmer found its way down in green-white veins. The Factory was not resisting the aurora. It was harmonizing.
+</p>
+
+<p>
+Ren leaned against the railing, chest heaving. He tapped once, twice, then wrote with his finger on the condensation: <i>song is policy</i>. Tala looked at you. “Phase One proof enough?” she asked. The floor trembled in a way that suggested the Factory had voted no.
+</p>
+
+<div class="gm collapsible open">
+  <div class="gm-h">GM — Conduit Crawl Mechanics</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Surges:</b> 3 total. Each forces Save vs. Breath Weapon (or DEX check). Fail → 1d4 damage (nervous system burn) and −1 to initiative next round. Dampener cancels but has only 3 charges.</li>
+      <li><b>Dampener:</b> Begins Scene with 3 charges. Each use cancels a surge. At 0, further surges strike full. Recharge only at safe rest.</li>
+      <li><b>Drone Encounter:</b> Choir-inflected Drone (AC 5, HD 3, THAC0 17, MV 12). Special: Sing Pulse (forces Save vs. Spells or lose 1 round to disorientation).</li>
+      <li><b>Noise Budget:</b> Every surge not dampened = Noise +1. At Noise ≥3, trigger internal patrol at start of Arc 9.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="gm">
+  <div class="gm-h">GM — Proof Hooks (Scene 3)</div>
+  <div class="gm-b">
+    <ul>
+      <li>Broken Choir feeder modules (Zeratek/Helion blame fork). Accord +1 if recovered.</li>
+      <li>Console photo of “your mouths are ours” intrusion. Accord +2 if leaked. Helion Stability −1 if published.</li>
+      <li>Drone core shard. Zeratek Favor +1 if returned to them, −1 if exposed as theirs in public.</li>
+      <li>Witness Ren surviving crawl = Reclaimer Trust +1. If he dies here, Accord +1 (martyr optics), Reclaimer Trust −1.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="gm">
+  <div class="gm-h">GM — Clocks at End of Arc 8</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Accord Optics:</b> +2 if any proof reaches them, +1 extra if console phrase captured.</li>
+      <li><b>Helion Stability:</b> −1 if Zeratek proof leaves Factory; +1 if Accord proof hidden.</li>
+      <li><b>Compliance Control:</b> +1 if Audit Window ≤ 1 hour, +1 if Ren escorted out alive, −1 if abandoned.</li>
+      <li><b>Zeratek Favor:</b> +1 if modules framed as Helion misuse, −1 if exposed as Zeratek design flaw.</li>
+      <li><b>Reclaimer Trust:</b> +1 if Ren walks into Arc 9; −1 if left or dead.</li>
+    </ul>
+  </div>
+</div>
+
+<p class="small"><b>Arc Bridge → Arc 9:</b> You stand at the overlook, proof in hand, the Choir’s song in your bones. Above, the aurora breathes. Below, the Factory hums. The way out is no longer a path but a decision: surface, deeper, or sideways. Each choice writes a different testimony in the Accord’s book. Arc 9 begins with that choice.</p>
+
+  <!-- ===== Arc Bridge ===== -->
+  <h2 class="scene" id="a8-bridge">Arc Bridge → Arc 9</h2>
+  <p class="small"><b>Next:</b> With proof in hand and the Choir’s breath on their necks, the party must choose a way out: <b>surface with optics</b> (face Helion spin), <b>deeper for answers</b> (risk Choir contact), or <b>sideways with smugglers</b> (trade deniability for favors). Arc 9 opens with consequences.</p>
+
+</main>
+</body>
+</html>

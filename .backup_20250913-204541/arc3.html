@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veyra-9 — GM Hub · Arc 3</title>
+<style>
+/* nuke any accidental second subnav */
+.subnav + .subnav{display:none}
+
+/* === V9 Combat Tracker === */
+#v9-tracker-toggle{
+  position: fixed; right: 18px; bottom: 18px; z-index: 1200;
+  background:#0b3d7a; color:#fff; border:0; border-radius:999px;
+  padding:12px 18px; font-weight:700; box-shadow:0 6px 18px rgba(11,61,122,.25);
+  cursor:pointer;
+}
+#v9-tracker-drawer{
+  position: fixed; right: 18px; bottom: 78px; z-index: 1199; width: 560px; max-width: calc(100vw - 36px);
+  background:#fff; border:1px solid var(--line,#d7dbea); border-radius:14px;
+  box-shadow:0 18px 40px rgba(10,30,80,.18); display:none;
+}
+#v9-tracker-drawer.open{ display:block; }
+#v9-tracker-drawer header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 12px; border-bottom:1px solid var(--line,#d7dbea); background:#eef5ff; border-radius:14px 14px 0 0;
+}
+#v9-tracker-drawer header h3{ margin:0; font-size:1rem; color:#0b3d7a }
+#v9-tracker-drawer .pill{
+  background:#eaf1ff; border:1px solid #c9d8ff; color:#0b3d7a; border-radius:999px; padding:4px 10px; font-weight:700
+}
+#v9-tracker-drawer .btn{
+  background:#fff; border:1px solid var(--line,#d7dbea); border-radius:8px; padding:6px 10px; cursor:pointer
+}
+#v9-tracker-drawer .btn:hover{ background:#f7faff }
+#v9-tracker-drawer .tray{ padding:10px 12px 12px }
+#v9-tracker-drawer .grid,
+#v9-tracker-drawer .row{
+  display:grid; grid-template-columns:1.2fr .6fr .6fr .6fr .6fr auto; gap:8px; align-items:center;
+}
+#v9-tracker-drawer .grid input, #v9-tracker-drawer .row input{ width:100% }
+#v9-tracker-drawer .row{ padding:8px 0; border-bottom:1px dashed var(--line,#d7dbea) }
+#v9-tracker-drawer .row.dead{ opacity:.55; text-decoration:line-through }
+
+/* ====== Veyra-9 GM Hub — Base Theme ====== */
+:root{
+  --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
+  --line:#d7dbea; --panel:#ffffff;
+  --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--brand); text-decoration:none}
+a:hover{filter:brightness(1.08); text-decoration:underline}
+
+/* Header / Nav */
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.brand{font-weight:800; color:var(--brand)}
+nav a{
+  display:inline-block; margin-right:10px; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600;
+}
+nav a:hover{background:#f4f7ff}
+.clock{
+  margin-left:8px; background:var(--chip); border:1px solid var(--chipLine);
+  color:var(--brand); padding:6px 10px; border-radius:999px; font-weight:700;
+}
+
+/* Layout */
+.wrap{max-width:1100px; margin:0 auto; padding:20px}
+.breadcrumbs{color:var(--muted); margin:6px 0 14px}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px}
+
+/* Headings */
+h1{margin:10px 0 6px}
+h2{margin:24px 0 10px}
+.scene{ color:var(--brand); border-bottom:2px solid var(--line); padding-bottom:6px; margin-top:28px }
+.scene::before{content:"◆ "; color:var(--brandSoft)}
+
+/* Quotes */
+blockquote{ border-left:4px solid var(--brandSoft); background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic }
+
+/* Helpers */
+.meta{color:var(--muted); font-style:italic}
+.small{font-size:.94rem; color:var(--muted)}
+
+/* GM callouts */
+.gm{ background:#eef5ff; border:1px solid var(--chipLine); border-left:6px solid var(--brandSoft);
+     border-radius:10px; padding:10px 14px; margin:18px 0; box-shadow:0 1px 0 rgba(10,30,80,.04) }
+.gm + .gm{margin-top:14px}
+.gm-h{ font-weight:800; color:var(--brand); letter-spacing:.1px; display:flex; align-items:center; gap:8px; margin:2px 0 6px }
+.gm-h::before{ content:"GM"; font-size:12px; font-weight:800; color:#fff; background:var(--brand); border-radius:6px; padding:2px 6px }
+.gm-b{color:var(--ink)}
+.gm-b ul{margin:8px 0 2px 1.1rem}
+.gm-b li{margin:6px 0}
+.gm-b li b{color:var(--brand)}
+.gm.collapsible .gm-b{display:none}
+.gm.collapsible.open .gm-b{display:block}
+.gm.collapsible .gm-h{cursor:pointer}
+
+</style>
+
+<script>
+// clock + one-time handlers
+function tick(){
+  const el=document.getElementById('clock'); if(!el) return;
+  el.textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST';
+}
+window.addEventListener('DOMContentLoaded',()=>{
+  tick(); setInterval(tick,1000);
+  document.querySelectorAll('.gm.collapsible .gm-h')
+    .forEach(h => h.addEventListener('click',()=> h.parentElement.classList.toggle('open')));
+});
+</script>
+</head>
+
+<body>
+<header class="header">
+  <div class="brand">VEYRA-9 · GM Hub</div>
+  <!-- NAV START -->
+<nav class="topbar">
+  <a href="player-recap.html" class="btn btn-outline-secondary btn-lg rounded-pill px-3 py-1">VEYRA-9 · Player Recap</a>
+
+      <nav class="nav">
+      <div class="nav-item dropdown" id="phase1-dd">
+        <a href="#" class="btn nav-pill">Phase 1 ▾</a>
+        <div class="dropdown-menu">
+          <a href="./index.html">Arc 1</a>
+          <a href="./arc2.html">Arc 2</a>
+          <a href="./arc3.html">Arc 3</a>
+          <a href="./arc4.html">Arc 4</a>
+          <a href="./arc5.html">Arc 5</a>
+          <a href="./arc6.html">Arc 6</a>
+          <a href="./arc7.html">Arc 7</a>
+          <a href="./arc8.html">Arc 8</a>
+          <a href="./arc9.html">Arc 9</a>
+        </div>
+      </div>
+
+    <!-- Phase 2 -->
+      <div class="nav-item dropdown" id="phase2-dd">
+        <a href="#" class="btn nav-pill">Phase 2 ▾</a>
+        <div class="dropdown-menu">
+          <a href="./arc10.html">Arc 10</a>
+        <!-- add Arc 11+ as they go -->
+      </div>
+    </div>
+
+  <a class="btn nav-pill" href="player-recap.html">VEYRA-9 • Player Recap</a>
+  <a class="btn nav-pill" href="tracker.html">Tracker</a>
+</nav>
+
+<style>
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:.75rem;
+    padding:.6rem 1rem;border-radius:.75rem;background:rgba(255,255,255,.65);
+    backdrop-filter:saturate(140%) blur(8px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+  .brand{font-weight:700;text-decoration:none;color:#111}
+  .nav-right{display:flex;gap:.5rem;align-items:center}
+  .btn{border:1px solid #d7dbe1;background:#fff;border-radius:.6rem;padding:.35rem .7rem;
+    cursor:pointer;font-weight:600}
+  .btn.ghost{background:transparent}
+  .dropdown{position:relative}
+  .dropdown .menu{position:absolute;top:calc(100% + 6px);left:0;min-width:10rem;
+    background:#fff;border:1px solid #e6e9ef;border-radius:.6rem;box-shadow:0 10px 28px rgba(0,0,0,.12);
+    padding:.35rem;display:none;z-index:10}
+  .dropdown:hover .menu{display:block}
+  .dropdown .menu a{display:block;padding:.45rem .55rem;border-radius:.45rem;color:#111;text-decoration:none}
+  .dropdown .menu a:hover{background:#f2f4f8}
+  @media (max-width:760px){.nav-right{flex-wrap:wrap}}
+</style>
+<!-- NAV END -->
+
+<style>
+.dropdown { position: relative; display: inline-block; }
+.dropbtn {
+  background: var(--chip); border:1px solid var(--chipLine);
+  border-radius:8px; padding:6px 10px; color:var(--brand); font-weight:600;
+  cursor:pointer;
+}
+.dropdown-content {
+  display: none; position: absolute; background:#fff;
+  box-shadow:0 4px 8px rgba(0,0,0,.1);
+  border:1px solid var(--line); border-radius:6px;
+  min-width:160px; z-index:20;
+}
+.dropdown-content a {
+  display:block; padding:8px 12px; color:var(--ink);
+}
+.dropdown-content a:hover { background:#f4f7ff; }
+.dropdown:hover .dropdown-content { display:block; }
+.dropdown:hover .dropbtn { background:#eef5ff; }
+</style>
+</header>
+
+<main class="wrap" id="top">
+  <div class="subnav">
+    <a class="chip" href="#top">Top</a>
+    <a class="chip" href="index.html">Back to Arc 1</a>
+    <a class="chip" href="arc2.html">Arc 2</a>
+    <a class="chip" href="dossier.html">Open Dossier</a>
+  </div>
+
+  <div class="breadcrumbs">Prologue → Arc 1 → Arc 2 → <b>Arc 3</b></div>
+  <h1 class="scene">Arc 3 — Echoes in the Dark</h1>
+  <p class="meta">The Quarter’s tunnels breathe like a sleeping beast. The Choir’s motif—three rising, one falling—answers to no human chain of command. The Accord’s mandate narrows: follow the signal, prove intent, survive the dark.</p>
+
+  <!-- ===================== Scene 1 ===================== -->
+  <h2 class="scene">Scene 1 — Descent to Row-C</h2>
+<p>The lift rattled past paint that had learned to peel in straight lines. Lights stuttered in a rhythm that matched no grid you’d seen, but your bones recognized it anyway. The Quarter opened like a throat—steam, noise, the hot breath of machines working past their promises.</p>
+<p>Rust Varo met you at the mouth of the tunnel, palms scarred, voice even. “You brought helmets. Good. Down there, the air forgets it’s for people.” Serin Vael’s mark chalked the doorway: a slanted V, the angle of a pick held correctly. The tunnel swallowed the mark after the first corner.</p>
+<p>The hum began as a rumor of sound, felt first in teeth and wrists. Three pulses rose, one fell, the pattern of a heartbeat someone had taught to count different. Pipes sweated. Old Zeratek conduit, left from the first build, wore a skin of condensation like it wanted to be touched and didn’t. Toll, the junior engineer, stayed close to your shadow and called out junctions by the name the ducts had told him. “Warm idle… cool awake… don’t run when it goes quiet.”</p>
+<p>Rust tapped gauges that had been dead long enough to gather superstition. A needle twitched against zero, then lay down again. “See? It listens. Doesn’t mean it hears us.” The floor pitch changed—a subtle decline—and your breath fogged less, as if the tunnel remembered summer. Far away, metal rang once, like a dropped wrench deciding not to be found.</p>
+<p>Chalk marks—white, then charcoal, then fingernail—made a breadcrumb trail along the wall. Some had been scrubbed away with a gloved palm. Others were fresh enough to powder your sleeve when you brushed past. The last mark before the first ladder was a single dot. Toll wouldn’t look at it. “Kid made those,” he said to the floor. “Kept time with the lights.”</p>
+<p>At the ladder the motif thickened. Your hands tingled around the rungs as if you’d gripped a story told too many times. Down three flights the air took on the penny taste of wet copper. A draft moved against you from deeper in, not strong, but steady—the sort of breath a sleeping thing takes when it is dreaming of work.</p>
+
+<div class="gm collapsible open">
+  <div class="gm-h">GM — Running the Descent</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Navigation:</b> WIS check vs. 12 to keep bearings. Failure: lose 1 turn; the motif momentarily stops (unease), then resumes louder.</li>
+      <li><b>Hazards:</b> Slick ladder (DEX check to avoid slip; failure = 1d3 subdual), stale pocket (save vs. Breath Weapon; failure = −1 to attacks for 1 turn).</li>
+      <li><b>Motif Stress:</b> Each full turn in “hot zones” → roll 2d6; on 3 or less, a PC gains trembling hands (−1 missile attacks) until rest.</li>
+      <li><b>Guides:</b> With Rust/Toll: +2 to Navigation. If alone: DC +2 and add a false-echo fork (wastes 1d6×10 minutes).</li>
+      <li><b>Clue Cache:</b> INT vs. 12 to reconstruct the scrubbed chalk (“dot language”); success grants +2 on a later pursuit/escape.</li>
+      <li><b>Quiet Test (optional):</b> If the group chooses to move silently, roll Move Silently (or DEX vs. 12). Success grants surprise against first hazard (Scene 3); failure creates a falling-tool noise that alerts one construct.</li>
+    </ul>
+  </div>
+</div>
+
+  <!-- ===================== Scene 2 ===================== -->
+  <h2 class="scene">Scene 2 — Echo Mapping</h2>
+<p>At the junction belly named <i>cool awake</i>, the air stiffened. Your lamps looked smaller here. The walls sweated cleanly, beads marching downhill in drill-sergeant lines toward the sump. Someone had wedged a Zeratek diagnostic wand into a crack and taped its speaker shut. Even gagged, it vibrated with the motif like a throat trying not to sing.</p>
+<p>You planted the Accord wafer Lira gave you; the triangulation readout was ugly but honest. Three spikes walked across the display like footfalls—rise, rise, rise, fall—each lag a crude compass, each pitch a guess at depth. When the aurora above the dome pulsed, the spikes flinched in sympathy and settled closer together, like they wanted to agree on a destination.</p>
+<p>Rust knelt and pressed his palm flat to the floor. “Weight’s wrong,” he said. “Like the ground’s expecting something heavy and being polite about it.” Toll worried a strip of tape off the gagged wand and let one note escape. It trembled through the floor and came back as two, then three, then the fourth dropping out like a tooth pulled clean.</p>
+<p>The child’s dot-map matched the spikes if you turned it ninety degrees and trusted a dead kid’s rhythm. Lines began to mean distance; dots meant places the hum preferred. Together they drew a curve that didn’t follow tunnels so much as intent, bending toward a maintenance door half drowned in silt. The stencil had been eaten down to bones of letters: <i>F—13 S—MP</i>. Someone had cleaned the handle recently. The metal shone with the small, guilty pride of a job done at the wrong time.</p>
+
+<div class="gm collapsible open">
+  <div class="gm-h">GM — The Mapping Minigame</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Triangulate:</b> 3 rounds: choose <i>INT</i> (logic) or <i>WIS</i> (intuition). Success on 2+ rounds = pinned vector (PCs gain +1 init in Scene 3). Failure on 2+ = −1 to surprise checks.</li>
+      <li><b>Data Merge:</b> Using <i>Child’s Dot-Map</i> + <i>Accord Wafer</i> = +2 on one round of choice.</li>
+      <li><b>Risk Option:</b> Un-gag wand for +2 that round; each time, save vs. Spells or gain “vertigo echo” (−2 to next roll).</li>
+      <li><b>Pulse Window (reward):</b> On overall success, bank one party-wide +2 on a single later group check (positioning or retreat).</li>
+      <li><b>Side Discovery (new):</b> Careful search (turn spent; INT vs. 10) finds a <i>maintenance bypass latch</i> near the sump door—gives advantage on forcing it quietly in Scene 3.</li>
+      <li><b>False Harmony (new risk):</b> If anyone hums along to “hear it better,” roll save vs. Spells. Failure: they unconsciously drift toward the door, triggering the ambush unless restrained.</li>
+    </ul>
+  </div>
+</div>
+
+  <!-- ===================== Scene 3 ===================== -->
+  <h2 class="scene">Scene 3 — The Sump at F-13</h2>
+<p>The maintenance door opened like a jaw pushed past rigor. The sump beyond sloped into a black pool where Haven’s waste water learned patience. Your beams found the curve of a submerged pipe, the ribs of a conduit, and the spine of something that used to be a drone. Thin filaments hung from the ceiling, quivering to a rhythm the ear pretended not to hear.</p>
+<p>It rose from the water in jointed silence, not a droplet falling from its skin. The Blossom lens sat where an eye might be, its iris a shield of hexagonal glass. Three lights pulsed under it; the fourth stuttered and fell, and your stomach answered like it had been tutored. Along the rim, two shapes unfolded from scrap—striders built from plates, cable, and stubbornness.</p>
+<p>The room hummed at a frequency that found the small bones of the ear and set them whispering treason to your balance. The catwalk’s rail buzzed like a tuning fork. In the pool, oily crescents of rainbow skated away from your lamp and regrouped with intent. Somewhere behind the drone’s eye a relay clicked in fours, and the water’s surface dimpled as if it, too, had learned to breathe.</p>
+
+<div class="gm collapsible open">
+  <div class="gm-h">GM — Sump Ambush (AD&D 2e)</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Forces:</b> 1× <i>Choir-Key Drone</i> (elite, compact chassis), 2× <i>Improvised Striders</i> (spider-rig mooks). Drone opens with <i>Motif Pulse</i> to soften morale.</li>
+
+      <li><b>Surprise/Init:</b> If Mapping succeeded → no surprise; +1 init. If failed → save vs. Paralysis or −2 init from vertigo.</li>
+
+      <li><b>Choir-Key Drone (elite, small target):</b>
+        <ul>
+          <li><b>AC 2</b> (small target, hardened plates); <b>HD 4+2</b>; <b>THAC0 17</b>; <b>Move 9</b>; <b>Morale 12</b>.</li>
+          <li><b>Attacks:</b> iris-lance 1d6 (bleed 1 for 1 rd on failed save vs. Poison) or slam 1d6.</li>
+          <li><b>Special:</b> <i>Motif Pulse</i> every 2 rds, 20’ radius → save vs. Spells or −1 to attacks/checks 1 turn; <i>Small Targeting</i> grants +1 AC vs. missile; <i>Vulnerable:</i> electrical (bonus damage from shock/burst).</li>
+          <li><b>Morale:</b> at 50% HP check 10+; on fail it withdraws into sump, leaving a humming <i>prism-seed</i>.</li>
+        </ul>
+      </li>
+
+      <li><b>Improvised Strider ×2 (spider-rig):</b>
+        <ul>
+          <li><b>AC 5</b>; <b>HD 2</b>; <b>THAC0 19</b>; <b>Move 12</b> (spidering); <b>Morale 9</b>.</li>
+          <li><b>Attacks:</b> clamp 1d6; on hit target must STR check or be restrained (−2 AC) until freed (STR check by ally or 1 round action).</li>
+        </ul>
+      </li>
+
+      <li><b>Terrain:</b> 1/3 room ankle-deep water (missile −1; Move −3); 5’ catwalk (DEX checks on forced move); hanging filaments = light cover (−1 to hit), flammable.</li>
+
+      <li><b>Tactics:</b> Drone maintains LOS for pulses; striders flank to clamp. PCs can overload submerged conduit (INT vs. 12; 1 rd) for shock burst 2d4 (save half) and <i>stun constructs</i> 1 rd.</li>
+
+      <li><b>Stunts:</b> <i>Kick the rail</i> (STR vs. 12) for vibrating grit (targets below save vs. Breath or −2 next attack). <i>Ignite filaments</i> (oil/torch) → 10’ smoky line (concealment; striders take 1d3 crossing).</li>
+
+      <li><b>Loot/Clues:</b> <i>Blossom Lens (cracked)</i>, <i>Firmware Shard</i> tagged <i>CHOIR_SAFE</i>, 2× <i>Pulse Dampeners</i>. Formal hand-in: 300 cr (1–2 legal sidearms). Keeping them: +Reclaimer Trust.</li>
+
+      <li><b>Optional Advanced Drone (if your party’s strong):</b> <b>AC 1</b>; <b>HD 5+5</b>; <b>THAC0 16</b>; <i>Double-pulse</i> once per combat (two pulses same round).</li>
+    </ul>
+  </div>
+</div>
+
+<p>The drone’s last light flickered a stubborn, failing rhythm. When it died, the room forgot its song. Silence rushed in like water into air—heavy, immediate, judgmental. In the sludge near the conduit you found the shard: hardened memory with a fresh label that lied cheerfully. <i>CHOIR_SAFE</i>. Someone had named the danger “safety” and taught it to sing.</p>
+
+<h2 class="scene">The Quarter at Rest</h2>
+<p>
+After the Spire’s doors closed behind you, the Quarter exhaled like lungs that had been waiting too long to breathe. The air still carried a charge from the aurora, but down here the hum of pipes and the flicker of lanterns returned as if nothing above had happened. Stalls reopened under patched tarps. A cook hammered an old skillet flat against a crate and poured kelp oil until the smoke curled green. The crowd moved cautiously, laughter forced, but they moved. Haven survives because Haven pretends.
+</p>
+<p>
+You find yourself among the Quarter’s thin comforts: brass fittings polished until they looked like gold; a Reclaimer smith’s table lined with drone casings claimed “from the Choir itself”; a Zeratek kiosk offering refurbished optics with the ink barely dry on their inspection seals. None of it inspires confidence, but all of it is for sale. Coins change hands with the sound of desperation disguised as normal trade.
+</p>
+
+<div class="gm">
+  <div class="gm-h">GM — Downtime & Shops</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Shops:</b> Basic supplies (rations, lamp oil, cheap salvage), low-grade ammo, and “reclaimed” Zeratek parts (may be faulty or cursed with Choir resonance).</li>
+      <li><b>Reclaimer Stalls:</b> Sell jury-rigged equipment at half cost but roll once per use (50% chance of shorting).</li>
+      <li><b>Zeratek Kiosk:</b> Offers buyback of any drone parts the PCs have scavenged. Taking the deal gains <i>Zeratek Favor +1</i> but loses <i>Reclaimer Trust -1</i>.</li>
+      <li><b>Rumors:</b> Civilians whisper the Choir is singing in <i>human voices</i> now. Others claim Helion has sealed off half the conduits “to stop the infection.”</li>
+    </ul>
+    <p class="small">Encourage PCs to roleplay bartering, gathering rumors, or resting. They can mend gear, but nothing feels permanent. The aurora hum persists, even when ignored.</p>
+  </div>
+</div>
+
+<h2 class="scene">Lira’s Return</h2>
+<p>
+The reprieve ends as Captain Lira Veyne finds you. She doesn’t make an entrance; she cuts one. Guards clear her path without orders, and the crowd learns quickly not to be caught listening. She is thinner in patience than she was in the Spire. Her braid has loosened at the edge, a detail more alarming than any weapon. 
+</p>
+<p>
+“You did well,” she says without looking at you, as if to acknowledge the fact without granting it space. “But the Spire cost me favors, and now it costs us time.” Her eyes skim the market like a scanline. “Zeratek blames sabotage. Reclaimers say their crews are being targeted. Helion wants to make it optics. And the Accord—” she glances briefly toward Saint’s shadow in the crowd, “—wants proof. None of them agree, so you’ll have to walk the seam where they all break.”
+</p>
+<p>
+She places a thin slate on the stall beside you. Its surface flickers with reports: power losses, missing miners, static bursts recorded on salvage mics. A map of Haven’s lower conduits etches itself in ghost-light, and across it, one word repeats in red glyphs: <i>Pulse</i>.
+</p>
+
+<div class="gm">
+  <div class="gm-h">GM — Mission Trigger</div>
+  <div class="gm-b">
+    <ul>
+      <li><b>Task:</b> PCs are ordered to investigate <i>Pulse Disturbances</i> near Haven’s lower conduits. These areas are claimed by all factions but patrolled by none.</li>
+      <li><b>Lira’s Tone:</b> Harder, clipped, and fraying. She is not assigning—she is begging under the language of command.</li>
+      <li><b>Political Stakes:</b> Zeratek wants proof of sabotage, Reclaimers want justice for missing miners, Helion wants calm optics, and the Accord wants <i>something that cannot be spun</i>.</li>
+      <li><b>Dialogue Hook:</b> Lira tells the PCs: <em>“If the Quarter burns, the Spire will bury us in it. Move.”</em></li>
+    </ul>
+    <p class="small">Push tension: make clear that this mission is not optional. If the party refuses, the Accord may “volunteer” them anyway. Haven runs on leverage, not choice.</p>
+  </div>
+</div>
+
+<p>
+As the slate hums in your hands, the Quarter seems quieter than before. The aurora’s song threads down through the conduits, faint but insistent, and you cannot tell if it’s the wires carrying it—or the walls themselves remembering.
+</p>
+
+  <!-- ===================== Bridge ===================== -->
+  <h2 class="scene">Bridge to Arc 4 — The Mouths of Power</h2>
+  <p>By the time you climbed back to the Quarter, Haven had grown new arguments. Reclaimer stewards wanted the dampeners for the tunnels. Helion wanted the shard for optics. Zeratek wanted everything in a sealed case with your signatures drying on top. The aurora pulsed once, twice, three times. Somewhere, a broadcast rehearsed its smile.</p>
+
+  <div class="gm">
+    <div class="gm-h">GM — Transition Hooks</div>
+    <div class="gm-b">
+      <ul>
+        <li><b>Faction Choice (hard fork):</b> Deliver shard to <i>Hestrel</i> (Accord Optics +1, Reclaimer −1), to <i>Serin Vael</i> (Reclaimer +1, Zeratek Hostility +1), or to <i>Saint</i> privately (Accord +1, Hestrel suspicious).</li>
+        <li><b>Accord Debrief:</b> Saint offers a quiet route to compare shard signature with older incidents (sets up Arc 4 evidence game).</li>
+        <li><b>Zeratek Pressure:</b> Drix promises <i>variance maps</i> for compliance; starts a smear if refused.</li>
+        <li><b>Opening of Arc 4:</b> A new <i>signal spike</i> surfaces in a Helion logistics corridor—politics in motion. Title card: <b>Arc 4 — The Mouths of Power</b>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- footer chips -->
+  <div class="subnav" style="margin-top:24px">
+    <a class="chip" href="#top">Top</a>
+    <a class="chip" href="arc2.html">Back to Arc 2</a>
+    <a class="chip" href="dossier.html">Open Dossier</a>
+  </div>
+<!-- === Combat Tracker Drawer === -->
+<button class="tracker-toggle" id="trkToggle">Combat</button>
+<div class="tracker" id="tracker">
+  <header>
+    <h3>Combat Tracker</h3>
+    <div class="controls">
+      <span class="pill" id="rndPill">Round 1</span>
+      <button class="btn mini" id="nextRd">Next rd</button>
+      <button class="btn mini" id="clearTrk">Clear</button>
+    </div>
+  </header>
+  <div class="tray">
+    <div class="addgrid">
+      <input id="trkName" placeholder="Name (PC/NPC)">
+      <input id="trkAC" type="number" placeholder="AC">
+      <input id="trkTH" type="number" placeholder="THAC0">
+      <input id="trkHP" type="number" placeholder="HP">
+      <input id="trkInit" type="number" placeholder="Init">
+    </div>
+    <div class="controls">
+      <select id="trkSide" class="side">
+        <option value="PC">PC</option>
+        <option value="NPC">NPC</option>
+      </select>
+      <button class="btn" id="addRow">Add</button>
+      <button class="btn" id="sortInit">Sort by Init</button>
+      <button class="btn" id="saveTrk">Save</button>
+    </div>
+
+    <div id="trkList" style="margin-top:10px"></div>
+  </div>
+</div>
+</main>
+<script>
+(function(){
+  const TKEY='v9_tracker_state';
+  let state={ round:1, rows:[] };
+
+  const $ = sel => document.querySelector(sel);
+  const list = $('#trkList'), pill = $('#rndPill');
+
+  function save(){ localStorage.setItem(TKEY, JSON.stringify(state)); }
+  function load(){
+    try{
+      const s = JSON.parse(localStorage.getItem(TKEY)||'{}');
+      if(s && s.rows) state=s;
+    }catch(e){}
+    pill.textContent = 'Round '+state.round;
+    render();
+  }
+
+  function render(){
+    list.innerHTML='';
+    state.rows.forEach((r,i)=>{
+      const row = document.createElement('div');
+      row.className='row'+(r.hp<=0?' dead':'');
+      row.innerHTML=`
+        <div><b>${r.name}</b> <span class="small">[${r.side}]</span></div>
+        <div>AC ${r.ac}</div>
+        <div>TH ${r.th}</div>
+        <div>HP <b>${r.hp}</b></div>
+        <div>Init ${r.init}</div>
+        <div class="controls">
+          <button class="btn mini" data-a="d1" data-i="${i}">-1</button>
+          <button class="btn mini" data-a="d5" data-i="${i}">-5</button>
+          <button class="btn mini" data-a="h1" data-i="${i}">+1</button>
+          <button class="btn mini" data-a="h5" data-i="${i}">+5</button>
+          <button class="btn mini" data-a="del" data-i="${i}">✕</button>
+        </div>`;
+      list.appendChild(row);
+    });
+  }
+
+  function add(){
+    const name=$('#trkName').value.trim();
+    const ac=parseInt($('#trkAC').value,10);
+    const th=parseInt($('#trkTH').value,10);
+    const hp=parseInt($('#trkHP').value,10);
+    const init=parseInt($('#trkInit').value,10);
+    const side=$('#trkSide').value;
+    if(!name || isNaN(ac)||isNaN(th)||isNaN(hp)||isNaN(init)) return;
+
+    state.rows.push({name,ac,th,hp,init,side});
+    $('#trkName').value=''; $('#trkAC').value=''; $('#trkTH').value='';
+    $('#trkHP').value=''; $('#trkInit').value='';
+    render(); save();
+  }
+
+  function sortInit(){
+    state.rows.sort((a,b)=> b.init - a.init);
+    render(); save();
+  }
+
+  function nextRound(){
+    state.round++; pill.textContent='Round '+state.round; save();
+  }
+
+  function clearAll(){
+    if(!confirm('Clear tracker?')) return;
+    state={round:1, rows:[]}; pill.textContent='Round 1';
+    render(); save();
+  }
+
+  // Events
+  $('#trkToggle').addEventListener('click',()=> $('#tracker').classList.toggle('open'));
+  $('#addRow').addEventListener('click',add);
+  $('#sortInit').addEventListener('click',sortInit);
+  $('#nextRd').addEventListener('click',nextRound);
+  $('#clearTrk').addEventListener('click',clearAll);
+  $('#saveTrk').addEventListener('click',save);
+
+  list.addEventListener('click', (e)=>{
+    const btn = e.target.closest('button'); if(!btn) return;
+    const i = parseInt(btn.dataset.i,10); if(isNaN(i)) return;
+    const r = state.rows[i];
+    const act = btn.dataset.a;
+    if(act==='d1') r.hp-=1;
+    if(act==='d5') r.hp-=5;
+    if(act==='h1') r.hp+=1;
+    if(act==='h5') r.hp+=5;
+    if(act==='del') state.rows.splice(i,1);
+    render(); save();
+  });
+
+  // Load persisted state on open
+  window.addEventListener('DOMContentLoaded', load);
+})();
+</script>
+<button id="v9-tracker-toggle">Combat Tracker</button>
+
+<div id="v9-tracker-drawer" aria-label="Combat Tracker Drawer">
+  <header>
+    <h3>Combat Tracker</h3>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="pill" id="v9-round-pill">Round 1</span>
+      <button class="btn" id="v9-next">Next rd</button>
+      <button class="btn" id="v9-clear">Clear</button>
+      <button class="btn" id="v9-pop">Pop-out</button>
+    </div>
+  </header>
+
+  <div class="tray">
+    <!-- add row -->
+    <div class="grid" style="margin-bottom:10px">
+      <input id="v9-add-name" placeholder="Name (PC/NPC)">
+      <input id="v9-add-init" type="number" placeholder="Init">
+      <input id="v9-add-ac"   type="number" placeholder="AC">
+      <input id="v9-add-hp"   type="number" placeholder="HP">
+      <input id="v9-add-th"   type="number" placeholder="THAC0/Atk">
+      <button class="btn" id="v9-add">Add</button>
+    </div>
+
+    <div class="small" style="color:var(--muted,#3a4150);margin-bottom:6px">
+      Click to edit values. ✓ marks acted, 💥 toggles defeated.
+    </div>
+
+    <div id="v9-rows"></div>
+  </div>
+</div>
+<script>
+(() => {
+  const drawer = document.getElementById('v9-tracker-drawer');
+  const toggle = document.getElementById('v9-tracker-toggle');
+  const roundPill = document.getElementById('v9-round-pill');
+
+  // single source of truth
+  let state = { round: 1, rows: [] };
+
+  function save(){ try{ localStorage.setItem('v9_tracker', JSON.stringify(state)); }catch(e){} }
+  function load(){
+    try{
+      const s = localStorage.getItem('v9_tracker');
+      if (s) state = JSON.parse(s);
+    }catch(e){}
+    render();
+  }
+
+  function render(){
+    roundPill.textContent = `Round ${state.round||1}`;
+    const host = document.getElementById('v9-rows'); host.innerHTML = '';
+    state.rows.slice().sort((a,b)=> (b.init||0)-(a.init||0)).forEach((r,i)=>{
+      const row = document.createElement('div');
+      row.className = 'row' + (r.dead ? ' dead':'');
+      row.innerHTML = `
+        <input value="${r.name||''}"  data-k="name">
+        <input value="${r.init||''}"  data-k="init"  type="number">
+        <input value="${r.ac||''}"    data-k="ac"    type="number">
+        <input value="${r.hp||''}"    data-k="hp"    type="number">
+        <input value="${r.th||''}"    data-k="th"    type="number">
+        <div style="display:flex;gap:6px">
+          <button class="btn" data-act="acted">✓</button>
+          <button class="btn" data-act="dead">💥</button>
+          <button class="btn" data-act="del">🗑</button>
+        </div>`;
+      row.querySelectorAll('input').forEach(inp=>{
+        inp.addEventListener('change', ()=>{
+          const key = inp.dataset.k;
+          state.rows[i][key] = (inp.type==='number') ? Number(inp.value) : inp.value;
+          save();
+        });
+      });
+      row.querySelector('[data-act="del"]').onclick  = ()=>{ state.rows.splice(i,1); save(); render(); };
+      row.querySelector('[data-act="dead"]').onclick = ()=>{ state.rows[i].dead = !state.rows[i].dead; save(); render(); };
+      row.querySelector('[data-act="acted"]').onclick= ()=>{ state.rows[i].acted= !state.rows[i].acted; save(); render(); };
+      host.appendChild(row);
+    });
+  }
+
+  // controls
+  document.getElementById('v9-add').onclick = ()=>{
+    const name = document.getElementById('v9-add-name').value.trim();
+    if (!name) return;
+    state.rows.push({
+      name,
+      init:Number(document.getElementById('v9-add-init').value||0),
+      ac:  Number(document.getElementById('v9-add-ac').value||0),
+      hp:  Number(document.getElementById('v9-add-hp').value||0),
+      th:  Number(document.getElementById('v9-add-th').value||0),
+      dead:false, acted:false
+    });
+    save(); render();
+    ['v9-add-name','v9-add-init','v9-add-ac','v9-add-hp','v9-add-th'].forEach(id=>document.getElementById(id).value='');
+  };
+
+  document.getElementById('v9-next').onclick  = ()=>{ state.round=(state.round||1)+1; save(); render(); };
+  document.getElementById('v9-clear').onclick = ()=>{ state={round:1,rows:[]}; save(); render(); };
+
+  // drawer toggle
+  toggle.addEventListener('click', ()=> drawer.classList.toggle('open'));
+
+  // pop-out
+  let pop = null;
+  document.getElementById('v9-pop').addEventListener('click', ()=>{
+    save(); // ensure latest
+    pop = window.open('tracker.html','Veyra9Tracker','width=980,height=720,menubar=no,toolbar=no,location=no,status=no');
+  });
+
+  // cross-window sync
+  window.addEventListener('storage', (e)=>{ if (e.key==='v9_tracker') load(); });
+
+  // boot
+  load();
+})();
+</script>
+</body>
+</html>
