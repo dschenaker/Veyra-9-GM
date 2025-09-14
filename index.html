@@ -150,6 +150,31 @@ window.addEventListener('DOMContentLoaded',()=>{
   <a href="repo.html">Dossier</a>
   <a href="player-recap.html">Player Recap</a>
   <span class="clock" id="clock">--:--:--</span>
+  <!-- Phase 2 -->
+<div class="nav-group" id="phase2-group" style="position:relative;">
+  <button class="nav-pill has-caret" type="button"
+          onclick="document.getElementById('phase2-dd').classList.toggle('open')">
+    Phase 2
+  </button>
+  <div class="nav-dropdown" id="phase2-dd" style="position:absolute;display:none;">
+    <a class="nav-pill" href="arc10.html">Arc 10</a>
+  </div>
+</div>
+
+<script>
+  // minimal toggler in case CSS expects a class
+  (function () {
+    const dd = document.getElementById('phase2-dd');
+    const show = () => dd.style.display = 'block';
+    const hide = () => dd.style.display = 'none';
+    document.getElementById('phase2-group')
+      .querySelector('button')
+      .addEventListener('click', () => {
+        dd.classList.toggle('open');
+        dd.style.display = dd.classList.contains('open') ? 'block' : 'none';
+      });
+  })();
+</script>
 </nav>
 
 <style>
