@@ -131,92 +131,102 @@ window.addEventListener('DOMContentLoaded',()=>{
 <header class="header">
   <div class="brand">VEYRA-9 · GM Hub</div>
   <nav>
-  <!-- Phase 1 -->
-  <div class="dropdown">
-    <button class="dropbtn">Phase I ▾</button>
-    <div class="dropdown-content">
-      <a href="index.html">Arc 1</a>
-      <a href="arc2.html">Arc 2</a>
-      <a href="arc3.html">Arc 3</a>
-      <a href="arc4.html">Arc 4</a>
-      <a href="arc5.html">Arc 5</a>
-      <a href="arc6.html">Arc 6</a>
-      <a href="arc7.html">Arc 7</a>
-      <a href="arc8.html">Arc 8</a>
-      <a href="arc9.html">Arc 9</a>
+    <!-- Phase I -->
+    <div class="dropdown">
+      <button class="dropbtn">Phase I ▾</button>
+      <div class="dropdown-content">
+        <a href="index.html">Arc 1</a>
+        <a href="arc2.html">Arc 2</a>
+        <a href="arc3.html">Arc 3</a>
+        <a href="arc4.html">Arc 4</a>
+        <a href="arc5.html">Arc 5</a>
+        <a href="arc6.html">Arc 6</a>
+        <a href="arc7.html">Arc 7</a>
+        <a href="arc8.html">Arc 8</a>
+        <a href="arc9.html">Arc 9</a>
+      </div>
     </div>
-  </div>
 
-  <!-- Phase 2 -->
-  <div class="dropdown">
-    <button class="dropbtn">Phase 2 ▾</button>
-    <div class="dropdown-content">
-      <a href="arc10.html">Arc 10</a>
-      <!-- add Arc 11+ later here -->
+    <a href="repo.html">Dossier</a>
+    <a href="player-recap.html">Player Recap</a>
+    <span class="clock" id="clock">--:--:--</span>
+
+    <!-- Phase 2 -->
+    <div class="nav-group" id="phase2-group">
+      <button class="dropbtn" type="button">Phase 2 ▾</button>
+      <!-- share the same dropdown styling by using the same class -->
+      <div class="dropdown-content" id="phase2-dd">
+        <a href="arc10.html">Arc 10</a>
+      </div>
     </div>
-  </div>
+  </nav>
 
-  <!-- Static links -->
-  <a href="repo.html">Dossier</a>
-  <a href="player-recap.html">Player Recap</a>
-  <span class="clock" id="clock">--:--:--</span>
-</nav>
+  <!-- unified nav CSS (one <style> block only) -->
+  <style>
+    .dropdown, #phase2-group { position:relative; display:inline-block; vertical-align:middle; }
 
-<script>
-  // minimal toggler in case CSS expects a class
-  (function () {
-    const dd = document.getElementById('phase2-dd');
-    const show = () => dd.style.display = 'block';
-    const hide = () => dd.style.display = 'none';
-    document.getElementById('phase2-group')
-      .querySelector('button')
-      .addEventListener('click', () => {
-        dd.classList.toggle('open');
-        dd.style.display = dd.classList.contains('open') ? 'block' : 'none';
-      });
-  })();
-</script>
+    .dropbtn {
+      background: var(--chip);
+      border:1px solid var(--chipLine);
+      border-radius:8px;
+      padding:6px 10px;
+      color:var(--brand);
+      font-weight:600;
+      cursor:pointer;
+    }
 
-<style>
-/* Phase dropdown alignment */
-.dropdown {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle; /* ensures consistent baseline with other buttons */
-}
+    .dropdown-content, #phase2-dd{
+      position:absolute;
+      top: calc(100% + 8px);       /* same gap under the pill */
+      left: 50%;                   /* centered under its pill */
+      transform: translateX(-50%);
+      display:none;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:6px;
+      min-width:10rem;
+      width:max-content;
+      box-shadow:0 10px 24px rgba(10,30,80,.12);
+      z-index:1500;
+    }
 
-.dropbtn {
-  background: var(--chip);
-  border: 1px solid var(--chipLine);
-  border-radius: 8px;
-  padding: 6px 10px;
-  color: var(--brand);
-  font-weight: 600;
-  cursor: pointer;
-  line-height: 1.4; /* normalize button height */
-}
+    /* hover bridge removes the “touchy” gap for Phase I */
+    .dropdown-content::before{
+      content:"";
+      position:absolute; top:-8px; left:0; right:0; height:8px;
+    }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;   /* anchors directly below button */
-  left: 0;     /* aligns flush with left edge of button */
-  margin-top: 2px; /* tiny consistent gap */
-  background: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,.1);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  min-width: 160px;
-  z-index: 20;
-}
+    /* items */
+    .dropdown-content a, #phase2-dd a{
+      display:block; padding:8px 12px; color:var(--ink);
+      border:1px solid transparent; border-radius:8px; white-space:nowrap;
+    }
+    .dropdown-content a:hover, #phase2-dd a:hover{
+      background:#f4f7ff; border-color:#e7ebff;
+    }
 
-.dropdown-content a {
-  display:block; padding:8px 12px; color:var(--ink);
-}
-.dropdown-content a:hover { background:#f4f7ff; }
-.dropdown:hover .dropdown-content { display:block; }
-.dropdown:hover .dropbtn { background:#eef5ff; }
-</style>
+    /* Phase I shows on hover; Phase 2 shows via JS toggle */
+    .dropdown:hover .dropdown-content { display:block; }
+    #phase2-dd.open { display:block; }
+  </style>
+
+  <!-- Phase 2 toggler JS — place OUTSIDE any <style> block -->
+  <script>
+    (function(){
+      const group  = document.getElementById('phase2-group');
+      if(!group) return;
+      const button = group.querySelector('button');
+      const panel  = document.getElementById('phase2-dd');
+
+      const open = (on)=> panel.classList[on?'add':'remove']('open');
+
+      button.addEventListener('click', (e)=>{ e.stopPropagation(); panel.classList.toggle('open'); });
+      document.addEventListener('click', ()=> open(false));
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') open(false); });
+      panel.addEventListener('click', (e)=> e.stopPropagation());
+    })();
+  </script>
 </header>
 
 <main class="wrap" id="top">
