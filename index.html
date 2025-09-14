@@ -131,38 +131,42 @@ window.addEventListener('DOMContentLoaded',()=>{
 <header class="header">
   <div class="brand">VEYRA-9 · GM Hub</div>
 
-  <nav class="nav">
-    <!-- LEFT CLUSTER -->
-    <div class="nav-left">
-      <!-- Phase I (hover) -->
-      <div class="dropdown">
-        <button class="dropbtn">Phase I ▾</button>
-        <div class="dropdown-content">
-          <a href="index.html">Arc 1</a>
-          <a href="arc2.html">Arc 2</a>
-          <a href="arc3.html">Arc 3</a>
-          <a href="arc4.html">Arc 4</a>
-          <a href="arc5.html">Arc 5</a>
-          <a href="arc6.html">Arc 6</a>
-          <a href="arc7.html">Arc 7</a>
-          <a href="arc8.html">Arc 8</a>
-          <a href="arc9.html">Arc 9</a>
-        </div>
+  <!-- left cluster -->
+  <nav class="nav-left">
+    <div class="dropdown">
+      <button class="dropbtn">Phase I ▾</button>
+      <div class="dropdown-content">
+        <a href="index.html">Arc 1</a>
+        <a href="arc2.html">Arc 2</a>
+        <a href="arc3.html">Arc 3</a>
+        <a href="arc4.html">Arc 4</a>
+        <a href="arc5.html">Arc 5</a>
+        <a href="arc6.html">Arc 6</a>
+        <a href="arc7.html">Arc 7</a>
+        <a href="arc8.html">Arc 8</a>
+        <a href="arc9.html">Arc 9</a>
       </div>
-
-      <a class="nav-pill" href="repo.html">Dossier</a>
-      <a class="nav-pill" href="player-recap.html">Player Recap</a>
-      <span class="clock" id="clock">--:--:--</span>
     </div>
 
-    <!-- RIGHT CLUSTER (pushes to far right) -->
-    <div class="nav-right" id="phase2-group">
-      <button class="dropbtn" type="button">Phase 2 ▾</button>
-      <div class="dropdown-content dropdown-right" id="phase2-dd">
+    <a href="repo.html">Dossier</a>
+    <a href="player-recap.html">Player Recap</a>
+  </nav>
+
+  <!-- centered clock -->
+  <div class="spacer">
+    <span class="clock" id="clock">--:--:--</span>
+  </div>
+
+  <!-- right cluster -->
+  <nav class="nav-right">
+    <div class="dropdown right">
+      <button class="dropbtn">Phase 2 ▾</button>
+      <div class="dropdown-content">
         <a href="arc10.html">Arc 10</a>
       </div>
     </div>
   </nav>
+</header>
 
   <style>
     /* layout */
@@ -213,6 +217,49 @@ window.addEventListener('DOMContentLoaded',()=>{
     .dropdown-right{ left:auto; right:0; transform:none; }
     /* show Phase 2 when toggled by JS */
     #phase2-dd.open{ display:block; }
+
+    /* ===== Header layout ===== */
+.header{
+  display:flex; align-items:center; gap:12px;
+  padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:10;
+}
+.nav-left, .nav-right{ display:flex; align-items:center; gap:10px; }
+.spacer{ flex:1; display:flex; justify-content:center; }
+
+/* Pills/links in nav */
+nav a, .dropbtn{
+  display:inline-block; padding:6px 10px;
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:8px;
+  color:var(--brand); font-weight:600; text-decoration:none; cursor:pointer;
+}
+nav a:hover, .dropbtn:hover{ background:#f4f7ff; }
+
+/* ===== Dropdowns (shared) ===== */
+.dropdown{ position:relative; }
+.dropdown .dropdown-content{
+  position:absolute; top:calc(100% + 6px); left:0;  /* anchor under the button */
+  display:none; background:#fff; border:1px solid var(--line); border-radius:10px;
+  box-shadow:0 8px 24px rgba(10,30,80,.12);
+  min-width:160px; overflow:hidden;
+}
+.dropdown .dropdown-content a{
+  display:block; padding:8px 12px; color:var(--ink);
+}
+.dropdown .dropdown-content a:hover{ background:#f4f7ff; }
+
+/* open on hover (desktop); on mobile tap focuses button so this still works) */
+.dropdown:hover .dropdown-content{ display:block; }
+
+/* Right-aligned dropdown (Phase 2) snaps to its trigger’s right edge */
+.dropdown.right .dropdown-content{ right:0; left:auto; }
+
+/* Clock pill stays centered */
+.clock{
+  background:var(--chip); border:1px solid var(--chipLine); border-radius:999px;
+  padding:6px 12px; font-weight:700; color:var(--brand);
+}
+
   </style>
 
   <script>
@@ -238,7 +285,6 @@ window.addEventListener('DOMContentLoaded',()=>{
       panel.addEventListener('click', (e)=> e.stopPropagation());
     })();
   </script>
-</header>
 
 <main class="wrap" id="top">
   <div class="subnav">
