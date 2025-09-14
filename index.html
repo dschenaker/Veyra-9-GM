@@ -143,21 +143,17 @@ window.addEventListener('DOMContentLoaded',()=>{
       <a href="arc7.html">Arc 7</a>
       <a href="arc8.html">Arc 8</a>
       <a href="arc9.html">Arc 9</a>
-      <a class="chip chip--arc" href="arc10.html">Arc 10</a>
-    
     </div>
   </div>
   <a href="repo.html">Dossier</a>
   <a href="player-recap.html">Player Recap</a>
   <span class="clock" id="clock">--:--:--</span>
-  <!-- Phase 2 -->
-<div class="nav-group" id="phase2-group" style="position:relative;">
-  <button class="nav-pill has-caret" type="button"
-          onclick="document.getElementById('phase2-dd').classList.toggle('open')">
-    Phase 2
-  </button>
-  <div class="nav-dropdown" id="phase2-dd" style="position:absolute;display:none;">
-    <a class="nav-pill" href="arc10.html">Arc 10</a>
+<!-- Phase 2 (match Phase I dropdown styles) -->
+<div class="dropdown">
+  <button class="dropbtn">Phase 2 ▾</button>
+  <div class="dropdown-content">
+    <a class="chip chip--arc" href="arc10.html">Arc 10</a>
+    <!-- add Arc 11+ here later -->
   </div>
 </div>
 
@@ -196,11 +192,6 @@ window.addEventListener('DOMContentLoaded',()=>{
 .dropdown-content a:hover { background:#f4f7ff; }
 .dropdown:hover .dropdown-content { display:block; }
 .dropdown:hover .dropbtn { background:#eef5ff; }
-</style>
-<style>
-  .nav-group{ position:relative; }
-  .nav-dropdown{ position:absolute; display:none; }
-  .nav-dropdown.open{ display:block; }
 </style>
 </header>
 
