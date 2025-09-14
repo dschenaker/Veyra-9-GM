@@ -130,42 +130,48 @@ window.addEventListener('DOMContentLoaded',()=>{
 <body>
 <header class="header">
   <div class="brand">VEYRA-9 · GM Hub</div>
-  <nav>
-    <!-- Phase I -->
-    <div class="dropdown">
-      <button class="dropbtn">Phase I ▾</button>
-      <div class="dropdown-content">
-        <a href="index.html">Arc 1</a>
-        <a href="arc2.html">Arc 2</a>
-        <a href="arc3.html">Arc 3</a>
-        <a href="arc4.html">Arc 4</a>
-        <a href="arc5.html">Arc 5</a>
-        <a href="arc6.html">Arc 6</a>
-        <a href="arc7.html">Arc 7</a>
-        <a href="arc8.html">Arc 8</a>
-        <a href="arc9.html">Arc 9</a>
+
+  <nav class="nav">
+    <!-- LEFT CLUSTER -->
+    <div class="nav-left">
+      <!-- Phase I (hover) -->
+      <div class="dropdown">
+        <button class="dropbtn">Phase I ▾</button>
+        <div class="dropdown-content">
+          <a href="index.html">Arc 1</a>
+          <a href="arc2.html">Arc 2</a>
+          <a href="arc3.html">Arc 3</a>
+          <a href="arc4.html">Arc 4</a>
+          <a href="arc5.html">Arc 5</a>
+          <a href="arc6.html">Arc 6</a>
+          <a href="arc7.html">Arc 7</a>
+          <a href="arc8.html">Arc 8</a>
+          <a href="arc9.html">Arc 9</a>
+        </div>
       </div>
+
+      <a class="nav-pill" href="repo.html">Dossier</a>
+      <a class="nav-pill" href="player-recap.html">Player Recap</a>
+      <span class="clock" id="clock">--:--:--</span>
     </div>
 
-    <a href="repo.html">Dossier</a>
-    <a href="player-recap.html">Player Recap</a>
-    <span class="clock" id="clock">--:--:--</span>
-
-    <!-- Phase 2 -->
-    <div class="nav-group" id="phase2-group">
+    <!-- RIGHT CLUSTER (pushes to far right) -->
+    <div class="nav-right" id="phase2-group">
       <button class="dropbtn" type="button">Phase 2 ▾</button>
-      <!-- share the same dropdown styling by using the same class -->
-      <div class="dropdown-content" id="phase2-dd">
+      <div class="dropdown-content dropdown-right" id="phase2-dd">
         <a href="arc10.html">Arc 10</a>
       </div>
     </div>
   </nav>
 
-  <!-- unified nav CSS (one <style> block only) -->
   <style>
-    .dropdown, #phase2-group { position:relative; display:inline-block; vertical-align:middle; }
+    /* layout */
+    .nav{display:flex; align-items:center; gap:12px; width:100%}
+    .nav-left{display:flex; align-items:center; gap:12px}
+    .nav-right{margin-left:auto; position:relative}
 
-    .dropbtn {
+    .nav-pill,
+    .dropbtn{
       background: var(--chip);
       border:1px solid var(--chipLine);
       border-radius:8px;
@@ -173,55 +179,60 @@ window.addEventListener('DOMContentLoaded',()=>{
       color:var(--brand);
       font-weight:600;
       cursor:pointer;
+      display:inline-block;
     }
 
-    .dropdown-content, #phase2-dd{
+    .dropdown{ position:relative; display:inline-block }
+    .dropdown-content{
       position:absolute;
-      top: calc(100% + 8px);       /* same gap under the pill */
-      left: 50%;                   /* centered under its pill */
-      transform: translateX(-50%);
+      top: calc(100% + 8px);     /* consistent gap below pill */
+      left:50%; transform:translateX(-50%);  /* centered under pill */
       display:none;
       background:#fff;
       border:1px solid var(--line);
       border-radius:10px;
       padding:6px;
-      min-width:10rem;
-      width:max-content;
+      min-width:10rem; width:max-content;
       box-shadow:0 10px 24px rgba(10,30,80,.12);
       z-index:1500;
     }
-
-    /* hover bridge removes the “touchy” gap for Phase I */
+    /* hover bridge to remove the “touchy” gap */
     .dropdown-content::before{
-      content:"";
-      position:absolute; top:-8px; left:0; right:0; height:8px;
+      content:""; position:absolute; top:-8px; left:0; right:0; height:8px;
     }
+    .dropdown:hover .dropdown-content{ display:block; }
 
-    /* items */
-    .dropdown-content a, #phase2-dd a{
+    /* menu items */
+    .dropdown-content a{
       display:block; padding:8px 12px; color:var(--ink);
       border:1px solid transparent; border-radius:8px; white-space:nowrap;
     }
-    .dropdown-content a:hover, #phase2-dd a:hover{
-      background:#f4f7ff; border-color:#e7ebff;
-    }
+    .dropdown-content a:hover{ background:#f4f7ff; border-color:#e7ebff }
 
-    /* Phase I shows on hover; Phase 2 shows via JS toggle */
-    .dropdown:hover .dropdown-content { display:block; }
-    #phase2-dd.open { display:block; }
+    /* Phase 2 panel right-aligned to its button */
+    .dropdown-right{ left:auto; right:0; transform:none; }
+    /* show Phase 2 when toggled by JS */
+    #phase2-dd.open{ display:block; }
   </style>
 
-  <!-- Phase 2 toggler JS — place OUTSIDE any <style> block -->
   <script>
+    // clock
+    (function tick(){
+      const el=document.getElementById('clock'); if(!el) return;
+      el.textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})+' CEST';
+      setTimeout(tick,1000);
+    })();
+
+    // Phase 2 toggler (click to open/close, click-away/Esc to close)
     (function(){
-      const group  = document.getElementById('phase2-group');
+      const group = document.getElementById('phase2-group');
       if(!group) return;
-      const button = group.querySelector('button');
-      const panel  = document.getElementById('phase2-dd');
+      const btn = group.querySelector('button');
+      const panel = document.getElementById('phase2-dd');
 
       const open = (on)=> panel.classList[on?'add':'remove']('open');
 
-      button.addEventListener('click', (e)=>{ e.stopPropagation(); panel.classList.toggle('open'); });
+      btn.addEventListener('click', (e)=>{ e.stopPropagation(); panel.classList.toggle('open'); });
       document.addEventListener('click', ()=> open(false));
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') open(false); });
       panel.addEventListener('click', (e)=> e.stopPropagation());
