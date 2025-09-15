@@ -2,6 +2,18 @@
 const V9_NAV = {
   brandHref: "index.html",
   brandText: "VEYRA-9 · GM Hub",
+
+  // header links on the right
+  utils: [
+    { href: "repo.html",         text: "Dossier" },
+    { href: "player-recap.html", text: "Player Recap" }
+  ],
+
+  // show a clock chip and its label
+  showClock: true,
+  clockTZ: "CEST",
+
+  // phases + arc titles (these feed the TOC)
   phases: [
     {
       label: "Phase I",
@@ -23,12 +35,9 @@ const V9_NAV = {
         { href: "arc10.html", text: "Arc 10 — Exfil and Testimony" }
       ]
     }
-  ],
-  utils: [
-    { href: "repo.html",         text: "Character Dossier" },
-    { href: "player-recap.html", text: "Player Recap" }
   ]
 };
+/* ---------- /CONFIG -------------------------------- */
 
 // Shorten for header chips only (drop subtitle after the em dash)
 const shortLabel = txt => txt.replace(/\s*—.*/, '');
