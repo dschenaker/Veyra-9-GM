@@ -4,26 +4,29 @@ const V9_NAV = {
   brandText: "VEYRA-9 · GM Hub",
   phases: [
     {
-      label: "Phase 1",
+      label: "Phase I",
       items: [
-        { text:"Arc 1", href:"index.html" },
-        { text:"Arc 2", href:"arc2.html" },
-        { text:"Arc 3", href:"arc3.html" },
-        { text:"Arc 4", href:"arc4.html" },
-        { text:"Arc 5", href:"arc5.html" },
-        { text:"Arc 6", href:"arc6.html" },
-        { text:"Arc 7", href:"arc7.html" },
-        { text:"Arc 8", href:"arc8.html" },
-        { text:"Arc 9", href:"arc9.html" },
+        { href: "index.html", text: "Arc 1 — Miners’ Desperation" },
+        { href: "arc2.html",  text: "Arc 2 — Spire of Quiet Lies" },
+        { href: "arc3.html",  text: "Arc 3 — (Title TBD)" },
+        { href: "arc4.html",  text: "Arc 4 — (Title TBD)" },
+        { href: "arc5.html",  text: "Arc 5 — (Title TBD)" },
+        { href: "arc6.html",  text: "Arc 6 — (Title TBD)" },
+        { href: "arc7.html",  text: "Arc 7 — (Title TBD)" },
+        { href: "arc8.html",  text: "Arc 8 — (Title TBD)" },
+        { href: "arc9.html",  text: "Arc 9 — (Title TBD)" }
       ]
     },
     {
-      label: "Phase 2",
+      label: "Phase II",
       items: [
-        { text:"Arc 10", href:"arc10.html" }
-        // add Arc 11+ here later…
+        { href: "arc10.html", text: "Arc 10 — Exfil and Testimony" }
       ]
     }
+  ],
+  utils: [
+    { href: "repo.html",         text: "Character Dossier" },
+    { href: "player-recap.html", text: "Player Recap" }
   ],
   links: [
     { text:"Dossier", href:"repo.html" },
