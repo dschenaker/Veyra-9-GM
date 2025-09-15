@@ -27,14 +27,15 @@ const V9_NAV = {
   utils: [
     { href: "repo.html",         text: "Character Dossier" },
     { href: "player-recap.html", text: "Player Recap" }
-  ],
-  links: [
-    { text:"Dossier", href:"repo.html" },
-    { text:"Player Recap", href:"player-recap.html" }
-  ],
-  showClock: true,   // set false if you don’t want the clock
-  clockTZ: "CEST"    // label only
+  ]
 };
+
+// Shorten for header chips only (drop subtitle after the em dash)
+const shortLabel = txt => txt.replace(/\s*—.*/, '');
+
+// inside TOC builder when creating <a> for each item
+a.textContent = fullLabel(it.text);  // NOT shortLabel(...)
+
 /* --------- end CONFIG --------- */
 
 (function(){
