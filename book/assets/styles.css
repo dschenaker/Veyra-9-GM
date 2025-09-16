@@ -1,8 +1,9 @@
-/* Base theme */
+/* ====== Veyra-9 GM Hub — Base Theme ====== */
 :root{
   --bg:#f6f7fb; --ink:#0b0f18; --muted:#3a4150;
   --line:#d7dbea; --panel:#ffffff;
   --brand:#0b3d7a; --brandSoft:#6aa0ff;
+  --chip:#eaf1ff; --chipLine:#c9d8ff;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -14,7 +15,10 @@ body{
 a{color:var(--brand); text-decoration:none}
 a:hover{filter:brightness(1.08); text-decoration:underline}
 
-/* Header */
+/* Old chip strip/legacy bits off everywhere */
+.legacy-toc,.chip-row{display:none !important}
+
+/* ====== Header ====== */
 .v9-header{
   display:flex; justify-content:space-between; align-items:center;
   padding:14px 18px; background:#eef2ff; border-bottom:1px solid var(--line);
@@ -27,34 +31,39 @@ a:hover{filter:brightness(1.08); text-decoration:underline}
   padding:6px 10px; font-weight:600; color:#0b3d7a; text-decoration:none
 }
 
-/* Layout */
+/* ====== TOC ====== */
+.v9-toc{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;margin:12px 0 18px}
+.v9-toc .toc-group{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+.v9-toc .toc-title{font-weight:800;color:#0b3d7a;margin-right:6px}
+.v9-toc a{display:inline-block;padding:6px 10px;border:1px solid #c9d8ff;border-radius:8px;background:#eaf1ff;color:#0b3d7a;text-decoration:none;font-weight:600}
+.v9-toc a[aria-current="page"]{background:#0b3d7a;color:#fff;border-color:#0b3d7a}
+.v9-toc a:hover{filter:brightness(1.06)}
+
+/* ====== Layout & Content ====== */
 .wrap{max-width:1100px; margin:0 auto; padding:20px}
 .breadcrumbs{color:var(--muted); margin:6px 0 14px}
 .scene{ color:var(--brand); border-bottom:2px solid var(--line); padding-bottom:6px; margin-top:28px }
 .scene::before{content:"◆ "; color:var(--brandSoft)}
 blockquote{ border-left:4px solid var(--brandSoft); background:#eef5ff; padding:10px 14px; margin:14px 0; font-style:italic }
-.gm{ background:#eef5ff; border:1px solid #c9d8ff; border-left:6px solid var(--brandSoft);
+.gm{ background:#eef5ff; border:1px solid var(--chipLine); border-left:6px solid var(--brandSoft);
      border-radius:10px; padding:10px 14px; margin:18px 0; box-shadow:0 1px 0 rgba(10,30,80,.04) }
 .gm-h{ font-weight:800; color:var(--brand); margin:2px 0 6px }
 
-/* Embedded TOC container */
-.toc-embed{ background:#0a0f14; border-radius:12px; margin:.75rem 0 1rem }
-
-/* Tracker drawer (minimal) */
+/* ====== Combat Tracker (lightweight) ====== */
 #v9-tracker-toggle{
-  position:fixed; right:18px; bottom:18px; z-index:30;
-  background:#0b3d7a; color:#fff; border:0; border-radius:999px; padding:10px 14px; font-weight:700;
-  box-shadow:0 6px 14px rgba(10,30,80,.15); cursor:pointer;
+  position:fixed; right:18px; bottom:18px; z-index:20;
+  background:#0b3d7a; color:#fff; border:0; border-radius:999px; padding:10px 14px;
+  box-shadow:0 6px 18px rgba(12,32,88,.22); cursor:pointer;
 }
 #v9-tracker-drawer{
-  position:fixed; right:18px; bottom:72px; width:420px; max-width:calc(100vw - 36px);
-  transform:translateY(16px); opacity:0; pointer-events:none;
-  background:#fff; border:1px solid var(--line); border-radius:14px; padding:12px; z-index:29;
-  box-shadow:0 16px 40px rgba(10,30,80,.2);
-  transition:.2s ease;
+  position:fixed; right:18px; bottom:76px; width:360px; max-height:70vh; overflow:auto;
+  background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 10px 28px rgba(10,30,80,.18);
+  transform:translateY(10px); opacity:0; pointer-events:none; transition:.18s ease;
+  padding:12px;
 }
-#v9-tracker-drawer.open{ transform:translateY(0); opacity:1; pointer-events:auto; }
-#v9-rows .row{ display:grid; grid-template-columns:1.2fr repeat(4, .6fr) auto; gap:6px; align-items:center; margin:6px 0; }
-#v9-rows .row.dead{ opacity:.55; text-decoration:line-through; }
-#v9-rows input{ padding:6px 8px; border:1px solid var(--line); border-radius:8px; }
-#v9-tracker-drawer .btn{ padding:6px 10px; border:1px solid var(--line); background:#f8f9ff; border-radius:8px; cursor:pointer; }
+#v9-tracker-drawer.open{ transform:none; opacity:1; pointer-events:auto }
+#v9-tracker-drawer header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+#v9-tracker-drawer .pill{background:#eaf1ff;border:1px solid #c9d8ff;border-radius:999px;padding:4px 8px;font-weight:700;color:#0b3d7a}
+#v9-tracker-drawer .btn{background:#eef2ff;border:1px solid var(--line);border-radius:8px;padding:4px 8px;cursor:pointer}
+#v9-rows .row{display:grid;grid-template-columns:1fr repeat(4,88px) auto;gap:6px;align-items:center;margin:6px 0}
+#v9-rows .row.dead{opacity:.5}
