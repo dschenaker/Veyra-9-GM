@@ -1,45 +1,79 @@
 <!doctype html>
 <html lang="en">
-<meta charset="utf-8">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Veyra-9 TOC</title>
 <style>
-  body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#0b0f18}
-  .panel{background:#fff;border:1px solid #d7dbea;border-radius:12px;padding:16px}
-  h2{margin:0 0 12px;font-size:28px;letter-spacing:.2px}
-  .cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
-  h3{margin:8px 0 6px;color:#233a73}
-  ol,ul{margin:6px 0 0 1.25rem;padding:0}
-  a{color:#0b3d7a;text-decoration:none}
-  a:hover{text-decoration:underline}
+  :root { --bg:#0a0f14; --card:#101823; --ink:#e6f0ff; --muted:#94a3b8; --accent:#4cc9f0; --line:#1e293b; }
+  html,body{margin:0;padding:0;background:transparent;color:var(--ink);font:14px/1.35 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Arial}
+  .toc{display:grid;gap:.5rem;padding:.75rem;border:1px solid var(--line);background:var(--card);border-radius:12px}
+  .hdr{display:flex;gap:.75rem;align-items:center;margin-bottom:.25rem}
+  .dot{width:.6rem;height:.6rem;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+  #clock{margin-left:auto;color:var(--muted);font-weight:600}
+  .row{display:flex;gap:.5rem;flex-wrap:wrap}
+  a.item{padding:.45rem .65rem;border:1px solid #243446;border-radius:10px;text-decoration:none;color:var(--ink)}
+  a.item[aria-current="page"]{background:var(--accent);color:#05202e;border-color:var(--accent)}
+  a.item:hover{border-color:var(--accent)}
 </style>
-<div class="panel">
-  <h2>Table of Contents</h2>
-  <div class="cols">
-    <div>
-      <h3>Phase I</h3>
-      <ol>
-        <li><a href="index.html">Arc 1 — Miners’ Desperation</a></li>
-        <li><a href="arc2.html">Arc 2 — Spire of Quiet Lies</a></li>
-        <li><a href="arc3.html">Arc 3 — (Title TBD)</a></li>
-        <li><a href="arc4.html">Arc 4 — (Title TBD)</a></li>
-        <li><a href="arc5.html">Arc 5 — (Title TBD)</a></li>
-        <li><a href="arc6.html">Arc 6 — (Title TBD)</a></li>
-        <li><a href="arc7.html">Arc 7 — (Title TBD)</a></li>
-        <li><a href="arc8.html">Arc 8 — (Title TBD)</a></li>
-        <li><a href="arc9.html">Arc 9 — (Title TBD)</a></li>
-      </ol>
+<script>
+const arcs = [
+  {phase:1, items:[
+    {n:1,  href:'index.html', title:"Miners’ Desperation"},
+    {n:2,  href:'arc2.html',  title:'Spire of Quiet Lies'},
+    {n:3,  href:'arc3.html'}, {n:4, href:'arc4.html'},
+    {n:5,  href:'arc5.html'}, {n:6, href:'arc6.html'},
+    {n:7,  href:'arc7.html'}, {n:8, href:'arc8.html'},
+    {n:9,  href:'arc9.html'}
+  ]},
+  {phase:2, items:[
+    {n:10, href:'arc10.html', title:'(start of Phase II)'}
+    // add {n:11, href:'arc11.html'} ... up to 27 as you go
+  ]}
+];
+
+function renderTOC(){
+  const root = document.getElementById('root');
+  const cur = (parent && parent.location) ? parent.location.pathname.split('/').pop() : location.pathname.split('/').pop();
+
+  arcs.forEach(group=>{
+    const row = document.createElement('div');
+    row.className = 'row';
+    const title = document.createElement('div');
+    title.textContent = `Phase ${group.phase}`;
+    title.style.cssText = 'font-weight:800;color:#86e1ff;margin-right:6px';
+    row.appendChild(title);
+
+    group.items.forEach(item=>{
+      const a = document.createElement('a');
+      a.className = 'item';
+      a.href = item.href;
+      a.textContent = item.title ? `Arc ${item.n} — ${item.title}` : `Arc ${item.n}`;
+      if (item.href === cur) a.setAttribute('aria-current','page');
+      root.appendChild(row);
+      row.appendChild(a);
+    });
+  });
+}
+
+function tick(){
+  const el = document.getElementById('clock');
+  if(!el) return;
+  try{ el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST'; }
+  catch{ el.textContent = new Date().toLocaleTimeString() + ' CEST'; }
+}
+addEventListener('DOMContentLoaded', ()=>{ renderTOC(); tick(); setInterval(tick,1000); });
+</script>
+<link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+  <div class="toc">
+    <div class="hdr">
+      <div class="dot"></div>
+      <div style="font-weight:700;letter-spacing:.3px">Veyra-9 Sourcebook — TOC</div>
+      <div id="clock"></div>
     </div>
-    <div>
-      <h3>Phase II</h3>
-      <ol>
-        <li><a href="arc10.html">Arc 10 — Exfil and Testimony</a></li>
-      </ol>
-    </div>
-    <div>
-      <h3>Utilities</h3>
-      <ul>
-        <li><a href="repo.html">Character Dossier</a></li>
-        <li><a href="player-recap.html">Player Recap</a></li>
-      </ul>
-    </div>
+    <div id="root"></div>
   </div>
-</div>
+</body>
+</html>
