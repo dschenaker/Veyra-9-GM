@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Veyra-9 — GM Hub · Arc 10</title>
+  <link rel="stylesheet" href="book/assets/styles.css?v=5">
+</head>
+<body class="page-arc10">
+  <header class="header">
+    <div class="brand"><a href="index.html">VEYRA-9 · GM Hub</a></div>
+    <nav>
+      <div class="dropdown">
+        <button class="dropbtn">Phase I ▾</button>
+        <div class="dropdown-content">
+          <a href="index.html">Arc 1</a>
+          <a href="arc2.html">Arc 2</a>
+          <a href="arc3.html">Arc 3</a>
+          <a href="arc4.html">Arc 4</a>
+          <a href="arc5.html">Arc 5</a>
+          <a href="arc6.html">Arc 6</a>
+          <a href="arc7.html">Arc 7</a>
+          <a href="arc8.html">Arc 8</a>
+          <a href="arc9.html">Arc 9</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Phase II ▾</button>
+        <div class="dropdown-content">
+          <a href="arc10.html">Arc 10</a>
+          <a href="arc11.html">Arc 11</a>
+          <!-- More arcs here -->
+        </div>
+      </div>
+
+      <a href="repo.html">Dossier</a>
+      <a href="player-recap.html">Player Recap</a>
+      <span class="clock" id="clock">--:--:--</span>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="breadcrumbs">Phase II → <b>Arc 10</b></div>
+    <h1 class="scene">Arc 10 — Exfil and Testimony</h1>
+
+    <!-- Scene prose and GM callouts will go here -->
+  </main>
+
+  <script>
+    function tick(){
+      const el = document.getElementById('clock');
+      if (el) el.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' CEST';
+    }
+    setInterval(tick,1000); tick();
+  </script>
+</body>
+</html>
